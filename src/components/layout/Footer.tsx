@@ -37,10 +37,16 @@ const Footer = () => {
               Collections
             </h4>
             <ul className="flex flex-col gap-4">
-              {["Silver Jewellery", "Pooja & Idols", "999 Silver Frames", "German Silver Gifts", "Personalized Items"].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-sm text-charcoal/70 hover:text-charcoal transition-colors">
-                    {item}
+              {[
+                { name: "Silver Jewellery", href: "/collections/jewellery" },
+                { name: "Pooja & Idols", href: "/collections/pooja-idols" },
+                { name: "Silver Coins", href: "/collections/coins" },
+                { name: "Men's Collection", href: "/collections/men" },
+                { name: "Women's Collection", href: "/collections/women" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href} className="text-sm text-charcoal/70 hover:text-charcoal transition-colors">
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -53,10 +59,16 @@ const Footer = () => {
               Quick Links
             </h4>
             <ul className="flex flex-col gap-4">
-              {["About Us", "Contact Us", "Shipping Policy", "Terms & Conditions", "Privacy Policy"].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-sm text-charcoal/70 hover:text-charcoal transition-colors">
-                    {item}
+              {[
+                { name: "About Us", href: "/about" },
+                { name: "Contact Us", href: "/contact" },
+                { name: "Shipping Policy", href: "#" },
+                { name: "Terms & Conditions", href: "#" },
+                { name: "Privacy Policy", href: "#" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href} className="text-sm text-charcoal/70 hover:text-charcoal transition-colors">
+                    {item.name}
                   </Link>
                 </li>
               ))}

@@ -16,7 +16,12 @@ export default function CategoryPage() {
   const slug = params.slug as string;
 
   const category = categories.find((c) => c.slug === slug);
-  const filteredProducts = products.filter((p) => p.category === slug);
+  
+  const filteredProducts = products.filter((p) => {
+    if (slug === "men") return p.gender === "men";
+    if (slug === "women") return p.gender === "women";
+    return p.category === slug;
+  });
 
   const containerRef = useGSAP(() => {
     gsap.from(".category-header-text", {

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Product } from "@/data/products";
 import { ArrowUpRight } from "lucide-react";
 
@@ -16,11 +17,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
       className="group block"
     >
       <div className="relative aspect-[4/5] bg-silver-50 overflow-hidden mb-6 border border-silver-100">
-        {/* Placeholder for Product Image */}
-        <div className="w-full h-full bg-gradient-to-br from-silver-50 to-silver-100 transition-transform duration-700 group-hover:scale-105 flex items-center justify-center p-12">
-           <div className="w-full h-full border border-charcoal/5 flex items-center justify-center">
-              <span className="font-serif italic text-charcoal/20 text-sm tracking-ultra uppercase">{product.subCategory}</span>
-           </div>
+        {/* Actual Product Image */}
+        <div className="w-full h-full relative transition-transform duration-700 group-hover:scale-105">
+           <Image 
+             src={product.image} 
+             alt={product.name}
+             fill
+             className="object-cover"
+             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+           />
         </div>
 
         {/* Hover Overlay */}

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 import { products } from "@/data/products";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -68,25 +69,28 @@ export default function ProductDetailPage() {
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-            {/* Image Gallery Placeholder */}
+            {/* Image Gallery */}
             <div className="product-image-box relative aspect-[4/5] bg-silver-50 border border-silver-100 overflow-hidden group">
-               <div className="w-full h-full bg-gradient-to-br from-silver-50 to-silver-100 flex items-center justify-center p-20">
-                    <div className="w-full h-full border border-charcoal/5 flex items-center justify-center relative">
-                        <span className="font-serif italic text-charcoal/10 text-9xl absolute -rotate-12 select-none uppercase tracking-widest">{product.subCategory || "Pure"}</span>
-                        <div className="relative z-10 text-center">
-                             <div className="w-64 h-64 rounded-full border border-gold/10 flex items-center justify-center mb-8 animate-pulse">
-                                <div className="w-40 h-40 rounded-full border border-gold/20" />
-                             </div>
-                             <p className="font-serif italic text-charcoal/30 text-2xl tracking-ultra uppercase">Product Visual</p>
-                        </div>
-                    </div>
-               </div>
+               <Image 
+                 src={product.image} 
+                 alt={product.name}
+                 fill
+                 className="object-cover"
+                 priority
+                 sizes="(max-width: 1024px) 100vw, 50vw"
+               />
                
                {/* Gallery Thumbnails Placeholder */}
                <div className="absolute bottom-8 left-8 flex gap-4">
                   {[1, 2, 3].map((i) => (
-                    <div key={i} className="w-16 h-20 border border-charcoal/10 bg-white/50 backdrop-blur-sm p-1 cursor-pointer hover:border-gold transition-colors">
-                       <div className="w-full h-full bg-silver-200" />
+                    <div key={i} className="w-16 h-20 border border-charcoal/10 bg-white/50 backdrop-blur-sm p-1 cursor-pointer hover:border-gold transition-colors overflow-hidden">
+                       <Image 
+                         src={product.image} 
+                         alt={`${product.name} thumbnail ${i}`}
+                         width={64}
+                         height={80}
+                         className="object-cover w-full h-full opacity-60"
+                       />
                     </div>
                   ))}
                </div>
