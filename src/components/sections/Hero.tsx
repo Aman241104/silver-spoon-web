@@ -25,27 +25,29 @@ const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative h-[85vh] flex items-center justify-center pt-20 overflow-hidden bg-[#2d1b14] text-white"
+      className="relative h-[70vh] md:h-[85vh] flex items-center justify-center pt-20 overflow-hidden bg-[#2d1b14] text-white"
     >
       {/* Decorative Circle from Reference */}
-      <div className="hero-circle absolute -left-20 top-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-gold/20 rounded-full" />
-      <div className="hero-circle absolute left-[-100px] top-1/2 -translate-y-1/2 w-[700px] h-[700px] border border-gold/10 rounded-full" />
+      <div className="hero-circle absolute -left-20 top-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] border border-gold/20 rounded-full" />
+      <div className="hero-circle absolute left-[-100px] top-1/2 -translate-y-1/2 w-[350px] h-[350px] md:w-[700px] md:h-[700px] border border-gold/10 rounded-full" />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
         <div className="hero-content text-center lg:text-left">
-          <p className="text-xs uppercase tracking-[0.5em] text-gold mb-4 font-bold">
+          <p className="text-[10px] md:text-xs uppercase tracking-[0.5em] text-gold mb-4 font-bold">
             925 Pure Silver Puja Utensils
           </p>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif mb-6 leading-tight">
+          <h1 className="text-4xl md:text-7xl lg:text-8xl font-serif mb-6 leading-tight">
             Pure Silver. <br />
             <span className="italic">Pure Living.</span>
           </h1>
-          <p className="text-sm md:text-base text-white/70 max-w-lg mb-10 font-sans tracking-wide mx-auto lg:mx-0">
+          <p className="text-xs md:text-base text-white/70 max-w-lg mb-10 font-sans tracking-wide mx-auto lg:mx-0">
             Crafted in pure silver for rituals, gifting & daily use.
           </p>
-          <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-charcoal px-12">
-            Shop Now
-          </Button>
+          <div className="flex justify-center lg:justify-start">
+            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-charcoal px-8 md:px-12 text-xs md:text-base">
+              Shop Now
+            </Button>
+          </div>
         </div>
 
         {/* Hero Image Area */}
@@ -53,7 +55,7 @@ const Hero = () => {
            <div className="w-[450px] h-[450px] bg-gradient-to-br from-silver-100 to-silver-300 rounded-full flex items-center justify-center p-12 shadow-2xl relative overflow-hidden group">
               <div className="w-full h-full relative rounded-full overflow-hidden border border-white/20">
                  <Image 
-                   src="https://images.unsplash.com/photo-1567591974574-e862630b79df?q=80&w=1200&auto=format&fit=crop"
+                   src="https://images.unsplash.com/photo-1590731057692-bb202febc667?q=80&w=1200&auto=format&fit=crop"
                    alt="Pure Silver Ganesha Idol"
                    fill
                    className="object-cover transition-transform duration-700 group-hover:scale-110"

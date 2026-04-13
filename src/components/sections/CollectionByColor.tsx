@@ -27,7 +27,7 @@ const CollectionByColor = () => {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-6 md:px-12 text-center">
-        <h2 className="text-3xl font-serif text-charcoal mb-4 uppercase tracking-ultra">
+        <h2 className="text-2xl md:text-3xl font-serif text-charcoal mb-4 uppercase tracking-ultra">
           Shop by Color
         </h2>
         <p className="text-[10px] uppercase tracking-ultra text-charcoal/40 font-bold mb-16">
@@ -36,7 +36,7 @@ const CollectionByColor = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {collections.map((col) => (
-            <Link key={col.title} href="/collections/jewellery" className="group relative h-[450px] overflow-hidden flex flex-col items-center justify-center p-8 text-white">
+            <Link key={col.title} href="/collections/rings" className="group relative h-[400px] md:h-[450px] overflow-hidden flex flex-col items-center justify-center p-8 text-white">
                <Image 
                  src={col.image}
                  alt={col.title}

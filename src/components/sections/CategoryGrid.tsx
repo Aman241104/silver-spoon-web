@@ -11,13 +11,13 @@ const categories = [
   { name: "Pendant", image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=400&auto=format&fit=crop" },
   { name: "Chains", image: "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?q=80&w=400&auto=format&fit=crop" },
   { name: "Earrings", image: "https://images.unsplash.com/photo-1635767798638-3e25273a8236?q=80&w=400&auto=format&fit=crop" },
-  { name: "Gifts", image: "https://images.unsplash.com/photo-1603912190130-97424cc768e1?q=80&w=400&auto=format&fit=crop" },
+  { name: "Gifts", image: "https://images.unsplash.com/photo-1589128777073-263566ae5e4d?q=80&w=400&auto=format&fit=crop" },
   { name: "Mangalsutra", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=400&auto=format&fit=crop" },
   { name: "Necklace", image: "https://images.unsplash.com/photo-1599643477877-537ef5278533?q=80&w=400&auto=format&fit=crop" },
   { name: "Nose Pin", image: "https://images.unsplash.com/photo-1611085583191-a3b181a88401?q=80&w=400&auto=format&fit=crop" },
   { name: "Pendant Set", image: "https://images.unsplash.com/photo-1617033930343-dc8116270b92?q=80&w=400&auto=format&fit=crop" },
   { name: "Rings", image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=400&auto=format&fit=crop" },
-  { name: "Toe Rings", image: "https://images.unsplash.com/photo-1589128777073-263566ae5e4d?q=80&w=400&auto=format&fit=crop" }
+  { name: "Toe Rings", image: "https://images.unsplash.com/photo-1598560912005-59a0d5c1a612?q=80&w=400&auto=format&fit=crop" }
 ];
 
 const CategoryGrid = () => {
@@ -38,14 +38,14 @@ const CategoryGrid = () => {
   return (
     <section ref={containerRef} className="py-20 bg-white">
       <div className="container mx-auto px-6 md:px-12 text-center">
-        <h2 className="text-3xl font-serif text-charcoal mb-4 uppercase tracking-ultra">
+        <h2 className="text-2xl md:text-3xl font-serif text-charcoal mb-4 uppercase tracking-ultra">
           Our Categories
         </h2>
         <p className="text-[10px] uppercase tracking-ultra text-charcoal/40 font-bold mb-16">
           Explore Our Handpicked Collections
         </p>
 
-        <div className="cat-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+        <div className="cat-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-4 gap-y-10 md:gap-8">
           {categories.map((cat) => (
             <Link key={cat.name} href={`/collections/${cat.name.toLowerCase().replace(" ", "-")}`} className="group flex flex-col items-center">
               <div className="cat-circle relative w-full aspect-square bg-silver-50 rounded-full border border-silver-100 overflow-hidden mb-4 transition-all duration-500 group-hover:border-gold group-hover:shadow-xl">
@@ -55,12 +55,12 @@ const CategoryGrid = () => {
                       alt={cat.name}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 15vw"
+                      sizes="(max-width: 640px) 40vw, (max-width: 1024px) 25vw, 15vw"
                     />
                     <div className="absolute inset-0 bg-charcoal/10 opacity-40 group-hover:opacity-20 transition-opacity" />
                  </div>
               </div>
-              <span className="text-xs uppercase tracking-ultra font-bold text-charcoal/80 group-hover:text-charcoal transition-colors">
+              <span className="text-[10px] md:text-xs uppercase tracking-ultra font-bold text-charcoal/80 group-hover:text-charcoal transition-colors">
                 {cat.name}
               </span>
             </Link>
