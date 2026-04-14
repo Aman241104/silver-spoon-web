@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   description: "Exquisite silver jewellery, idols, and gifting items crafted with purity and elegance. Experience the art of pure silver.",
 };
 
+import { CartProvider } from "@/context/CartContext";
+import { WishlistProvider } from "@/context/WishlistContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,9 +31,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="bg-white text-charcoal font-sans antialiased selection:bg-silver-200 selection:text-charcoal">
-        <LenisScroll>
-          {children}
-        </LenisScroll>
+        <WishlistProvider>
+          <CartProvider>
+            <LenisScroll>
+              {children}
+            </LenisScroll>
+          </CartProvider>
+        </WishlistProvider>
       </body>
     </html>
   );

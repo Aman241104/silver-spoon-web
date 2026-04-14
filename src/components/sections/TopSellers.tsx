@@ -3,9 +3,9 @@
 import * as React from "react";
 import ProductCard from "@/components/product/ProductCard";
 import { products } from "@/data/products";
+import Link from "next/link";
 import { useGSAP } from "@/hooks/use-gsap";
 import gsap from "gsap";
-import { Button } from "@/components/ui/Button";
 
 interface TopSellersProps {
   title: string;
@@ -44,9 +44,11 @@ const TopSellers = ({ title }: TopSellersProps) => {
           ))}
         </div>
 
-        <Button variant="primary" size="lg" className="px-12 bg-charcoal text-white hover:bg-gold-dark">
-          View All
-        </Button>
+        <div className="flex justify-center mt-12">
+          <Link href="/products" className="bg-charcoal text-white hover:bg-gold px-16 py-4 text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold transition-all duration-500 shadow-xl">
+            View All
+          </Link>
+        </div>
       </div>
     </section>
   );

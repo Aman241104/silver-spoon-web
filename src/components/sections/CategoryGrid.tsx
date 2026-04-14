@@ -45,22 +45,20 @@ const CategoryGrid = () => {
           Explore Our Handpicked Collections
         </p>
 
-        <div className="cat-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-4 gap-y-10 md:gap-8">
+        <div className="cat-grid grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-8 gap-y-16">
           {categories.map((cat) => (
             <Link key={cat.name} href={`/collections/${cat.name.toLowerCase().replace(" ", "-")}`} className="group flex flex-col items-center">
-              <div className="cat-circle relative w-full aspect-square bg-silver-50 rounded-full border border-silver-100 overflow-hidden mb-4 transition-all duration-500 group-hover:border-gold group-hover:shadow-xl">
-                 <div className="absolute inset-0 group-hover:scale-110 transition-transform duration-700">
-                    <Image 
-                      src={cat.image}
-                      alt={cat.name}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 40vw, (max-width: 1024px) 25vw, 15vw"
-                    />
-                    <div className="absolute inset-0 bg-charcoal/10 opacity-40 group-hover:opacity-20 transition-opacity" />
-                 </div>
+              <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden mb-6 border border-silver-100 group-hover:border-gold transition-all duration-500 bg-silver-50">
+                <Image 
+                  src={cat.image}
+                  alt={cat.name}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  sizes="(max-width: 768px) 100px, 150px"
+                />
+                <div className="absolute inset-0 bg-charcoal/5 group-hover:bg-transparent transition-colors duration-500" />
               </div>
-              <span className="text-[10px] md:text-xs uppercase tracking-ultra font-bold text-charcoal/80 group-hover:text-charcoal transition-colors">
+              <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold text-charcoal/60 group-hover:text-gold transition-all duration-300 border-b border-silver-50 pb-2 group-hover:border-gold">
                 {cat.name}
               </span>
             </Link>

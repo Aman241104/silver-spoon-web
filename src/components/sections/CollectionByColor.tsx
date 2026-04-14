@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useGSAP } from "@/hooks/use-gsap";
-import gsap from "gsap";
 
 const CollectionByColor = () => {
   const collections = [

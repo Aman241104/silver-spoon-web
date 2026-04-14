@@ -5,7 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useGSAP } from "@/hooks/use-gsap";
 import gsap from "gsap";
-import { Mail, Phone, MapPin, Clock, MessageSquare, Send } from "lucide-react";
+import { Mail, Phone, MapPin, MessageSquare, Send } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 export default function ContactPage() {

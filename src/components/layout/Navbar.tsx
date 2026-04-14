@@ -3,12 +3,21 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Search, ShoppingBag, Menu, X, Heart, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { categories, products } from "@/data/products";
 import gsap from "gsap";
+import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
+import Cart from "./Cart";
+import Wishlist from "./Wishlist";
 
 const Navbar = () => {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+  const { cartCount, setIsCartOpen } = useCart();
+  const { wishlistCount, setIsWishlistOpen } = useWishlist();
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isProductsHovered, setIsProductsHovered] = React.useState(false);
@@ -27,6 +36,8 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const shouldBeSolid = !isHomePage || isScrolled;
+
   // GSAP for Mobile Menu
   React.useEffect(() => {
     if (isMobileMenuOpen) {
@@ -42,12 +53,14 @@ const Navbar = () => {
         duration: 0.4,
         delay: 0.2
       });
+      document.body.style.overflow = "hidden";
     } else {
       gsap.to(".mobile-menu", {
         x: "-100%",
         duration: 0.6,
         ease: "power4.in"
       });
+      document.body.style.overflow = "auto";
     }
   }, [isMobileMenuOpen]);
 
@@ -93,7 +106,7 @@ const Navbar = () => {
     <nav
       className={cn(
         "fixed top-0 left-0 w-full z-50 transition-all duration-500",
-        isScrolled
+        shouldBeSolid
           ? "bg-white py-4 shadow-sm border-b border-silver-100"
           : "bg-white/10 backdrop-blur-sm py-6"
       )}
@@ -105,7 +118,7 @@ const Navbar = () => {
           <div className="flex items-center gap-4 md:gap-8">
             <button 
               onClick={() => setIsSearchOpen(true)}
-              className={cn("transition-colors", isScrolled ? "text-charcoal" : "text-white")}
+              className={cn("transition-colors", shouldBeSolid ? "text-charcoal" : "text-white")}
             >
               <Search size={20} strokeWidth={1.5} />
             </button>
@@ -116,13 +129,13 @@ const Navbar = () => {
                   href={link.href}
                   className={cn(
                     "text-[10px] uppercase tracking-ultra font-bold transition-colors relative group",
-                    isScrolled ? "text-charcoal/80 hover:text-charcoal" : "text-white/80 hover:text-white"
+                    shouldBeSolid ? "text-charcoal/80 hover:text-charcoal" : "text-white/80 hover:text-white"
                   )}
                 >
                   {link.name}
                   <span className={cn(
                     "absolute bottom-[-4px] left-0 w-0 h-[1px] transition-all duration-300 group-hover:w-full",
-                    isScrolled ? "bg-charcoal" : "bg-white"
+                    shouldBeSolid ? "bg-charcoal" : "bg-white"
                   )} />
                 </Link>
               ))}
@@ -133,13 +146,13 @@ const Navbar = () => {
           <Link href="/" className="flex flex-col items-center group">
             <span className={cn(
               "text-xl md:text-3xl font-serif tracking-widest uppercase transition-colors duration-500",
-              isScrolled ? "text-charcoal" : "text-white"
+              shouldBeSolid ? "text-charcoal" : "text-white"
             )}>
               Silver Spoon
             </span>
             <span className={cn(
                 "text-[7px] md:text-[8px] tracking-[0.4em] uppercase font-sans -mt-1 transition-colors",
-                isScrolled ? "text-charcoal/40" : "text-white/40"
+                shouldBeSolid ? "text-charcoal/40" : "text-white/40"
             )}>
                 Pure Silver & Gifting
             </span>
@@ -159,14 +172,14 @@ const Navbar = () => {
                     href={link.href}
                     className={cn(
                       "text-[10px] uppercase tracking-ultra font-bold transition-colors flex items-center gap-1",
-                      isScrolled ? "text-charcoal/80 hover:text-charcoal" : "text-white/80 hover:text-white"
+                      shouldBeSolid ? "text-charcoal/80 hover:text-charcoal" : "text-white/80 hover:text-white"
                     )}
                   >
                     {link.name}
                     {link.isDropdown && <ChevronDown size={12} className={cn("transition-transform duration-300", isProductsHovered && "rotate-180")} />}
                     <span className={cn(
                       "absolute bottom-[-4px] left-0 w-0 h-[1px] transition-all duration-300 group-hover:w-full",
-                      isScrolled ? "bg-charcoal" : "bg-white"
+                      shouldBeSolid ? "bg-charcoal" : "bg-white"
                     )} />
                   </Link>
 
@@ -212,14 +225,30 @@ const Navbar = () => {
               ))}
             </div>
             <div className="flex items-center gap-4 md:gap-6">
-              <button className={cn("transition-colors hidden md:block", isScrolled ? "text-charcoal" : "text-white")}>
-                <Heart size={20} strokeWidth={1.5} />
+              <button 
+                className={cn("transition-colors hidden md:block relative", shouldBeSolid ? "text-charcoal" : "text-white")}
+                onClick={() => setIsWishlistOpen(true)}
+              >
+                <Heart size={20} strokeWidth={1.5} className={cn(wishlistCount > 0 && "fill-gold text-gold")} />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-gold text-white text-[8px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                    {wishlistCount}
+                  </span>
+                )}
               </button>
-              <button className={cn("transition-colors", isScrolled ? "text-charcoal" : "text-white")}>
+              <button 
+                className={cn("transition-colors relative", shouldBeSolid ? "text-charcoal" : "text-white")}
+                onClick={() => setIsCartOpen(true)}
+              >
                 <ShoppingBag size={20} strokeWidth={1.5} />
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-gold text-white text-[8px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
               </button>
               <button
-                className={cn("lg:hidden transition-colors", isScrolled ? "text-charcoal" : "text-white")}
+                className={cn("lg:hidden transition-colors", shouldBeSolid ? "text-charcoal" : "text-white")}
                 onClick={() => setIsMobileMenuOpen(true)}
               >
                 <Menu size={24} />
@@ -230,13 +259,16 @@ const Navbar = () => {
         </div>
       </div>
 
+      <Cart />
+      <Wishlist />
+
       {/* Mobile Menu Overlay */}
       <div
         className={cn(
-          "mobile-menu fixed inset-0 bg-charcoal z-[120] lg:hidden -translate-x-full px-10 py-12 flex flex-col"
+          "mobile-menu fixed inset-0 bg-[#1A1A1A] z-[120] lg:hidden -translate-x-full px-8 py-10 flex flex-col h-[100dvh] w-full"
         )}
       >
-        <div className="flex justify-between items-center mb-16">
+        <div className="flex justify-between items-center mb-12 pb-6 border-b border-white/5">
           <span className="text-xl font-serif tracking-widest uppercase text-white">
             Menu
           </span>
@@ -244,26 +276,32 @@ const Navbar = () => {
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-white hover:text-gold transition-colors"
           >
-            <X size={28} />
+            <X size={28} strokeWidth={1.5} />
           </button>
         </div>
 
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-10 mt-4 overflow-y-auto">
           {[...leftLinks, ...rightLinks].map((link) => (
             <Link
               key={link.name}
               href={link.href}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="mobile-nav-link text-2xl font-serif tracking-widest text-white hover:text-gold transition-colors"
+              className="mobile-nav-link text-3xl md:text-4xl font-serif tracking-wider text-white/90 hover:text-gold transition-all duration-300 border-b border-white/5 pb-4 last:border-0"
             >
               {link.name}
             </Link>
           ))}
         </div>
 
-        <div className="mt-auto pt-12 border-t border-white/10">
-           <p className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-4">Contact Support</p>
-           <p className="text-white font-serif text-lg">+91 98765 43210</p>
+        <div className="mt-auto pt-10 border-t border-white/5 flex flex-col gap-4">
+           <div>
+              <p className="text-[10px] uppercase tracking-[0.4em] text-gold/60 mb-2 font-bold">Contact Support</p>
+              <p className="text-white font-serif text-xl tracking-wide">+91 98765 43210</p>
+           </div>
+           <div className="flex gap-6 mt-4">
+              <Link href="#" className="text-white/40 hover:text-gold transition-colors text-xs uppercase tracking-widest">Instagram</Link>
+              <Link href="#" className="text-white/40 hover:text-gold transition-colors text-xs uppercase tracking-widest">Facebook</Link>
+           </div>
         </div>
       </div>
 

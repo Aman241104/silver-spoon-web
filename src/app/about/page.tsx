@@ -6,7 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useGSAP } from "@/hooks/use-gsap";
 import gsap from "gsap";
-import { Award, ShieldCheck, Sparkles, History, Users, Globe } from "lucide-react";
+import { Award, ShieldCheck, Sparkles } from "lucide-react";
 
 export default function AboutPage() {
   const containerRef = useGSAP(() => {

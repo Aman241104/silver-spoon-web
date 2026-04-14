@@ -9,10 +9,15 @@ import Footer from "@/components/layout/Footer";
 import { useGSAP } from "@/hooks/use-gsap";
 import gsap from "gsap";
 import Link from "next/link";
-import { ChevronRight, Share2, Heart, ShieldCheck, Truck, RotateCcw, MessageSquare } from "lucide-react";
+import { ChevronRight, Share2, Heart, ShieldCheck, Truck, RotateCcw, MessageSquare, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
+import { cn } from "@/lib/utils";
 
 export default function ProductDetailPage() {
+  const { addToCart } = useCart();
+  const { toggleWishlist, isInWishlist } = useWishlist();
   const params = useParams();
   const id = params.id as string;
 
@@ -120,21 +125,45 @@ export default function ProductDetailPage() {
                   Crafted with precision, this piece represents the pinnacle of silver artistry. Perfect for special occasions or as a meaningful gift that lasts for generations.
                </p>
 
-               <div className="product-reveal flex flex-col sm:flex-row gap-4 mb-12">
-                  <Button 
-                    size="lg" 
-                    className="flex-1 bg-[#25D366] hover:bg-[#128C7E] border-none flex items-center justify-center gap-3"
-                    onClick={handleInquiry}
-                  >
-                    <MessageSquare size={18} />
-                    Inquire on WhatsApp
-                  </Button>
-                  <Button variant="outline" className="px-6 border-charcoal/10">
-                    <Heart size={18} strokeWidth={1.5} />
-                  </Button>
-                  <Button variant="outline" className="px-6 border-charcoal/10">
-                    <Share2 size={18} strokeWidth={1.5} />
-                  </Button>
+               <div className="product-reveal flex flex-col gap-4 mb-12">
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button 
+                      size="lg" 
+                      className="flex-1 bg-charcoal text-white hover:bg-gold border-none flex items-center justify-center gap-3 py-8 rounded-none uppercase tracking-widest text-xs font-bold"
+                      onClick={() => product && addToCart(product)}
+                    >
+                      <ShoppingBag size={18} />
+                      Add to Bag
+                    </Button>
+                    <Button 
+                      size="lg" 
+                      variant="outline"
+                      className="flex-1 border-gold text-gold hover:bg-gold hover:text-white flex items-center justify-center gap-3 py-8 rounded-none uppercase tracking-widest text-xs font-bold"
+                      onClick={handleInquiry}
+                    >
+                      <MessageSquare size={18} />
+                      Inquire on WhatsApp
+                    </Button>
+                  </div>
+                  <div className="flex gap-4">
+                    <Button 
+                      variant="outline" 
+                      className={cn(
+                        "flex-1 border-charcoal/10 rounded-none py-6 flex items-center gap-2 transition-all",
+                        product && isInWishlist(product.id) && "border-gold text-gold"
+                      )}
+                      onClick={() => product && toggleWishlist(product)}
+                    >
+                      <Heart size={16} strokeWidth={1.5} className={cn(product && isInWishlist(product.id) && "fill-gold")} />
+                      <span className="text-[10px] uppercase tracking-widest">
+                        {product && isInWishlist(product.id) ? "In Wishlist" : "Wishlist"}
+                      </span>
+                    </Button>
+                    <Button variant="outline" className="flex-1 border-charcoal/10 rounded-none py-6 flex items-center gap-2">
+                      <Share2 size={16} strokeWidth={1.5} />
+                      <span className="text-[10px] uppercase tracking-widest">Share</span>
+                    </Button>
+                  </div>
                </div>
 
                {/* Trust Badges */}

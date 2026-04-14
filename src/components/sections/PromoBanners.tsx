@@ -27,10 +27,10 @@ const PromoBanners = () => {
           {/* Banner 1: Seal Your Love */}
           <Link href="/collections/german-silver-gifts" className="promo-banner group relative h-[300px] md:h-[400px] overflow-hidden bg-black flex items-center justify-center p-8">
              <Image 
-               src="https://images.unsplash.com/photo-1589128777073-263566ae5e4d?q=80&w=800&auto=format&fit=crop"
+               src="https://images.unsplash.com/photo-1599643477877-537ef5278533?q=80&w=800&auto=format&fit=crop"
                alt="Pure Silver Gifting"
                fill
-               className="object-cover opacity-50 group-hover:scale-110 transition-transform duration-1000"
+               className="object-cover opacity-60 group-hover:scale-110 transition-transform duration-1000"
              />
              {/* Text Content */}
              <div className="relative z-10 text-center text-white">
@@ -45,10 +45,10 @@ const PromoBanners = () => {
           {/* Banner 2: Celebrate Her Strength */}
           <Link href="/collections/women" className="promo-banner group relative h-[300px] md:h-[400px] overflow-hidden bg-[#1a0a05] flex items-center justify-center p-8">
              <Image 
-               src="https://images.unsplash.com/photo-1599643477877-537ef5278533?q=80&w=800&auto=format&fit=crop"
+               src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop"
                alt="Oxidised Collection"
                fill
-               className="object-cover opacity-50 group-hover:scale-110 transition-transform duration-1000"
+               className="object-cover opacity-40 group-hover:scale-110 transition-transform duration-1000"
              />
              <div className="relative z-10 text-center text-white">
                 <h3 className="text-3xl md:text-5xl font-serif mb-8 leading-tight">Celebrate Her Strength in Silver</h3>

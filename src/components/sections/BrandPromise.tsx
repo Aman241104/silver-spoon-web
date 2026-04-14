@@ -4,7 +4,7 @@ import * as React from "react";
 import { useGSAP } from "@/hooks/use-gsap";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { CheckCircle2, ShieldCheck, Heart, Sparkles, Award, Leaf } from "lucide-react";
+import { CheckCircle2, ShieldCheck, Award, Leaf } from "lucide-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);

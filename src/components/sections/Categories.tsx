@@ -36,7 +36,7 @@ const categories = [
 ];
 
 const Categories = () => {
-  const containerRef = useGSAP((ctx) => {
+  const containerRef = useGSAP(() => {
     gsap.from(".category-card", {
       y: 60,
       opacity: 0,
@@ -75,7 +75,7 @@ const Categories = () => {
         </div>
 
         <div className="categories-grid grid grid-cols-1 md:grid-cols-3 gap-8">
-          {categories.map((category, index) => (
+          {categories.map((category) => (
             <Link
               key={category.title}
               href={category.href}
