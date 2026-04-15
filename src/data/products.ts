@@ -197,22 +197,84 @@ export const products: Product[] = [
     description: "Lightweight and elegant Dora style anklet for daily wear.",
     image: "https://images.unsplash.com/photo-1598560911995-fe2922129e71?q=80&w=800&auto=format&fit=crop",
   },
+  {
+    id: "anklet-3",
+    name: "Agra Style Silver Payal",
+    category: "anklets",
+    subCategory: "Agra Payal",
+    gender: "women",
+    description: "Traditional Agra style heavy silver payal with intricate craftsmanship.",
+    image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop",
+  },
 
   // IDOLS & GIFTS
   {
     id: "idol-1",
     name: "Pure Silver Ganesha",
     category: "idol-gift",
-    subCategory: "Idols",
+    subCategory: "God Idol",
     description: "Pure 999 silver Ganesha idol, perfect for home pooja.",
     image: "https://images.unsplash.com/photo-1590731057692-bb202febc667?q=80&w=800&auto=format&fit=crop",
     featured: true,
   },
   {
+    id: "idol-2",
+    name: "Antique Silver Diya",
+    category: "idol-gift",
+    subCategory: "Antique Diya",
+    description: "Exquisitely carved antique silver diya for sacred rituals.",
+    image: "https://images.unsplash.com/photo-1589128777073-263566ae5e4d?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: "idol-3",
+    name: "Laxmi Paduka & Vishnu Charan",
+    category: "idol-gift",
+    subCategory: "Laxmi Paduka / Vishnu Charan",
+    description: "Sacred silver Laxmi Paduka and Vishnu Charan set for prosperity.",
+    image: "https://images.unsplash.com/photo-1590731057692-bb202febc667?q=80&w=800&auto=format&fit=crop",
+  },
+
+  // POOJA UTENSILS
+  {
+    id: "pooja-1",
+    name: "Silver Pooja Thali Set",
+    category: "pooja-utensils",
+    subCategory: "Pooja Thali",
+    description: "Complete 925 silver pooja thali set including katori, diya, and ghanti.",
+    image: "https://images.unsplash.com/photo-1590731057692-bb202febc667?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: "pooja-2",
+    name: "Silver Diya & Katori",
+    category: "pooja-utensils",
+    subCategory: "Diya / Katori",
+    description: "Elegant silver diya and matching katori for daily offerings.",
+    image: "https://images.unsplash.com/photo-1589128777073-263566ae5e4d?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: "pooja-3",
+    name: "Sacred Silver Ghanti",
+    category: "pooja-utensils",
+    subCategory: "Ghanti",
+    description: "Clear-sounding ritual bell crafted in pure 925 silver.",
+    image: "https://images.unsplash.com/photo-1590731057692-bb202febc667?q=80&w=800&auto=format&fit=crop",
+  },
+
+  // GERMAN SILVER GIFTS
+  {
     id: "gift-1",
     name: "German Silver Dinner Set",
     category: "german-silver-gifts",
+    subCategory: "Thali Set",
     description: "Exquisite 5-piece German silver set for luxury gifting.",
+    image: "https://images.unsplash.com/photo-1589128777073-263566ae5e4d?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: "gift-2",
+    name: "Mukhvas Box & Tray",
+    category: "german-silver-gifts",
+    subCategory: "Mukhvas Box / Tray / Bowl",
+    description: "Traditional German silver mukhvas box and serving tray set.",
     image: "https://images.unsplash.com/photo-1589128777073-263566ae5e4d?q=80&w=800&auto=format&fit=crop",
   },
 
@@ -221,9 +283,48 @@ export const products: Product[] = [
     id: "mangal-1",
     name: "Traditional Silver Mangalsutra",
     category: "mangalsutra",
+    subCategory: "Regular",
     gender: "women",
     description: "Pure silver beads combined with traditional black beads for a sacred bond.",
     image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: "mangal-2",
+    name: "Solitaire Silver Mangalsutra",
+    category: "mangalsutra",
+    subCategory: "Solitaire",
+    gender: "women",
+    description: "Modern silver mangalsutra with a brilliant solitaire pendant.",
+    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: "mangal-3",
+    name: "Oxidised Pearl Mangalsutra",
+    category: "mangalsutra",
+    subCategory: "Oxidised / Pearl",
+    gender: "women",
+    description: "Stunning combination of oxidised silver and freshwater pearls.",
+    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop",
+  },
+
+  // FRAMES
+  {
+    id: "frame-1",
+    name: "999 Pure Silver Frame",
+    category: "frame",
+    subCategory: "999 Silver Frames",
+    description: "Premium 999 pure silver frame for your most cherished memories.",
+    image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop",
+  },
+
+  // TOE RINGS
+  {
+    id: "toe-1",
+    name: "Classic Silver Bichhiya",
+    category: "toe-rings",
+    gender: "women",
+    description: "Handcrafted silver toe rings (bichhiya) with traditional patterns.",
+    image: "https://images.unsplash.com/photo-1598560912005-59a0d5c1a612?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
@@ -233,13 +334,14 @@ export const categories = [
   { id: "chain-pendants", name: "Chain / Pendants", slug: "chain-pendants", description: "Elegant silver chains and detailed pendants." },
   { id: "bangadi-kada", name: "Bangadi / Kada", slug: "bangadi-kada", description: "Traditional silver bangles and kadas." },
   { id: "anklets", name: "Anklets / Payal", slug: "anklets", description: "Oxidised, Fancy Payal, Dora Payal, Agra Payal.", subCategories: ["Oxidised", "Fancy Payal", "Dora Payal", "Agra Payal"] },
-  { id: "mangalsutra", name: "Mangalsutra", slug: "mangalsutra", description: "Sacred silver mangalsutras with traditional and modern designs." },
+  { id: "mangalsutra", name: "Mangalsutra", slug: "mangalsutra", description: "Regular, Solitaire, Oxidised, Pearl.", subCategories: ["Regular", "Solitaire", "Oxidised", "Pearl"] },
   { id: "toe-rings", name: "Toe Rings", slug: "toe-rings", description: "Beautifully crafted silver toe rings." },
-  { id: "idol-gift", name: "Idol / Gift", slug: "idol-gift", description: "Pure silver idols and premium gifting items." },
-  { id: "pooja-utensils", name: "Pooja / Utensils", slug: "pooja-utensils", description: "Pure silver essentials for your spiritual practices." },
-  { id: "frame", name: "Frame", slug: "frame", description: "Exquisite silver frames for your precious memories." },
-  { id: "german-silver-gifts", name: "German Silver Gifts", slug: "german-silver-gifts", description: "Elegant German silver items perfect for bulk gifting and celebrations." },
+  { id: "idol-gift", name: "Idol / Gift", slug: "idol-gift", description: "God Idol, Antique Diya, Laxmi Paduka, Vishnu Charan.", subCategories: ["God Idol", "Antique Diya", "Laxmi Paduka", "Vishnu Charan"] },
+  { id: "pooja-utensils", name: "Pooja / Utensils", slug: "pooja-utensils", description: "Diya, Pooja Thali, Katori, Ghanti.", subCategories: ["Diya", "Pooja Thali", "Katori", "Ghanti"] },
+  { id: "frame", name: "Frame", slug: "frame", description: "999 Pure silver frames.", subCategories: ["999 Silver Frames"] },
+  { id: "german-silver-gifts", name: "German Silver Gifts", slug: "german-silver-gifts", description: "Thali Set, Pooja Thali, Diya, Mukhvas Box, Tray, Bowl.", subCategories: ["Thali Set", "Pooja Thali", "Diya", "Mukhvas Box", "Tray", "Bowl"] },
   { id: "coins", name: "Silver Coins", slug: "coins", description: "Pure 999 silver coins for investment and gifting." },
   { id: "men", name: "Men's Collection", slug: "men", description: "Masculine silver jewellery for the modern man." },
   { id: "women", name: "Women's Collection", slug: "women", description: "Elegant and stylish silver jewellery for her." },
 ];
+
