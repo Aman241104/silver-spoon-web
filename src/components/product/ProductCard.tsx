@@ -21,9 +21,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
         href={`/product/${product.id}`}
         className="block"
       >
-        <div className="relative aspect-[4/5] bg-silver-50 overflow-hidden mb-6 border border-silver-100">
+        <div className="relative aspect-[4/5] bg-[#f8f8f8] overflow-hidden mb-6 border border-silver-100/50 shadow-sm group-hover:shadow-2xl transition-all duration-700">
           {/* Actual Product Image */}
-          <div className="w-full h-full relative transition-transform duration-700 group-hover:scale-105">
+          <div className="w-full h-full relative transition-transform duration-1000 ease-out group-hover:scale-110">
              <Image 
                src={product.image} 
                alt={product.name}
@@ -34,22 +34,24 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </div>
 
           {/* Hover Overlay */}
-          <div className="absolute inset-0 bg-charcoal/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/5 transition-all duration-700" />
           
           {/* Quick View Button */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-             <div className="bg-white px-6 py-2 shadow-xl flex items-center gap-2">
-                <span className="text-[10px] uppercase tracking-ultra font-bold text-charcoal">View Details</span>
-                <ArrowUpRight size={14} className="text-gold" />
+          <div className="absolute bottom-0 left-0 w-full translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-20">
+             <div className="bg-white/90 backdrop-blur-md py-4 flex items-center justify-center gap-3 border-t border-silver-100">
+                <span className="text-[9px] uppercase tracking-[0.4em] font-bold text-charcoal">View Details</span>
+                <ArrowUpRight size={12} className="text-gold" />
              </div>
           </div>
 
           {/* Featured Badge */}
           {product.featured && (
-            <div className="absolute top-4 left-4">
-              <span className="bg-white/80 backdrop-blur-sm px-3 py-1 text-[8px] uppercase tracking-ultra font-bold text-gold border border-gold/10">
-                Featured
-              </span>
+            <div className="absolute top-5 left-5 z-10">
+              <div className="bg-white/90 backdrop-blur-md px-4 py-1.5 shadow-sm border border-gold/10">
+                <span className="text-[8px] uppercase tracking-[0.4em] font-bold text-gold">
+                  Top Seller
+                </span>
+              </div>
             </div>
           )}
         </div>
@@ -60,22 +62,28 @@ const ProductCard = ({ product }: ProductCardProps) => {
           e.preventDefault();
           toggleWishlist(product);
         }}
-        className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur-sm rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white"
+        className={cn(
+          "absolute top-5 right-5 z-10 p-3 bg-white/90 backdrop-blur-md rounded-none shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-gold hover:text-white border border-silver-100",
+          isInWishlist(product.id) && "opacity-100 text-gold border-gold/20"
+        )}
       >
-        <Heart size={16} className={cn("transition-colors", isInWishlist(product.id) ? "fill-gold text-gold" : "text-charcoal/40")} />
+        <Heart size={14} strokeWidth={1.5} className={cn("transition-all duration-500", isInWishlist(product.id) ? "fill-gold text-white" : "text-charcoal/60")} />
       </button>
 
-      <Link href={`/product/${product.id}`} className="space-y-1 block">
-        <p className="text-[10px] uppercase tracking-ultra text-charcoal/40 font-bold">
-          {product.subCategory || product.category}
-        </p>
-        <h3 className="text-lg font-serif text-charcoal transition-colors group-hover:text-gold">
-          {product.name}
-        </h3>
-        <p className="text-xs text-charcoal/50 font-sans tracking-wide">
-          Inquire for price
-        </p>
-      </Link>
+      <div className="px-1 text-center lg:text-left">
+        <Link href={`/product/${product.id}`} className="space-y-2 block">
+          <p className="text-[8px] uppercase tracking-[0.5em] text-gold font-bold mb-1">
+            {product.subCategory || product.category}
+          </p>
+          <h3 className="text-xl font-serif text-charcoal transition-colors group-hover:text-gold leading-tight">
+            {product.name}
+          </h3>
+          <div className="w-8 h-[1px] bg-silver-200 my-3 mx-auto lg:mx-0 transition-all duration-500 group-hover:w-16 group-hover:bg-gold" />
+          <p className="text-[10px] text-charcoal/40 font-sans tracking-[0.2em] uppercase font-bold">
+            Price on Request
+          </p>
+        </Link>
+      </div>
     </div>
   );
 };

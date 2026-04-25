@@ -2,55 +2,71 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 const SpecialFeatures = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Feature 1: Silver Idols */}
-          <Link href="/collections/idols-gifts" className="group relative h-[450px] md:h-[550px] overflow-hidden bg-[#fef5e7] flex flex-col items-center justify-center p-12 text-center border border-silver-100">
-             <div className="relative z-10 flex flex-col items-center">
-                <h3 className="text-3xl md:text-5xl font-serif text-gold mb-8">Divine Blessings in 925 Silver Idols.</h3>
-                <div className="inline-block border border-gold text-gold px-10 py-3 text-[10px] uppercase tracking-ultra hover:bg-gold hover:text-white transition-all mb-12">
-                   Explore Collection
+          <Link href="/collections/idols-gifts" className="group relative h-[600px] md:h-[750px] overflow-hidden bg-[#fafafa] flex flex-col items-center justify-start p-16 text-center border border-silver-100/50 shadow-sm transition-all duration-700 hover:shadow-2xl">
+             <div className="relative z-10 flex flex-col items-center w-full">
+                <p className="text-[10px] uppercase tracking-[0.5em] text-gold font-bold mb-8">Sacred Treasures</p>
+                <h3 className="text-4xl md:text-6xl font-serif text-charcoal mb-10 leading-[0.9] tracking-tighter">
+                   Divine <span className="italic text-silver-400">Blessings</span> <br /> 
+                   in Pure 925.
+                </h3>
+                
+                <div className="flex items-center gap-4 text-charcoal/60 group-hover:text-gold transition-colors duration-500 mb-16">
+                   <span className="text-[10px] uppercase tracking-[0.5em] font-bold">Explore Divine Idols</span>
+                   <ArrowRight size={14} />
                 </div>
                 
-                {/* Visual Placeholder - Circle */}
-                <div className="w-56 h-56 md:w-64 md:h-64 rounded-full bg-white shadow-2xl flex items-center justify-center p-4 border border-gold/10 relative overflow-hidden">
+                {/* Visual Image Treatment */}
+                <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-white shadow-2xl flex items-center justify-center p-8 border border-gold/5 overflow-hidden transition-transform duration-1000 group-hover:scale-105">
                    <Image 
                      src="/images/collections/pooja.png"
                      alt="Silver Idols"
                      fill
-                     className="object-cover group-hover:scale-110 transition-transform duration-700"
+                     className="object-cover opacity-90 transition-transform duration-[2000ms] group-hover:scale-110"
                    />
                 </div>
              </div>
              
-             {/* Decorative Background as in reference */}
-             <div className="absolute inset-0 opacity-40 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:30px_30px]" />
+             {/* Decorative Background Pattern */}
+             <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:40px_40px] pointer-events-none" />
+             
+             {/* Light glow */}
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[100px] pointer-events-none" />
           </Link>
 
           {/* Feature 2: Silver Utensils */}
-          <Link href="/collections/pooja-utensils" className="group relative h-[450px] md:h-[550px] overflow-hidden bg-[#fef5e7] flex flex-col items-center justify-center p-12 text-center border border-silver-100">
-             <div className="relative z-10 flex flex-col items-center">
-                <h3 className="text-3xl md:text-5xl font-serif text-[#8b6f4e] mb-8">Purity Served in 925 Silver Utensils.</h3>
-                <div className="inline-block border border-[#8b6f4e] text-[#8b6f4e] px-10 py-3 text-[10px] uppercase tracking-ultra hover:bg-[#8b6f4e] hover:text-white transition-all mb-12">
-                   Explore Collection
+          <Link href="/collections/pooja-utensils" className="group relative h-[600px] md:h-[750px] overflow-hidden bg-[#f5f5f5] flex flex-col items-center justify-start p-16 text-center border border-silver-100/50 shadow-sm transition-all duration-700 hover:shadow-2xl">
+             <div className="relative z-10 flex flex-col items-center w-full">
+                <p className="text-[10px] uppercase tracking-[0.5em] text-charcoal/40 font-bold mb-8">Ritual Purity</p>
+                <h3 className="text-4xl md:text-6xl font-serif text-charcoal mb-10 leading-[0.9] tracking-tighter">
+                   Purity Served <br /> 
+                   in <span className="italic text-silver-400">925 Silver.</span>
+                </h3>
+                
+                <div className="flex items-center gap-4 text-charcoal/60 group-hover:text-charcoal transition-colors duration-500 mb-16">
+                   <span className="text-[10px] uppercase tracking-[0.5em] font-bold">View Utensils</span>
+                   <ArrowRight size={14} className="text-gold" />
                 </div>
 
-                {/* Visual Placeholder - Square */}
-                <div className="w-56 h-56 md:w-64 md:h-64 bg-white shadow-2xl flex items-center justify-center p-4 border border-gold/10 relative overflow-hidden">
+                {/* Visual Image Treatment */}
+                <div className="relative w-64 h-64 md:w-80 md:h-80 bg-white shadow-2xl flex items-center justify-center p-8 border border-silver-200 overflow-hidden transition-transform duration-1000 group-hover:scale-105">
                    <Image 
                      src="/images/products/pooja-utensils.png"
                      alt="Silver Utensils"
                      fill
-                     className="object-cover group-hover:scale-110 transition-transform duration-700"
+                     className="object-cover opacity-90 transition-transform duration-[2000ms] group-hover:scale-110"
                    />
                 </div>
              </div>
 
-             <div className="absolute inset-0 opacity-40 bg-[radial-gradient(#8b6f4e_1px,transparent_1px)] [background-size:30px_30px]" />
+             <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000000_1px,transparent_1px)] [background-size:40px_40px] pointer-events-none" />
           </Link>
         </div>
       </div>

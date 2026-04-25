@@ -6,8 +6,10 @@ export interface Product {
   gender?: "men" | "women" | "kids" | "unisex";
   description: string;
   image: string;
-  price?: string;
+  price?: number; // Changed to number for logic
   featured?: boolean;
+  occasions?: string[];
+  styles?: string[];
 }
 
 export const products: Product[] = [
@@ -20,7 +22,10 @@ export const products: Product[] = [
     gender: "unisex",
     description: "Elegant 925 sterling silver regular band for daily wear.",
     image: "/images/products/regular-ring.png",
+    price: 1200,
     featured: true,
+    occasions: ["Daily Wear", "Corporate"],
+    styles: ["Minimalist", "Modern"],
   },
   {
     id: "ring-2",
@@ -30,7 +35,10 @@ export const products: Product[] = [
     gender: "women",
     description: "Stunning solitaire stone set in a pure silver band.",
     image: "/images/products/regular-ring.png",
+    price: 2499,
     featured: true,
+    occasions: ["Anniversary", "Wedding"],
+    styles: ["Modern", "Elegant"],
   },
   {
     id: "ring-3",
@@ -40,6 +48,9 @@ export const products: Product[] = [
     gender: "women",
     description: "Intricately designed antique finish ring with traditional motifs.",
     image: "/images/products/antique-filigree-ring.png",
+    price: 3500,
+    occasions: ["Festivals", "Wedding"],
+    styles: ["Traditional", "Artisan"],
   },
   {
     id: "ring-4",
@@ -49,6 +60,9 @@ export const products: Product[] = [
     gender: "women",
     description: "Bold statement ring with a large, beautifully cut center stone.",
     image: "/images/products/cocktail-cut-stone-ring.png",
+    price: 4999,
+    occasions: ["Party", "Anniversary"],
+    styles: ["Bold", "Modern"],
   },
   {
     id: "ring-5",
@@ -58,89 +72,12 @@ export const products: Product[] = [
     gender: "unisex",
     description: "Stylish and comfortable wide-band silver thumb ring with handcrafted artisan details.",
     image: "/images/products/artisan-toe-ring.png",
-  },
-  {
-    id: "ring-6",
-    name: "Eternal Couple Bands",
-    category: "rings",
-    subCategory: "Couple Rings",
-    gender: "unisex",
-    description: "Matching silver bands for couples, symbols of eternal love.",
-    image: "/images/products/regular-ring.png",
+    price: 1800,
+    occasions: ["Daily Wear", "Casual"],
+    styles: ["Artisan", "Modern"],
   },
 
-  // 2. BRACELETS
-  {
-    id: "brace-1",
-    name: "Lightweight Daily Bracelet",
-    category: "bracelets",
-    subCategory: "Lightweight Bracelets",
-    gender: "women",
-    description: "Delicate and lightweight silver bracelet for everyday elegance.",
-    image: "/images/products/bracelets.png",
-  },
-  {
-    id: "brace-2",
-    name: "Adjustable Silver Cuff",
-    category: "bracelets",
-    subCategory: "Adjustable Bracelets",
-    gender: "unisex",
-    description: "Versatile adjustable silver bracelet with a modern finish.",
-    image: "/images/products/bracelets.png",
-  },
-  {
-    id: "brace-3",
-    name: "CNC Precision Bracelet",
-    category: "bracelets",
-    subCategory: "CNC Bracelets",
-    gender: "men",
-    description: "Machine-finished silver bracelet with high precision patterns.",
-    image: "/images/products/bracelets.png",
-  },
-  {
-    id: "brace-4",
-    name: "Elegant Tennis Bracelet",
-    category: "bracelets",
-    subCategory: "Tennis Bracelets",
-    gender: "women",
-    description: "A continuous strand of sparkling stones set in pure silver.",
-    image: "/images/products/bracelets.png",
-    featured: true,
-  },
-
-  // 3. CHAINS & PENDANTS
-  {
-    id: "chain-1",
-    name: "Silver Chain with Pendant",
-    category: "chains-pendants",
-    subCategory: "Chain with Pendants",
-    gender: "unisex",
-    description: "Beautifully crafted silver chain paired with an elegant pendant.",
-    image: "/images/collections/jewellery.png",
-    featured: true,
-  },
-
-  // 4. BANGLES / KADA
-  {
-    id: "bangle-1",
-    name: "Traditional Silver Bangles",
-    category: "bangles-kada",
-    subCategory: "Traditional Bangles",
-    gender: "women",
-    description: "Timeless traditional silver bangles with detailed engraving.",
-    image: "/images/products/bracelets.png",
-  },
-  {
-    id: "kada-1",
-    name: "Majestic Silver Kada",
-    category: "bangles-kada",
-    subCategory: "Kada Designs",
-    gender: "unisex",
-    description: "Heavy and bold silver kada for a powerful statement.",
-    image: "/images/products/bracelets.png",
-  },
-
-  // 5. ANKLETS (PAYAL)
+  // ANKLETS
   {
     id: "payal-1",
     name: "Oxidised Ethnic Payal",
@@ -149,213 +86,68 @@ export const products: Product[] = [
     gender: "women",
     description: "Antique finish oxidised silver payal for a rustic look.",
     image: "/images/products/payal.png",
+    price: 2800,
     featured: true,
-  },
-  {
-    id: "payal-2",
-    name: "Fancy Designer Payal",
-    category: "anklets",
-    subCategory: "Fancy Payal",
-    gender: "women",
-    description: "Contemporary and stylish fancy silver payal for special occasions.",
-    image: "/images/products/payal.png",
-  },
-  {
-    id: "payal-3",
-    name: "Dora Style Payal",
-    category: "anklets",
-    subCategory: "Dora Payal",
-    gender: "women",
-    description: "Graceful Dora style silver payal with a delicate weave.",
-    image: "/images/products/payal.png",
-  },
-  {
-    id: "payal-4",
-    name: "Aagna Traditional Payal",
-    category: "anklets",
-    subCategory: "Aagna Payal",
-    gender: "women",
-    description: "Traditional Aagna style payal with intricate craftsmanship.",
-    image: "/images/products/payal.png",
+    occasions: ["Festivals", "Wedding"],
+    styles: ["Traditional", "Ethnic"],
   },
 
-  // 6. MANGALSUTRA
-  {
-    id: "mangal-1",
-    name: "Regular Silver Mangalsutra",
-    category: "mangalsutra",
-    subCategory: "Regular Mangalsutra",
-    gender: "women",
-    description: "Classic silver mangalsutra with traditional black beads.",
-    image: "/images/collections/jewellery.png",
-  },
-  {
-    id: "mangal-2",
-    name: "Solitaire Pendant Mangalsutra",
-    category: "mangalsutra",
-    subCategory: "Solitaire Mangalsutra",
-    gender: "women",
-    description: "Elegant silver mangalsutra with a single solitaire pendant.",
-    image: "/images/collections/jewellery.png",
-  },
-  {
-    id: "mangal-3",
-    name: "Oxidised Heritage Mangalsutra",
-    category: "mangalsutra",
-    subCategory: "Oxidised Mangalsutra",
-    gender: "women",
-    description: "Rustic oxidised silver mangalsutra for a unique ethnic look.",
-    image: "/images/collections/jewellery.png",
-  },
-  {
-    id: "mangal-4",
-    name: "Contemporary Pendant Mangalsutra",
-    category: "mangalsutra",
-    subCategory: "Pendant Mangalsutra",
-    gender: "women",
-    description: "Modern silver mangalsutra featuring a stylish pendant.",
-    image: "/images/collections/jewellery.png",
-  },
-
-  // 7. TOE RINGS
-  {
-    id: "toe-1",
-    name: "Artisan Toe Ring Designs",
-    category: "toe-rings",
-    subCategory: "Toe Ring Designs",
-    gender: "women",
-    description: "Beautifully handcrafted silver toe rings (bichhiya) featuring traditional artisan craftsmanship.",
-    image: "/images/products/artisan-toe-ring.png",
-    featured: true,
-  },
-
-  // 8. IDOL / GIFTS
+  // IDOLS / GIFTS
   {
     id: "idol-1",
-    name: "Sacred God Idols",
+    name: "Sacred Ganesha Idol",
     category: "idols-gifts",
     subCategory: "God Idols",
-    description: "Pure silver idols of deities for your home shrine.",
+    description: "Pure silver idol of Lord Ganesha for your home shrine.",
     image: "/images/collections/pooja.png",
+    price: 8500,
     featured: true,
+    occasions: ["Baby Born", "Wedding", "House Warming"],
+    styles: ["Traditional", "Divine"],
   },
   {
     id: "idol-2",
-    name: "Antique Silver Diyas",
-    category: "idols-gifts",
-    subCategory: "Antique Diyas",
-    description: "Beautifully carved antique silver diyas for rituals.",
-    image: "/images/products/pooja-utensils.png",
-  },
-  {
-    id: "idol-3",
-    name: "Sacred Laxmi Paduka",
+    name: "Divine Laxmi Paduka",
     category: "idols-gifts",
     subCategory: "Laxmi Paduka",
     description: "Pure silver Laxmi Paduka for prosperity and blessings.",
     image: "/images/collections/pooja.png",
+    price: 4500,
+    occasions: ["Festivals", "Anniversary"],
+    styles: ["Traditional"],
   },
-  {
-    id: "idol-4",
-    name: "Divine Vishnu Charan",
-    category: "idols-gifts",
-    subCategory: "Vishnu Charan",
-    description: "Exquisitely crafted Vishnu Charan in pure silver.",
-    image: "/images/collections/pooja.png",
-  },
-
-  // 9. POOJA / UTENSILS
   {
     id: "pooja-1",
-    name: "Ritual Silver Diya",
+    name: "Ornate Silver Diya",
     category: "pooja-utensils",
     subCategory: "Diya",
     description: "Pure silver diya for daily pooja and special ceremonies.",
     image: "/images/products/pooja-utensils.png",
+    price: 3200,
+    occasions: ["Festivals", "Daily Wear"],
+    styles: ["Traditional"],
   },
-  {
-    id: "pooja-2",
-    name: "Ornate Pooja Thali",
-    category: "pooja-utensils",
-    subCategory: "Pooja Thali",
-    description: "Complete silver pooja thali set with traditional patterns.",
-    image: "/images/collections/pooja.png",
-  },
-  {
-    id: "pooja-3",
-    name: "Traditional Katari",
-    category: "pooja-utensils",
-    subCategory: "Katari",
-    description: "Ceremonial silver katari with detailed craftsmanship.",
-    image: "/images/collections/pooja.png",
-  },
-  {
-    id: "pooja-4",
-    name: "Sacred Silver Ghanti",
-    category: "pooja-utensils",
-    subCategory: "Ghanti",
-    description: "Clear-sounding silver ritual bell (ghanti) for pooja.",
-    image: "/images/collections/pooja.png",
-  },
-
-  // 10. FRAMES
-  {
-    id: "frame-1",
-    name: "999 Silver Frames",
-    category: "frames",
-    subCategory: "999 Silver Frames",
-    description: "Premium 999 pure silver frames for divine images and memories.",
-    image: "/images/products/bracelets.png",
-  },
-
-  // 11. GERMAN SILVER GIFTS
   {
     id: "gs-1",
-    name: "Luxury Thali Set",
+    name: "German Silver Thali Set",
     category: "german-silver-gifts",
     subCategory: "Thali Set",
     description: "Elegant German silver thali set for high-end gifting.",
     image: "/images/products/pooja-utensils.png",
+    price: 1400,
+    occasions: ["Corporate", "Festivals"],
+    styles: ["Modern"],
   },
   {
-    id: "gs-2",
-    name: "Pooja Thali Set",
-    category: "german-silver-gifts",
-    subCategory: "Pooja Thali",
-    description: "Traditional German silver pooja thali set for gifting.",
-    image: "/images/collections/pooja.png",
-  },
-  {
-    id: "gs-3",
-    name: "Designer Diya",
-    category: "german-silver-gifts",
-    subCategory: "Diya",
-    description: "Stylishly crafted German silver diya for festive gifts.",
-    image: "/images/products/pooja-utensils.png",
-  },
-  {
-    id: "gs-4",
-    name: "Mukhwas Box",
-    category: "german-silver-gifts",
-    subCategory: "Mukhwas Box",
-    description: "Decorative German silver mukhwas box for hospitality.",
-    image: "/images/products/pooja-utensils.png",
-  },
-  {
-    id: "gs-5",
-    name: "Serving Tray",
-    category: "german-silver-gifts",
-    subCategory: "Tray",
-    description: "Elegant German silver tray for serving and gifting.",
-    image: "/images/products/pooja-utensils.png",
-  },
-  {
-    id: "gs-6",
-    name: "Decorative Bowl",
-    category: "german-silver-gifts",
-    subCategory: "Bowl",
-    description: "Finely crafted German silver bowl for decor and gifts.",
-    image: "/images/products/pooja-utensils.png",
+    id: "coin-1",
+    name: "999 Pure Silver Coin",
+    category: "coins",
+    subCategory: "Silver Coins",
+    description: "Pure 999 silver coin (10g) for investment and gifting.",
+    image: "/images/collections/gifting.png",
+    price: 950,
+    occasions: ["Baby Born", "Festivals", "Corporate"],
+    styles: ["Minimalist"],
   },
 ];
 
@@ -442,5 +234,17 @@ export const categories = [
     name: "Silver Coins", 
     slug: "coins", 
     description: "Pure 999 silver coins for investment and gifting." 
+  },
+  {
+    id: "men",
+    name: "For Men",
+    slug: "men",
+    description: "Premium silver jewellery and accessories designed for men."
+  },
+  {
+    id: "women",
+    name: "For Women",
+    slug: "women",
+    description: "Exquisite silver collections curated for women."
   },
 ];
