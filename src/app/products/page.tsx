@@ -54,7 +54,7 @@ export default function ProductsOverviewPage() {
                 <div className="relative aspect-[16/9] mb-8 overflow-hidden bg-silver-50 border border-silver-100">
                    {/* Finding an image from products for this category or using a general one */}
                    <Image 
-                     src={products.find(p => p.category === cat.slug)?.image || "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop"}
+                     src={products.find(p => p.category === cat.slug)?.image || "/images/collections/jewellery.png"}
                      alt={cat.name}
                      fill
                      className="object-cover transition-transform duration-1000 group-hover:scale-110"

@@ -6,18 +6,18 @@ import { useGSAP } from "@/hooks/use-gsap";
 import gsap from "gsap";
 
 const categories = [
-  { name: "Anklets", image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=400&auto=format&fit=crop" },
-  { name: "Bracelets", image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=400&auto=format&fit=crop" },
-  { name: "Pendant", image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=400&auto=format&fit=crop" },
-  { name: "Chains", image: "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?q=80&w=400&auto=format&fit=crop" },
-  { name: "Earrings", image: "https://images.unsplash.com/photo-1635767798638-3e25273a8236?q=80&w=400&auto=format&fit=crop" },
-  { name: "Gifts", image: "https://images.unsplash.com/photo-1589128777073-263566ae5e4d?q=80&w=400&auto=format&fit=crop" },
-  { name: "Mangalsutra", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=400&auto=format&fit=crop" },
-  { name: "Necklace", image: "https://images.unsplash.com/photo-1599643477877-537ef5278533?q=80&w=400&auto=format&fit=crop" },
-  { name: "Nose Pin", image: "https://images.unsplash.com/photo-1611085583191-a3b181a88401?q=80&w=400&auto=format&fit=crop" },
-  { name: "Pendant Set", image: "https://images.unsplash.com/photo-1617033930343-dc8116270b92?q=80&w=400&auto=format&fit=crop" },
-  { name: "Rings", image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=400&auto=format&fit=crop" },
-  { name: "Toe Rings", image: "https://images.unsplash.com/photo-1598560912005-59a0d5c1a612?q=80&w=400&auto=format&fit=crop" }
+  { name: "Rings", image: "/images/products/regular-ring.png" },
+  { name: "Bracelets", image: "/images/products/bracelets.png" },
+  { name: "Chains & Pendants", slug: "chains-pendants", image: "/images/collections/jewellery.png" },
+  { name: "Bangles / Kada", slug: "bangles-kada", image: "/images/products/bracelets.png" },
+  { name: "Anklets (Payal)", slug: "anklets", image: "/images/products/payal.png" },
+  { name: "Mangalsutra", image: "/images/collections/jewellery.png" },
+  { name: "Toe Rings", image: "/images/products/artisan-toe-ring.png" },
+  { name: "Idol / Gifts", slug: "idols-gifts", image: "/images/collections/pooja.png" },
+  { name: "Pooja / Utensils", slug: "pooja-utensils", image: "/images/products/pooja-utensils.png" },
+  { name: "Frames", image: "/images/products/bracelets.png" },
+  { name: "German Silver Gifts", image: "/images/collections/gifting.png" },
+  { name: "Silver Coins", slug: "coins", image: "/images/collections/gifting.png" }
 ];
 
 const CategoryGrid = () => {
@@ -39,16 +39,16 @@ const CategoryGrid = () => {
     <section ref={containerRef} className="py-20 bg-white">
       <div className="container mx-auto px-6 md:px-12 text-center">
         <h2 className="text-2xl md:text-3xl font-serif text-charcoal mb-4 uppercase tracking-ultra">
-          Our Categories
+          Our Collections
         </h2>
         <p className="text-[10px] uppercase tracking-ultra text-charcoal/40 font-bold mb-16">
-          Explore Our Handpicked Collections
+          Explore Our Handpicked Silver Treasures
         </p>
 
         <div className="cat-grid grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-8 gap-y-16">
           {categories.map((cat) => (
-            <Link key={cat.name} href={`/collections/${cat.name.toLowerCase().replace(" ", "-")}`} className="group flex flex-col items-center">
-              <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden mb-6 border border-silver-100 group-hover:border-gold transition-all duration-500 bg-silver-50">
+            <Link key={cat.name} href={`/collections/${cat.slug || cat.name.toLowerCase().replace(/ \/ | & /g, "-").replace(/ /g, "-")}`} className="group flex flex-col items-center">
+              <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden mb-6 border border-silver-100 group-hover:border-gold transition-all duration-500 bg-silver-50 shadow-sm">
                 <Image 
                   src={cat.image}
                   alt={cat.name}

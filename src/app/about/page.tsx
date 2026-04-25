@@ -58,7 +58,15 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="pt-40 pb-20 bg-silver-50">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+            <div className="about-reveal relative h-24 w-60 mb-8 opacity-80">
+              <Image
+                src="/images/logo.png"
+                alt="Silver Spoon Logo"
+                fill
+                className="object-contain brightness-0 grayscale"
+              />
+            </div>
             <p className="about-reveal text-xs uppercase tracking-[0.4em] text-gold font-bold mb-6">
               Our Story
             </p>
@@ -78,7 +86,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="about-image relative aspect-[4/5] bg-silver-100 overflow-hidden border border-silver-100 shadow-2xl">
               <Image 
-                src="https://images.unsplash.com/photo-1573408302382-90cd444b0598?q=80&w=1200&auto=format&fit=crop"
+                src="/images/products/pooja-utensils.png"
                 alt="Silver Craftsmanship"
                 fill
                 className="object-cover"

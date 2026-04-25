@@ -90,7 +90,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const handleBulkOrder = () => {
     const WHATSAPP_NUMBER = "+919876543210";
-    let message = "Hi Silver Spoon, I would like to place a bulk order for the following items:\n\n";
+    let message = "Hi Silver Spoon By AC Jewellers, I would like to place a bulk order for the following items:\n\n";
     
     cart.forEach((item, index) => {
       message += `${index + 1}. ${item.name} (Qty: ${item.quantity})\n`;

@@ -26,10 +26,9 @@ const PromoBanners = () => {
         <div className="promo-grid grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Banner 1: Seal Your Love */}
           <Link href="/collections/german-silver-gifts" className="promo-banner group relative h-[300px] md:h-[400px] overflow-hidden bg-black flex items-center justify-center p-8">
-             <Image 
-               src="https://images.unsplash.com/photo-1599643477877-537ef5278533?q=80&w=800&auto=format&fit=crop"
-               alt="Pure Silver Gifting"
-               fill
+             <Image
+               src="/images/collections/gifting.png"
+               alt="Pure Silver Gifting"               fill
                className="object-cover opacity-60 group-hover:scale-110 transition-transform duration-1000"
              />
              {/* Text Content */}
@@ -45,7 +44,7 @@ const PromoBanners = () => {
           {/* Banner 2: Celebrate Her Strength */}
           <Link href="/collections/women" className="promo-banner group relative h-[300px] md:h-[400px] overflow-hidden bg-[#1a0a05] flex items-center justify-center p-8">
              <Image 
-               src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop"
+               src="/images/collections/jewellery.png"
                alt="Oxidised Collection"
                fill
                className="object-cover opacity-40 group-hover:scale-110 transition-transform duration-1000"

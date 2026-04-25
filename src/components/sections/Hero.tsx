@@ -33,6 +33,15 @@ const Hero = () => {
 
       <div className="container mx-auto px-6 md:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
         <div className="hero-content text-center lg:text-left">
+          <div className="relative h-20 w-48 mb-8 mx-auto lg:mx-0 opacity-90">
+            <Image
+              src="/images/logo.png"
+              alt="Silver Spoon Logo"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
           <p className="text-[10px] md:text-xs uppercase tracking-[0.5em] text-gold mb-6 font-bold">
             925 Pure Silver Puja Utensils
           </p>
@@ -55,8 +64,8 @@ const Hero = () => {
            <div className="w-[500px] h-[500px] md:w-[600px] md:h-[600px] bg-white/5 rounded-full flex items-center justify-center p-12 relative">
               <div className="w-full h-full relative rounded-full overflow-hidden border border-white/10 shadow-2xl">
                  <Image 
-                   src="https://images.unsplash.com/photo-1590731057692-bb202febc667?q=80&w=1200&auto=format&fit=crop"
-                   alt="Pure Silver Ganesha Idol"
+                   src="/images/products/pooja-utensils.png"
+                   alt="Pure Silver Puja Utensils"
                    fill
                    className="object-cover transition-transform duration-700 hover:scale-110"
                    priority

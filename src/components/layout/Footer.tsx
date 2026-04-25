@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 const Footer = () => {
@@ -10,13 +11,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
           {/* Brand Info */}
           <div className="flex flex-col gap-6">
-            <Link href="/" className="flex flex-col group">
-              <span className="text-xl md:text-2xl font-serif tracking-[0.3em] text-charcoal group-hover:text-gold transition-colors duration-500 uppercase">
-                Silver Spoon
-              </span>
-              <span className="text-[8px] md:text-[9px] tracking-[0.4em] text-charcoal/40 uppercase font-sans mt-1">
-                Pure Silver & Gifting
-              </span>
+            <Link href="/" className="relative h-16 w-40 group">
+              <Image
+                src="/images/logo.png"
+                alt="Silver Spoon Logo"
+                fill
+                className="object-contain brightness-0"
+              />
             </Link>
             <p className="text-[11px] md:text-xs text-charcoal/50 leading-relaxed font-sans max-w-xs uppercase tracking-widest">
               Crafting elegance and purity in every piece. Our silver collections are designed to celebrate the timeless beauty of tradition.

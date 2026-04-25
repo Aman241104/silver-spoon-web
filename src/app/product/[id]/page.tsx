@@ -53,7 +53,7 @@ export default function ProductDetailPage() {
 
   const handleInquiry = () => {
     const WHATSAPP_NUMBER = "+919876543210"; // Replace with client's actual number
-    const message = `Hi Silver Spoon, I am interested in the "${product.name}" from your ${product.subCategory || product.category} collection. Could you please share more details like weight and current price?`;
+    const message = `Hi Silver Spoon By AC Jewellers, I am interested in the "${product.name}" from your ${product.subCategory || product.category} collection. Could you please share more details like weight and current price?`;
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`, "_blank");
   };

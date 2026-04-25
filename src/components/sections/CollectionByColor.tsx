@@ -7,17 +7,17 @@ const CollectionByColor = () => {
   const collections = [
     {
       title: "Shine in Silver",
-      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop",
+      image: "/images/products/bracelets.png",
       color: "bg-charcoal/40",
     },
     {
       title: "Glow in Rose Gold",
-      image: "https://images.unsplash.com/photo-1617033930343-dc8116270b92?q=80&w=800&auto=format&fit=crop",
+      image: "/images/products/regular-ring.png",
       color: "bg-[#5c3d2e]/60",
     },
     {
       title: "Bold in Oxidised",
-      image: "https://images.unsplash.com/photo-1599643477877-537ef5278533?q=80&w=800&auto=format&fit=crop",
+      image: "/images/products/payal.png",
       color: "bg-[#2d1b14]/60",
     },
   ];

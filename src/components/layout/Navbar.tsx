@@ -153,18 +153,18 @@ const Navbar = () => {
 
             {/* Center: Logo */}
             <Link href="/" className="flex flex-col items-center group">
-              <span className={cn(
-                "text-xl md:text-3xl font-serif tracking-widest uppercase transition-colors duration-500",
-                shouldBeSolid ? "text-charcoal" : "text-white"
-              )}>
-                Silver Spoon
-              </span>
-              <span className={cn(
-                  "text-[7px] md:text-[8px] tracking-[0.4em] uppercase font-sans -mt-1 transition-colors",
-                  shouldBeSolid ? "text-charcoal/40" : "text-white/40"
-              )}>
-                  Pure Silver & Gifting
-              </span>
+              <div className="relative h-12 md:h-16 w-32 md:w-44 transition-all duration-500">
+                <Image
+                  src="/images/logo.png"
+                  alt="Silver Spoon Logo"
+                  fill
+                  className={cn(
+                    "object-contain transition-all duration-500",
+                    shouldBeSolid ? "brightness-0" : "brightness-100"
+                  )}
+                  priority
+                />
+              </div>
             </Link>
 
             {/* Right: Nav + Icons */}
@@ -198,22 +198,24 @@ const Navbar = () => {
                         "absolute top-full left-1/2 -translate-x-1/2 pt-6 transition-all duration-500",
                         isProductsHovered ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"
                       )}>
-                        <div className="bg-white shadow-2xl border border-silver-100 p-8 min-w-[600px] grid grid-cols-3 gap-8">
-                           {categories.slice(0, 11).map((cat) => (
-                             <div key={cat.id} className="space-y-3">
+                        <div className="bg-white shadow-2xl border border-silver-100 p-10 min-w-[900px] grid grid-cols-4 gap-x-10 gap-y-12">
+                           {categories.map((cat) => (
+                             <div key={cat.id} className="space-y-4">
                                 <Link 
                                   href={`/collections/${cat.slug}`}
                                   className="text-[10px] uppercase tracking-ultra font-bold text-charcoal hover:text-gold transition-colors block border-b border-silver-50 pb-2"
+                                  onClick={() => setIsProductsHovered(false)}
                                 >
                                   {cat.name}
                                 </Link>
                                 {cat.subCategories && (
-                                  <div className="flex flex-col gap-1.5">
-                                    {cat.subCategories.slice(0, 3).map((sub) => (
+                                  <div className="flex flex-col gap-2">
+                                    {cat.subCategories.map((sub) => (
                                       <Link 
                                         key={sub} 
                                         href={`/collections/${cat.slug}`}
-                                        className="text-[9px] uppercase tracking-widest text-charcoal/40 hover:text-charcoal transition-colors"
+                                        className="text-[9px] uppercase tracking-widest text-charcoal/40 hover:text-charcoal transition-colors leading-relaxed"
+                                        onClick={() => setIsProductsHovered(false)}
                                       >
                                         {sub}
                                       </Link>
@@ -222,9 +224,13 @@ const Navbar = () => {
                                 )}
                              </div>
                            ))}
-                           <div className="col-span-3 pt-4 border-t border-silver-100 text-center">
-                              <Link href="/products" className="text-[10px] uppercase tracking-[0.3em] font-bold text-gold hover:text-charcoal transition-colors">
-                                 View All Collections
+                           <div className="col-span-4 pt-6 border-t border-silver-100 text-center">
+                              <Link 
+                                href="/products" 
+                                className="text-[10px] uppercase tracking-[0.3em] font-bold text-gold hover:text-charcoal transition-colors"
+                                onClick={() => setIsProductsHovered(false)}
+                              >
+                                 Explore All Premium Silver Collections
                               </Link>
                            </div>
                         </div>

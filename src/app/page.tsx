@@ -8,6 +8,7 @@ import CategoryGrid from "@/components/sections/CategoryGrid";
 import CollectionByColor from "@/components/sections/CollectionByColor";
 import BudgetGifting from "@/components/sections/BudgetGifting";
 import CuratedCollections from "@/components/sections/CuratedCollections";
+import ArtisanDesigns from "@/components/sections/ArtisanDesigns";
 import SpecialFeatures from "@/components/sections/SpecialFeatures";
 import BrandPromise from "@/components/sections/BrandPromise";
 
@@ -24,6 +25,7 @@ export default function Home() {
       <CollectionByColor />
       <BudgetGifting />
       <CuratedCollections />
+      <ArtisanDesigns />
       <SpecialFeatures />
       <BrandPromise />
       <Footer />

@@ -9,19 +9,22 @@ const CuratedCollections = () => {
       title: "Elegant", 
       audience: "Women's Collection", 
       tagline: "Stylish Silver for Her",
-      image: "https://images.unsplash.com/photo-1611085583191-a3b181a88401?q=80&w=600&auto=format&fit=crop"
+      image: "/images/collections/jewellery.png",
+      href: "/collections/women"
     },
     { 
       title: "Timeless", 
       audience: "Men's Collection", 
       tagline: "Classic Silver for Him",
-      image: "https://images.unsplash.com/photo-1627225924765-552d49cf47ad?q=80&w=600&auto=format&fit=crop"
+      image: "/images/products/bracelets.png",
+      href: "/collections/men"
     },
     { 
       title: "Charming", 
       audience: "Kid's Collection", 
       tagline: "Adorable Silver for Kids",
-      image: "https://images.unsplash.com/photo-1598560912005-59a0d5c1a612?q=80&w=600&auto=format&fit=crop"
+      image: "/images/products/payal.png",
+      href: "/collections/kids"
     },
   ];
 
@@ -37,7 +40,7 @@ const CuratedCollections = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {items.map((item) => (
-            <Link key={item.audience} href="#" className="group relative h-[550px] overflow-hidden bg-[#1a0a05] p-10 flex flex-col items-center justify-start text-white">
+            <Link key={item.audience} href={item.href} className="group relative h-[550px] overflow-hidden bg-[#1a0a05] p-10 flex flex-col items-center justify-start text-white">
                {/* Reference Style: Top Text, then Image, then Bottom Tagline */}
                <div className="relative z-10 text-center mb-10">
                   <p className="font-serif italic text-2xl mb-2">{item.title}</p>
