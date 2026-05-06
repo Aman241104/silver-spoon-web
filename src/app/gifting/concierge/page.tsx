@@ -20,7 +20,7 @@ const GiftingConcierge = () => {
   });
   const [results, setResults] = React.useState<Product[]>([]);
 
-  const steps: { id: Step; title: string; options: any[] }[] = [
+  const steps: { id: Step; title: string; options: { label: string; value: string | number }[] }[] = [
     {
       id: "occasion",
       title: "What is the occasion?",
@@ -67,7 +67,7 @@ const GiftingConcierge = () => {
   const currentStepData = steps.find((s) => s.id === step);
   const currentStepIndex = steps.findIndex((s) => s.id === step);
 
-  const handleOptionSelect = (val: any) => {
+  const handleOptionSelect = (val: string | number) => {
     const newAnswers = { ...answers, [step]: val };
     setAnswers(newAnswers);
 

@@ -3,7 +3,6 @@
 import * as React from "react";
 import { X, Users, Share2, TrendingUp, Heart, ArrowRight } from "lucide-react";
 import { Product } from "@/data/products";
-import { cn } from "@/lib/utils";
 import gsap from "gsap";
 
 interface GroupGiftingModalProps {

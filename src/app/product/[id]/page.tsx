@@ -7,7 +7,7 @@ import { products } from "@/data/products";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Link from "next/link";
-import { Share2, Heart, ShieldCheck, Truck, RotateCcw, MessageSquare, ShoppingBag, ArrowRight } from "lucide-react";
+import { Share2, Heart, ShieldCheck, Truck, RotateCcw, MessageSquare, ShoppingBag } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import { cn } from "@/lib/utils";

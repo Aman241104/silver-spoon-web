@@ -3,8 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Diamond } from "lucide-react";
-import { useGSAP } from "@/hooks/use-gsap";
-import gsap from "gsap";
 
 const categories = [
   { name: "Brooches", slug: "brooches", image: "/images/collections/jewellery.png" },

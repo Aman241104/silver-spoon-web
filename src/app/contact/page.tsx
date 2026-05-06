@@ -3,7 +3,7 @@
 import * as React from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Mail, Phone, MapPin, MessageSquare, Send, Diamond } from "lucide-react";
+import { Mail, Phone, MapPin, MessageSquare, Send } from "lucide-react";
 
 export default function ContactPage() {
   const contactInfo = [
@@ -144,12 +144,6 @@ export default function ContactPage() {
             <p className="text-[11px] uppercase tracking-widest font-bold text-gray-400">Interactive Map Location</p>
          </div>
       </section>
-
-      <Footer />
-    </main>
-  );
-}
-
 
       <Footer />
     </main>
