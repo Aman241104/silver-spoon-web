@@ -16,6 +16,7 @@ export default function CategoryPage() {
   const genderFilter = searchParams.get("gender");
   
   const [priceFilter, setPriceFilter] = React.useState<string>("all");
+  const [sortBy, setSortBy] = React.useState<string>("featured");
 
   const category = categories.find((c) => c.slug === slug);
   
@@ -38,6 +39,14 @@ export default function CategoryPage() {
     if (priceFilter === "over-10000") return p.price > 10000;
 
     return true;
+  });
+
+  // Sort logic
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortBy === "price-asc") return a.price - b.price;
+    if (sortBy === "price-desc") return b.price - a.price;
+    if (sortBy === "name-asc") return a.name.localeCompare(b.name);
+    return 0; // default (featured/newest)
   });
 
   if (!category) {
@@ -91,6 +100,20 @@ export default function CategoryPage() {
              </div>
 
              <div className="flex flex-wrap items-center justify-center gap-8">
+                {/* Sort By */}
+                <div className="relative group">
+                   <button className="flex items-center gap-2 text-[11px] uppercase tracking-widest font-bold text-[#2c2c2c] bg-[#FAF8F5] px-4 py-2 rounded-sm border border-gray-100 hover:border-gray-200 transition-all">
+                      Sort By: {sortBy === "featured" ? "Featured" : sortBy.replace("-", " ").toUpperCase()}
+                      <ChevronDown size={14} />
+                   </button>
+                   <div className="absolute top-full right-0 mt-1 w-48 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 border border-gray-100 py-2">
+                      <button onClick={() => setSortBy("featured")} className="w-full text-left px-4 py-2 text-[10px] font-bold text-charcoal hover:bg-[#FAF8F5] tracking-widest uppercase">Featured</button>
+                      <button onClick={() => setSortBy("price-asc")} className="w-full text-left px-4 py-2 text-[10px] font-bold text-charcoal hover:bg-[#FAF8F5] tracking-widest uppercase">Price: Low to High</button>
+                      <button onClick={() => setSortBy("price-desc")} className="w-full text-left px-4 py-2 text-[10px] font-bold text-charcoal hover:bg-[#FAF8F5] tracking-widest uppercase">Price: High to Low</button>
+                      <button onClick={() => setSortBy("name-asc")} className="w-full text-left px-4 py-2 text-[10px] font-bold text-charcoal hover:bg-[#FAF8F5] tracking-widest uppercase">Name: A-Z</button>
+                   </div>
+                </div>
+
                 {/* Price Filter */}
                 <div className="relative group">
                    <button className="flex items-center gap-2 text-[11px] uppercase tracking-widest font-bold text-[#2c2c2c] bg-[#FAF8F5] px-4 py-2 rounded-sm border border-gray-100 hover:border-gray-200 transition-all">
@@ -114,9 +137,9 @@ export default function CategoryPage() {
              </div>
           </div>
 
-          {filteredProducts.length > 0 ? (
+          {sortedProducts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
-              {filteredProducts.map((product) => (
+              {sortedProducts.map((product) => (
                 <div key={product.id}>
                   <ProductCard product={product} />
                 </div>

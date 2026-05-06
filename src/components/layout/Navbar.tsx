@@ -4,7 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Search, User, ShoppingBag, MapPin, Truck, Package } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   return (
