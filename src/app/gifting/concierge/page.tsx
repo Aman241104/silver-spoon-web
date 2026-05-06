@@ -5,8 +5,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { products, Product } from "@/data/products";
 import ProductCard from "@/components/product/ProductCard";
-import { useGSAP } from "@/hooks/use-gsap";
-import gsap from "gsap";
 import { ChevronRight, RefreshCcw, Sparkles, Gift, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +19,6 @@ const GiftingConcierge = () => {
     style: "",
   });
   const [results, setResults] = React.useState<Product[]>([]);
-  const containerRef = React.useRef(null);
 
   const steps: { id: Step; title: string; options: any[] }[] = [
     {
@@ -74,32 +71,17 @@ const GiftingConcierge = () => {
     const newAnswers = { ...answers, [step]: val };
     setAnswers(newAnswers);
 
-    // Fade out animation before state change
-    gsap.to(".step-content", {
-      opacity: 0,
-      x: -20,
-      duration: 0.3,
-      onComplete: () => {
-        if (currentStepIndex < steps.length - 1) {
-          setStep(steps[currentStepIndex + 1].id);
-        } else {
-          calculateResults(newAnswers);
-          setStep("results");
-        }
-      }
-    });
+    if (currentStepIndex < steps.length - 1) {
+      setStep(steps[currentStepIndex + 1].id);
+    } else {
+      calculateResults(newAnswers);
+      setStep("results");
+    }
   };
 
   const handleBack = () => {
     if (currentStepIndex > 0) {
-      gsap.to(".step-content", {
-        opacity: 0,
-        x: 20,
-        duration: 0.3,
-        onComplete: () => {
-          setStep(steps[currentStepIndex - 1].id);
-        }
-      });
+      setStep(steps[currentStepIndex - 1].id);
     }
   };
 
@@ -117,134 +99,119 @@ const GiftingConcierge = () => {
   };
 
   const reset = () => {
-    gsap.to(".step-content", {
-      opacity: 0,
-      duration: 0.3,
-      onComplete: () => {
-        setStep("occasion");
-        setAnswers({ occasion: "", recipient: "", budget: 0, style: "" });
-        setResults([]);
-      }
-    });
+    setStep("occasion");
+    setAnswers({ occasion: "", recipient: "", budget: 0, style: "" });
+    setResults([]);
   };
 
-  useGSAP(() => {
-    // Initial entry for the whole container
-    gsap.from(".concierge-header", {
-       y: -20,
-       opacity: 0,
-       duration: 1,
-       ease: "power4.out"
-    });
-  }, { scope: containerRef });
-
-  useGSAP(() => {
-    // Animation whenever step changes
-    gsap.fromTo(".step-content", 
-      { opacity: 0, x: 20 },
-      { opacity: 1, x: 0, duration: 0.8, ease: "power3.out", clearProps: "all" }
-    );
-    
-    gsap.fromTo(".option-btn", 
-      { opacity: 0, y: 10 },
-      { opacity: 1, y: 0, duration: 0.5, stagger: 0.05, ease: "power2.out", delay: 0.2 }
-    );
-  }, { dependencies: [step], scope: containerRef });
-
   return (
-    <main ref={containerRef} className="min-h-screen bg-white text-charcoal pt-40 pb-24 overflow-hidden">
+    <main className="min-h-screen bg-white font-sans">
       <Navbar />
-      <div className="container mx-auto px-6 md:px-12">
-        
-        {step !== "results" ? (
-          <div className="max-w-4xl mx-auto">
-             <div className="concierge-header flex items-center justify-between mb-12">
-                <div className="flex items-center gap-4">
-                   <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold">
-                      <Sparkles size={24} />
-                   </div>
-                   <div>
-                      <p className="text-[10px] uppercase tracking-[0.5em] text-gold font-bold mb-1">Gifting Concierge</p>
-                      <h1 className="text-3xl md:text-5xl font-serif tracking-tighter">The Treasury Guide</h1>
-                   </div>
-                </div>
-                {currentStepIndex > 0 && (
-                   <button 
-                     onClick={handleBack}
-                     className="flex items-center gap-2 text-[9px] uppercase tracking-widest font-bold text-charcoal/40 hover:text-gold transition-colors group"
-                   >
-                      <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Back
-                   </button>
-                )}
-             </div>
+      
+      <section className="pt-24 pb-12 bg-[#FAF8F5]">
+        <div className="container mx-auto px-6 md:px-12 text-center">
+            <span className="text-[11px] uppercase tracking-widest text-charcoal font-bold mb-4 block">
+              GIFTING CONCIERGE
+            </span>
+            <h1 className="text-[42px] md:text-[56px] font-serif text-[#2c2c2c] leading-[1.05] tracking-tight font-medium">
+              The Treasury Guide
+            </h1>
+        </div>
+      </section>
 
-             <div className="step-content bg-[#fcfcfc] border border-silver-100 p-10 md:p-20 shadow-sm relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-gold" />
-                
-                <div className="flex justify-between items-center mb-10">
-                   <p className="text-[9px] uppercase tracking-[0.6em] text-charcoal/30 font-bold">
-                      Step {currentStepIndex + 1} of {steps.length}
-                   </p>
-                   <div className="flex gap-2">
-                      {steps.map((_, i) => (
-                        <div key={i} className={cn("w-8 h-1 transition-all duration-500", i <= currentStepIndex ? "bg-gold" : "bg-silver-200")} />
-                      ))}
-                   </div>
-                </div>
-                
-                <h2 className="text-3xl md:text-5xl font-serif text-charcoal mb-16 leading-tight">
-                   {currentStepData?.title}
-                </h2>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                   {currentStepData?.options.map((opt) => (
-                      <button
-                        key={opt.value}
-                        onClick={() => handleOptionSelect(opt.value)}
-                        className="option-btn group relative flex items-center justify-between p-8 border border-silver-200 text-left hover:border-gold transition-all duration-500 bg-white"
-                      >
-                         <span className="text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold text-charcoal/60 group-hover:text-charcoal transition-colors">
-                            {opt.label}
-                         </span>
-                         <ChevronRight size={16} className="text-silver-300 group-hover:text-gold group-hover:translate-x-2 transition-all" />
-                      </button>
-                   ))}
-                </div>
-             </div>
-          </div>
-        ) : (
-          <div className="step-content max-w-6xl mx-auto">
-             <div className="text-center mb-20">
-                <div className="inline-block p-4 bg-gold/10 rounded-full text-gold mb-8">
-                   <Gift size={32} />
-                </div>
-                <h2 className="text-5xl md:text-7xl font-serif tracking-tighter mb-8">Curated <span className="italic text-silver-400">For You.</span></h2>
-                <p className="text-[10px] uppercase tracking-[0.6em] text-charcoal/40 font-bold mb-12">Based on your treasury preferences</p>
-                <button 
-                  onClick={reset}
-                  className="flex items-center gap-3 mx-auto text-[9px] uppercase tracking-[0.4em] font-bold text-gold hover:text-charcoal transition-colors group"
-                >
-                   <RefreshCcw size={14} className="group-hover:rotate-180 transition-transform duration-700" /> Start Over
-                </button>
-             </div>
-
-             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-                {results.length > 0 ? (
-                  results.map((p) => (
-                    <div key={p.id} className="option-btn">
-                       <ProductCard product={p} />
-                    </div>
-                  ))
-                ) : (
-                  <div className="col-span-full py-20 text-center bg-silver-50 border border-silver-100 italic font-serif text-charcoal/40 text-2xl">
-                     Our artisans are crafting new pieces for these specific criteria.
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6 md:px-12">
+          
+          {step !== "results" ? (
+            <div className="max-w-4xl mx-auto">
+               <div className="flex items-center justify-between mb-12">
+                  <div className="flex items-center gap-4">
+                     <div className="w-12 h-12 rounded-full bg-[#FAF8F5] border border-gray-100 flex items-center justify-center text-gray-400">
+                        <Sparkles size={20} strokeWidth={1.5} />
+                     </div>
+                     <div>
+                        <p className="text-[11px] uppercase tracking-widest text-[#2c2c2c] font-bold mb-0.5">Concierge Assistant</p>
+                        <p className="text-[13px] text-gray-500 font-serif">Let us help you find the perfect gift.</p>
+                     </div>
                   </div>
-                )}
-             </div>
-          </div>
-        )}
+                  {currentStepIndex > 0 && (
+                     <button 
+                       onClick={handleBack}
+                       className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-gray-400 hover:text-[#2c2c2c] transition-colors"
+                     >
+                        <ArrowLeft size={14} /> Back
+                     </button>
+                  )}
+               </div>
 
-      </div>
+               <div className="bg-[#FAF8F5] border border-gray-100 p-10 md:p-20 shadow-sm relative overflow-hidden rounded-sm">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-[#2c2c2c]" />
+                  
+                  <div className="flex justify-between items-center mb-10">
+                     <p className="text-[11px] uppercase tracking-widest text-gray-400 font-bold">
+                        Step {currentStepIndex + 1} of {steps.length}
+                     </p>
+                     <div className="flex gap-2">
+                        {steps.map((_, i) => (
+                          <div key={i} className={cn("w-8 h-1 transition-all duration-500", i <= currentStepIndex ? "bg-[#2c2c2c]" : "bg-gray-200")} />
+                        ))}
+                     </div>
+                  </div>
+                  
+                  <h2 className="text-3xl md:text-5xl font-serif text-[#2c2c2c] mb-16 leading-tight font-medium">
+                     {currentStepData?.title}
+                  </h2>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                     {currentStepData?.options.map((opt) => (
+                        <button
+                          key={opt.value}
+                          onClick={() => handleOptionSelect(opt.value)}
+                          className="group relative flex items-center justify-between p-6 border border-gray-200 text-left hover:border-gray-400 transition-all duration-300 bg-white rounded-sm shadow-sm"
+                        >
+                           <span className="text-[11px] uppercase tracking-widest font-bold text-[#2c2c2c] transition-colors">
+                              {opt.label}
+                           </span>
+                           <ChevronRight size={16} className="text-gray-300 group-hover:text-[#2c2c2c] transition-all" />
+                        </button>
+                     ))}
+                  </div>
+               </div>
+            </div>
+          ) : (
+            <div className="max-w-6xl mx-auto">
+               <div className="text-center mb-20">
+                  <div className="inline-block p-5 bg-[#FAF8F5] border border-gray-100 rounded-full text-gray-400 mb-8 shadow-sm">
+                     <Gift size={28} strokeWidth={1.5} />
+                  </div>
+                  <h2 className="text-[42px] md:text-[56px] font-serif tracking-tight text-[#2c2c2c] mb-6 font-medium">Curated For You</h2>
+                  <p className="text-[11px] uppercase tracking-widest text-gray-400 font-bold mb-10">Based on your treasury preferences</p>
+                  <button 
+                    onClick={reset}
+                    className="flex items-center gap-2 mx-auto text-[10px] uppercase tracking-widest font-bold text-[#2c2c2c] hover:text-gray-500 transition-colors"
+                  >
+                     <RefreshCcw size={14} /> Start Over
+                  </button>
+               </div>
+
+               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                  {results.length > 0 ? (
+                    results.map((p) => (
+                      <div key={p.id}>
+                         <ProductCard product={p} />
+                      </div>
+                    ))
+                  ) : (
+                    <div className="col-span-full py-20 text-center bg-[#FAF8F5] border border-gray-100 font-serif text-gray-400 text-xl shadow-sm rounded-sm">
+                       Our artisans are crafting new pieces for these specific criteria.
+                    </div>
+                  )}
+               </div>
+            </div>
+          )}
+
+        </div>
+      </section>
       <Footer />
     </main>
   );

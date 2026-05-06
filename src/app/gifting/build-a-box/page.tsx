@@ -5,8 +5,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { products, Product } from "@/data/products";
 import Image from "next/image";
-import { useGSAP } from "@/hooks/use-gsap";
-import gsap from "gsap";
 import { ArrowRight, Box, Package, Video, QrCode, CheckCircle2, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -18,7 +16,6 @@ const BuildABox = () => {
     text: "",
     videoUrl: "",
   });
-  const containerRef = React.useRef(null);
 
   const boxes = [
     { id: "velvet", name: "Royal Velvet Red", color: "bg-[#4a0e0e]" },
@@ -27,241 +24,212 @@ const BuildABox = () => {
   ];
 
   const handleNext = () => {
-    gsap.to(".step-content", {
-      opacity: 0,
-      x: -30,
-      duration: 0.4,
-      ease: "power2.in",
-      onComplete: () => setStep(step + 1)
-    });
+    setStep(step + 1);
   };
 
   const handlePrev = () => {
-    gsap.to(".step-content", {
-      opacity: 0,
-      x: 30,
-      duration: 0.4,
-      ease: "power2.in",
-      onComplete: () => setStep(step - 1)
-    });
+    setStep(step - 1);
   };
 
-  useGSAP(() => {
-    // Entrance for current step content
-    gsap.fromTo(".step-content", 
-      { opacity: 0, x: 30 },
-      { opacity: 1, x: 0, duration: 0.8, ease: "power3.out" }
-    );
-
-    gsap.from(".box-reveal", {
-      y: 20,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.05,
-      ease: "power2.out",
-      delay: 0.2
-    });
-  }, { dependencies: [step], scope: containerRef });
-
-  // Floating animation for the virtual box
-  useGSAP(() => {
-    gsap.to(".virtual-box", {
-      y: -10,
-      duration: 2,
-      repeat: -1,
-      yoyo: true,
-      ease: "power1.inOut"
-    });
-  }, { scope: containerRef });
-
   return (
-    <main ref={containerRef} className="min-h-screen bg-white text-charcoal pt-40 pb-24 overflow-hidden">
+    <main className="min-h-screen bg-white font-sans">
       <Navbar />
-      <div className="container mx-auto px-6 md:px-12">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-          
-          {/* Left: Interactive Preview */}
-          <div className="preview-container sticky top-40 bg-[#fcfcfc] border border-silver-100 p-12 md:p-20 flex flex-col items-center justify-center min-h-[500px] shadow-sm">
-             <div className="absolute top-10 left-10 flex items-center gap-3">
-                <Box size={20} className="text-gold" />
-                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-charcoal/30">Virtual Atelier</span>
-             </div>
+      
+      <section className="pt-24 pb-12 bg-[#FAF8F5]">
+        <div className="container mx-auto px-6 md:px-12 text-center">
+            <span className="text-[11px] uppercase tracking-widest text-charcoal font-bold mb-4 block">
+              GIFTING SUITE
+            </span>
+            <h1 className="text-[42px] md:text-[56px] font-serif text-[#2c2c2c] leading-[1.05] tracking-tight font-medium">
+              Build Your Gift Box
+            </h1>
+        </div>
+      </section>
 
-             <div className="virtual-box relative w-64 h-64 md:w-80 md:h-80 perspective-1000">
-                <div className={cn(
-                  "w-full h-full border-4 border-white/20 shadow-2xl transition-all duration-1000 flex items-center justify-center p-8 relative",
-                  selectedBox === "Royal Velvet Red" ? "bg-[#4a0e0e]" : 
-                  selectedBox === "Artisan Walnut" ? "bg-[#3e2723]" : 
-                  selectedBox === "Heritage Silk White" ? "bg-white border-silver-100" : "bg-silver-100"
-                )}>
-                   {selectedProduct && (
-                     <div className="relative w-full h-full overflow-hidden shadow-xl">
-                        <Image src={selectedProduct.image} alt="Selected Piece" fill className="object-cover" />
-                     </div>
-                   )}
-                   
-                   {!selectedProduct && (
-                     <p className="text-[10px] uppercase tracking-[0.4em] text-charcoal/20 font-bold">Awaiting Masterpiece</p>
-                   )}
-
-                   {personalization.videoUrl && (
-                      <div className="absolute -bottom-6 -right-6 w-20 h-20 bg-white p-2 shadow-2xl border border-silver-100 rotate-12">
-                         <QrCode className="w-full h-full text-charcoal" strokeWidth={1} />
-                      </div>
-                   )}
-                </div>
-             </div>
-
-             <div className="mt-16 text-center w-full max-w-xs">
-                <h3 className="text-xl font-serif text-charcoal mb-4">Box Composition</h3>
-                <div className="space-y-4">
-                   <div className="flex justify-between items-center text-[9px] uppercase tracking-widest font-bold">
-                      <span className="text-charcoal/40">Artisan Piece:</span>
-                      <span className="text-gold truncate max-w-[150px]">{selectedProduct?.name || "Pending Selection"}</span>
-                   </div>
-                   <div className="flex justify-between items-center text-[9px] uppercase tracking-widest font-bold">
-                      <span className="text-charcoal/40">Vault Case:</span>
-                      <span className="text-gold">{selectedBox || "Standard Packaging"}</span>
-                   </div>
-                </div>
-             </div>
-          </div>
-
-          {/* Right: Steps */}
-          <div className="step-content flex flex-col pt-10">
-             <div className="mb-12">
-                <div className="flex justify-between items-center mb-6">
-                   <p className="text-[10px] uppercase tracking-[0.6em] text-gold font-bold">Phase {step} of 3</p>
-                   <div className="flex gap-2">
-                      {[1, 2, 3].map((s) => (
-                        <div key={s} className={cn("w-10 h-1 transition-all duration-500", s <= step ? "bg-gold" : "bg-silver-200")} />
-                      ))}
-                   </div>
-                </div>
-                <h1 className="text-4xl md:text-6xl font-serif tracking-tighter">Build Your <span className="italic text-silver-400">Gift Box.</span></h1>
-             </div>
-
-             {/* Step 1: Select Product */}
-             {step === 1 && (
-               <div className="space-y-8">
-                  <p className="text-sm uppercase tracking-widest text-charcoal/60 font-bold mb-10">I. Select an artisan silver piece</p>
-                  <div className="grid grid-cols-2 gap-4">
-                     {products.slice(0, 6).map((p) => (
-                       <button 
-                        key={p.id}
-                        onClick={() => setSelectedProduct(p)}
-                        className={cn(
-                          "box-reveal group relative aspect-square overflow-hidden bg-silver-50 border transition-all duration-500",
-                          selectedProduct?.id === p.id ? "border-gold ring-4 ring-gold/5" : "border-silver-100 hover:border-gold/50"
-                        )}
-                       >
-                          <Image src={p.image} alt={p.name} fill className="object-cover transition-transform group-hover:scale-110" />
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all" />
-                          <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-2 text-[8px] uppercase tracking-widest font-bold">
-                             {p.name}
-                          </div>
-                       </button>
-                     ))}
-                  </div>
-                  <button 
-                    disabled={!selectedProduct}
-                    onClick={handleNext}
-                    className="box-reveal w-full bg-charcoal text-white py-6 flex items-center justify-center gap-4 text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-gold transition-all disabled:opacity-30"
-                  >
-                     Select Packaging <ArrowRight size={14} />
-                  </button>
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+            
+            {/* Left: Interactive Preview */}
+            <div className="sticky top-32 bg-[#FAF8F5] border border-gray-100 p-12 md:p-20 flex flex-col items-center justify-center min-h-[500px] shadow-sm rounded-sm">
+               <div className="absolute top-8 left-8 flex items-center gap-2">
+                  <Box size={18} className="text-gray-400" strokeWidth={1.5} />
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Virtual Atelier</span>
                </div>
-             )}
 
-             {/* Step 2: Select Box */}
-             {step === 2 && (
-               <div className="space-y-12">
-                  <div className="flex items-center justify-between mb-10">
-                     <p className="text-sm uppercase tracking-widest text-charcoal/60 font-bold">II. Choose Premium Packaging</p>
-                     <button onClick={handlePrev} className="text-[10px] uppercase tracking-widest font-bold text-charcoal/40 hover:text-gold flex items-center gap-2">
-                        <ArrowLeft size={14} /> Back
-                     </button>
-                  </div>
-                  <div className="space-y-6">
-                     {boxes.map((box) => (
-                        <button
-                          key={box.id}
-                          onClick={() => setSelectedBox(box.name)}
-                          className={cn(
-                            "box-reveal w-full flex items-center justify-between p-8 border transition-all duration-500",
-                            selectedBox === box.name ? "border-gold bg-gold/5" : "border-silver-100 hover:border-gold/30"
-                          )}
-                        >
-                           <div className="flex items-center gap-6">
-                              <div className={cn("w-10 h-10 rounded-none shadow-xl", box.color)} />
-                              <span className="text-[10px] uppercase tracking-[0.4em] font-bold">{box.name}</span>
-                           </div>
-                           <Package size={16} className={selectedBox === box.name ? "text-gold" : "text-silver-300"} />
-                        </button>
-                     ))}
-                  </div>
-                  <button 
-                    disabled={!selectedBox}
-                    onClick={handleNext}
-                    className="box-reveal w-full bg-charcoal text-white py-6 flex items-center justify-center gap-4 text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-gold transition-all disabled:opacity-30"
-                  >
-                    Personalize <ArrowRight size={14} />
-                  </button>
-               </div>
-             )}
+               <div className="relative w-64 h-64 md:w-80 md:h-80 perspective-1000">
+                  <div className={cn(
+                    "w-full h-full border border-gray-200 shadow-md transition-all duration-700 flex items-center justify-center p-8 relative",
+                    selectedBox === "Royal Velvet Red" ? "bg-[#4a0e0e]" : 
+                    selectedBox === "Artisan Walnut" ? "bg-[#3e2723]" : 
+                    selectedBox === "Heritage Silk White" ? "bg-white" : "bg-white"
+                  )}>
+                     {selectedProduct && (
+                       <div className="relative w-full h-full overflow-hidden shadow-sm">
+                          <Image src={selectedProduct.image} alt="Selected Piece" fill className="object-cover mix-blend-multiply" />
+                       </div>
+                     )}
+                     
+                     {!selectedProduct && (
+                       <p className="text-[11px] uppercase tracking-widest text-gray-400 font-bold">Awaiting Masterpiece</p>
+                     )}
 
-             {/* Step 3: Personalize */}
-             {step === 3 && (
-               <div className="space-y-12">
-                  <div className="flex items-center justify-between mb-10">
-                     <p className="text-sm uppercase tracking-widest text-charcoal/60 font-bold">III. Add the Heart of the Gift</p>
-                     <button onClick={handlePrev} className="text-[10px] uppercase tracking-widest font-bold text-charcoal/40 hover:text-gold flex items-center gap-2">
-                        <ArrowLeft size={14} /> Back
-                     </button>
-                  </div>
-                  <div className="space-y-10">
-                     <div className="box-reveal space-y-4">
-                        <label className="text-[10px] uppercase tracking-[0.4em] font-bold text-charcoal/40">Handwritten Message</label>
-                        <textarea 
-                           className="w-full bg-silver-50 border-none p-6 text-sm font-sans focus:ring-1 focus:ring-gold/30 transition-all outline-none h-32"
-                           placeholder="Type your heartfelt message here..."
-                           onChange={(e) => setPersonalization({...personalization, text: e.target.value})}
-                        />
-                     </div>
-                     <div className="box-reveal space-y-4">
-                        <div className="flex justify-between items-center">
-                           <label className="text-[10px] uppercase tracking-[0.4em] font-bold text-charcoal/40 flex items-center gap-3">
-                              <Video size={14} className="text-gold" /> Video Message Link
-                           </label>
-                           <span className="text-[8px] uppercase tracking-widest text-gold font-bold">Legacy Feature</span>
+                     {personalization.videoUrl && (
+                        <div className="absolute -bottom-6 -right-6 w-16 h-16 bg-white p-2 shadow-md border border-gray-100">
+                           <QrCode className="w-full h-full text-[#2c2c2c]" strokeWidth={1} />
                         </div>
-                        <input 
-                           type="url"
-                           className="w-full bg-silver-50 border-none p-6 text-sm font-sans focus:ring-1 focus:ring-gold/30 transition-all outline-none"
-                           placeholder="Paste YouTube/Drive link here"
-                           onChange={(e) => setPersonalization({...personalization, videoUrl: e.target.value})}
-                        />
-                        <p className="text-[9px] text-charcoal/30 uppercase tracking-widest leading-relaxed">
-                           We will print a custom QR code inside the gift box that plays your video message when scanned.
-                        </p>
+                     )}
+                  </div>
+               </div>
+
+               <div className="mt-16 text-center w-full max-w-xs border-t border-gray-200 pt-8">
+                  <h3 className="text-lg font-serif text-[#2c2c2c] mb-6">Box Composition</h3>
+                  <div className="space-y-4">
+                     <div className="flex justify-between items-center text-[10px] uppercase tracking-widest font-bold">
+                        <span className="text-gray-400">Artisan Piece:</span>
+                        <span className="text-[#2c2c2c] truncate max-w-[150px]">{selectedProduct?.name || "Pending Selection"}</span>
+                     </div>
+                     <div className="flex justify-between items-center text-[10px] uppercase tracking-widest font-bold">
+                        <span className="text-gray-400">Vault Case:</span>
+                        <span className="text-[#2c2c2c]">{selectedBox || "Standard Packaging"}</span>
                      </div>
                   </div>
-
-                  <button 
-                    className="box-reveal w-full bg-[#0a0a0a] text-white py-6 flex items-center justify-center gap-4 text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-gold transition-all"
-                    onClick={() => alert("Box Ready! In a real app, this adds the full custom set to your bag.")}
-                  >
-                    Finalize Treasury Box <CheckCircle2 size={14} />
-                  </button>
                </div>
-             )}
+            </div>
+
+            {/* Right: Steps */}
+            <div className="flex flex-col pt-4">
+               <div className="mb-12">
+                  <div className="flex justify-between items-center mb-6">
+                     <p className="text-[11px] uppercase tracking-widest text-gray-400 font-bold">Phase {step} of 3</p>
+                     <div className="flex gap-2">
+                        {[1, 2, 3].map((s) => (
+                          <div key={s} className={cn("w-12 h-1 transition-all duration-500", s <= step ? "bg-[#2c2c2c]" : "bg-gray-200")} />
+                        ))}
+                     </div>
+                  </div>
+               </div>
+
+               {/* Step 1: Select Product */}
+               {step === 1 && (
+                 <div className="space-y-8 fade-in">
+                    <p className="text-[14px] font-serif text-[#2c2c2c] tracking-wide uppercase mb-6">I. Select an artisan silver piece</p>
+                    <div className="grid grid-cols-2 gap-6">
+                       {products.slice(0, 6).map((p) => (
+                         <button 
+                          key={p.id}
+                          onClick={() => setSelectedProduct(p)}
+                          className={cn(
+                            "group relative aspect-square overflow-hidden bg-[#FAF8F5] border transition-all duration-300 rounded-sm shadow-sm",
+                            selectedProduct?.id === p.id ? "border-[#2c2c2c] ring-2 ring-[#2c2c2c]/10" : "border-gray-100 hover:border-gray-300"
+                          )}
+                         >
+                            <Image src={p.image} alt={p.name} fill className="object-cover mix-blend-multiply transition-transform group-hover:scale-105" />
+                            <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md p-3 text-[9px] uppercase tracking-widest font-bold text-center border-t border-gray-100 text-[#2c2c2c]">
+                               {p.name}
+                            </div>
+                         </button>
+                       ))}
+                    </div>
+                    <button 
+                      disabled={!selectedProduct}
+                      onClick={handleNext}
+                      className="w-full bg-[#1a1a1a] text-white py-5 flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-black transition-all disabled:opacity-30 rounded-sm mt-8"
+                    >
+                       Select Packaging <ArrowRight size={14} />
+                    </button>
+                 </div>
+               )}
+
+               {/* Step 2: Select Box */}
+               {step === 2 && (
+                 <div className="space-y-12 fade-in">
+                    <div className="flex items-center justify-between mb-8">
+                       <p className="text-[14px] font-serif text-[#2c2c2c] tracking-wide uppercase">II. Choose Premium Packaging</p>
+                       <button onClick={handlePrev} className="text-[10px] uppercase tracking-widest font-bold text-gray-400 hover:text-[#2c2c2c] flex items-center gap-2 transition-colors">
+                          <ArrowLeft size={14} /> Back
+                       </button>
+                    </div>
+                    <div className="space-y-6">
+                       {boxes.map((box) => (
+                          <button
+                            key={box.id}
+                            onClick={() => setSelectedBox(box.name)}
+                            className={cn(
+                              "w-full flex items-center justify-between p-6 border transition-all duration-300 rounded-sm bg-white shadow-sm",
+                              selectedBox === box.name ? "border-[#2c2c2c] bg-gray-50" : "border-gray-200 hover:border-gray-400"
+                            )}
+                          >
+                             <div className="flex items-center gap-6">
+                                <div className={cn("w-10 h-10 rounded-full shadow-sm border border-black/10", box.color)} />
+                                <span className="text-[11px] uppercase tracking-widest font-bold text-[#2c2c2c]">{box.name}</span>
+                             </div>
+                             <Package size={18} className={selectedBox === box.name ? "text-[#2c2c2c]" : "text-gray-300"} strokeWidth={1.5} />
+                          </button>
+                       ))}
+                    </div>
+                    <button 
+                      disabled={!selectedBox}
+                      onClick={handleNext}
+                      className="w-full bg-[#1a1a1a] text-white py-5 flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-black transition-all disabled:opacity-30 rounded-sm"
+                    >
+                      Personalize <ArrowRight size={14} />
+                    </button>
+                 </div>
+               )}
+
+               {/* Step 3: Personalize */}
+               {step === 3 && (
+                 <div className="space-y-12 fade-in">
+                    <div className="flex items-center justify-between mb-8">
+                       <p className="text-[14px] font-serif text-[#2c2c2c] tracking-wide uppercase">III. Add the Heart of the Gift</p>
+                       <button onClick={handlePrev} className="text-[10px] uppercase tracking-widest font-bold text-gray-400 hover:text-[#2c2c2c] flex items-center gap-2 transition-colors">
+                          <ArrowLeft size={14} /> Back
+                       </button>
+                    </div>
+                    <div className="space-y-10">
+                       <div className="space-y-4">
+                          <label className="text-[11px] uppercase tracking-widest font-bold text-[#2c2c2c]">Handwritten Message</label>
+                          <textarea 
+                             className="w-full bg-white border border-gray-200 p-5 text-[14px] font-sans focus:ring-0 focus:border-gray-400 transition-colors outline-none h-32 shadow-sm rounded-sm resize-none"
+                             placeholder="Type your heartfelt message here..."
+                             onChange={(e) => setPersonalization({...personalization, text: e.target.value})}
+                          />
+                       </div>
+                       <div className="space-y-4">
+                          <div className="flex justify-between items-center">
+                             <label className="text-[11px] uppercase tracking-widest font-bold text-[#2c2c2c] flex items-center gap-2">
+                                <Video size={14} className="text-gray-400" /> Video Message Link
+                             </label>
+                             <span className="text-[9px] uppercase tracking-widest text-gray-400 font-bold">Legacy Feature</span>
+                          </div>
+                          <input 
+                             type="url"
+                             className="w-full bg-white border border-gray-200 p-5 text-[14px] font-sans focus:ring-0 focus:border-gray-400 transition-colors outline-none shadow-sm rounded-sm"
+                             placeholder="Paste YouTube/Drive link here"
+                             onChange={(e) => setPersonalization({...personalization, videoUrl: e.target.value})}
+                          />
+                          <p className="text-[11px] text-gray-500 leading-relaxed pt-2">
+                             We will print a custom QR code inside the gift box that plays your video message when scanned.
+                          </p>
+                       </div>
+                    </div>
+
+                    <button 
+                      className="w-full bg-[#1a1a1a] text-white py-5 flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-black transition-all rounded-sm"
+                      onClick={() => alert("Box Ready! In a real app, this adds the full custom set to your bag.")}
+                    >
+                      Finalize Treasury Box <CheckCircle2 size={14} strokeWidth={2} />
+                    </button>
+                 </div>
+               )}
+
+            </div>
 
           </div>
 
         </div>
-
-      </div>
+      </section>
       <Footer />
     </main>
   );

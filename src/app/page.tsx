@@ -1,33 +1,20 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
-import PromoBanners from "@/components/sections/PromoBanners";
-import TopSellers from "@/components/sections/TopSellers";
-import PolicySection from "@/components/sections/PolicySection";
 import CategoryGrid from "@/components/sections/CategoryGrid";
-import CollectionByColor from "@/components/sections/CollectionByColor";
-import BudgetGifting from "@/components/sections/BudgetGifting";
-import CuratedCollections from "@/components/sections/CuratedCollections";
-import ArtisanDesigns from "@/components/sections/ArtisanDesigns";
-import SpecialFeatures from "@/components/sections/SpecialFeatures";
-import BrandPromise from "@/components/sections/BrandPromise";
+import ExploreCollections from "@/components/sections/ExploreCollections";
+import Features from "@/components/sections/Features";
+import Newsletter from "@/components/sections/Newsletter";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       <Navbar />
       <Hero />
-      <PromoBanners />
-      <TopSellers title="Top Seller" />
-      <PolicySection />
       <CategoryGrid />
-      <TopSellers title="Our New Products" />
-      <CollectionByColor />
-      <BudgetGifting />
-      <CuratedCollections />
-      <ArtisanDesigns />
-      <SpecialFeatures />
-      <BrandPromise />
+      <ExploreCollections />
+      <Features />
+      <Newsletter />
       <Footer />
     </main>
   );

@@ -1,55 +1,52 @@
 "use client";
 
 import * as React from "react";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { products, categories } from "@/data/products";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ProductCard from "@/components/product/ProductCard";
-import { useGSAP } from "@/hooks/use-gsap";
-import gsap from "gsap";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { Diamond, ChevronDown } from "lucide-react";
 
 export default function CategoryPage() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const slug = params.slug as string;
+  const genderFilter = searchParams.get("gender");
+  
+  const [priceFilter, setPriceFilter] = React.useState<string>("all");
 
   const category = categories.find((c) => c.slug === slug);
   
   const filteredProducts = products.filter((p) => {
-    if (slug === "men") return p.gender === "men";
-    if (slug === "women") return p.gender === "women";
-    return p.category === slug;
+    // 1. Category/Gender Filter
+    let matchesCategory = false;
+    if (slug === "men") matchesCategory = p.gender === "men";
+    else if (slug === "women") matchesCategory = p.gender === "women";
+    else matchesCategory = p.category === slug;
+
+    if (!matchesCategory) return false;
+
+    // 2. Gender Sub-filter (if provided via query param)
+    if (genderFilter && p.gender !== genderFilter) return false;
+
+    // 3. Price Filter
+    if (priceFilter === "under-2000") return p.price < 2000;
+    if (priceFilter === "2000-5000") return p.price >= 2000 && p.price <= 5000;
+    if (priceFilter === "5000-10000") return p.price > 5000 && p.price <= 10000;
+    if (priceFilter === "over-10000") return p.price > 10000;
+
+    return true;
   });
-
-  const containerRef = useGSAP(() => {
-    gsap.from(".category-header-text", {
-      y: 40,
-      opacity: 0,
-      duration: 1.2,
-      stagger: 0.1,
-      ease: "power4.out",
-    });
-
-    gsap.from(".product-grid-item", {
-      y: 60,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.05,
-      ease: "power3.out",
-      delay: 0.4,
-    });
-  }, [slug]);
 
   if (!category) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-[#0a0a0a] text-white">
+      <main className="min-h-screen flex items-center justify-center bg-[#FAF8F5] text-charcoal font-sans">
         <div className="text-center">
-          <h1 className="text-6xl font-serif mb-8 tracking-tighter">Collection Not Found</h1>
-          <Link href="/" className="group relative inline-block overflow-hidden bg-gold text-charcoal px-10 py-4 text-[10px] uppercase tracking-[0.4em] font-bold transition-all duration-500 hover:bg-white">
-            <span className="relative z-10">Return to Treasury</span>
-            <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+          <h1 className="text-4xl md:text-6xl font-serif mb-8 tracking-tighter">Collection Not Found</h1>
+          <Link href="/products" className="bg-[#1a1a1a] text-white px-10 py-4 text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm">
+            Return to Treasury
           </Link>
         </div>
       </main>
@@ -57,66 +54,79 @@ export default function CategoryPage() {
   }
 
   return (
-    <main ref={containerRef} className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white font-sans">
       <Navbar />
       
       {/* Category Header */}
-      <section className="pt-48 pb-24 bg-[#fcfcfc] border-b border-silver-100/50">
-        <div className="container mx-auto px-6 md:px-12">
+      <section className="pt-24 pb-20 bg-[#FAF8F5]">
+        <div className="container mx-auto px-6 md:px-12 text-center flex flex-col items-center">
           {/* Breadcrumbs */}
-          <nav className="category-header-text flex items-center gap-3 mb-10 text-[9px] uppercase tracking-[0.4em] text-charcoal/30 font-bold">
-            <Link href="/" className="hover:text-gold transition-colors">Treasury</Link>
-            <span className="text-silver-300">/</span>
-            <Link href="/products" className="hover:text-gold transition-colors">Collections</Link>
-            <span className="text-silver-300">/</span>
-            <span className="text-gold italic">{category.name}</span>
+          <nav className="flex items-center gap-2 mb-8 text-[10px] uppercase tracking-widest text-gray-400 font-bold">
+            <Link href="/" className="hover:text-charcoal transition-colors">Home</Link>
+            <span>/</span>
+            <Link href="/products" className="hover:text-charcoal transition-colors">Collections</Link>
+            <span>/</span>
+            <span className="text-charcoal">{category.name}</span>
           </nav>
 
-          <div className="max-w-4xl">
-            <h1 className="category-header-text text-6xl md:text-8xl font-serif text-charcoal mb-8 leading-[0.9] tracking-tighter">
-               {category.name.split(' ').map((word, i) => (
-                 <span key={i} className={i % 2 !== 0 ? "italic text-silver-400" : ""}>
-                   {word}{' '}
-                 </span>
-               ))}
-            </h1>
-            <p className="category-header-text text-sm md:text-base text-charcoal/50 font-sans leading-relaxed tracking-widest uppercase max-w-2xl">
-              {category.description}
-            </p>
-          </div>
+          <h1 className="text-[48px] md:text-[64px] lg:text-[76px] font-serif text-[#2c2c2c] leading-[1.05] mb-8 tracking-tight font-medium uppercase">
+             {category.name} {genderFilter && <span className="text-gray-400">for {genderFilter}</span>}
+          </h1>
+          <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+            {category.description}
+          </p>
         </div>
       </section>
 
       {/* Product Grid */}
-      <section className="py-24">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="flex flex-col md:flex-row justify-between items-center mb-20 gap-8 border-b border-silver-100 pb-10">
+          
+          <div className="flex flex-col md:flex-row justify-between items-center mb-20 gap-8 border-b border-gray-100 pb-10">
              <div className="flex items-center gap-4">
-                <span className="w-10 h-[1px] bg-gold" />
-                <p className="text-[9px] uppercase tracking-[0.5em] text-charcoal/40 font-bold">
+                <span className="w-10 h-[1px] bg-gray-300" />
+                <p className="text-[11px] uppercase tracking-widest text-gray-400 font-bold">
                    Displaying {filteredProducts.length} Artisan Pieces
                 </p>
              </div>
-             <div className="flex gap-10 text-[9px] uppercase tracking-[0.4em] font-bold text-charcoal/60">
-                <button className="text-charcoal border-b border-gold pb-1">All Pieces</button>
-                <button className="hover:text-gold transition-colors pb-1 border-b border-transparent">New Arrivals</button>
-                <button className="hover:text-gold transition-colors pb-1 border-b border-transparent">Masterpieces</button>
+
+             <div className="flex flex-wrap items-center justify-center gap-8">
+                {/* Price Filter */}
+                <div className="relative group">
+                   <button className="flex items-center gap-2 text-[11px] uppercase tracking-widest font-bold text-[#2c2c2c] bg-[#FAF8F5] px-4 py-2 rounded-sm border border-gray-100 hover:border-gray-200 transition-all">
+                      Price: {priceFilter === "all" ? "All" : priceFilter.replace("-", " ").toUpperCase()}
+                      <ChevronDown size={14} />
+                   </button>
+                   <div className="absolute top-full right-0 mt-1 w-48 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 border border-gray-100 py-2">
+                      <button onClick={() => setPriceFilter("all")} className="w-full text-left px-4 py-2 text-[10px] font-bold text-charcoal hover:bg-[#FAF8F5] tracking-widest uppercase">All Prices</button>
+                      <button onClick={() => setPriceFilter("under-2000")} className="w-full text-left px-4 py-2 text-[10px] font-bold text-charcoal hover:bg-[#FAF8F5] tracking-widest uppercase">Under ₹2,000</button>
+                      <button onClick={() => setPriceFilter("2000-5000")} className="w-full text-left px-4 py-2 text-[10px] font-bold text-charcoal hover:bg-[#FAF8F5] tracking-widest uppercase">₹2,000 - ₹5,000</button>
+                      <button onClick={() => setPriceFilter("5000-10000")} className="w-full text-left px-4 py-2 text-[10px] font-bold text-charcoal hover:bg-[#FAF8F5] tracking-widest uppercase">₹5,000 - ₹10,000</button>
+                      <button onClick={() => setPriceFilter("over-10000")} className="w-full text-left px-4 py-2 text-[10px] font-bold text-charcoal hover:bg-[#FAF8F5] tracking-widest uppercase">Over ₹10,000</button>
+                   </div>
+                </div>
+
+                <div className="flex gap-8 text-[11px] uppercase tracking-widest font-bold text-gray-400">
+                   <button className="text-[#2c2c2c] border-b border-[#2c2c2c] pb-1">All Pieces</button>
+                   <button className="hover:text-[#2c2c2c] transition-colors pb-1 border-b border-transparent">New Arrivals</button>
+                   <button className="hover:text-[#2c2c2c] transition-colors pb-1 border-b border-transparent">Bestsellers</button>
+                </div>
              </div>
           </div>
 
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-10 gap-y-20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
               {filteredProducts.map((product) => (
-                <div key={product.id} className="product-grid-item">
+                <div key={product.id}>
                   <ProductCard product={product} />
                 </div>
               ))}
             </div>
           ) : (
-            <div className="py-40 text-center">
-              <div className="w-20 h-[1px] bg-silver-200 mx-auto mb-10" />
-              <p className="font-serif text-3xl text-charcoal/20 italic tracking-tight">The treasury is currently being replenished.</p>
-              <Link href="/products" className="inline-block mt-8 text-[10px] uppercase tracking-[0.4em] font-bold text-gold hover:text-charcoal transition-colors">Explore Other Collections ✦</Link>
+            <div className="py-40 text-center flex flex-col items-center">
+              <Diamond size={24} className="text-gray-200 mb-8" strokeWidth={1} />
+              <p className="font-serif text-3xl text-gray-300 italic tracking-tight mb-8">No pieces match your current filters.</p>
+              <button onClick={() => {setPriceFilter("all")}} className="text-[11px] uppercase tracking-widest font-bold text-charcoal border-b border-charcoal pb-1">Clear Filters</button>
             </div>
           )}
         </div>
@@ -126,4 +136,3 @@ export default function CategoryPage() {
     </main>
   );
 }
-

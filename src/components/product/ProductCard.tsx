@@ -16,39 +16,36 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const { toggleWishlist, isInWishlist } = useWishlist();
 
   return (
-    <div className="group block relative">
+    <div className="group block relative font-sans">
       <Link
         href={`/product/${product.id}`}
         className="block"
       >
-        <div className="relative aspect-[4/5] bg-[#f8f8f8] overflow-hidden mb-6 border border-silver-100/50 shadow-sm group-hover:shadow-2xl transition-all duration-700">
+        <div className="relative aspect-[4/5] bg-[#FAF8F5] overflow-hidden mb-6 border border-gray-100 shadow-sm group-hover:shadow-md transition-all duration-700 rounded-sm">
           {/* Actual Product Image */}
-          <div className="w-full h-full relative transition-transform duration-1000 ease-out group-hover:scale-110">
+          <div className="w-full h-full relative transition-transform duration-1000 ease-out group-hover:scale-105">
              <Image 
                src={product.image} 
                alt={product.name}
                fill
-               className="object-cover"
+               className="object-cover mix-blend-multiply"
                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
              />
           </div>
 
-          {/* Hover Overlay */}
-          <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/5 transition-all duration-700" />
-          
           {/* Quick View Button */}
           <div className="absolute bottom-0 left-0 w-full translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-20">
-             <div className="bg-white/90 backdrop-blur-md py-4 flex items-center justify-center gap-3 border-t border-silver-100">
-                <span className="text-[9px] uppercase tracking-[0.4em] font-bold text-charcoal">View Details</span>
-                <ArrowUpRight size={12} className="text-gold" />
+             <div className="bg-white/95 backdrop-blur-md py-4 flex items-center justify-center gap-3 border-t border-gray-100">
+                <span className="text-[10px] uppercase tracking-widest font-bold text-charcoal">View Details</span>
+                <ArrowUpRight size={14} className="text-gray-400" />
              </div>
           </div>
 
           {/* Featured Badge */}
           {product.featured && (
-            <div className="absolute top-5 left-5 z-10">
-              <div className="bg-white/90 backdrop-blur-md px-4 py-1.5 shadow-sm border border-gold/10">
-                <span className="text-[8px] uppercase tracking-[0.4em] font-bold text-gold">
+            <div className="absolute top-4 left-4 z-10">
+              <div className="bg-white/90 px-3 py-1 shadow-sm border border-gray-100">
+                <span className="text-[9px] uppercase tracking-widest font-bold text-charcoal">
                   Top Seller
                 </span>
               </div>
@@ -63,23 +60,23 @@ const ProductCard = ({ product }: ProductCardProps) => {
           toggleWishlist(product);
         }}
         className={cn(
-          "absolute top-5 right-5 z-10 p-3 bg-white/90 backdrop-blur-md rounded-none shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-gold hover:text-white border border-silver-100",
-          isInWishlist(product.id) && "opacity-100 text-gold border-gold/20"
+          "absolute top-4 right-4 z-10 p-2.5 bg-white/90 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-white border border-gray-100",
+          isInWishlist(product.id) && "opacity-100"
         )}
       >
-        <Heart size={14} strokeWidth={1.5} className={cn("transition-all duration-500", isInWishlist(product.id) ? "fill-gold text-white" : "text-charcoal/60")} />
+        <Heart size={16} strokeWidth={1.5} className={cn("transition-all duration-500", isInWishlist(product.id) ? "fill-charcoal text-charcoal" : "text-gray-400")} />
       </button>
 
       <div className="px-1 text-center lg:text-left">
         <Link href={`/product/${product.id}`} className="space-y-2 block">
-          <p className="text-[8px] uppercase tracking-[0.5em] text-gold font-bold mb-1">
+          <p className="text-[9px] uppercase tracking-widest text-gray-400 font-bold mb-1">
             {product.subCategory || product.category}
           </p>
-          <h3 className="text-xl font-serif text-charcoal transition-colors group-hover:text-gold leading-tight">
+          <h3 className="text-xl font-serif text-[#2c2c2c] transition-colors group-hover:text-gray-600 leading-tight">
             {product.name}
           </h3>
-          <div className="w-8 h-[1px] bg-silver-200 my-3 mx-auto lg:mx-0 transition-all duration-500 group-hover:w-16 group-hover:bg-gold" />
-          <p className="text-[10px] text-charcoal/40 font-sans tracking-[0.2em] uppercase font-bold">
+          <div className="w-8 h-[1px] bg-gray-200 my-3 mx-auto lg:mx-0 transition-all duration-500 group-hover:w-16 group-hover:bg-gray-400" />
+          <p className="text-[11px] text-gray-400 font-sans tracking-widest uppercase font-bold">
             Price on Request
           </p>
         </Link>

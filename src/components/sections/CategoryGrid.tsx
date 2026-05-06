@@ -2,80 +2,65 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { ChevronLeft, ChevronRight, Diamond } from "lucide-react";
 import { useGSAP } from "@/hooks/use-gsap";
 import gsap from "gsap";
 
 const categories = [
-  { name: "Rings", slug: "rings", image: "/images/products/regular-ring.png" },
-  { name: "Bracelets", slug: "bracelets", image: "/images/products/bracelets.png" },
-  { name: "Chains & Pendants", slug: "chains-pendants", image: "/images/collections/jewellery.png" },
-  { name: "Bangles & Kada", slug: "bangles-kada", image: "/images/products/bracelets.png" },
-  { name: "Artisan Anklets", slug: "anklets", image: "/images/products/payal.png" },
-  { name: "Toe Rings", slug: "toe-rings", image: "/images/products/artisan-toe-ring.png" },
-  { name: "Divine Idols", slug: "idols-gifts", image: "/images/collections/pooja.png" },
-  { name: "Pooja Utensils", slug: "pooja-utensils", image: "/images/products/pooja-utensils.png" },
-  { name: "Luxury Frames", slug: "frames", image: "/images/products/bracelets.png" },
-  { name: "Silver Coins", slug: "coins", image: "/images/collections/gifting.png" }
+  { name: "Brooches", slug: "brooches", image: "/images/collections/jewellery.png" },
+  { name: "German Silver", slug: "german-silver", image: "/images/products/pooja-utensils.png" },
+  { name: "Silver Idols", slug: "silver-idols", image: "/images/collections/pooja.png" },
+  { name: "Silver Frames", slug: "silver-frames", image: "/images/collections/gifting.png" },
+  { name: "Women's Collection", slug: "women", image: "/images/collections/jewellery.png" },
+  { name: "Men's Collection", slug: "men", image: "/images/products/regular-ring.png" },
 ];
 
 const CategoryGrid = () => {
-  const containerRef = useGSAP(() => {
-    gsap.from(".cat-circle", {
-      scale: 0.8,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.08,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".cat-grid",
-        start: "top 85%",
-      },
-    });
-
-    gsap.from(".cat-title-reveal", {
-      y: 30,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".cat-grid-section",
-        start: "top 85%",
-      },
-    });
-  });
-
   return (
-    <section ref={containerRef} className="cat-grid-section py-32 bg-[#fcfcfc] border-y border-silver-100/50">
-      <div className="container mx-auto px-6 md:px-12 text-center">
-        <div className="max-w-2xl mx-auto mb-20">
-           <p className="cat-title-reveal text-[10px] uppercase tracking-[0.5em] text-gold font-bold mb-6">Treasury Vaults</p>
-           <h2 className="cat-title-reveal text-5xl md:text-6xl font-serif text-charcoal leading-tight tracking-tighter">
-             Explore Our <span className="italic text-silver-400">Artisan</span> Collections
-           </h2>
+    <section className="py-24 bg-white font-sans">
+      <div className="container mx-auto px-6 md:px-12 text-center relative">
+        <h2 className="text-[32px] md:text-[36px] font-serif text-[#2c2c2c] tracking-[0.1em] uppercase mb-4 font-medium">
+          Shop By Category
+        </h2>
+        
+        {/* Divider */}
+        <div className="flex items-center justify-center gap-3 mb-20">
+          <div className="h-[1px] w-14 bg-gray-200"></div>
+          <Diamond size={12} className="text-gray-300" fill="currentColor" />
+          <div className="h-[1px] w-14 bg-gray-200"></div>
         </div>
 
-        <div className="cat-grid grid grid-cols-2 md:grid-cols-5 gap-x-12 gap-y-20">
-          {categories.map((cat) => (
-            <Link key={cat.name} href={`/collections/${cat.slug}`} className="cat-circle group flex flex-col items-center">
-              <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden mb-8 border border-silver-100 p-2 group-hover:border-gold group-hover:p-0 transition-all duration-700 bg-white shadow-sm">
-                <div className="relative w-full h-full rounded-full overflow-hidden">
-                   <Image 
-                     src={cat.image}
-                     alt={cat.name}
-                     fill
-                     className="object-cover group-hover:scale-110 transition-transform duration-1000"
-                     sizes="(max-width: 768px) 150px, 200px"
-                   />
+        {/* Slider Area */}
+        <div className="relative max-w-[1400px] mx-auto flex items-center">
+          <button className="absolute left-0 z-10 w-11 h-11 border border-gray-100 rounded-full flex items-center justify-center text-gray-400 hover:text-charcoal bg-white -ml-4 md:-ml-8 shadow-sm transition-all hover:border-gray-300">
+            <ChevronLeft size={22} strokeWidth={1} />
+          </button>
+
+          <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-10">
+            {categories.map((cat, idx) => (
+              <Link key={idx} href={`/collections/${cat.slug}`} className="flex flex-col items-center group">
+                <div className="relative w-28 h-28 md:w-36 md:h-36 mb-6">
+                  <div className="relative w-full h-full drop-shadow-md">
+                    <Image 
+                      src={cat.image}
+                      alt={cat.name}
+                      fill
+                      className="object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
                 </div>
-                <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/5 transition-colors duration-700" />
-              </div>
-              <span className="text-[10px] md:text-[11px] uppercase tracking-[0.4em] font-bold text-charcoal/40 group-hover:text-gold transition-all duration-500 text-center">
-                {cat.name}
-              </span>
-              <div className="w-6 h-[1px] bg-silver-200 mt-4 group-hover:w-12 group-hover:bg-gold transition-all duration-700" />
-            </Link>
-          ))}
+                <span className="text-[14px] md:text-[15px] font-serif text-[#2c2c2c] group-hover:text-[#8a8a8a] transition-colors font-medium">
+                  {cat.name}
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          <button className="absolute right-0 z-10 w-11 h-11 border border-gray-100 rounded-full flex items-center justify-center text-gray-400 hover:text-charcoal bg-white -mr-4 md:-mr-8 shadow-sm transition-all hover:border-gray-300">
+            <ChevronRight size={22} strokeWidth={1} />
+          </button>
         </div>
+
       </div>
     </section>
   );

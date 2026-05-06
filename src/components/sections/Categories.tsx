@@ -13,24 +13,24 @@ if (typeof window !== "undefined") {
 
 const categories = [
   {
-    title: "Exquisite Jewellery",
-    description: "Handcrafted rings, bracelets, and necklaces in 925 sterling silver.",
+    title: "Silver Jewellery",
+    description: "Handcrafted rings, bracelets, and chains in 925 sterling silver.",
     image: "/images/collections/jewellery.png",
-    href: "/collections/jewellery",
+    href: "/products",
     color: "bg-silver-100",
   },
   {
-    title: "Sacred Pooja & Idols",
-    description: "Divine silver idols and pooja utensils for your spiritual space.",
+    title: "Sacred Idols",
+    description: "Divine silver idols and frames for your spiritual space.",
     image: "/images/collections/pooja.png",
-    href: "/collections/pooja-idols",
+    href: "/collections/silver-idols",
     color: "bg-platinum",
   },
   {
-    title: "German Silver Gifts",
-    description: "Premium thali sets and gifting items for every celebration.",
+    title: "Premium Gifting",
+    description: "Silver utensils and german silver gifting items for every celebration.",
     image: "/images/collections/gifting.png",
-    href: "/collections/gifting",
+    href: "/collections/utensils",
     color: "bg-silver-200",
   },
 ];
