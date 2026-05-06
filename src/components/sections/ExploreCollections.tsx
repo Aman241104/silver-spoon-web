@@ -13,23 +13,23 @@ const collections = [
 
 const ExploreCollections = () => {
   return (
-    <section className="py-24 bg-white font-sans">
+    <section className="py-12 md:py-20 bg-white font-sans">
       <div className="container mx-auto px-6 md:px-12 text-center">
-        <h2 className="text-[32px] md:text-[36px] font-serif text-[#2c2c2c] tracking-[0.1em] uppercase mb-4 font-medium">
+        <h2 className="text-[28px] md:text-[36px] font-serif text-[#2c2c2c] tracking-[0.1em] uppercase mb-4 font-medium">
           Explore Our Collections
         </h2>
         
         {/* Divider */}
-        <div className="flex items-center justify-center gap-3 mb-20">
+        <div className="flex items-center justify-center gap-3 mb-10 md:mb-16">
           <div className="h-[1px] w-14 bg-gray-200"></div>
           <Diamond size={12} className="text-gray-300" fill="currentColor" />
           <div className="h-[1px] w-14 bg-gray-200"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
           {collections.map((col, idx) => (
             <Link key={idx} href={`/collections/${col.slug}`} className="group flex flex-col items-center">
-              <div className="relative w-full aspect-square mb-10 overflow-hidden bg-[#FAF8F5]">
+              <div className="relative w-full aspect-square mb-6 md:mb-10 overflow-hidden bg-[#FAF8F5]">
                 <Image 
                   src={col.image}
                   alt={col.title}

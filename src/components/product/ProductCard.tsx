@@ -68,15 +68,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
       </button>
 
       <div className="px-1 text-center lg:text-left">
-        <Link href={`/product/${product.id}`} className="space-y-2 block">
-          <p className="text-[9px] uppercase tracking-widest text-gray-400 font-bold mb-1">
+        <Link href={`/product/${product.id}`} className="space-y-1.5 md:space-y-2 block">
+          <p className="text-[9px] uppercase tracking-widest text-gray-400 font-bold mb-0.5 md:mb-1">
             {product.subCategory || product.category}
           </p>
-          <h3 className="text-xl font-serif text-[#2c2c2c] transition-colors group-hover:text-gray-600 leading-tight">
+          <h3 className="text-lg md:text-xl font-serif text-[#2c2c2c] transition-colors group-hover:text-gray-600 leading-tight">
             {product.name}
           </h3>
-          <div className="w-8 h-[1px] bg-gray-200 my-3 mx-auto lg:mx-0 transition-all duration-500 group-hover:w-16 group-hover:bg-gray-400" />
-          <p className="text-[11px] text-gray-400 font-sans tracking-widest uppercase font-bold">
+          <div className="w-8 h-[1px] bg-gray-200 my-2 md:my-3 mx-auto lg:mx-0 transition-all duration-500 group-hover:w-16 group-hover:bg-gray-400" />
+          <p className="text-[10px] md:text-[11px] text-gray-400 font-sans tracking-widest uppercase font-bold">
             Price on Request
           </p>
         </Link>

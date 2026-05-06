@@ -17,16 +17,16 @@ export default function ProductsOverviewPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-20 bg-[#FAF8F5]">
+      <section className="pt-16 pb-12 md:pt-24 md:pb-20 bg-[#FAF8F5]">
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
-            <span className="text-[11px] uppercase tracking-[0.3em] text-charcoal font-bold mb-6">
+            <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-charcoal font-bold mb-4 md:mb-6">
               THE TREASURY
             </span>
-            <h1 className="text-[48px] md:text-[64px] lg:text-[76px] font-serif text-[#2c2c2c] leading-[1.05] mb-8 tracking-tight font-medium">
+            <h1 className="text-[36px] md:text-[64px] lg:text-[76px] font-serif text-[#2c2c2c] leading-[1.05] mb-6 md:mb-8 tracking-tight font-medium">
               Curated <br /> Collections
             </h1>
-            <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+            <p className="text-[#5a5a5a] text-base md:text-xl leading-relaxed max-w-2xl mx-auto">
               Discover a legacy crafted in pure silver. Each piece tells a story of devotion, tradition, and timeless elegance.
             </p>
           </div>
@@ -34,27 +34,27 @@ export default function ProductsOverviewPage() {
       </section>
 
       {/* Categories Grid */}
-      <section className="py-24 bg-white">
+      <section className="py-12 md:py-24 bg-white">
         <div className="container mx-auto px-6 md:px-12 text-center">
-          <h2 className="text-[32px] md:text-[36px] font-serif text-[#2c2c2c] tracking-[0.1em] uppercase mb-4 font-medium">
+          <h2 className="text-[28px] md:text-[36px] font-serif text-[#2c2c2c] tracking-[0.1em] uppercase mb-4 font-medium">
             Explore Categories
           </h2>
           
           {/* Divider */}
-          <div className="flex items-center justify-center gap-3 mb-20">
+          <div className="flex items-center justify-center gap-3 mb-12 md:mb-20">
             <div className="h-[1px] w-14 bg-gray-200"></div>
             <Diamond size={12} className="text-gray-300" fill="currentColor" />
             <div className="h-[1px] w-14 bg-gray-200"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 md:gap-x-12 gap-y-12 md:gap-y-20">
             {displayCategories.map((cat) => (
               <Link 
                 key={cat.id} 
                 href={`/collections/${cat.slug}`}
                 className="group flex flex-col items-center text-center"
               >
-                <div className="relative w-full aspect-[4/5] mb-8 overflow-hidden bg-[#FAF8F5]">
+                <div className="relative w-full aspect-[4/5] mb-6 md:mb-8 overflow-hidden bg-[#FAF8F5]">
                    <Image 
                      src={products.find(p => p.category === cat.slug)?.image || "/images/collections/jewellery.png"}
                      alt={cat.name}

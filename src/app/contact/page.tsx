@@ -138,12 +138,18 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section Placeholder */}
-      <section className="h-[400px] bg-[#FAF8F5] relative overflow-hidden border-t border-gray-100 flex items-center justify-center">
+      <section className="h-[300px] md:h-[400px] bg-[#FAF8F5] relative overflow-hidden border-t border-gray-100 flex items-center justify-center">
          <div className="text-center flex flex-col items-center">
             <MapPin size={40} className="text-gray-300 mb-4" strokeWidth={1} />
             <p className="text-[11px] uppercase tracking-widest font-bold text-gray-400">Interactive Map Location</p>
          </div>
       </section>
+
+      <Footer />
+    </main>
+  );
+}
+
 
       <Footer />
     </main>

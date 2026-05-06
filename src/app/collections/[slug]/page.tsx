@@ -67,10 +67,10 @@ export default function CategoryPage() {
       <Navbar />
       
       {/* Category Header */}
-      <section className="pt-24 pb-20 bg-[#FAF8F5]">
+      <section className="pt-16 pb-12 md:pt-24 md:pb-20 bg-[#FAF8F5]">
         <div className="container mx-auto px-6 md:px-12 text-center flex flex-col items-center">
           {/* Breadcrumbs */}
-          <nav className="flex items-center gap-2 mb-8 text-[10px] uppercase tracking-widest text-gray-400 font-bold">
+          <nav className="flex items-center gap-2 mb-6 md:mb-8 text-[10px] uppercase tracking-widest text-gray-400 font-bold">
             <Link href="/" className="hover:text-charcoal transition-colors">Home</Link>
             <span>/</span>
             <Link href="/products" className="hover:text-charcoal transition-colors">Collections</Link>
@@ -78,28 +78,28 @@ export default function CategoryPage() {
             <span className="text-charcoal">{category.name}</span>
           </nav>
 
-          <h1 className="text-[48px] md:text-[64px] lg:text-[76px] font-serif text-[#2c2c2c] leading-[1.05] mb-8 tracking-tight font-medium uppercase">
+          <h1 className="text-[36px] md:text-[64px] lg:text-[76px] font-serif text-[#2c2c2c] leading-[1.05] mb-6 md:mb-8 tracking-tight font-medium uppercase">
              {category.name} {genderFilter && <span className="text-gray-400">for {genderFilter}</span>}
           </h1>
-          <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+          <p className="text-[#5a5a5a] text-base md:text-xl leading-relaxed max-w-2xl mx-auto">
             {category.description}
           </p>
         </div>
       </section>
 
       {/* Product Grid */}
-      <section className="py-24 bg-white">
+      <section className="py-12 md:py-24 bg-white">
         <div className="container mx-auto px-6 md:px-12">
           
-          <div className="flex flex-col md:flex-row justify-between items-center mb-20 gap-8 border-b border-gray-100 pb-10">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-12 md:mb-20 gap-6 md:gap-8 border-b border-gray-100 pb-8 md:pb-10">
              <div className="flex items-center gap-4">
                 <span className="w-10 h-[1px] bg-gray-300" />
-                <p className="text-[11px] uppercase tracking-widest text-gray-400 font-bold">
+                <p className="text-[10px] md:text-[11px] uppercase tracking-widest text-gray-400 font-bold">
                    Displaying {filteredProducts.length} Artisan Pieces
                 </p>
              </div>
 
-             <div className="flex flex-wrap items-center justify-center gap-8">
+             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
                 {/* Sort By */}
                 <div className="relative group">
                    <button className="flex items-center gap-2 text-[11px] uppercase tracking-widest font-bold text-[#2c2c2c] bg-[#FAF8F5] px-4 py-2 rounded-sm border border-gray-100 hover:border-gray-200 transition-all">

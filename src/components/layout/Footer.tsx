@@ -6,14 +6,14 @@ import { MapPin, Phone, Mail } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-white pt-24 pb-8 text-charcoal font-sans border-t border-gray-100">
+    <footer className="bg-white pt-16 md:pt-24 pb-6 md:pb-8 text-charcoal font-sans border-t border-gray-100">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-12 md:mb-20">
           
           {/* Brand Info */}
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-6 md:gap-8">
             <Link href="/" className="flex flex-col">
-              <div className="relative h-16 w-40 mb-2">
+              <div className="relative h-12 md:h-16 w-32 md:w-40 mb-2">
                 <Image
                   src="/images/logo.png"
                   alt="Silver Spoon Logo"
@@ -21,21 +21,21 @@ const Footer = () => {
                   className="object-contain"
                 />
               </div>
-              <span className="text-[8px] uppercase tracking-[0.4em] text-gray-400 font-bold ml-1">
+              <span className="text-[7px] md:text-[8px] uppercase tracking-[0.4em] text-gray-400 font-bold ml-1">
                 TIMELESS ELEGANCE, EVERYDAY
               </span>
             </Link>
-            <p className="text-[13px] text-gray-500 leading-relaxed max-w-[280px]">
+            <p className="text-[12px] md:text-[13px] text-gray-500 leading-relaxed max-w-[280px]">
               Discover a wide range of beautifully crafted Silver & German Silver products that add a touch of elegance to every moment.
             </p>
             <div className="flex gap-4">
-               <Link href="#" className="w-9 h-9 border border-gray-100 rounded-full flex items-center justify-center text-gray-400 hover:text-charcoal hover:border-gray-300 transition-all text-[11px] font-bold">
+               <Link href="#" className="w-8 h-8 md:w-9 md:h-9 border border-gray-100 rounded-full flex items-center justify-center text-gray-400 hover:text-charcoal hover:border-gray-300 transition-all text-[10px] md:text-[11px] font-bold">
                   FB
                </Link>
-               <Link href="#" className="w-9 h-9 border border-gray-100 rounded-full flex items-center justify-center text-gray-400 hover:text-charcoal hover:border-gray-300 transition-all text-[11px] font-bold">
+               <Link href="#" className="w-8 h-8 md:w-9 md:h-9 border border-gray-100 rounded-full flex items-center justify-center text-gray-400 hover:text-charcoal hover:border-gray-300 transition-all text-[10px] md:text-[11px] font-bold">
                   IG
                </Link>
-               <Link href="#" className="w-9 h-9 border border-gray-100 rounded-full flex items-center justify-center text-gray-400 hover:text-charcoal hover:border-gray-300 transition-all text-[11px] font-bold">
+               <Link href="#" className="w-8 h-8 md:w-9 md:h-9 border border-gray-100 rounded-full flex items-center justify-center text-gray-400 hover:text-charcoal hover:border-gray-300 transition-all text-[10px] md:text-[11px] font-bold">
                   WA
                </Link>
             </div>
@@ -43,10 +43,10 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="lg:pl-10">
-            <h4 className="text-[12px] uppercase tracking-[0.2em] font-bold text-[#2c2c2c] mb-10">
+            <h4 className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-[#2c2c2c] mb-6 md:mb-10">
               QUICK LINKS
             </h4>
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-3 md:gap-4">
               {[
                 { name: "About Us", href: "/about" },
                 { name: "Shop", href: "/products" },
@@ -56,7 +56,7 @@ const Footer = () => {
                 { name: "Contact Us", href: "/contact" },
               ].map((item) => (
                 <li key={item.name}>
-                  <Link href={item.href} className="text-[13px] text-gray-500 hover:text-charcoal transition-colors font-medium">
+                  <Link href={item.href} className="text-[12px] md:text-[13px] text-gray-500 hover:text-charcoal transition-colors font-medium">
                     {item.name}
                   </Link>
                 </li>
@@ -66,10 +66,10 @@ const Footer = () => {
 
           {/* Customer Service */}
           <div>
-            <h4 className="text-[12px] uppercase tracking-[0.2em] font-bold text-[#2c2c2c] mb-10">
+            <h4 className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-[#2c2c2c] mb-6 md:mb-10">
               CUSTOMER SERVICE
             </h4>
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-3 md:gap-4">
               {[
                 { name: "FAQ's", href: "#" },
                 { name: "Shipping & Delivery", href: "#" },
@@ -78,7 +78,7 @@ const Footer = () => {
                 { name: "Track Order", href: "#" },
               ].map((item) => (
                 <li key={item.name}>
-                  <Link href={item.href} className="text-[13px] text-gray-500 hover:text-charcoal transition-colors font-medium">
+                  <Link href={item.href} className="text-[12px] md:text-[13px] text-gray-500 hover:text-charcoal transition-colors font-medium">
                     {item.name}
                   </Link>
                 </li>
@@ -88,23 +88,23 @@ const Footer = () => {
 
           {/* Contact Us */}
           <div>
-            <h4 className="text-[12px] uppercase tracking-[0.2em] font-bold text-[#2c2c2c] mb-10">
+            <h4 className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-[#2c2c2c] mb-6 md:mb-10">
               CONTACT US
             </h4>
-            <ul className="flex flex-col gap-6">
+            <ul className="flex flex-col gap-4 md:gap-6">
               <li className="flex items-start gap-4">
-                <MapPin size={18} strokeWidth={1} className="text-gray-300 shrink-0 mt-1" />
-                <span className="text-[13px] text-gray-500 leading-relaxed font-medium">
+                <MapPin size={16} strokeWidth={1} className="text-gray-300 shrink-0 mt-1" />
+                <span className="text-[12px] md:text-[13px] text-gray-500 leading-relaxed font-medium">
                   123, Silver Street, Jaipur,<br />Rajasthan - 302001, India
                 </span>
               </li>
               <li className="flex items-center gap-4">
-                <Phone size={18} strokeWidth={1} className="text-gray-300 shrink-0" />
-                <span className="text-[13px] text-gray-500 font-medium">+91 98765 43210</span>
+                <Phone size={16} strokeWidth={1} className="text-gray-300 shrink-0" />
+                <span className="text-[12px] md:text-[13px] text-gray-500 font-medium">+91 98765 43210</span>
               </li>
               <li className="flex items-center gap-4">
-                <Mail size={18} strokeWidth={1} className="text-gray-300 shrink-0" />
-                <span className="text-[13px] text-gray-500 font-medium">info@silverspoon.com</span>
+                <Mail size={16} strokeWidth={1} className="text-gray-300 shrink-0" />
+                <span className="text-[12px] md:text-[13px] text-gray-500 font-medium">info@silverspoon.com</span>
               </li>
             </ul>
           </div>

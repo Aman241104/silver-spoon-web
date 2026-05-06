@@ -19,14 +19,14 @@ const Newsletter = () => {
           </div>
 
           {/* Right Content Area */}
-          <div className="flex flex-col justify-center px-8 py-20 md:p-20 lg:p-28 bg-[#FAF8F5]">
-            <span className="text-[11px] uppercase tracking-[0.3em] text-[#2c2c2c] font-bold mb-6">
+          <div className="flex flex-col justify-center px-6 py-12 md:p-16 lg:p-24 bg-[#FAF8F5]">
+            <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-[#2c2c2c] font-bold mb-4 md:mb-6">
               STAY UPDATED
             </span>
-            <h2 className="text-[42px] md:text-[52px] font-serif text-[#2c2c2c] leading-[1.1] mb-6 font-medium">
+            <h2 className="text-[32px] md:text-[52px] font-serif text-[#2c2c2c] leading-[1.1] mb-4 md:mb-6 font-medium">
               Exclusive Offers & <br /> New Arrivals
             </h2>
-            <p className="text-gray-500 text-[15px] mb-12 leading-relaxed">
+            <p className="text-gray-500 text-sm md:text-[15px] mb-8 md:mb-12 leading-relaxed">
               Subscribe to our newsletter and never miss an update.
             </p>
             
