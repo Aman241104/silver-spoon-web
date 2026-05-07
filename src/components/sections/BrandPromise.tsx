@@ -25,19 +25,23 @@ const BrandPromise = () => {
     });
   });
 
-  const promises = [
+  const promises: {
+    icon: React.ComponentType<{ size?: number; strokeWidth?: number }>;
+    title: string;
+    description: string;
+  }[] = [
     {
-      icon: <Award size={28} strokeWidth={1} />,
+      icon: Award,
       title: "Certified Hallmarked",
       description: "Every piece in our treasury is crafted in 925 sterling or 999 fine silver, certified for absolute purity."
     },
     {
-      icon: <ShieldCheck size={28} strokeWidth={1} />,
+      icon: ShieldCheck,
       title: "Master Authenticity",
       description: "Our designs blend heritage mastery with modern standards, authenticated by generations of trust."
     },
     {
-      icon: <Zap size={28} strokeWidth={1} />,
+      icon: Zap,
       title: "Lustrous Luster",
       description: "Premium finish that ensures a lifetime of brilliance, crafted with skin-friendly and ethical materials."
     }
@@ -66,7 +70,7 @@ const BrandPromise = () => {
           {promises.map((promise, index) => (
             <div key={index} className="promise-card flex flex-col items-center text-center group">
               <div className="mb-6 w-16 h-16 flex items-center justify-center bg-white/5 rounded-full border border-white/10 group-hover:border-gold/50 group-hover:bg-gold/10 transition-all duration-700 text-gold">
-                {React.cloneElement(promise.icon as React.ReactElement, { size: 24 })}
+                <promise.icon size={24} strokeWidth={1} />
               </div>
               <h3 className="text-lg font-serif mb-3 tracking-tight">{promise.title}</h3>
               <p className="text-[10px] text-white/30 font-sans leading-relaxed tracking-widest uppercase font-bold max-w-[280px]">
