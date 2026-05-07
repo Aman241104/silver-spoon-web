@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { Suspense } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { products, categories } from "@/data/products";
 import Navbar from "@/components/layout/Navbar";
@@ -10,6 +11,21 @@ import Link from "next/link";
 import { Diamond, ChevronDown } from "lucide-react";
 
 export default function CategoryPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen bg-white font-sans flex items-center justify-center">
+        <div className="animate-pulse flex flex-col items-center">
+          <Diamond size={48} className="text-gray-200 mb-4" />
+          <p className="text-gray-400 uppercase tracking-widest text-xs font-bold">Loading Collection...</p>
+        </div>
+      </main>
+    }>
+      <CategoryContent />
+    </Suspense>
+  );
+}
+
+function CategoryContent() {
   const params = useParams();
   const searchParams = useSearchParams();
   const slug = params.slug as string;

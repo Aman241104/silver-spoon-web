@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
@@ -11,6 +12,21 @@ import { useSearchParams } from "next/navigation";
 import ProductCard from "@/components/product/ProductCard";
 
 export default function ProductsOverviewPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen bg-white font-sans flex items-center justify-center">
+        <div className="animate-pulse flex flex-col items-center">
+          <Diamond size={48} className="text-gray-200 mb-4" />
+          <p className="text-gray-400 uppercase tracking-widest text-xs font-bold">Loading Treasury...</p>
+        </div>
+      </main>
+    }>
+      <ProductsContent />
+    </Suspense>
+  );
+}
+
+function ProductsContent() {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("search");
 
