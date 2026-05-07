@@ -3,12 +3,25 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Search, ShoppingBag, MapPin, Truck, Package, Menu, X, ChevronDown, ChevronUp } from "lucide-react";
+import { Search, ShoppingBag, MapPin, Truck, Package, Menu, X, ChevronDown, ChevronUp, User } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useCart } from "@/context/CartContext";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [activeAccordion, setActiveAccordion] = React.useState<string | null>(null);
+  const [isSearchOpen, setIsSearchOpen] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const [isScrolled, setIsScrolled] = React.useState(false);
+  const { cartCount, setIsCartOpen } = useCart();
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleAccordion = (val: string) => {
     setActiveAccordion(activeAccordion === val ? null : val);
@@ -16,111 +29,105 @@ const Navbar = () => {
 
   const menuItems = [
     { title: "HOME", href: "/" },
-    { title: "COLLECTION", href: "/products" },
     { 
-      title: "MEN", 
-      href: "/collections/men",
+      title: "SHOP", 
+      href: "/products",
       subItems: [
-        { title: "Brooches", href: "/collections/brooches?gender=men" },
-        { title: "Bracelets", href: "/collections/bracelets?gender=men" },
-        { title: "Chains", href: "/collections/chains?gender=men" },
-        { title: "Kada", href: "/collections/kadas?gender=men" },
-        { title: "Rings", href: "/collections/rings?gender=men" },
+        { title: "All Products", href: "/products" },
+        { title: "New Arrivals", href: "/products?sort=newest" },
+        { title: "Bestsellers", href: "/products?sort=bestselling" },
       ]
     },
     { 
-      title: "WOMEN", 
-      href: "/collections/women",
+      title: "COLLECTIONS", 
+      href: "/collections",
       subItems: [
-        { title: "Rings", href: "/collections/rings?gender=women" },
-        { title: "Bracelets", href: "/collections/bracelets?gender=women" },
-        { title: "Chains", href: "/collections/chains?gender=women" },
-        { title: "Anklets", href: "/collections/anklets?gender=women" },
-        { title: "Toe Rings", href: "/collections/toe-rings?gender=women" },
-        { title: "Mangalsutra", href: "/collections/mangalsutra?gender=women" },
-      ]
-    },
-    { 
-      title: "GIFTS", 
-      href: "#",
-      subItems: [
-        { title: "Silver Utensils", href: "/collections/utensils" },
-        { title: "Silver Idols", href: "/collections/silver-idols" },
-        { title: "Silver Frames", href: "/collections/silver-frames" },
-        { title: "Silver Coated", href: "/collections/silver-coated" },
-        { title: "German Silver", href: "/collections/german-silver" },
+        { title: "Pooja & Spiritual", href: "/collections/pooja" },
+        { title: "Serveware", href: "/collections/serveware" },
+        { title: "Decor", href: "/collections/decor" },
+        { title: "Tableware", href: "/collections/tableware" },
       ]
     },
     { title: "ABOUT US", href: "/about" },
+    { 
+      title: "GIFTING", 
+      href: "/gifting",
+      subItems: [
+        { title: "Gifts & Hampers", href: "/gifting/hampers" },
+        { title: "Personalised", href: "/gifting/personalised" },
+        { title: "Corporate Gifting", href: "/gifting/corporate" },
+      ]
+    },
     { title: "CONTACT", href: "/contact" },
   ];
 
   return (
-    <div className="w-full flex flex-col font-sans relative z-50">
-      {/* Top Bar - Hidden on mobile for more space, but can be kept if needed */}
-      <div className="bg-[#2c2c2c] text-white text-[10px] md:text-xs py-2 px-6 md:px-12 flex justify-between items-center tracking-wide overflow-x-auto whitespace-nowrap">
-        <div className="flex items-center gap-2 min-w-max">
-          <Package size={14} className="opacity-80" />
-          <span>Free Shipping on Orders Above ₹1999</span>
-        </div>
+    <div className={cn(
+      "w-full flex flex-col font-sans z-50 transition-colors duration-300",
+      isScrolled ? "fixed top-0 left-0 bg-white/95 backdrop-blur-md shadow-sm" : "relative bg-white"
+    )}>
+      {/* Top Bar - Transition opacity and height instead of conditional rendering */}
+      <div className={cn(
+        "bg-[#111827] text-white/90 text-[10px] md:text-[11px] px-6 md:px-12 flex justify-end items-center border-b border-white/5 font-medium tracking-tight overflow-hidden transition-all duration-300 ease-in-out",
+        isScrolled ? "h-0 opacity-0 border-none" : "h-10 opacity-100"
+      )}>
         <div className="flex items-center gap-6 ml-6 min-w-max">
-          <Link href="/track" className="flex items-center gap-1.5 hover:text-gray-300 transition-colors">
-            <Truck size={14} className="opacity-80" />
-            <span>Track Order</span>
-          </Link>
-          <Link href="/stores" className="flex items-center gap-1.5 hover:text-gray-300 transition-colors">
-            <MapPin size={14} className="opacity-80" />
-            <span>Store Locator</span>
+          <Link href="/corporate" className="flex items-center gap-1.5 hover:text-white transition-colors">
+            <Package size={14} className="text-white/60" />
+            <span>Bulk / Corporate Gifting</span>
           </Link>
         </div>
       </div>
 
       {/* Main Navbar */}
-      <nav className="bg-[#FAF8F5] border-b border-gray-100">
-        <div className="container mx-auto px-6 md:px-12 flex items-center justify-between py-4 md:py-6">
+      <nav className={cn(
+        "transition-all duration-300 ease-in-out border-b border-gray-100",
+        isScrolled ? "py-2 md:py-2.5" : "py-3 md:py-4"
+      )}>
+        <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
           
-          {/* Left: Hamburger for Mobile */}
-          <button 
-            className="lg:hidden p-2 -ml-2 text-charcoal"
-            onClick={() => setIsMobileMenuOpen(true)}
-          >
-            <Menu size={24} strokeWidth={1.5} />
-          </button>
-
-          {/* Center: Logo (Mobile: Shifted center or right, Desktop: Left) */}
-          <Link href="/" className="flex flex-col items-center flex-1 lg:flex-none">
-            <div className="relative h-12 w-28 md:h-16 md:w-48 mb-1">
+          {/* Left: Logo */}
+          <Link href="/" className="flex flex-col items-start lg:w-[250px] group">
+            <div className={cn(
+              "relative transition-all duration-300 ease-in-out",
+              isScrolled ? "h-6 w-20 md:h-7 md:w-24" : "h-8 w-24 md:h-10 md:w-32"
+            )}>
               <Image
                 src="/images/logo.png"
                 alt="Silver Spoon Logo"
                 fill
-                className="object-contain"
+                className="object-contain object-left"
                 priority
               />
             </div>
-            <span className="hidden md:block text-[7px] uppercase tracking-widest text-charcoal/60 font-semibold">
-              Timeless Elegance, Everyday
-            </span>
+            <div className={cn(
+              "overflow-hidden transition-all duration-300 ease-in-out",
+              isScrolled ? "h-0 opacity-0" : "h-3 opacity-100 mt-0.5"
+            )}>
+              <span className="hidden md:block text-[7px] uppercase tracking-[0.3em] text-charcoal/50 font-bold">
+                Timeless Elegance, Everyday
+              </span>
+            </div>
           </Link>
 
           {/* Center: Navigation Links (Desktop Only) */}
-          <div className="hidden lg:flex items-center gap-8 xl:gap-10">
+          <div className="hidden lg:flex items-center justify-center gap-8 xl:gap-10 flex-1">
             {menuItems.map((item) => (
               item.subItems ? (
                 <div key={item.title} className="relative group">
-                  <Link href={item.href} className="flex items-center gap-1 text-[11px] font-extrabold text-charcoal uppercase tracking-[0.2em] hover:text-gray-600 cursor-pointer pb-2">
-                    {item.title} <span className="text-[7px] ml-0.5">▼</span>
+                  <Link href={item.href} className="flex items-center gap-1.5 text-[11px] font-extrabold text-[#2c2c2c] uppercase tracking-[0.15em] hover:text-gray-600 cursor-pointer py-2">
+                    {item.title} <ChevronDown size={10} strokeWidth={3} className="mt-0.5 group-hover:rotate-180 transition-transform duration-300" />
                   </Link>
-                  <div className="absolute top-full left-0 w-48 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-gray-100 py-4">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-48 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-gray-100 py-4 mt-1">
                     {item.subItems.map((sub) => (
-                      <Link key={sub.title} href={sub.href} className="block px-6 py-2 text-[10px] font-bold text-charcoal hover:bg-[#FAF8F5] tracking-widest uppercase">
+                      <Link key={sub.title} href={sub.href} className="block px-6 py-2.5 text-[10px] font-bold text-charcoal/80 hover:text-charcoal hover:bg-gray-50 tracking-widest uppercase">
                         {sub.title}
                       </Link>
                     ))}
                   </div>
                 </div>
               ) : (
-                <Link key={item.title} href={item.href} className="text-[11px] font-extrabold text-charcoal uppercase tracking-[0.2em] hover:text-gray-600 transition-colors">
+                <Link key={item.title} href={item.href} className="text-[11px] font-extrabold text-[#2c2c2c] uppercase tracking-[0.15em] hover:text-gray-600 transition-colors py-2 border-b-2 border-transparent hover:border-charcoal/10">
                   {item.title}
                 </Link>
               )
@@ -128,19 +135,64 @@ const Navbar = () => {
           </div>
 
           {/* Right: Icons */}
-          <div className="flex items-center gap-4 md:gap-6 text-charcoal">
-            <button className="hover:opacity-70 transition-opacity">
-              <Search size={20} strokeWidth={1.5} />
+          <div className="flex items-center justify-end gap-5 md:gap-6 text-charcoal lg:w-[250px]">
+            <button 
+              className="hover:opacity-60 transition-opacity"
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+            >
+              {isSearchOpen ? <X size={22} strokeWidth={1.2} /> : <Search size={22} strokeWidth={1.2} />}
             </button>
-            <button className="relative hover:opacity-70 transition-opacity">
-              <ShoppingBag size={20} strokeWidth={1.5} />
-              <span className="absolute -top-1.5 -right-2 bg-charcoal text-white text-[9px] font-bold w-[15px] h-[15px] rounded-full flex items-center justify-center">
-                0
+            <button className="hover:opacity-60 transition-opacity hidden md:block">
+              <User size={22} strokeWidth={1.2} />
+            </button>
+            <button 
+              className="relative hover:opacity-60 transition-opacity"
+              onClick={() => setIsCartOpen(true)}
+            >
+              <ShoppingBag size={22} strokeWidth={1.2} />
+              <span className="absolute -top-1.5 -right-2 bg-charcoal text-white text-[9px] font-bold w-[16px] h-[16px] rounded-full flex items-center justify-center">
+                {cartCount}
               </span>
+            </button>
+            {/* Hamburger for Mobile */}
+            <button 
+              className="lg:hidden p-1 text-charcoal"
+              onClick={() => setIsMobileMenuOpen(true)}
+            >
+              <Menu size={24} strokeWidth={1.5} />
             </button>
           </div>
         </div>
       </nav>
+
+      {/* Search Overlay */}
+      <div className={cn(
+        "absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-lg overflow-hidden transition-all duration-500 z-40",
+        isSearchOpen ? "max-h-[100px] opacity-100 border-b" : "max-h-0 opacity-0 border-none"
+      )}>
+        <div className="container mx-auto px-6 md:px-12 py-4">
+          <form 
+            className="flex items-center gap-4"
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (searchQuery.trim()) {
+                window.location.href = `/products?search=${encodeURIComponent(searchQuery)}`;
+              }
+            }}
+          >
+            <Search size={20} className="text-gray-400" />
+            <input 
+              type="text" 
+              placeholder="Search our collection..."
+              className="flex-1 bg-transparent border-none outline-none text-sm md:text-base font-sans tracking-wide text-charcoal placeholder:text-gray-300"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              autoFocus={isSearchOpen}
+            />
+            <button type="submit" className="hidden">Search</button>
+          </form>
+        </div>
+      </div>
 
       {/* Mobile Slide-out Menu */}
       <div className={cn(

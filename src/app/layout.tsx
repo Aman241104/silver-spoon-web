@@ -22,6 +22,8 @@ export const metadata: Metadata = {
 
 import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
+import Cart from "@/components/layout/Cart";
+import Wishlist from "@/components/layout/Wishlist";
 
 export default function RootLayout({
   children,
@@ -33,6 +35,8 @@ export default function RootLayout({
       <body className="bg-white text-charcoal font-sans antialiased selection:bg-silver-200 selection:text-charcoal">
         <WishlistProvider>
           <CartProvider>
+            <Wishlist />
+            <Cart />
             <LenisScroll>
               {children}
             </LenisScroll>

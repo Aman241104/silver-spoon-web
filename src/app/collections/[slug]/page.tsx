@@ -129,14 +129,8 @@ export default function CategoryPage() {
                    </div>
                 </div>
 
-                <div className="flex gap-8 text-[11px] uppercase tracking-widest font-bold text-gray-400">
-                   <button className="text-[#2c2c2c] border-b border-[#2c2c2c] pb-1">All Pieces</button>
-                   <button className="hover:text-[#2c2c2c] transition-colors pb-1 border-b border-transparent">New Arrivals</button>
-                   <button className="hover:text-[#2c2c2c] transition-colors pb-1 border-b border-transparent">Bestsellers</button>
                 </div>
-             </div>
-          </div>
-
+                </div>
           {sortedProducts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
               {sortedProducts.map((product) => (

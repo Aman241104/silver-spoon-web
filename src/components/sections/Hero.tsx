@@ -3,65 +3,102 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Gem, Award, Gift } from "lucide-react"; 
+import { Sparkles, Award, Gift } from "lucide-react";
+import { useGSAP } from "@/hooks/use-gsap";
+import gsap from "gsap";
 
 const Hero = () => {
+  const containerRef = useGSAP(() => {
+    const tl = gsap.timeline({
+      defaults: { ease: "power4.out", duration: 1.5 }
+    });
+
+    tl.from(".hero-content > *", {
+      y: 40,
+      opacity: 0,
+      stagger: 0.1,
+    })
+    .from(".hero-image", {
+      scale: 1.1,
+      opacity: 0,
+      duration: 2,
+    }, 0)
+    .from(".hero-feature", {
+      y: 20,
+      opacity: 0,
+      stagger: 0.1,
+      duration: 1
+    }, "-=1");
+  });
+
   return (
-    <section className="bg-[#FAF8F5] relative overflow-hidden font-sans pt-12 pb-16 md:pt-16 md:pb-24">
-      <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 items-center gap-8 md:gap-12">
-        
-        {/* Left Content */}
-        <div className="flex flex-col items-start lg:pl-10">
-          <h1 className="text-[40px] md:text-[64px] lg:text-[76px] font-serif text-[#2c2c2c] leading-[1.05] mb-6 md:mb-8 tracking-tight font-medium">
-            Timeless Elegance, <br /> Thoughtful Gifting
+    <section ref={containerRef} className="relative w-full h-[85vh] md:h-screen bg-[#F5F2EB] overflow-hidden flex items-center">
+      {/* Background Image - Taking whole section */}
+      <div className="absolute inset-0 w-full h-full hero-image">
+        <Image
+          src="/images/hero-main.png"
+          alt="Silver Elegance Hero"
+          fill
+          priority
+          className="object-cover object-right md:object-center opacity-60 md:opacity-100"
+        />
+        {/* Gradient Overlay for better text readability on mobile */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#F5F2EB] via-[#F5F2EB]/50 to-transparent md:hidden" />
+      </div>
+
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="flex flex-col items-start lg:w-1/2 hero-content">
+          <h1 className="text-[42px] md:text-[64px] lg:text-[80px] font-serif text-[#1a1a1a] leading-[1] mb-6 font-normal tracking-tight">
+            Timeless Elegance, <br />
+            Thoughtful Gifting
           </h1>
-          <p className="text-[#5a5a5a] text-base md:text-lg mb-8 md:mb-12 max-w-lg leading-relaxed">
-            Exquisite Silver & German Silver products crafted to celebrate every moment.
+          
+          <p className="text-[#444444] text-base md:text-lg mb-10 max-w-md leading-relaxed">
+            Exquisite Silver & German Silver products crafted to celebrate every life moment with purity and grace.
           </p>
           
-          <Link href="/collections" className="bg-[#1a1a1a] text-white px-8 md:px-10 py-3 md:py-4 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] hover:bg-black transition-all mb-12 md:mb-20 rounded-sm">
-            EXPLORE COLLECTION
-          </Link>
+          <div className="flex flex-wrap gap-4 mb-16 md:mb-20">
+            <Link 
+              href="/products" 
+              className="inline-block bg-[#111827] text-white px-10 py-4 text-[12px] font-bold uppercase tracking-[0.2em] hover:bg-black transition-all rounded-sm shadow-xl hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0"
+            >
+              EXPLORE COLLECTION
+            </Link>
+          </div>
 
           {/* Features */}
-          <div className="flex flex-wrap gap-6 md:gap-14 mt-8 md:mt-16">
-            <div className="flex items-center gap-3">
-              <Gem size={28} className="text-[#2c2c2c] stroke-[1.5]" />
+          <div className="flex flex-wrap gap-8 md:gap-12">
+            <div className="flex items-center gap-3 hero-feature">
+              <div className="w-10 h-10 rounded-full bg-white/50 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                <Sparkles size={18} className="text-[#1a1a1a] stroke-[1.5]" />
+              </div>
               <div>
-                <h4 className="text-[13px] font-bold text-[#2c2c2c] mb-0.5">Pure Quality</h4>
-                <p className="text-[11px] text-[#6a6a6a]">Crafted to Perfection</p>
+                <h4 className="text-[11px] font-bold text-[#1a1a1a] uppercase tracking-wider">Pure Quality</h4>
+                <p className="text-[10px] text-[#666666] font-medium italic">Crafted to Perfection</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-3">
-              <Award size={28} className="text-[#2c2c2c] stroke-[1.5]" />
+            <div className="flex items-center gap-3 hero-feature">
+              <div className="w-10 h-10 rounded-full bg-white/50 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                <Award size={18} className="text-[#1a1a1a] stroke-[1.5]" />
+              </div>
               <div>
-                <h4 className="text-[13px] font-bold text-[#2c2c2c] mb-0.5">Elegant Designs</h4>
-                <p className="text-[11px] text-[#6a6a6a]">For Every Occasion</p>
+                <h4 className="text-[11px] font-bold text-[#1a1a1a] uppercase tracking-wider">Elegant Designs</h4>
+                <p className="text-[10px] text-[#666666] font-medium italic">For Every Occasion</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-3">
-              <Gift size={28} className="text-[#2c2c2c] stroke-[1.5]" />
+            <div className="flex items-center gap-3 hero-feature">
+              <div className="w-10 h-10 rounded-full bg-white/50 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                <Gift size={18} className="text-[#1a1a1a] stroke-[1.5]" />
+              </div>
               <div>
-                <h4 className="text-[13px] font-bold text-[#2c2c2c] mb-0.5">Perfect for Gifting</h4>
-                <p className="text-[11px] text-[#6a6a6a]">Make Moments Special</p>
+                <h4 className="text-[11px] font-bold text-[#1a1a1a] uppercase tracking-wider">Perfect for Gifting</h4>
+                <p className="text-[10px] text-[#666666] font-medium italic">Make Moments Special</p>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Right Image Area */}
-        <div className="relative w-full h-[500px] md:h-[650px] lg:h-[750px] flex justify-center items-center">
-          <Image
-            src="/images/collections/pooja.png"
-            alt="Silver Elegance"
-            fill
-            className="object-contain mix-blend-multiply drop-shadow-2xl"
-            priority
-          />
-        </div>
-
       </div>
     </section>
   );

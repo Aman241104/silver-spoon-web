@@ -1,61 +1,85 @@
 "use client";
 
-import { Diamond, Heart, Award, Star, ShieldCheck } from "lucide-react";
+import { Diamond, Heart, Award, Star, Users } from "lucide-react";
+import { useGSAP } from "@/hooks/use-gsap";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Features = () => {
+  const containerRef = useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 85%",
+      }
+    });
+
+    tl.from(".section-title", { y: 30, opacity: 0, duration: 1 })
+      .from(".divider", { scaleX: 0, opacity: 0, duration: 0.8 }, "-=0.5")
+      .from(".feature-item", {
+        x: -20,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.3");
+  });
+
   return (
-    <section className="py-12 md:py-20 bg-[#FAF8F5] font-sans">
+    <section ref={containerRef} className="py-12 md:py-16 lg:py-20 bg-white font-sans">
       <div className="container mx-auto px-6 md:px-12 text-center">
-        <h2 className="text-[28px] md:text-[36px] font-serif text-[#2c2c2c] tracking-[0.1em] uppercase mb-4 font-medium">
+        <h2 className="text-[24px] md:text-[28px] font-serif text-[#1a1a1a] tracking-[0.05em] uppercase mb-3 font-medium section-title">
           Why Choose Silver Spoon?
         </h2>
-        
+
         {/* Divider */}
-        <div className="flex items-center justify-center gap-3 mb-10 md:mb-16">
-          <div className="h-[1px] w-14 bg-gray-200"></div>
-          <Diamond size={12} className="text-gray-300" fill="currentColor" />
-          <div className="h-[1px] w-14 bg-gray-200"></div>
+        <div className="flex items-center justify-center gap-2 mb-10 md:mb-16 divider">
+          <div className="h-[1px] w-10 bg-gray-200"></div>
+          <Diamond size={8} className="text-gold" fill="currentColor" />
+          <div className="h-[1px] w-10 bg-gray-200"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto">
-          
-          <div className="flex flex-col lg:flex-row items-center lg:items-center gap-5">
-            <div className="w-14 h-14 flex items-center justify-center border border-gray-200 rounded-full text-charcoal shrink-0 bg-white shadow-sm">
-              <Heart size={24} strokeWidth={1} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 max-w-[1400px] mx-auto">
+
+          <div className="flex items-center lg:justify-center gap-4 px-2 feature-item">
+            <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center border border-charcoal/5 rounded-full text-charcoal shrink-0 bg-[#FAF8F5]">
+              <Heart size={24} strokeWidth={1} className="opacity-70" />
             </div>
-            <div className="text-center lg:text-left">
-              <h4 className="text-[15px] font-bold text-[#2c2c2c] mb-1 uppercase tracking-tight">Premium Quality</h4>
-              <p className="text-[13px] text-gray-500 leading-tight">Finest Silver & <br className="hidden lg:block"/> German Silver</p>
-            </div>
-          </div>
-          
-          <div className="flex flex-col lg:flex-row items-center lg:items-center gap-5">
-            <div className="w-14 h-14 flex items-center justify-center border border-gray-200 rounded-full text-charcoal shrink-0 bg-white shadow-sm">
-              <Award size={24} strokeWidth={1} />
-            </div>
-            <div className="text-center lg:text-left">
-              <h4 className="text-[15px] font-bold text-[#2c2c2c] mb-1 uppercase tracking-tight">Expert Craftsmanship</h4>
-              <p className="text-[13px] text-gray-500 leading-tight">Intricate designs by <br className="hidden lg:block"/> skilled artisans</p>
+            <div className="text-left">
+              <h4 className="text-[13px] font-bold text-[#1a1a1a] mb-1 uppercase tracking-tight">Premium Quality</h4>
+              <p className="text-[11px] text-gray-500 leading-tight font-medium">Finest Silver & <br /> German Silver</p>
             </div>
           </div>
-          
-          <div className="flex flex-col lg:flex-row items-center lg:items-center gap-5">
-            <div className="w-14 h-14 flex items-center justify-center border border-gray-200 rounded-full text-charcoal shrink-0 bg-white shadow-sm">
-              <Star size={24} strokeWidth={1} />
+
+          <div className="flex items-center lg:justify-center gap-4 px-2 feature-item">
+            <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center border border-charcoal/5 rounded-full text-charcoal shrink-0 bg-[#FAF8F5]">
+              <Award size={24} strokeWidth={1} className="opacity-70" />
             </div>
-            <div className="text-center lg:text-left">
-              <h4 className="text-[15px] font-bold text-[#2c2c2c] mb-1 uppercase tracking-tight">Perfect for Every Occasion</h4>
-              <p className="text-[13px] text-gray-500 leading-tight">Weddings, Festivals, <br className="hidden lg:block"/> Corporate & more</p>
+            <div className="text-left">
+              <h4 className="text-[13px] font-bold text-[#1a1a1a] mb-1 uppercase tracking-tight">Expert Craftsmanship</h4>
+              <p className="text-[11px] text-gray-500 leading-tight font-medium">Intricate designs by <br /> skilled artisans</p>
             </div>
           </div>
-          
-          <div className="flex flex-col lg:flex-row items-center lg:items-center gap-5">
-            <div className="w-14 h-14 flex items-center justify-center border border-gray-200 rounded-full text-charcoal shrink-0 bg-white shadow-sm">
-              <ShieldCheck size={24} strokeWidth={1} />
+
+          <div className="flex items-center lg:justify-center gap-4 px-2 feature-item">
+            <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center border border-charcoal/5 rounded-full text-charcoal shrink-0 bg-[#FAF8F5]">
+              <Star size={24} strokeWidth={1} className="opacity-70" />
             </div>
-            <div className="text-center lg:text-left">
-              <h4 className="text-[15px] font-bold text-[#2c2c2c] mb-1 uppercase tracking-tight">Trusted by Thousands</h4>
-              <p className="text-[13px] text-gray-500 leading-tight">Loved by customers <br className="hidden lg:block"/> across India</p>
+            <div className="text-left">
+              <h4 className="text-[13px] font-bold text-[#1a1a1a] mb-1 uppercase tracking-tight">Perfect for Every Occasion</h4>
+              <p className="text-[11px] text-gray-500 leading-tight font-medium">Weddings, Festivals, <br /> Corporate & more</p>
+            </div>
+          </div>
+
+          <div className="flex items-center lg:justify-center gap-4 px-2 feature-item">
+            <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center border border-charcoal/5 rounded-full text-charcoal shrink-0 bg-[#FAF8F5]">
+              <Users size={24} strokeWidth={1} className="opacity-70" />
+            </div>
+            <div className="text-left">
+              <h4 className="text-[13px] font-bold text-[#1a1a1a] mb-1 uppercase tracking-tight">Trusted by Thousands</h4>
+              <p className="text-[11px] text-gray-500 leading-tight font-medium">Loved by customers <br /> across India</p>
             </div>
           </div>
 

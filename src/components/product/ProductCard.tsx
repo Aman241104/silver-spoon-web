@@ -4,8 +4,9 @@ import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Product } from "@/data/products";
-import { ArrowUpRight, Heart } from "lucide-react";
+import { ArrowUpRight, Heart, ShoppingBag, Check } from "lucide-react";
 import { useWishlist } from "@/context/WishlistContext";
+import { useCart } from "@/context/CartContext";
 import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
@@ -14,6 +15,15 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const { toggleWishlist, isInWishlist } = useWishlist();
+  const { addToCart } = useCart();
+  const [isAdded, setIsAdded] = React.useState(false);
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    addToCart(product);
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 2000);
+  };
 
   return (
     <div className="group block relative font-sans">
@@ -54,18 +64,30 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
       </Link>
 
-      <button 
-        onClick={(e) => {
-          e.preventDefault();
-          toggleWishlist(product);
-        }}
-        className={cn(
-          "absolute top-4 right-4 z-10 p-2.5 bg-white/90 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-white border border-gray-100",
-          isInWishlist(product.id) && "opacity-100"
-        )}
-      >
-        <Heart size={16} strokeWidth={1.5} className={cn("transition-all duration-500", isInWishlist(product.id) ? "fill-charcoal text-charcoal" : "text-gray-400")} />
-      </button>
+      <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
+        <button 
+          onClick={(e) => {
+            e.preventDefault();
+            toggleWishlist(product);
+          }}
+          className={cn(
+            "p-2.5 bg-white/90 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-white border border-gray-100",
+            isInWishlist(product.id) && "opacity-100"
+          )}
+        >
+          <Heart size={16} strokeWidth={1.5} className={cn("transition-all duration-500", isInWishlist(product.id) ? "fill-charcoal text-charcoal" : "text-gray-400")} />
+        </button>
+
+        <button 
+          onClick={handleAddToCart}
+          className={cn(
+            "p-2.5 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-500 border border-gray-100",
+            isAdded ? "bg-gold text-white" : "bg-white/90 text-gray-400 hover:text-charcoal hover:bg-white"
+          )}
+        >
+          {isAdded ? <Check size={16} strokeWidth={2.5} className="animate-in zoom-in duration-300" /> : <ShoppingBag size={16} strokeWidth={1.5} />}
+        </button>
+      </div>
 
       <div className="px-1 text-center lg:text-left">
         <Link href={`/product/${product.id}`} className="space-y-1.5 md:space-y-2 block">

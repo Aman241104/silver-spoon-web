@@ -4,6 +4,8 @@ import Hero from "@/components/sections/Hero";
 import CategoryGrid from "@/components/sections/CategoryGrid";
 import ExploreCollections from "@/components/sections/ExploreCollections";
 import Features from "@/components/sections/Features";
+import Philosophy from "@/components/sections/Philosophy";
+import BrandPromise from "@/components/sections/BrandPromise";
 import Newsletter from "@/components/sections/Newsletter";
 
 export default function Home() {
@@ -13,6 +15,8 @@ export default function Home() {
       <Hero />
       <CategoryGrid />
       <ExploreCollections />
+      <Philosophy />
+      <BrandPromise />
       <Features />
       <Newsletter />
       <Footer />
