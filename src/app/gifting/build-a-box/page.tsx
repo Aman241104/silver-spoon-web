@@ -8,8 +8,10 @@ import Image from "next/image";
 import { ArrowRight, Box, Package, Video, QrCode, CheckCircle2, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+type Step = 1 | 2 | 3 | 4;
+
 const BuildABox = () => {
-  const [step, setStep] = React.useState(1);
+  const [step, setStep] = React.useState<Step>(1);
   const [selectedProduct, setSelectedProduct] = React.useState<Product | null>(null);
   const [selectedBox, setSelectedBox] = React.useState("");
   const [personalization, setPersonalization] = React.useState({
@@ -24,11 +26,22 @@ const BuildABox = () => {
   ];
 
   const handleNext = () => {
-    setStep(step + 1);
+    setStep((step + 1) as Step);
   };
 
   const handlePrev = () => {
-    setStep(step - 1);
+    setStep((step - 1) as Step);
+  };
+
+  const handleFinalize = () => {
+    setStep(4);
+  };
+
+  const reset = () => {
+    setStep(1);
+    setSelectedProduct(null);
+    setSelectedBox("");
+    setPersonalization({ text: "", videoUrl: "" });
   };
 
   return (
@@ -101,14 +114,44 @@ const BuildABox = () => {
             <div className="flex flex-col pt-4">
                <div className="mb-12">
                   <div className="flex justify-between items-center mb-6">
-                     <p className="text-[11px] uppercase tracking-widest text-gray-400 font-bold">Phase {step} of 3</p>
+                     <p className="text-[11px] uppercase tracking-widest text-gray-400 font-bold">
+                        {step === 4 ? "Completion" : `Phase ${step} of 3`}
+                     </p>
                      <div className="flex gap-2">
                         {[1, 2, 3].map((s) => (
-                          <div key={s} className={cn("w-12 h-1 transition-all duration-500", s <= step ? "bg-[#2c2c2c]" : "bg-gray-200")} />
+                          <div key={s} className={cn("w-12 h-1 transition-all duration-500", s <= (step === 4 ? 3 : step) ? "bg-[#2c2c2c]" : "bg-gray-200")} />
                         ))}
                      </div>
                   </div>
                </div>
+
+               {/* Step 4: Success */}
+               {step === 4 && (
+                 <div className="space-y-10 fade-in py-8">
+                    <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-8 border border-green-100">
+                       <CheckCircle2 size={32} className="text-green-600" />
+                    </div>
+                    <h2 className="text-3xl md:text-5xl font-serif text-[#2c2c2c] leading-tight">Treasury Box <br /> Prepared</h2>
+                    <p className="text-gray-500 text-sm md:text-base leading-relaxed font-serif italic">
+                       Your custom artisan set has been curated. Our concierge will finalize the details of this request via WhatsApp.
+                    </p>
+                    
+                    <div className="space-y-4 pt-6">
+                       <button 
+                         onClick={() => window.open('https://wa.me/+919876543210?text=Hi, I have built a custom gift box and want to inquire about its price.', '_blank')}
+                         className="w-full bg-[#25D366] text-white py-5 flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-[#128C7E] transition-all rounded-sm shadow-lg"
+                       >
+                          Finalize on WhatsApp <ArrowRight size={14} />
+                       </button>
+                       <button 
+                         onClick={reset}
+                         className="w-full bg-white text-charcoal border border-silver-200 py-5 flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-[#FAF8F5] transition-all rounded-sm"
+                       >
+                          Start New Creation
+                       </button>
+                    </div>
+                 </div>
+               )}
 
                {/* Step 1: Select Product */}
                {step === 1 && (
@@ -193,6 +236,7 @@ const BuildABox = () => {
                           <textarea 
                              className="w-full bg-white border border-gray-200 p-5 text-[14px] font-sans focus:ring-0 focus:border-gray-400 transition-colors outline-none h-32 shadow-sm rounded-sm resize-none"
                              placeholder="Type your heartfelt message here..."
+                             value={personalization.text}
                              onChange={(e) => setPersonalization({...personalization, text: e.target.value})}
                           />
                        </div>
@@ -207,6 +251,7 @@ const BuildABox = () => {
                              type="url"
                              className="w-full bg-white border border-gray-200 p-5 text-[14px] font-sans focus:ring-0 focus:border-gray-400 transition-colors outline-none shadow-sm rounded-sm"
                              placeholder="Paste YouTube/Drive link here"
+                             value={personalization.videoUrl}
                              onChange={(e) => setPersonalization({...personalization, videoUrl: e.target.value})}
                           />
                           <p className="text-[11px] text-gray-500 leading-relaxed pt-2">
@@ -217,7 +262,7 @@ const BuildABox = () => {
 
                     <button 
                       className="w-full bg-[#1a1a1a] text-white py-5 flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-black transition-all rounded-sm"
-                      onClick={() => alert("Box Ready! In a real app, this adds the full custom set to your bag.")}
+                      onClick={handleFinalize}
                     >
                       Finalize Treasury Box <CheckCircle2 size={14} strokeWidth={2} />
                     </button>

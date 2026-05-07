@@ -8,12 +8,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const categories = [
-  { name: "Pooja & Spiritual", slug: "pooja", image: "/images/collections/ganesha-statue.png" },
-  { name: "Silverware", slug: "silverware", image: "/images/collections/silverware.png" },
-  { name: "Decor", slug: "decor", image: "/images/collections/decor.png" },
-  { name: "Tableware", slug: "tableware", image: "/images/collections/tableware.png" },
-  { name: "Gifts & Hampers", slug: "gifting", image: "/images/collections/gifts-hampers.png" },
-  { name: "Personalised", slug: "personalised", image: "/images/collections/personalised.png" },
+  { name: "Men's Collection", href: "/products?gender=men", image: "/images/collections/men-category-new.png" },
+  { name: "Women's Collection", href: "/products?gender=women", image: "/images/collections/women-category-circle.png" },
+  { name: "Gifting Collection", href: "/gifting", image: "/images/collections/gifting-collection.png" },
+  { name: "Silverware", href: "/collections/utensils", image: "/images/collections/silverware.png" },
+  { name: "Tableware", href: "/collections/utensils", image: "/images/collections/tableware.png" },
+  { name: "Pooja & Spiritual", href: "/collections/silver-idols", image: "/images/collections/ganesha-statue.png" },
+  { name: "Decor", href: "/collections/silver-coated", image: "/images/collections/decor.png" },
+  { name: "German Silver", href: "/collections/german-silver", image: "/images/collections/gifts-hampers.png" },
 ];
 
 const CategoryGrid = () => {
@@ -59,9 +61,9 @@ const CategoryGrid = () => {
             <ChevronLeft size={20} strokeWidth={1} />
           </button>
 
-          <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 lg:gap-10">
+          <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-6 md:gap-8 lg:gap-10">
             {categories.map((cat, idx) => (
-              <Link key={idx} href={`/collections/${cat.slug}`} className="flex flex-col items-center group category-item">
+              <Link key={idx} href={cat.href} className="flex flex-col items-center group category-item">
                 <div className="relative w-24 h-24 md:w-32 md:h-32 mb-4 flex items-center justify-center">
                   <div className="relative w-full h-full transform transition-all duration-700 ease-out group-hover:scale-105">
                     <Image 

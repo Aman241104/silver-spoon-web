@@ -44,50 +44,50 @@ const BrandPromise = () => {
   ];
 
   return (
-    <section ref={containerRef} className="py-40 bg-[#0a0a0a] text-white overflow-hidden relative border-t border-white/5">
+    <section ref={containerRef} className="py-20 md:py-28 bg-[#0a0a0a] text-white overflow-hidden relative border-t border-white/5">
       {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/5 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gold/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gold/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="text-center max-w-4xl mx-auto mb-28">
-          <p className="text-[10px] uppercase tracking-[0.6em] text-gold font-bold mb-8">The Silver Spoon Covenant</p>
-          <h2 className="text-5xl md:text-7xl font-serif mb-10 leading-[0.9] tracking-tighter">
+        <div className="text-center max-w-4xl mx-auto mb-16 md:mb-20">
+          <p className="text-[10px] uppercase tracking-[0.5em] text-gold font-bold mb-4">The Silver Spoon Covenant</p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6 leading-tight tracking-tight">
              Defining the <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-white via-silver-200 to-white/40">Standard</span> <br /> 
              of Purity.
           </h2>
-          <div className="w-20 h-[1px] bg-gold/30 mx-auto mb-10" />
-          <p className="text-sm text-white/40 font-sans leading-loose tracking-[0.2em] uppercase max-w-2xl mx-auto">
+          <div className="w-16 h-[1px] bg-gold/30 mx-auto mb-8" />
+          <p className="text-[11px] text-white/40 font-sans leading-relaxed tracking-[0.2em] uppercase max-w-2xl mx-auto">
              We curate experiences that celebrate life&apos;s most precious moments with handcrafted brilliance.
           </p>
         </div>
 
-        <div className="promise-grid grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24">
+        <div className="promise-grid grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
           {promises.map((promise, index) => (
             <div key={index} className="promise-card flex flex-col items-center text-center group">
-              <div className="mb-10 w-20 h-20 flex items-center justify-center bg-white/5 rounded-full border border-white/10 group-hover:border-gold/50 group-hover:bg-gold/10 transition-all duration-700 text-gold">
-                {promise.icon}
+              <div className="mb-6 w-16 h-16 flex items-center justify-center bg-white/5 rounded-full border border-white/10 group-hover:border-gold/50 group-hover:bg-gold/10 transition-all duration-700 text-gold">
+                {React.cloneElement(promise.icon as React.ReactElement, { size: 24 })}
               </div>
-              <h3 className="text-xl font-serif mb-6 tracking-tight">{promise.title}</h3>
-              <p className="text-[11px] text-white/30 font-sans leading-relaxed tracking-widest uppercase font-bold max-w-xs">
+              <h3 className="text-lg font-serif mb-3 tracking-tight">{promise.title}</h3>
+              <p className="text-[10px] text-white/30 font-sans leading-relaxed tracking-widest uppercase font-bold max-w-[280px]">
                 {promise.description}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="mt-32 pt-16 border-t border-white/5 flex flex-wrap justify-center gap-x-20 gap-y-8 opacity-30">
-           <div className="flex items-center gap-4 group cursor-default">
-              <CheckCircle2 size={16} className="text-gold group-hover:scale-125 transition-transform" />
-              <span className="text-[9px] uppercase tracking-[0.4em] font-bold">925 Hallmark Certified</span>
+        <div className="mt-20 pt-10 border-t border-white/5 flex flex-wrap justify-center gap-x-12 gap-y-6 opacity-30">
+           <div className="flex items-center gap-3 group cursor-default">
+              <CheckCircle2 size={14} className="text-gold group-hover:scale-125 transition-transform" />
+              <span className="text-[8px] uppercase tracking-[0.3em] font-bold">925 Hallmark Certified</span>
            </div>
-           <div className="flex items-center gap-4 group cursor-default">
-              <CheckCircle2 size={16} className="text-gold group-hover:scale-125 transition-transform" />
-              <span className="text-[9px] uppercase tracking-[0.4em] font-bold">Secure Global Shipping</span>
+           <div className="flex items-center gap-3 group cursor-default">
+              <CheckCircle2 size={14} className="text-gold group-hover:scale-125 transition-transform" />
+              <span className="text-[8px] uppercase tracking-[0.3em] font-bold">Secure Global Shipping</span>
            </div>
-           <div className="flex items-center gap-4 group cursor-default">
-              <CheckCircle2 size={16} className="text-gold group-hover:scale-125 transition-transform" />
-              <span className="text-[9px] uppercase tracking-[0.4em] font-bold">Ethically Handcrafted</span>
+           <div className="flex items-center gap-3 group cursor-default">
+              <CheckCircle2 size={14} className="text-gold group-hover:scale-125 transition-transform" />
+              <span className="text-[8px] uppercase tracking-[0.3em] font-bold">Ethically Handcrafted</span>
            </div>
         </div>
       </div>

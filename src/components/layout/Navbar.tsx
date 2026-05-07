@@ -3,9 +3,10 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Search, ShoppingBag, MapPin, Truck, Package, Menu, X, ChevronDown, ChevronUp, User } from "lucide-react";
+import { Search, ShoppingBag, MapPin, Truck, Package, Menu, X, ChevronDown, ChevronUp, User, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
@@ -14,6 +15,7 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [isScrolled, setIsScrolled] = React.useState(false);
   const { cartCount, setIsCartOpen } = useCart();
+  const { wishlistCount, setIsWishlistOpen } = useWishlist();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -30,35 +32,53 @@ const Navbar = () => {
   const menuItems = [
     { title: "HOME", href: "/" },
     { 
-      title: "SHOP", 
+      title: "COLLECTION", 
       href: "/products",
       subItems: [
-        { title: "All Products", href: "/products" },
-        { title: "New Arrivals", href: "/products?sort=newest" },
-        { title: "Bestsellers", href: "/products?sort=bestselling" },
+        { title: "Men's Collection", href: "/products?gender=men" },
+        { title: "Women's Collection", href: "/products?gender=women" },
+        { title: "Gifting Collection", href: "/gifting" },
+        { title: "Silverware", href: "/collections/utensils" },
+        { title: "Tableware", href: "/collections/utensils" },
+        { title: "Pooja & Spiritual", href: "/collections/silver-idols" },
+        { title: "Decor", href: "/collections/silver-coated" },
+        { title: "German Silver", href: "/collections/german-silver" },
       ]
     },
     { 
-      title: "COLLECTIONS", 
-      href: "/collections",
+      title: "MEN", 
+      href: "/products?gender=men",
       subItems: [
-        { title: "Pooja & Spiritual", href: "/collections/pooja" },
-        { title: "Serveware", href: "/collections/serveware" },
-        { title: "Decor", href: "/collections/decor" },
-        { title: "Tableware", href: "/collections/tableware" },
+        { title: "Brooches", href: "/products?category=brooches" },
+        { title: "Bracelet", href: "/products?category=bracelets&gender=men" },
+        { title: "Chain", href: "/products?category=chains&gender=men" },
+        { title: "Kada", href: "/products?category=kadas" },
+        { title: "Rings", href: "/products?category=rings&gender=men" },
+      ]
+    },
+    { 
+      title: "WOMEN", 
+      href: "/products?gender=women",
+      subItems: [
+        { title: "Rings", href: "/products?category=rings&gender=women" },
+        { title: "Bracelet", href: "/products?category=bracelets&gender=women" },
+        { title: "Chain", href: "/products?category=chains&gender=women" },
+        { title: "Anklets", href: "/products?category=anklets" },
+        { title: "Toe Rings", href: "/products?category=toe-rings" },
+        { title: "Mangalsutra", href: "/products?category=mangalsutra" },
+      ]
+    },
+    { 
+      title: "GIFTS", 
+      href: "/gifting",
+      subItems: [
+        { title: "Corporate Gifting", href: "/corporate" },
+        { title: "Build a Box", href: "/gifting/build-a-box" },
+        { title: "Gifting Concierge", href: "/gifting/concierge" },
       ]
     },
     { title: "ABOUT US", href: "/about" },
-    { 
-      title: "GIFTING", 
-      href: "/gifting",
-      subItems: [
-        { title: "Gifts & Hampers", href: "/gifting/hampers" },
-        { title: "Personalised", href: "/gifting/personalised" },
-        { title: "Corporate Gifting", href: "/gifting/corporate" },
-      ]
-    },
-    { title: "CONTACT", href: "/contact" },
+    { title: "CONTACT US", href: "/contact" },
   ];
 
   return (
@@ -66,12 +86,15 @@ const Navbar = () => {
       "w-full flex flex-col font-sans z-50 transition-colors duration-300",
       isScrolled ? "fixed top-0 left-0 bg-white/95 backdrop-blur-md shadow-sm" : "relative bg-white"
     )}>
-      {/* Top Bar - Transition opacity and height instead of conditional rendering */}
+      {/* Top Bar */}
       <div className={cn(
         "bg-[#111827] text-white/90 text-[10px] md:text-[11px] px-6 md:px-12 flex justify-end items-center border-b border-white/5 font-medium tracking-tight overflow-hidden transition-all duration-300 ease-in-out",
         isScrolled ? "h-0 opacity-0 border-none" : "h-10 opacity-100"
       )}>
         <div className="flex items-center gap-6 ml-6 min-w-max">
+          <Link href="/gifting" className="hover:text-white transition-colors">Gift</Link>
+          <Link href="/collections/utensils" className="hover:text-white transition-colors">Silverware</Link>
+          <Link href="/collections/utensils" className="hover:text-white transition-colors">Tableware</Link>
           <Link href="/corporate" className="flex items-center gap-1.5 hover:text-white transition-colors">
             <Package size={14} className="text-white/60" />
             <span>Bulk / Corporate Gifting</span>
@@ -142,8 +165,22 @@ const Navbar = () => {
             >
               {isSearchOpen ? <X size={22} strokeWidth={1.2} /> : <Search size={22} strokeWidth={1.2} />}
             </button>
-            <button className="hover:opacity-60 transition-opacity hidden md:block">
+            <button 
+              className="hover:opacity-60 transition-opacity hidden md:block"
+              onClick={() => alert("User Account feature is coming soon!")}
+            >
               <User size={22} strokeWidth={1.2} />
+            </button>
+            <button 
+              className="relative hover:opacity-60 transition-opacity"
+              onClick={() => setIsWishlistOpen(true)}
+            >
+              <Heart size={21} strokeWidth={1.2} className={wishlistCount > 0 ? "fill-gold text-gold" : ""} />
+              {wishlistCount > 0 && (
+                <span className="absolute -top-1.5 -right-2 bg-gold text-white text-[9px] font-bold w-[16px] h-[16px] rounded-full flex items-center justify-center border border-white">
+                  {wishlistCount}
+                </span>
+              )}
             </button>
             <button 
               className="relative hover:opacity-60 transition-opacity"

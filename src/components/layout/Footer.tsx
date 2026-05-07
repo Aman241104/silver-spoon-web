@@ -82,11 +82,11 @@ const Footer = () => {
             </h4>
             <ul className="flex flex-col gap-3">
               {[
-                { name: "FAQ's", href: "#" },
-                { name: "Shipping & Delivery", href: "#" },
-                { name: "Return & Refund", href: "#" },
-                { name: "Care Instructions", href: "#" },
-                { name: "Track Order", href: "#" },
+                { name: "FAQ's", href: "/contact" },
+                { name: "Shipping & Delivery", href: "/contact" },
+                { name: "Return & Refund", href: "/contact" },
+                { name: "Care Instructions", href: "/contact" },
+                { name: "Track Order", href: "/track" },
               ].map((item) => (
                 <li key={item.name}>
                   <Link href={item.href} className="text-[13px] text-gray-500 hover:text-gold transition-colors font-medium">

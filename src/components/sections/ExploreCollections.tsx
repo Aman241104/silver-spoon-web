@@ -45,13 +45,12 @@ const ExploreCollections = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 max-w-[1400px] mx-auto">
           {[
-            { title: "BESTSELLERS", slug: "bestsellers", image: "/images/collections/bestsellers.png" },
-            { title: "NEW ARRIVALS", slug: "new-arrivals", image: "/images/collections/new-arrivals.png" },
-            { title: "GIFTING COLLECTION", slug: "gifting", image: "/images/collections/gifting-collection.png" },
-            { title: "CORPORATE GIFTING", slug: "corporate", image: "/images/collections/corporate-gifting.png" },
+            { title: "MEN'S COLLECTION", href: "/products?gender=men", image: "/images/collections/men-category-new.png" },
+            { title: "WOMEN'S COLLECTION", href: "/products?gender=women", image: "/images/collections/women-category.png" },
+            { title: "GIFTING COLLECTION", href: "/gifting", image: "/images/collections/gifting-collection.png" },
+            { title: "SILVERWARE & TABLEWARE", href: "/collections/utensils", image: "/images/collections/silverware.png" },
           ].map((col, idx) => (
-            <Link key={idx} href={`/collections/${col.slug}`} className="group flex flex-col items-center collection-card">
-              <div className="relative w-full aspect-square mb-5 overflow-hidden bg-[#FAF8F5]">
+            <Link key={idx} href={col.href} className="group flex flex-col items-center collection-card">              <div className="relative w-full aspect-square mb-5 overflow-hidden bg-[#FAF8F5]">
                 <Image 
                   src={col.image}
                   alt={col.title}

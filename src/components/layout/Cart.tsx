@@ -115,23 +115,32 @@ const Cart = () => {
 
         {cart.length > 0 && (
           <div className="p-6 md:p-8 bg-silver-50 border-t border-silver-100 shrink-0">
-            <div className="mb-5 space-y-2">
-               <p className="text-[9px] md:text-[10px] text-charcoal/40 uppercase tracking-widest text-center">
-                  Prices are shared upon inquiry
+            <div className="mb-6 space-y-4">
+               <div className="flex justify-between items-center text-[11px] uppercase tracking-widest font-bold text-charcoal">
+                  <span>Inquiry Items</span>
+                  <span>{cartCount}</span>
+               </div>
+               <div className="flex justify-between items-center text-[13px] font-serif italic text-charcoal">
+                  <span>Estimated Total</span>
+                  <span className="text-gold">Price on Request</span>
+               </div>
+               <div className="h-[1px] w-full bg-silver-100" />
+               <p className="text-[9px] md:text-[10px] text-charcoal/40 uppercase tracking-widest text-center leading-relaxed">
+                  Final pricing and availability will be shared via our WhatsApp concierge
                </p>
             </div>
             <Button 
-              className="w-full bg-[#25D366] hover:bg-[#128C7E] border-none flex items-center justify-center gap-3 py-5 md:py-6 rounded-none"
+              className="w-full bg-[#25D366] hover:bg-[#128C7E] border-none flex items-center justify-center gap-3 py-6 md:py-7 rounded-none transition-transform active:scale-[0.98]"
               onClick={handleBulkOrder}
             >
-              <MessageSquare className="w-4 h-4 md:w-4.5 md:h-4.5" />
-              <span className="text-[10px] md:text-xs uppercase tracking-widest font-bold">Bulk Order on WhatsApp</span>
+              <MessageSquare className="w-4.5 h-4.5" />
+              <span className="text-[11px] md:text-xs uppercase tracking-widest font-bold">Inquire on WhatsApp</span>
             </Button>
             <button 
               onClick={() => setIsCartOpen(false)}
-              className="w-full mt-4 text-[9px] md:text-[10px] uppercase tracking-ultra text-charcoal/40 font-bold hover:text-charcoal transition-colors text-center"
+              className="w-full mt-5 text-[9px] md:text-[10px] uppercase tracking-ultra text-charcoal/40 font-bold hover:text-charcoal transition-colors text-center"
             >
-              Continue Shopping
+              Continue Browsing
             </button>
           </div>
         )}
