@@ -10,7 +10,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const categories = [
   { name: "Men's Collection", href: "/products?gender=men", image: "/images/collections/men-category-new.png" },
   { name: "Women's Collection", href: "/products?gender=women", image: "/images/collections/women-category-circle.png" },
-  { name: "Gifting Collection", href: "/gifting", image: "/images/collections/gifting-collection.png" },
+  { name: "Gifting Collection", href: "/gifting", image: "/images/collections/image-removebg-preview(1).png" },
   { name: "Silverware", href: "/collections/utensils", image: "/images/collections/silverware.png" },
   { name: "Tableware", href: "/collections/utensils", image: "/images/collections/tableware.png" },
   { name: "Pooja & Spiritual", href: "/collections/silver-idols", image: "/images/collections/ganesha-statue.png" },
@@ -46,7 +46,7 @@ const CategoryGrid = () => {
         <h2 className="text-[24px] md:text-[28px] font-serif text-[#1a1a1a] tracking-[0.05em] uppercase mb-3 font-medium section-title">
           Shop By Category
         </h2>
-        
+
         {/* Divider */}
         <div className="flex items-center justify-center gap-2 mb-10 md:mb-16 divider">
           <div className="h-[1px] w-10 bg-gray-200"></div>
@@ -66,7 +66,7 @@ const CategoryGrid = () => {
               <Link key={idx} href={cat.href} className="flex flex-col items-center group category-item">
                 <div className="relative w-24 h-24 md:w-32 md:h-32 mb-4 flex items-center justify-center">
                   <div className="relative w-full h-full transform transition-all duration-700 ease-out group-hover:scale-105">
-                    <Image 
+                    <Image
                       src={cat.image}
                       alt={cat.name}
                       fill
