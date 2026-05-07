@@ -38,8 +38,7 @@ const PromoBanners = () => {
              {/* Text Content */}
              <div className="relative z-10 max-w-sm">
                 <div className="inline-block px-3 py-1 bg-gold/20 backdrop-blur-sm border border-gold/30 mb-6">
-                   <p className="text-[8px] uppercase tracking-[0.5em] text-gold font-bold">Personalized Treasury</p>
-                </div>
+                   <p className="text-[8px] uppercase tracking-[0.5em] text-gold font-bold">Personalized Collection</p>                </div>
                 <h3 className="text-4xl md:text-5xl font-serif text-white mb-8 leading-[0.9] tracking-tighter">
                    Seal Your <span className="italic text-silver-200">Love</span> in 999 Silver.
                 </h3>

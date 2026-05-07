@@ -24,6 +24,7 @@ import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
 import Cart from "@/components/layout/Cart";
 import Wishlist from "@/components/layout/Wishlist";
+import StickyWhatsApp from "@/components/ui/StickyWhatsApp";
 
 export default function RootLayout({
   children,
@@ -40,6 +41,7 @@ export default function RootLayout({
             <LenisScroll>
               {children}
             </LenisScroll>
+            <StickyWhatsApp />
           </CartProvider>
         </WishlistProvider>
       </body>

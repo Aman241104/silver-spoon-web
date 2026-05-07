@@ -33,7 +33,7 @@ const BrandPromise = () => {
     {
       icon: Award,
       title: "Certified Hallmarked",
-      description: "Every piece in our treasury is crafted in 925 sterling or 999 fine silver, certified for absolute purity."
+      description: "Every piece in our collection is crafted in 925 sterling or 999 fine silver, certified for absolute purity."
     },
     {
       icon: ShieldCheck,
@@ -57,11 +57,11 @@ const BrandPromise = () => {
         <div className="text-center max-w-4xl mx-auto mb-16 md:mb-20">
           <p className="text-[10px] uppercase tracking-[0.5em] text-gold font-bold mb-4">The Silver Spoon Covenant</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6 leading-tight tracking-tight">
-             Defining the <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-white via-silver-200 to-white/40">Standard</span> <br /> 
+             Defining the <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-white via-silver-100 to-white/70">Standard</span> <br /> 
              of Purity.
           </h2>
           <div className="w-16 h-[1px] bg-gold/30 mx-auto mb-8" />
-          <p className="text-[11px] text-white/40 font-sans leading-relaxed tracking-[0.2em] uppercase max-w-2xl mx-auto">
+          <p className="text-[11px] text-white/60 font-sans leading-relaxed tracking-[0.2em] uppercase max-w-2xl mx-auto">
              We curate experiences that celebrate life&apos;s most precious moments with handcrafted brilliance.
           </p>
         </div>
@@ -73,14 +73,14 @@ const BrandPromise = () => {
                 <promise.icon size={24} strokeWidth={1} />
               </div>
               <h3 className="text-lg font-serif mb-3 tracking-tight">{promise.title}</h3>
-              <p className="text-[10px] text-white/30 font-sans leading-relaxed tracking-widest uppercase font-bold max-w-[280px]">
+              <p className="text-[10px] text-white/50 font-sans leading-relaxed tracking-widest uppercase font-bold max-w-[280px]">
                 {promise.description}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="mt-20 pt-10 border-t border-white/5 flex flex-wrap justify-center gap-x-12 gap-y-6 opacity-30">
+        <div className="mt-20 pt-10 border-t border-white/5 flex flex-wrap justify-center gap-x-12 gap-y-6 opacity-50">
            <div className="flex items-center gap-3 group cursor-default">
               <CheckCircle2 size={14} className="text-gold group-hover:scale-125 transition-transform" />
               <span className="text-[8px] uppercase tracking-[0.3em] font-bold">925 Hallmark Certified</span>

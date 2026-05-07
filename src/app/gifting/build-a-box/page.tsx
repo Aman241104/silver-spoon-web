@@ -131,7 +131,7 @@ const BuildABox = () => {
                     <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-8 border border-green-100">
                        <CheckCircle2 size={32} className="text-green-600" />
                     </div>
-                    <h2 className="text-3xl md:text-5xl font-serif text-[#2c2c2c] leading-tight">Treasury Box <br /> Prepared</h2>
+                    <h2 className="text-3xl md:text-5xl font-serif text-[#2c2c2c] leading-tight">Curated Box <br /> Prepared</h2>
                     <p className="text-gray-500 text-sm md:text-base leading-relaxed font-serif italic">
                        Your custom artisan set has been curated. Our concierge will finalize the details of this request via WhatsApp.
                     </p>
@@ -264,7 +264,7 @@ const BuildABox = () => {
                       className="w-full bg-[#1a1a1a] text-white py-5 flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-black transition-all rounded-sm"
                       onClick={handleFinalize}
                     >
-                      Finalize Treasury Box <CheckCircle2 size={14} strokeWidth={2} />
+                      Finalize Gift Box <CheckCircle2 size={14} strokeWidth={2} />
                     </button>
                  </div>
                )}

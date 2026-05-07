@@ -114,7 +114,7 @@ const GiftingConcierge = () => {
               GIFTING CONCIERGE
             </span>
             <h1 className="text-[42px] md:text-[56px] font-serif text-[#2c2c2c] leading-[1.05] tracking-tight font-medium">
-              The Treasury Guide
+              The Gifting Guide
             </h1>
         </div>
       </section>
@@ -185,7 +185,7 @@ const GiftingConcierge = () => {
                      <Gift size={28} strokeWidth={1.5} />
                   </div>
                   <h2 className="text-[42px] md:text-[56px] font-serif tracking-tight text-[#2c2c2c] mb-6 font-medium">Curated For You</h2>
-                  <p className="text-[11px] uppercase tracking-widest text-gray-400 font-bold mb-10">Based on your treasury preferences</p>
+                  <p className="text-[11px] uppercase tracking-widest text-gray-400 font-bold mb-10">Based on your collection preferences</p>
                   <button 
                     onClick={reset}
                     className="flex items-center gap-2 mx-auto text-[10px] uppercase tracking-widest font-bold text-[#2c2c2c] hover:text-gray-500 transition-colors"

@@ -73,18 +73,17 @@ const Newsletter = () => {
               >
                 View Collection
               </Link>
-              <Link 
-                href="/gifting" 
+              <Link
+                href="/gifting"
                 className="inline-block bg-white text-[#111827] border border-[#111827] px-12 py-6 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-gray-50 transition-all text-center rounded-sm"
               >
-                Gift Registry
+                Artisan Gifting
               </Link>
-            </div>
-            
-            <p className="mt-8 text-[10px] text-gray-400 uppercase tracking-widest font-bold">
-              *New designs added every week to our treasury
-            </p>
-          </div>
+              </div>
+
+              <p className="mt-8 text-[10px] text-gray-400 uppercase tracking-widest font-bold">
+              *New designs added every week to our curated collection
+              </p>          </div>
         </div>
       </div>
     </section>

@@ -28,23 +28,23 @@ const Footer = () => {
             <p className="text-[13px] text-gray-500 leading-relaxed max-w-[280px] font-medium opacity-90">
               Discover a wide range of beautifully crafted Silver & German Silver products that add a touch of elegance to every moment.
             </p>
-            <div className="flex gap-3">
+            <div className="flex gap-3 mt-4">
                {/* Facebook */}
-               <Link href="#" className="w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 hover:text-charcoal transition-all border border-gray-100">
+               <Link href="#" className="w-8 h-8 rounded-full flex items-center justify-center text-gray-300 hover:text-charcoal transition-all border border-gray-100/50">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                   </svg>
                </Link>
                {/* Instagram */}
-               <Link href="#" className="w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 hover:text-charcoal transition-all border border-gray-100">
+               <Link href="#" className="w-8 h-8 rounded-full flex items-center justify-center text-gray-300 hover:text-charcoal transition-all border border-gray-100/50">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                   </svg>
                </Link>
-               {/* WhatsApp/Message */}
-               <Link href="#" className="w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 hover:text-charcoal transition-all border border-gray-100">
+               {/* WhatsApp */}
+               <Link href="#" className="w-8 h-8 rounded-full flex items-center justify-center text-gray-300 hover:text-charcoal transition-all border border-gray-100/50">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                   </svg>
@@ -54,7 +54,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="lg:pl-8">
-            <h4 className="text-[12px] uppercase tracking-[0.2em] font-bold text-[#1a1a1a] mb-8">
+            <h4 className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-[#1a1a1a] mb-8">
               QUICK LINKS
             </h4>
             <ul className="flex flex-col gap-3.5">
@@ -77,7 +77,7 @@ const Footer = () => {
 
           {/* Customer Service */}
           <div>
-            <h4 className="text-[12px] uppercase tracking-[0.2em] font-bold text-[#1a1a1a] mb-8">
+            <h4 className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-[#1a1a1a] mb-8">
               CUSTOMER SERVICE
             </h4>
             <ul className="flex flex-col gap-3.5">
@@ -98,16 +98,16 @@ const Footer = () => {
 
           {/* Contact Us */}
           <div>
-            <h4 className="text-[12px] uppercase tracking-[0.2em] font-bold text-[#1a1a1a] mb-8">
+            <h4 className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-[#1a1a1a] mb-8">
               CONTACT US
             </h4>
             <ul className="flex flex-col gap-5">
               <li className="flex items-center gap-3">
-                <Phone size={14} strokeWidth={1.5} className="text-gray-300 shrink-0" />
+                <Phone size={14} strokeWidth={1} className="text-gray-300 shrink-0" />
                 <span className="text-[13px] text-gray-500 font-medium">+91 98765 43210</span>
               </li>
               <li className="flex items-center gap-3">
-                <Mail size={14} strokeWidth={1.5} className="text-gray-300 shrink-0" />
+                <Mail size={14} strokeWidth={1} className="text-gray-300 shrink-0" />
                 <span className="text-[13px] text-gray-500 font-medium">info@silverspoon.com</span>
               </li>
             </ul>

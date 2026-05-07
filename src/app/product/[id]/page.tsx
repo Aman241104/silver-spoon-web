@@ -28,7 +28,7 @@ export default function ProductDetailPage() {
         <div className="text-center">
           <h1 className="text-4xl md:text-6xl font-serif mb-8 tracking-tighter">Piece Not Found</h1>
           <Link href="/products" className="bg-[#1a1a1a] text-white px-10 py-4 text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm">
-            Return to Treasury
+            Return to Collection
           </Link>
         </div>
       </main>
@@ -50,7 +50,7 @@ export default function ProductDetailPage() {
         <div className="container mx-auto px-6 md:px-12">
           {/* Breadcrumbs */}
           <nav className="flex items-center gap-2 mb-12 text-[10px] uppercase tracking-widest text-gray-400 font-bold">
-            <Link href="/products" className="hover:text-charcoal transition-colors">Treasury</Link>
+            <Link href="/products" className="hover:text-charcoal transition-colors">Collection</Link>
             <span>/</span>
             <Link href={`/collections/${product.category}`} className="hover:text-charcoal transition-colors">{product.category}</Link>
             <span>/</span>

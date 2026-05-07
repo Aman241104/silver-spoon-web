@@ -71,7 +71,7 @@ function CategoryContent() {
         <div className="text-center">
           <h1 className="text-4xl md:text-6xl font-serif mb-8 tracking-tighter">Collection Not Found</h1>
           <Link href="/products" className="bg-[#1a1a1a] text-white px-10 py-4 text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm">
-            Return to Treasury
+            Return to Collection
           </Link>
         </div>
       </main>

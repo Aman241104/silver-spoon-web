@@ -74,8 +74,7 @@ const TopSellers = ({ title }: TopSellersProps) => {
         <div className="seller-header-reveal flex justify-center">
           <Link href="/products" className="group relative overflow-hidden bg-charcoal text-white px-16 py-6 text-[10px] uppercase tracking-[0.4em] font-bold transition-all duration-500 hover:bg-gold">
             <span className="relative z-10 flex items-center gap-4">
-               View Entire Treasury <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
-            </span>
+               View Entire Collection <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />            </span>
             <div className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
           </Link>
         </div>

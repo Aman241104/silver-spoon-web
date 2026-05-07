@@ -17,7 +17,7 @@ export default function ProductsOverviewPage() {
       <main className="min-h-screen bg-white font-sans flex items-center justify-center">
         <div className="animate-pulse flex flex-col items-center">
           <Diamond size={48} className="text-gray-200 mb-4" />
-          <p className="text-gray-400 uppercase tracking-widest text-xs font-bold">Loading Treasury...</p>
+          <p className="text-gray-400 uppercase tracking-widest text-xs font-bold">Loading Collection...</p>
         </div>
       </main>
     }>
@@ -50,7 +50,7 @@ function ProductsContent() {
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
             <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-charcoal font-bold mb-4 md:mb-6">
-              THE TREASURY
+              THE COLLECTION
             </span>
             <h1 className="text-[36px] md:text-[64px] lg:text-[76px] font-serif text-[#2c2c2c] leading-[1.05] mb-6 md:mb-8 tracking-tight font-medium">
               {searchQuery ? `Search Results: ${searchQuery}` : <>Curated <br /> Collections</>}

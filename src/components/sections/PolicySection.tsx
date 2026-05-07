@@ -19,7 +19,7 @@ const PolicySection = () => {
     },
     {
       icon: <Truck size={24} strokeWidth={1} />,
-      title: "Treasury Delivery",
+      title: "Premium Delivery",
       desc: "Secure Global Shipping",
     },
   ];
