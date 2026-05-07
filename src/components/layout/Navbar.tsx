@@ -84,9 +84,12 @@ const Navbar = () => {
       title: "GIFTS", 
       href: "/gifting",
       subItems: [
+        { title: "German Silver", href: "/collections/german-silver" },
+        { title: "Silver Coated", href: "/collections/silver-coated" },
+        { title: "Silver Idols (999/925)", href: "/collections/silver-idols" },
+        { title: "999 Silver Frames", href: "/collections/silver-frames" },
         { title: "Corporate Gifting", href: "/corporate" },
         { title: "Build a Box", href: "/gifting/build-a-box" },
-        { title: "Gifting Concierge", href: "/gifting/concierge" },
       ]
     },
     { title: "ABOUT US", href: "/about" },
