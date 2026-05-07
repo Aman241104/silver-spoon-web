@@ -15,7 +15,13 @@ The website will be designed to reflect elegance, trust, and product clarity - h
 - **Clean UI/UX** inspired by premium jewellery websites.
 - **Smooth browsing experience** with easy navigation.
 
-## 3. Tech Stack
+## 3. Contact Information
+- **Company Name:** Silver Spoon (LJ India Services)
+- **Address:** F-14 First Floor, Omkar Lotus, Opposite Swaminarayan Temple, Chandkheda Samshan Road, Chandkheda, Ahmedabad, Gujarat - 382424
+- **Contact Number:** +91 99981 23479
+- **Email:** info@silverspoon.com
+
+## 4. Tech Stack
 - **Framework:** Next.js (App Router)
 - **Styling:** Tailwind CSS
 - **Animations:** GSAP (GreenSock Animation Platform)

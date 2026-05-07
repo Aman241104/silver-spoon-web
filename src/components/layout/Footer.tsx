@@ -13,7 +13,7 @@ const Footer = () => {
           {/* Brand Info */}
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex flex-col group">
-              <div className="relative h-10 md:h-12 w-32 md:w-40 mb-2">
+              <div className="relative h-14 md:h-16 w-44 md:w-52 mb-2">
                 <Image
                   src="/images/logo.png"
                   alt="Silver Spoon Logo"
@@ -104,7 +104,7 @@ const Footer = () => {
             <ul className="flex flex-col gap-5">
               <li className="flex items-center gap-3">
                 <Phone size={14} strokeWidth={1} className="text-gray-300 shrink-0" />
-                <span className="text-[13px] text-gray-500 font-medium">+91 98765 43210</span>
+                <span className="text-[13px] text-gray-500 font-medium">+91 99981 23479</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={14} strokeWidth={1} className="text-gray-300 shrink-0" />
@@ -119,7 +119,7 @@ const Footer = () => {
       <div className="bg-[#0f1115] py-5">
         <div className="container mx-auto px-6 md:px-12">
           <p className="text-[11px] text-gray-400 font-medium tracking-wide">
-            © 2024 Silver Spoon. All Rights Reserved.
+            © 2024 Silver Spoon (LJ India Services). All Rights Reserved.
           </p>
         </div>
       </div>

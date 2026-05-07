@@ -38,7 +38,7 @@ export default function StoreLocatorPage() {
                      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
                           style={{backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '20px 20px'}} />
                      <MapPin size={48} strokeWidth={1} className="text-gold mb-6 animate-bounce" />
-                     <p className="font-serif italic text-charcoal/40 text-xl tracking-ultra uppercase block mb-2">The Jaipur Boutique</p>
+                     <p className="font-serif italic text-charcoal/40 text-xl tracking-ultra uppercase block mb-2">The Ahmedabad Boutique</p>
                      <p className="text-[10px] uppercase tracking-[0.3em] text-gold font-bold">Interactive Map Coming Soon</p>
                   </div>
                </div>
@@ -58,8 +58,8 @@ export default function StoreLocatorPage() {
                      <div className="pt-1">
                         <p className="text-[10px] uppercase tracking-[0.2em] text-gold font-extrabold mb-3">Location</p>
                         <p className="text-lg text-charcoal/70 leading-relaxed font-serif italic">
-                           123, Silver Street, Johari Bazaar, <br />
-                           Jaipur, Rajasthan - 302001
+                           F-14 Omkar Lotus, Chandkheda, <br />
+                           Ahmedabad, Gujarat - 382424
                         </p>
                      </div>
                   </div>
@@ -70,7 +70,7 @@ export default function StoreLocatorPage() {
                      </div>
                      <div className="pt-1">
                         <p className="text-[10px] uppercase tracking-[0.2em] text-gold font-extrabold mb-3">Concierge</p>
-                        <p className="text-lg text-charcoal/70 leading-relaxed font-serif italic">+91 98765 43210</p>
+                        <p className="text-lg text-charcoal/70 leading-relaxed font-serif italic">+91 99981 23479</p>
                      </div>
                   </div>
 
@@ -80,14 +80,14 @@ export default function StoreLocatorPage() {
                      </div>
                      <div className="pt-1">
                         <p className="text-[10px] uppercase tracking-[0.2em] text-gold font-extrabold mb-3">Support</p>
-                        <p className="text-lg text-charcoal/70 leading-relaxed font-serif italic">hello@silverspoon.com</p>
+                        <p className="text-lg text-charcoal/70 leading-relaxed font-serif italic">info@silverspoon.com</p>
                      </div>
                   </div>
                </div>
                
                <div className="mt-16 pt-10 border-t border-gray-100">
                   <button 
-                    onClick={() => window.open('https://wa.me/+919876543210?text=Hi, I would like to book a virtual tour.', '_blank')}
+                    onClick={() => window.open('https://wa.me/919998123479?text=Hi, I would like to book a virtual tour.', '_blank')}
                     className="w-full md:w-auto bg-[#1a1a1a] text-white px-12 py-5 text-[11px] font-bold uppercase tracking-[0.2em] rounded-none hover:bg-black transition-all shadow-lg"
                   >
                     Book a Virtual Tour

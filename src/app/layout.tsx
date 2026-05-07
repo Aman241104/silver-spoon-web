@@ -16,8 +16,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Silver Spoon By AC Jewellers | Premium Silver Jewellery & Gifting",
-  description: "Exquisite silver jewellery, idols, and gifting items from Silver Spoon By AC Jewellers. Crafted with purity and elegance since 1995.",
+  title: "Silver Spoon (LJ India Services) | Premium Silver Jewellery & Gifting",
+  description: "Exquisite silver jewellery, idols, and gifting items from Silver Spoon (LJ India Services). Crafted with purity and elegance since 1995.",
 };
 
 import { CartProvider } from "@/context/CartContext";

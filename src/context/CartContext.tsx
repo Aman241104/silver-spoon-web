@@ -89,8 +89,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   const handleBulkOrder = () => {
-    const WHATSAPP_NUMBER = "+919876543210";
-    let message = "Hi Silver Spoon By AC Jewellers, I would like to place a bulk order for the following items:\n\n";
+    const WHATSAPP_NUMBER = "919998123479";
+    let message = "Hi Silver Spoon (LJ India Services), I would like to place a bulk order for the following items:\n\n";
     
     cart.forEach((item, index) => {
       message += `${index + 1}. ${item.name} (Qty: ${item.quantity})\n`;

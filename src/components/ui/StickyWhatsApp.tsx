@@ -4,7 +4,7 @@ import React from 'react';
 import { MessageCircle } from 'lucide-react';
 
 const StickyWhatsApp = () => {
-  const phoneNumber = "919876543210"; // Placeholder, but should be the client's number
+  const phoneNumber = "919998123479"; // Updated with client's number
   const message = "Hello Silver Spoon, I'm interested in your artisan collection.";
   
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

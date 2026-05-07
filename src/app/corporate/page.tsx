@@ -85,7 +85,7 @@ export default function CorporateGiftingPage() {
                   Browse Catalog
                </Link>
                <button 
-                onClick={() => window.open('https://wa.me/+919876543210?text=Hi, I am interested in Corporate Gifting options.', '_blank')}
+                onClick={() => window.open('https://wa.me/919998123479?text=Hi, I am interested in Corporate Gifting options.', '_blank')}
                 className="bg-transparent border border-white/20 text-white px-10 py-4 text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm hover:bg-white/5 transition-all flex items-center gap-3"
                >
                   <MessageSquare size={16} />

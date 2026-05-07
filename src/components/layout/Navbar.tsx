@@ -116,27 +116,27 @@ const Navbar = () => {
 
       {/* Main Navbar Wrapper - Becomes fixed on scroll */}
       <div className={cn(
-        "w-full transition-all duration-300",
-        isScrolled ? "fixed top-0 left-0 bg-white/95 backdrop-blur-md shadow-sm py-1 md:py-2" : "relative bg-white py-3 md:py-4"
+        "w-full transition-all duration-300 border-b border-white/5",
+        isScrolled ? "fixed top-0 left-0 bg-[#111827]/95 backdrop-blur-md shadow-lg py-2 md:py-3" : "relative bg-[#111827] py-4 md:py-6"
       )}>
         <nav className="container mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Left: Logo */}
           <Link href="/" className="flex flex-col items-start lg:w-[250px] group">
             <div className={cn(
               "relative transition-all duration-300 ease-in-out",
-              isScrolled ? "h-6 w-20 md:h-7 md:w-24" : "h-8 w-24 md:h-10 md:w-32"
+              isScrolled ? "h-10 w-32 md:h-12 md:w-40" : "h-14 w-44 md:h-20 md:w-56"
             )}>
               <Image
                 src="/images/logo.png"
                 alt="Silver Spoon Logo"
                 fill
-                className="object-contain object-left"
+                className="object-contain object-left brightness-0 invert"
                 priority
               />
             </div>
             {!isScrolled && (
-              <div className="h-3 opacity-100 mt-0.5 transition-all duration-300">
-                <span className="hidden md:block text-[7px] uppercase tracking-[0.3em] text-charcoal/50 font-bold">
+              <div className="h-3 opacity-100 mt-1 transition-all duration-300">
+                <span className="hidden md:block text-[8px] uppercase tracking-[0.4em] text-white/50 font-bold">
                   Timeless Elegance, Everyday
                 </span>
               </div>
@@ -148,19 +148,19 @@ const Navbar = () => {
             {menuItems.map((item) => (
               item.subItems ? (
                 <div key={item.title} className="relative group">
-                  <Link href={item.href} className="flex items-center gap-1.5 text-[11px] font-extrabold text-[#2c2c2c] uppercase tracking-[0.15em] hover:text-gray-600 cursor-pointer py-2">
+                  <Link href={item.href} className="flex items-center gap-1.5 text-[11px] font-extrabold text-white uppercase tracking-[0.15em] hover:text-white/60 cursor-pointer py-2">
                     {item.title} <ChevronDown size={10} strokeWidth={3} className="mt-0.5 group-hover:rotate-180 transition-transform duration-300" />
                   </Link>
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-48 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-gray-100 py-4 mt-1">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-48 bg-[#111827] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-white/10 py-4 mt-1">
                     {item.subItems.map((sub) => (
-                      <Link key={sub.title} href={sub.href} className="block px-6 py-2.5 text-[10px] font-bold text-charcoal/80 hover:text-charcoal hover:bg-gray-50 tracking-widest uppercase">
+                      <Link key={sub.title} href={sub.href} className="block px-6 py-2.5 text-[10px] font-bold text-white/70 hover:text-white hover:bg-white/5 tracking-widest uppercase">
                         {sub.title}
                       </Link>
                     ))}
                   </div>
                 </div>
               ) : (
-                <Link key={item.title} href={item.href} className="text-[11px] font-extrabold text-[#2c2c2c] uppercase tracking-[0.15em] hover:text-gray-600 transition-colors py-2 border-b-2 border-transparent hover:border-charcoal/10">
+                <Link key={item.title} href={item.href} className="text-[11px] font-extrabold text-white uppercase tracking-[0.15em] hover:text-white/60 transition-colors py-2 border-b-2 border-transparent hover:border-white/10">
                   {item.title}
                 </Link>
               )
@@ -168,7 +168,7 @@ const Navbar = () => {
           </div>
 
           {/* Right: Icons */}
-          <div className="flex items-center justify-end gap-5 md:gap-6 text-charcoal lg:w-[250px]">
+          <div className="flex items-center justify-end gap-5 md:gap-6 text-white lg:w-[250px]">
             <button 
               className="hover:opacity-60 transition-opacity"
               onClick={() => setIsSearchOpen(!isSearchOpen)}
@@ -195,13 +195,13 @@ const Navbar = () => {
             >
               <ShoppingBag size={20} />
               {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-charcoal text-white text-[8px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center">
+                <span className="absolute -top-1.5 -right-1.5 bg-white text-[#111827] text-[8px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center">
                   {cartCount}
                 </span>
               )}
             </button>
             <button 
-              className="lg:hidden p-1 text-charcoal"
+              className="lg:hidden p-1 text-white"
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open Menu"
             >
@@ -212,7 +212,7 @@ const Navbar = () => {
 
         {/* Search Overlay */}
         <div className={cn(
-          "absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-lg overflow-hidden transition-all duration-300",
+          "absolute top-full left-0 w-full bg-[#111827] border-t border-white/10 shadow-lg overflow-hidden transition-all duration-300",
           isSearchOpen ? "max-h-[100px] opacity-100 border-b" : "max-h-0 opacity-0"
         )}>
           <div className="container mx-auto px-6 md:px-12 py-4">
@@ -225,11 +225,11 @@ const Navbar = () => {
                 }
               }}
             >
-              <Search size={18} className="text-gray-400" />
+              <Search size={18} className="text-white/40" />
               <input 
                 type="text" 
                 placeholder="Search products..."
-                className="flex-1 bg-transparent border-none outline-none text-sm font-sans tracking-wide text-charcoal"
+                className="flex-1 bg-transparent border-none outline-none text-sm font-sans tracking-wide text-white placeholder:text-white/30"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -253,7 +253,7 @@ const Navbar = () => {
         )}>
           {/* Mobile Menu Header */}
           <div className="flex items-center justify-between p-5 border-b border-gray-100 bg-white">
-            <div className="relative h-9 w-24">
+            <div className="relative h-12 w-32">
               <Image src="/images/logo.png" alt="Silver Spoon" fill className="object-contain object-left" />
             </div>
             <button onClick={() => setIsMobileMenuOpen(false)} className="text-charcoal p-1">

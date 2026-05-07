@@ -138,7 +138,7 @@ const BuildABox = () => {
                     
                     <div className="space-y-4 pt-6">
                        <button 
-                         onClick={() => window.open('https://wa.me/+919876543210?text=Hi, I have built a custom gift box and want to inquire about its price.', '_blank')}
+                         onClick={() => window.open('https://wa.me/919998123479?text=Hi, I have built a custom gift box and want to inquire about its price.', '_blank')}
                          className="w-full bg-[#25D366] text-white py-5 flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-[#128C7E] transition-all rounded-sm shadow-lg"
                        >
                           Finalize on WhatsApp <ArrowRight size={14} />

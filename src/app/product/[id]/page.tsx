@@ -36,7 +36,7 @@ export default function ProductDetailPage() {
   }
 
   const handleInquiry = () => {
-    const WHATSAPP_NUMBER = "+919876543210"; 
+    const WHATSAPP_NUMBER = "919998123479"; 
     const productUrl = typeof window !== "undefined" ? window.location.href : "";
     const message = `Hi Silver Spoon, I am interested in the "${product.name}" (${product.serialNumber || product.id}) from your ${product.subCategory || product.category} collection.\n\nProduct Link: ${productUrl}\n\nCould you please share more details?`;
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");

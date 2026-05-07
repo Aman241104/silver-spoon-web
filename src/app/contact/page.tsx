@@ -10,20 +10,20 @@ export default function ContactPage() {
     {
       icon: <Phone className="text-[#2c2c2c]" size={28} strokeWidth={1} />,
       title: "Call Us",
-      details: "+91 98765 43210",
+      details: "+91 99981 23479",
       subtext: "Mon-Sat, 10am to 7pm",
     },
     {
       icon: <Mail className="text-[#2c2c2c]" size={28} strokeWidth={1} />,
       title: "Email Us",
-      details: "hello@silverspoon.com",
+      details: "info@silverspoon.com",
       subtext: "We reply within 24 hours",
     },
     {
       icon: <MapPin className="text-[#2c2c2c]" size={28} strokeWidth={1} />,
       title: "Visit Us",
-      details: "123, Silver Street, Jaipur",
-      subtext: "Rajasthan - 302001",
+      details: "F-14 Omkar Lotus, Chandkheda",
+      subtext: "Ahmedabad, Gujarat - 382424",
     },
   ];
 
@@ -75,7 +75,7 @@ export default function ContactPage() {
               <div className="pt-10 w-full">
                  <button 
                     className="w-full bg-[#FAF8F5] border border-gray-200 hover:border-gray-300 transition-colors flex items-center justify-center gap-3 py-4 text-[13px] font-bold text-[#2c2c2c] uppercase tracking-widest shadow-sm rounded-sm"
-                    onClick={() => window.open("https://wa.me/919876543210", "_blank")}
+                    onClick={() => window.open("https://wa.me/919998123479", "_blank")}
                  >
                     <MessageSquare size={18} strokeWidth={1.5} />
                     Chat on WhatsApp
