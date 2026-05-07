@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${inter.variable}`} suppressHydrationWarning>
       <body className="bg-white text-charcoal font-sans antialiased selection:bg-silver-200 selection:text-charcoal">
         <WishlistProvider>
           <CartProvider>

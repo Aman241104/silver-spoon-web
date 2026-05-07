@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Search, ShoppingBag, MapPin, Truck, Package, Menu, X, ChevronDown, ChevronUp, User, Heart } from "lucide-react";
+import { Search, ShoppingBag, MapPin, Package, Menu, X, ChevronDown, ChevronUp, User, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
@@ -19,11 +19,23 @@ const Navbar = () => {
 
   React.useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 40);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Lock scroll when mobile menu is open
+  React.useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
 
   const toggleAccordion = (val: string) => {
     setActiveAccordion(activeAccordion === val ? null : val);
@@ -82,11 +94,8 @@ const Navbar = () => {
   ];
 
   return (
-    <div className={cn(
-      "w-full flex flex-col font-sans z-50 transition-colors duration-300",
-      isScrolled ? "fixed top-0 left-0 bg-white/95 backdrop-blur-md shadow-sm" : "relative bg-white"
-    )}>
-      {/* Top Bar */}
+    <header className="relative w-full z-[100] font-sans">
+      {/* Top Bar - Hidden on scroll */}
       <div className={cn(
         "bg-[#111827] text-white/90 text-[10px] md:text-[11px] px-6 md:px-12 flex justify-end items-center border-b border-white/5 font-medium tracking-tight overflow-hidden transition-all duration-300 ease-in-out",
         isScrolled ? "h-0 opacity-0 border-none" : "h-10 opacity-100"
@@ -102,13 +111,12 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Main Navbar */}
-      <nav className={cn(
-        "transition-all duration-300 ease-in-out border-b border-gray-100",
-        isScrolled ? "py-2 md:py-2.5" : "py-3 md:py-4"
+      {/* Main Navbar Wrapper - Becomes fixed on scroll */}
+      <div className={cn(
+        "w-full transition-all duration-300",
+        isScrolled ? "fixed top-0 left-0 bg-white/95 backdrop-blur-md shadow-sm py-1 md:py-2" : "relative bg-white py-3 md:py-4"
       )}>
-        <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-          
+        <nav className="container mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Left: Logo */}
           <Link href="/" className="flex flex-col items-start lg:w-[250px] group">
             <div className={cn(
@@ -123,14 +131,13 @@ const Navbar = () => {
                 priority
               />
             </div>
-            <div className={cn(
-              "overflow-hidden transition-all duration-300 ease-in-out",
-              isScrolled ? "h-0 opacity-0" : "h-3 opacity-100 mt-0.5"
-            )}>
-              <span className="hidden md:block text-[7px] uppercase tracking-[0.3em] text-charcoal/50 font-bold">
-                Timeless Elegance, Everyday
-              </span>
-            </div>
+            {!isScrolled && (
+              <div className="h-3 opacity-100 mt-0.5 transition-all duration-300">
+                <span className="hidden md:block text-[7px] uppercase tracking-[0.3em] text-charcoal/50 font-bold">
+                  Timeless Elegance, Everyday
+                </span>
+              </div>
+            )}
           </Link>
 
           {/* Center: Navigation Links (Desktop Only) */}
@@ -162,22 +169,18 @@ const Navbar = () => {
             <button 
               className="hover:opacity-60 transition-opacity"
               onClick={() => setIsSearchOpen(!isSearchOpen)}
+              aria-label="Search"
             >
-              {isSearchOpen ? <X size={22} strokeWidth={1.2} /> : <Search size={22} strokeWidth={1.2} />}
-            </button>
-            <button 
-              className="hover:opacity-60 transition-opacity hidden md:block"
-              onClick={() => alert("User Account feature is coming soon!")}
-            >
-              <User size={22} strokeWidth={1.2} />
+              {isSearchOpen ? <X size={20} /> : <Search size={20} />}
             </button>
             <button 
               className="relative hover:opacity-60 transition-opacity"
               onClick={() => setIsWishlistOpen(true)}
+              aria-label="Wishlist"
             >
-              <Heart size={21} strokeWidth={1.2} className={wishlistCount > 0 ? "fill-gold text-gold" : ""} />
+              <Heart size={20} className={wishlistCount > 0 ? "fill-gold text-gold" : ""} />
               {wishlistCount > 0 && (
-                <span className="absolute -top-1.5 -right-2 bg-gold text-white text-[9px] font-bold w-[16px] h-[16px] rounded-full flex items-center justify-center border border-white">
+                <span className="absolute -top-1.5 -right-1.5 bg-gold text-white text-[8px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center">
                   {wishlistCount}
                 </span>
               )}
@@ -185,73 +188,78 @@ const Navbar = () => {
             <button 
               className="relative hover:opacity-60 transition-opacity"
               onClick={() => setIsCartOpen(true)}
+              aria-label="Cart"
             >
-              <ShoppingBag size={22} strokeWidth={1.2} />
-              <span className="absolute -top-1.5 -right-2 bg-charcoal text-white text-[9px] font-bold w-[16px] h-[16px] rounded-full flex items-center justify-center">
-                {cartCount}
-              </span>
+              <ShoppingBag size={20} />
+              {cartCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 bg-charcoal text-white text-[8px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
             </button>
-            {/* Hamburger for Mobile */}
             <button 
               className="lg:hidden p-1 text-charcoal"
               onClick={() => setIsMobileMenuOpen(true)}
+              aria-label="Open Menu"
             >
-              <Menu size={24} strokeWidth={1.5} />
+              <Menu size={22} />
             </button>
           </div>
-        </div>
-      </nav>
+        </nav>
 
-      {/* Search Overlay */}
-      <div className={cn(
-        "absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-lg overflow-hidden transition-all duration-500 z-40",
-        isSearchOpen ? "max-h-[100px] opacity-100 border-b" : "max-h-0 opacity-0 border-none"
-      )}>
-        <div className="container mx-auto px-6 md:px-12 py-4">
-          <form 
-            className="flex items-center gap-4"
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (searchQuery.trim()) {
-                window.location.href = `/products?search=${encodeURIComponent(searchQuery)}`;
-              }
-            }}
-          >
-            <Search size={20} className="text-gray-400" />
-            <input 
-              type="text" 
-              placeholder="Search our collection..."
-              className="flex-1 bg-transparent border-none outline-none text-sm md:text-base font-sans tracking-wide text-charcoal placeholder:text-gray-300"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              autoFocus={isSearchOpen}
-            />
-            <button type="submit" className="hidden">Search</button>
-          </form>
+        {/* Search Overlay */}
+        <div className={cn(
+          "absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-lg overflow-hidden transition-all duration-300",
+          isSearchOpen ? "max-h-[100px] opacity-100 border-b" : "max-h-0 opacity-0"
+        )}>
+          <div className="container mx-auto px-6 md:px-12 py-4">
+            <form 
+              className="flex items-center gap-4"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (searchQuery.trim()) {
+                  window.location.href = `/products?search=${encodeURIComponent(searchQuery)}`;
+                }
+              }}
+            >
+              <Search size={18} className="text-gray-400" />
+              <input 
+                type="text" 
+                placeholder="Search products..."
+                className="flex-1 bg-transparent border-none outline-none text-sm font-sans tracking-wide text-charcoal"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </form>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Slide-out Menu */}
+      {/* Mobile Slide-out Menu - Higher Z-Index */}
       <div className={cn(
-        "fixed inset-0 bg-black/50 z-[100] transition-opacity duration-300 lg:hidden",
-        isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        "fixed inset-0 bg-black/60 z-[200] transition-opacity duration-300 lg:hidden",
+        isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
       )}>
+        <div 
+          className="absolute inset-0" 
+          onClick={() => setIsMobileMenuOpen(false)} 
+        />
         <div className={cn(
-          "absolute inset-y-0 left-0 w-[80%] max-w-sm bg-white shadow-2xl transition-transform duration-300 ease-out flex flex-col",
+          "absolute inset-y-0 left-0 w-[85%] max-w-sm bg-white shadow-2xl transition-transform duration-300 ease-out flex flex-col",
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         )}>
           {/* Mobile Menu Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-100 bg-[#FAF8F5]">
-            <div className="relative h-10 w-24">
-              <Image src="/images/logo.png" alt="Silver Spoon" fill className="object-contain" />
+          <div className="flex items-center justify-between p-5 border-b border-gray-100 bg-white">
+            <div className="relative h-9 w-24">
+              <Image src="/images/logo.png" alt="Silver Spoon" fill className="object-contain object-left" />
             </div>
             <button onClick={() => setIsMobileMenuOpen(false)} className="text-charcoal p-1">
-              <X size={24} />
+              <X size={22} />
             </button>
           </div>
 
           {/* Mobile Menu Links */}
-          <div className="flex-1 overflow-y-auto py-6">
+          <div className="flex-1 overflow-y-auto py-4 bg-white">
             <div className="flex flex-col">
               {menuItems.map((item) => (
                 <div key={item.title} className="border-b border-gray-50 last:border-none">
@@ -259,18 +267,18 @@ const Navbar = () => {
                     <>
                       <button 
                         onClick={() => toggleAccordion(item.title)}
-                        className="w-full flex items-center justify-between px-8 py-4 text-left"
+                        className="w-full flex items-center justify-between px-6 py-4 text-left"
                       >
                         <span className="text-[12px] font-extrabold text-charcoal uppercase tracking-[0.2em]">
                           {item.title}
                         </span>
-                        {activeAccordion === item.title ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                        {activeAccordion === item.title ? <ChevronUp size={14} className="text-gray-400" /> : <ChevronDown size={14} className="text-gray-400" />}
                       </button>
                       <div className={cn(
-                        "bg-[#FAF8F5] overflow-hidden transition-all duration-300",
+                        "bg-gray-50/50 overflow-hidden transition-all duration-300",
                         activeAccordion === item.title ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
                       )}>
-                        <div className="px-10 py-4 flex flex-col gap-4">
+                        <div className="px-8 py-3 flex flex-col gap-3.5">
                           <Link 
                             href={item.href} 
                             onClick={() => setIsMobileMenuOpen(false)}
@@ -295,7 +303,7 @@ const Navbar = () => {
                     <Link 
                       href={item.href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block px-8 py-4 text-[12px] font-extrabold text-charcoal uppercase tracking-[0.2em]"
+                      className="block px-6 py-4 text-[12px] font-extrabold text-charcoal uppercase tracking-[0.2em]"
                     >
                       {item.title}
                     </Link>
@@ -306,19 +314,20 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Footer */}
-          <div className="p-6 border-t border-gray-100 bg-[#FAF8F5]">
+          <div className="p-6 border-t border-gray-100 bg-white mt-auto">
             <div className="flex flex-col gap-4">
-              <Link href="/track" className="flex items-center gap-3 text-[11px] font-bold text-charcoal/60 uppercase tracking-widest">
-                <Truck size={16} /> Track Order
-              </Link>
-              <Link href="/stores" className="flex items-center gap-3 text-[11px] font-bold text-charcoal/60 uppercase tracking-widest">
+              <Link 
+                href="/stores" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center gap-3 text-[11px] font-bold text-charcoal/60 uppercase tracking-widest hover:text-charcoal transition-colors"
+              >
                 <MapPin size={16} /> Store Locator
               </Link>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
