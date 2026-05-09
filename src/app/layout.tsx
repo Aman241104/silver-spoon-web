@@ -16,8 +16,36 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Silver Spoon (LJ India Services) | Premium Silver Jewellery & Gifting",
-  description: "Exquisite silver jewellery, idols, and gifting items from Silver Spoon (LJ India Services). Crafted with purity and elegance since 1995.",
+  title: "Silver Spoon | Best Premium Silver Jewellery & Gifting in Ahmedabad",
+  description: "Silver Spoon (LJ India Services) offers the best premium silver jewellery, pure silver idols, German silver, and corporate gifting in Chandkheda, Ahmedabad, Gujarat.",
+  keywords: "Silver Jewellery Ahmedabad, Best Silver Shop Chandkheda, Silver Idols Gujarat, Corporate Gifting Ahmedabad, Pure Silver Shop Ahmedabad, German Silver Gifts",
+  openGraph: {
+    title: "Silver Spoon | Premium Silver Jewellery & Gifting in Ahmedabad",
+    description: "Discover exquisite silver jewellery, idols, and gifting items at Silver Spoon (LJ India Services) in Chandkheda, Ahmedabad.",
+    siteName: "Silver Spoon",
+    locale: "en_IN",
+    type: "website",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "JewelryStore",
+  "name": "Silver Spoon (LJ India Services)",
+  "description": "Premium silver jewellery, pure silver idols, German silver, and corporate gifting.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "F-14 First Floor, Omkar Lotus, Opposite Swaminarayan Temple, Chandkheda Samshan Road",
+    "addressLocality": "Chandkheda, Ahmedabad",
+    "addressRegion": "Gujarat",
+    "postalCode": "382424",
+    "addressCountry": "IN"
+  },
+  "telephone": "+91-9998123479",
+  "email": "info@silverspoon.com"
 };
 
 import { CartProvider } from "@/context/CartContext";
@@ -33,6 +61,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`} suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="bg-white text-charcoal font-sans antialiased selection:bg-silver-200 selection:text-charcoal">
         <WishlistProvider>
           <CartProvider>
