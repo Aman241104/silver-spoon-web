@@ -37,25 +37,25 @@ const Newsletter = () => {
       
       {/* Full-width Background Image with Fade */}
       <div className="absolute inset-0 w-full h-full flex flex-col lg:flex-row">
-        <div className="relative w-full lg:w-3/5 h-[300px] lg:h-full newsletter-image">
+        <div className="relative w-full lg:w-1/2 h-[300px] lg:h-full newsletter-image">
           <Image
             src="/images/collections/new-arrivals.png"
             alt="Silver Lifestyle"
             fill
-            className="object-cover"
+            className="object-cover object-left"
             priority
           />
           {/* Seamless fade to background color */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent/40 via-80% to-[#F5F2EB] hidden lg:block" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent/40 via-70% to-[#F5F2EB] lg:hidden" />
         </div>
-        <div className="hidden lg:block lg:w-2/5 bg-[#F5F2EB]" />
+        <div className="hidden lg:block lg:w-1/2 bg-[#F5F2EB]" />
       </div>
 
       {/* Content Container */}
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="flex flex-col lg:flex-row lg:justify-end">
-          <div className="lg:w-1/2 flex flex-col justify-center newsletter-content">
+          <div className="lg:w-1/2 flex flex-col justify-center newsletter-content lg:pl-16">
             <span className="text-[10px] md:text-[11px] uppercase tracking-[0.4em] text-[#1a1a1a]/50 font-bold mb-4">
               LIMITED EDITION
             </span>

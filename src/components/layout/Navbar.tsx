@@ -119,9 +119,9 @@ const Navbar = () => {
         "w-full transition-all duration-300 border-b border-white/5",
         isScrolled ? "fixed top-0 left-0 bg-[#111827]/95 backdrop-blur-md shadow-lg py-2 md:py-3" : "relative bg-[#111827] py-4 md:py-6"
       )}>
-        <nav className="container mx-auto px-6 md:px-12 flex items-center justify-between">
+        <nav className="container mx-auto px-6 lg:px-8 flex items-center justify-between">
           {/* Left: Logo */}
-          <Link href="/" className="flex flex-col items-start lg:w-[250px] group">
+          <Link href="/" className="flex flex-col items-start lg:w-[220px] group">
             <div className={cn(
               "relative transition-all duration-300 ease-in-out",
               isScrolled ? "h-10 w-32 md:h-12 md:w-40" : "h-14 w-44 md:h-20 md:w-56"
@@ -144,11 +144,11 @@ const Navbar = () => {
           </Link>
 
           {/* Center: Navigation Links (Desktop Only) */}
-          <div className="hidden lg:flex items-center justify-center gap-8 xl:gap-10 flex-1">
+          <div className="hidden lg:flex items-center justify-center gap-4 xl:gap-8 flex-1">
             {menuItems.map((item) => (
               item.subItems ? (
                 <div key={item.title} className="relative group">
-                  <Link href={item.href} className="flex items-center gap-1.5 text-[11px] font-extrabold text-white uppercase tracking-[0.15em] hover:text-white/60 cursor-pointer py-2">
+                  <Link href={item.href} className="flex items-center gap-1.5 text-[11px] font-extrabold text-white uppercase tracking-[0.1em] xl:tracking-[0.15em] hover:text-white/60 cursor-pointer py-2 whitespace-nowrap">
                     {item.title} <ChevronDown size={10} strokeWidth={3} className="mt-0.5 group-hover:rotate-180 transition-transform duration-300" />
                   </Link>
                   <div className="absolute top-full left-1/2 -translate-x-1/2 w-48 bg-[#111827] shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-white/10 py-4 mt-1">
@@ -160,7 +160,7 @@ const Navbar = () => {
                   </div>
                 </div>
               ) : (
-                <Link key={item.title} href={item.href} className="text-[11px] font-extrabold text-white uppercase tracking-[0.15em] hover:text-white/60 transition-colors py-2 border-b-2 border-transparent hover:border-white/10">
+                <Link key={item.title} href={item.href} className="text-[11px] font-extrabold text-white uppercase tracking-[0.1em] xl:tracking-[0.15em] hover:text-white/60 transition-colors py-2 border-b-2 border-transparent hover:border-white/10 whitespace-nowrap">
                   {item.title}
                 </Link>
               )
@@ -168,7 +168,7 @@ const Navbar = () => {
           </div>
 
           {/* Right: Icons */}
-          <div className="flex items-center justify-end gap-5 md:gap-6 text-white lg:w-[250px]">
+          <div className="flex items-center justify-end gap-5 md:gap-6 text-white lg:w-[220px]">
             <button 
               className="hover:opacity-60 transition-opacity"
               onClick={() => setIsSearchOpen(!isSearchOpen)}
