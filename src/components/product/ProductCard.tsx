@@ -70,6 +70,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             e.preventDefault();
             toggleWishlist(product);
           }}
+          aria-label={isInWishlist(product.id) ? "Remove from Wishlist" : "Add to Wishlist"}
           className={cn(
             "p-2.5 bg-white/90 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-white border border-gray-100",
             isInWishlist(product.id) && "opacity-100"
@@ -80,6 +81,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
         <button 
           onClick={handleAddToCart}
+          aria-label={isAdded ? "Added to Bag" : "Add to Bag"}
           className={cn(
             "p-2.5 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-500 border border-gray-100",
             isAdded ? "bg-gold text-white" : "bg-white/90 text-gray-400 hover:text-charcoal hover:bg-white"

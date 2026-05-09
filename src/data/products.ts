@@ -160,6 +160,10 @@ export const products: Product[] = [
   createProduct("men-brace-2", "Silver Rope Bracelet", "bracelets", "Men's Bracelets", "/images/products/bracelets.png", undefined, "925", 3800, "men"),
   createProduct("wb-1", "LIGHT WEIGHT BRACELET", "bracelets", "Women's Bracelets", "/images/products/bracelets.png", undefined, "925", 2800, "women"),
   createProduct("wb-2", "ADJUSTABLE BRACELET", "bracelets", "Women's Bracelets", "/images/products/bracelets.png", undefined, "925", 3200, "women"),
+  createProduct("wb-3", "TENNIS BRACELET", "bracelets", "Women's Bracelets", "/images/products/bracelets.png", undefined, "925", 4800, "women"),
+  createProduct("wb-4", "MS BRACELATE", "bracelets", "Women's Bracelets", "/images/products/bracelets.png", undefined, "925", 3500, "women"),
+  createProduct("wb-5", "PEARL BRACELATE", "bracelets", "Women's Bracelets", "/images/products/bracelets.png", undefined, "925", 2800, "women"),
+  createProduct("wb-6", "PENDORA BRACELATE", "bracelets", "Women's Bracelets", "/images/products/bracelets.png", undefined, "925", 5500, "women"),
 
   // 4. CHAINS
   createProduct("men-chain-1", "Sterling Silver Box Chain", "chains", "Men's Chains", "/images/collections/jewellery.png", undefined, "925", 3500, "men"),
@@ -173,6 +177,11 @@ export const products: Product[] = [
   // 6. ANKLETS
   createProduct("wa-1", "Traditional Bridal Payal", "anklets", "Anklets", "/images/products/payal.png", undefined, "925", 4500, "women"),
   createProduct("wa-2", "Contemporary Silver Anklet", "anklets", "Anklets", "/images/products/payal.png", undefined, "925", 1800, "women"),
+  createProduct("wa-3", "AGRA PAYAL", "anklets", "Anklets", "/images/products/payal.png", undefined, "925", 5200, "women"),
+  createProduct("wa-4", "FANCY PAYAL", "anklets", "Anklets", "/images/products/payal.png", undefined, "925", 3800, "women"),
+  createProduct("wa-5", "OXODISED PAYAL", "anklets", "Anklets", "/images/products/payal.png", undefined, "925", 2500, "women"),
+  createProduct("wa-6", "FUSION PAYAL", "anklets", "Anklets", "/images/products/payal.png", undefined, "925", 3200, "women"),
+  createProduct("wa-7", "925 ANKLETS", "anklets", "Anklets", "/images/products/payal.png", undefined, "925", 1500, "women"),
 
   // 7. TOE RINGS
   createProduct("wtr-1", "Artisan Toe Ring Set", "toe-rings", "Toe Rings", "/images/products/artisan-toe-ring.png", undefined, "925", 850, "women"),
@@ -198,6 +207,9 @@ export const products: Product[] = [
   createProduct("ut-11", "TORTOISE KURMA DIYA", "utensils", "Utensils", "/images/products/tortoise-kurma-diya.png", undefined, "925", 3800),
   createProduct("ut-12", "FLUTED SILVER BOWL", "utensils", "Utensils", "/images/products/fluted-silver-bowl.png", undefined, "925", 3500),
   createProduct("ut-13", "PAIR OF SILVER DIYAS", "utensils", "Utensils", "/images/products/pair-silver-diyas.png", undefined, "925", 2200),
+  createProduct("ut-14", "KUM KUM DAANI", "utensils", "Utensils", "/images/products/pooja-utensils.png", undefined, "925", 1200),
+  createProduct("ut-15", "SINDOOR DAANI", "utensils", "Utensils", "/images/products/pooja-utensils.png", undefined, "925", 1500),
+  createProduct("ut-16", "PRASHAD KATORI", "utensils", "Utensils", "/images/products/pooja-utensils.png", undefined, "925", 950),
 
   // 10. GERMAN SILVER
   createProduct("gs-1", "DRY FRUIT BOX", "german-silver", "German Silver", "/images/products/mukhwas-box.png", undefined, undefined, 2500),
@@ -263,5 +275,22 @@ export const products: Product[] = [
   // 13. SILVER FRAMES
   createProduct("fr-1", "GANESH JI FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 5500),
   createProduct("fr-2", "LAXMI JI FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 5500),
+  createProduct("fr-3", "TREE MURTI FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 5800),
   createProduct("fr-4", "RADHE KRISHNA FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 6500),
+  createProduct("fr-5", "LADUU GOPAL FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 4500),
+  createProduct("fr-6", "RAM DARBAR FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 7500),
+  createProduct("fr-7", "SHIV PARIVAR FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 7200),
+  createProduct("fr-8", "BALAJI FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 6800),
+  createProduct("fr-9", "MAHAVEER SWAMI FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 6500),
+  createProduct("fr-10", "RAM LALLA FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 7800),
+  createProduct("fr-11", "SAI BABA FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 5200),
+  createProduct("fr-12", "SHREENATH JI FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 6200),
+  createProduct("fr-13", "HANUMAN JI FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 5800),
+  createProduct("fr-14", "KHATU SHYAM FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 6500),
+  createProduct("fr-15", "SALASAR BALAJI FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 6800),
+  createProduct("fr-16", "MAHALAXMI MAA FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 6200),
+  createProduct("fr-17", "UMIYA MAA FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 6200),
+  createProduct("fr-18", "GOGA MAHARAJ FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 6200),
+  createProduct("fr-19", "NAVAKAR MATRA FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 4500),
+  createProduct("fr-20", "AMBE MAA FRAME", "silver-frames", "Frames", "/images/collections/gifting.png", undefined, "999", 6200),
 ];
