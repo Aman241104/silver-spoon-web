@@ -100,8 +100,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
             {product.name}
           </h3>
           <div className="w-8 h-[1px] bg-gray-200 my-2 md:my-3 mx-auto lg:mx-0 transition-all duration-500 group-hover:w-16 group-hover:bg-gray-400" />
-          <p className="text-[10px] md:text-[11px] text-gray-400 font-sans tracking-widest uppercase font-bold">
-            Price on Request
+          <p className="text-[10px] md:text-[11px] text-[#2c2c2c] font-sans tracking-widest uppercase font-bold">
+            {product.price > 0 ? `₹${product.price.toLocaleString()}` : "Price on Request"}
           </p>
         </Link>
       </div>

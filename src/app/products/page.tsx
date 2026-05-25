@@ -105,7 +105,7 @@ function ProductsContent() {
                 let catImage = "/images/collections/jewellery.png";
                 if (cat.slug === "men") catImage = "/images/collections/men-category-new.png";
                 else if (cat.slug === "women") catImage = "/images/collections/women-category.png";
-                else if (cat.slug === "brooches") catImage = "/images/products/bracelets.png";
+                else if (cat.slug === "brooches") catImage = "/images/category/SILVER 925 BROOCH/BRO001.png";
                 else if (cat.slug === "rings") catImage = "/images/products/regular-ring.png";
                 else if (cat.slug === "bracelets") catImage = "/images/products/bracelets.png";
                 else if (cat.slug === "anklets") catImage = "/images/products/payal.png";

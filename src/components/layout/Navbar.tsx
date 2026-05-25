@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Search, ShoppingBag, MapPin, Package, Menu, X, ChevronDown, ChevronUp, User, Heart } from "lucide-react";
+import { Search, ShoppingBag, MapPin, Package, Menu, X, ChevronDown, ChevronUp, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
@@ -61,7 +61,7 @@ const Navbar = () => {
       title: "MEN", 
       href: "/products?gender=men",
       subItems: [
-        { title: "Brooches", href: "/products?category=brooches" },
+        { title: "Brooches & Buttons", href: "/products?category=brooches" },
         { title: "Bracelet", href: "/products?category=bracelets&gender=men" },
         { title: "Chain", href: "/products?category=chains&gender=men" },
         { title: "Kada", href: "/products?category=kadas" },

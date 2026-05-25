@@ -9,6 +9,8 @@ export interface Product {
   description: string;
   image: string;
   price: number;
+  weight?: string;
+  dimensions?: string;
   featured?: boolean;
   occasions?: string[];
   styles?: string[];
@@ -17,9 +19,9 @@ export interface Product {
 export const categories = [
   {
     id: "brooches",
-    name: "Brooches",
+    name: "Brooches & Buttons",
     slug: "brooches",
-    description: "Elegant 925 silver brooches including heritage and divine designs.",
+    description: "Elegant 925 silver brooches and buttons including heritage and divine designs.",
     subCategories: []
   },
   {
@@ -124,12 +126,15 @@ export const categories = [
 
 const createProduct = (
   id: string, name: string, category: string, subCategory: string, image: string, 
-  serialNumber?: string, purity?: string, price: number = 2500, gender: "men" | "women" | "kids" | "unisex" = "unisex"
+  serialNumber?: string, purity?: string, price: number = 2500, gender: "men" | "women" | "kids" | "unisex" = "unisex",
+  weight?: string, dimensions?: string
 ): Product => ({
   id, name, category, subCategory, serialNumber, purity, gender,
   description: `Exquisite ${name} crafted with the finest materials. Perfect for any occasion.`,
   image,
   price,
+  weight,
+  dimensions,
   featured: true,
   occasions: ["Festivals", "Gifting"],
   styles: ["Classic"]
@@ -137,14 +142,16 @@ const createProduct = (
 
 export const products: Product[] = [
   // 1. BROOCHES
-  createProduct("bro-1", "CHATRAPATI LAGACY BROOCH", "brooches", "Brooches", "/images/collections/jewellery.png", "BRO/001", "925", 3500, "men"),
-  createProduct("bro-2", "DIVINE TRISHUL BROOCH", "brooches", "Brooches", "/images/collections/jewellery.png", "BRO/002", "925", 2800, "men"),
-  createProduct("bro-3", "REGAL LION CREST", "brooches", "Brooches", "/images/collections/jewellery.png", "BRO/003", "925", 3200, "men"),
-  createProduct("bro-4", "ETERNAL RADHA KRISHNA EMBLEM", "brooches", "Brooches", "/images/collections/jewellery.png", "BRO/004", "925", 4000, "men"),
-  createProduct("bro-5", "HANUMAN RAM", "brooches", "Brooches", "/images/collections/jewellery.png", "BRO/005", "925", 3800, "men"),
-  createProduct("bro-6", "ROYAL STALLION", "brooches", "Brooches", "/images/collections/jewellery.png", "BRO/006", "925", 3000, "men"),
-  createProduct("bro-7", "ASHOKA EMBLEM PESTIGE", "brooches", "Brooches", "/images/collections/jewellery.png", "BRO/007", "925", 4200, "men"),
-  createProduct("bro-8", "IMPERIAL ROSE", "brooches", "Brooches", "/images/collections/jewellery.png", "BRO/008", "925", 2500, "men"),
+  createProduct("bro-1", "CHATRAPATI LAGACY BROOCH", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO001.png", "BRO/001", "925", 12999, "men", "16.5g", "5 x 3.5 cm"),
+  createProduct("bro-2", "DIVINE TRISHUL BROOCH", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO002.png", "BRO/002", "925", 14799, "men", "18.5g"),
+  createProduct("bro-3", "KING LION BUTTON", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO003.png", "BRO/003", "925", 9999, "men", "12.81g", "3 x 2 cm"),
+  createProduct("bro-4", "ETERNAL RADHA KRISHNA EMBLEM", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO004.png", "BRO/004", "925", 8999, "men", "11.45g", "4 x 2.8 cm"),
+  createProduct("bro-5", "HANUMAN RAM", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO005.png", "BRO/005", "925", 8999, "men", "11.27g", "4 x 2 cm"),
+  createProduct("bro-6", "ROYAL STALLION", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO006.png", "BRO/006", "925", 6999, "men", "9.13g", "3.5 x 3 cm"),
+  createProduct("bro-7", "ASHOKA EMBLEM PESTIGE", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO007.png", "BRO/007", "925", 9699, "men", "12.2g", "3 x 2.8 cm"),
+  createProduct("bro-8", "IMPERIAL ROSE", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO008.png", "BRO/008", "925", 11999, "men", "14.97g", "5.5 x 5.5 cm"),
+  createProduct("bro-9", "ASHOKA EMBLEM PESTIGE BUTTON", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO009.png", "BRO/009", "925", 14399, "men", "18g", "3.5 x 3 cm"),
+  createProduct("bro-10", "ROAYAL HORSE BUTTON", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO010.png", "BRO/010", "925", 10399, "men", "13g", "3 x 3 cm"),
 
   // 2. RINGS
   createProduct("men-ring-1", "Classic Men's Signet", "rings", "Men's Rings", "/images/products/regular-ring.png", undefined, "925", 2200, "men"),

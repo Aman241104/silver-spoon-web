@@ -88,7 +88,9 @@ export default function ProductDetailPage() {
                <div className="flex items-center gap-10 mb-10 pb-10 border-b border-gray-100">
                   <div className="flex flex-col">
                      <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-1">Investment</span>
-                     <span className="text-2xl font-serif text-[#2c2c2c]">Price on Request</span>
+                     <span className="text-2xl font-serif text-[#2c2c2c]">
+                        {product.price > 0 ? `₹${product.price.toLocaleString()}` : "Price on Request"}
+                     </span>
                   </div>
                   <div className="w-[1px] h-10 bg-gray-100" />
                   <div className="flex items-center gap-3">
@@ -105,6 +107,35 @@ export default function ProductDetailPage() {
                   <br /><br />
                   Exquisitely hand-finished by our master silversmiths, this piece embodies the timeless elegance of heritage craftsmanship. A divine addition to your sanctuary or a precious gift for a legacy.
                </p>
+
+               {(product.weight || product.dimensions || product.purity || product.serialNumber) && (
+                 <div className="grid grid-cols-2 gap-y-6 mb-12 py-8 border-t border-b border-gray-100">
+                    {product.weight && (
+                      <div className="flex flex-col">
+                        <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-1">Weight</span>
+                        <span className="text-[13px] font-bold text-[#2c2c2c] uppercase">{product.weight}</span>
+                      </div>
+                    )}
+                    {product.dimensions && (
+                      <div className="flex flex-col">
+                        <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-1">Dimensions</span>
+                        <span className="text-[13px] font-bold text-[#2c2c2c] uppercase">{product.dimensions}</span>
+                      </div>
+                    )}
+                    {product.purity && (
+                      <div className="flex flex-col">
+                        <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-1">Purity</span>
+                        <span className="text-[13px] font-bold text-[#2c2c2c] uppercase">{product.purity} Silver</span>
+                      </div>
+                    )}
+                    {product.serialNumber && (
+                      <div className="flex flex-col">
+                        <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-1">Serial Number</span>
+                        <span className="text-[13px] font-bold text-[#2c2c2c] uppercase">{product.serialNumber}</span>
+                      </div>
+                    )}
+                 </div>
+               )}
 
                <div className="space-y-6 mb-16">
                   <div className="flex flex-col sm:flex-row gap-4">
