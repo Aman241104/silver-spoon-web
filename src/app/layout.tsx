@@ -38,7 +38,7 @@ const jsonLd = {
   "description": "Premium silver jewellery, pure silver idols, German silver, and corporate gifting.",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "F-14 First Floor, Omkar Lotus, Opposite Swaminarayan Temple, Chandkheda Samshan Road",
+    "streetAddress": "FF-14 First Floor, Omkar Lotus, Opposite Swaminarayan Temple, Chandkheda-Motera Road, Beside New CG Road",
     "addressLocality": "Chandkheda, Ahmedabad",
     "addressRegion": "Gujarat",
     "postalCode": "382424",

@@ -58,8 +58,9 @@ export default function StoreLocatorPage() {
                      <div className="pt-1">
                         <p className="text-[10px] uppercase tracking-[0.2em] text-gold font-extrabold mb-3">Location</p>
                         <p className="text-lg text-charcoal/70 leading-relaxed font-serif italic">
-                           F-14 Omkar Lotus, Chandkheda, <br />
-                           Ahmedabad, Gujarat - 382424
+                           FF-14 Omkar Lotus, Opp. Swaminarayan Temple, <br />
+                           Chandkheda-Motera Road, Beside New CG Road, <br />
+                           Chandkheda, Ahmedabad - 382424
                         </p>
                      </div>
                   </div>

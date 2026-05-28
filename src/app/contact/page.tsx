@@ -22,8 +22,8 @@ export default function ContactPage() {
     {
       icon: <MapPin className="text-[#2c2c2c]" size={28} strokeWidth={1} />,
       title: "Visit Us",
-      details: "F-14 Omkar Lotus, Chandkheda",
-      subtext: "Ahmedabad, Gujarat - 382424",
+      details: "FF-14 Omkar Lotus, Chandkheda",
+      subtext: "Opp. Swaminarayan Temple, Ahmedabad - 382424",
     },
   ];
 

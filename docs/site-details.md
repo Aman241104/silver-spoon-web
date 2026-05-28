@@ -17,7 +17,7 @@ The website will be designed to reflect elegance, trust, and product clarity - h
 
 ## 3. Contact Information
 - **Company Name:** Silver Spoon (LJ India Services)
-- **Address:** F-14 First Floor, Omkar Lotus, Opposite Swaminarayan Temple, Chandkheda Samshan Road, Chandkheda, Ahmedabad, Gujarat - 382424
+- **Address:** FF-14 First Floor, Omkar Lotus, Opposite Swaminarayan Temple, Chandkheda-Motera Road, Beside New CG Road, Chandkheda, Ahmedabad, Gujarat - 382424
 - **Contact Number:** +91 99981 23479
 - **Email:** info@silverspoon.com
 
