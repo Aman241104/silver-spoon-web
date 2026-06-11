@@ -6,7 +6,7 @@ import { Phone, Mail } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-white pt-16 md:pt-24 text-charcoal font-sans border-t border-gray-100">
+    <footer className="bg-[#111827] pt-16 md:pt-24 text-white font-sans border-t border-white/10">
       <div className="container mx-auto px-6 md:px-12 mb-16 md:mb-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           
@@ -18,25 +18,25 @@ const Footer = () => {
                   src="/images/logo.png"
                   alt="Silver Spoon Logo"
                   fill
-                  className="object-contain object-left"
+                  className="object-contain object-left brightness-0 contrast-[100] invert"
                 />
               </div>
-              <span className="text-[8px] uppercase tracking-[0.4em] text-gray-400 font-medium ml-0.5">
+              <span className="text-[8px] uppercase tracking-[0.4em] text-white/40 font-medium ml-0.5">
                 TIMELESS ELEGANCE, EVERYDAY
               </span>
             </Link>
-            <p className="text-[13px] text-gray-500 leading-relaxed max-w-[280px] font-medium opacity-90">
+            <p className="text-[13px] text-white/50 leading-relaxed max-w-[280px] font-medium opacity-90">
               Discover a wide range of beautifully crafted Silver & German Silver products that add a touch of elegance to every moment.
             </p>
             <div className="flex gap-3 mt-4">
                {/* Facebook */}
-               <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" className="w-8 h-8 rounded-full flex items-center justify-center text-gray-300 hover:text-charcoal transition-all border border-gray-100/50">
+               <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" className="w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white transition-all border border-white/10">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                   </svg>
                </Link>
                {/* Instagram */}
-               <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram" className="w-8 h-8 rounded-full flex items-center justify-center text-gray-300 hover:text-charcoal transition-all border border-gray-100/50">
+               <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram" className="w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white transition-all border border-white/10">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -44,7 +44,7 @@ const Footer = () => {
                   </svg>
                </Link>
                {/* WhatsApp */}
-               <Link href="https://wa.me/919998123479" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp" className="w-8 h-8 rounded-full flex items-center justify-center text-gray-300 hover:text-charcoal transition-all border border-gray-100/50">
+               <Link href="https://wa.me/919998123479" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp" className="w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white transition-all border border-white/10">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                   </svg>
@@ -54,7 +54,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="lg:pl-8">
-            <h4 className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-[#1a1a1a] mb-8">
+            <h4 className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-white/80 mb-8">
               QUICK LINKS
             </h4>
             <ul className="flex flex-col gap-3.5">
@@ -67,7 +67,7 @@ const Footer = () => {
                 { name: "Contact Us", href: "/contact" },
               ].map((item) => (
                 <li key={item.name}>
-                  <Link href={item.href} className="text-[13px] text-gray-500 hover:text-charcoal transition-colors font-medium">
+                  <Link href={item.href} className="text-[13px] text-white/50 hover:text-white transition-colors font-medium">
                     {item.name}
                   </Link>
                 </li>
@@ -77,7 +77,7 @@ const Footer = () => {
 
           {/* Customer Service */}
           <div>
-            <h4 className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-[#1a1a1a] mb-8">
+            <h4 className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-white/80 mb-8">
               CUSTOMER SERVICE
             </h4>
             <ul className="flex flex-col gap-3.5">
@@ -88,7 +88,7 @@ const Footer = () => {
                 { name: "Care Instructions", href: "/contact" },
               ].map((item) => (
                 <li key={item.name}>
-                  <Link href={item.href} className="text-[13px] text-gray-500 hover:text-charcoal transition-colors font-medium">
+                  <Link href={item.href} className="text-[13px] text-white/50 hover:text-white transition-colors font-medium">
                     {item.name}
                   </Link>
                 </li>
@@ -98,17 +98,17 @@ const Footer = () => {
 
           {/* Contact Us */}
           <div>
-            <h4 className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-[#1a1a1a] mb-8">
+            <h4 className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-white/80 mb-8">
               CONTACT US
             </h4>
             <ul className="flex flex-col gap-5">
               <li className="flex items-center gap-3">
-                <Phone size={14} strokeWidth={1} className="text-gray-300 shrink-0" />
-                <span className="text-[13px] text-gray-500 font-medium">+91 99981 23479</span>
+                <Phone size={14} strokeWidth={1} className="text-white/30 shrink-0" />
+                <span className="text-[13px] text-white/50 font-medium">+91 99981 23479</span>
               </li>
               <li className="flex items-center gap-3">
-                <Mail size={14} strokeWidth={1} className="text-gray-300 shrink-0" />
-                <span className="text-[13px] text-gray-500 font-medium">info@silverspoon.com</span>
+                <Mail size={14} strokeWidth={1} className="text-white/30 shrink-0" />
+                <span className="text-[13px] text-white/50 font-medium">info@silverspoon.com</span>
               </li>
             </ul>
           </div>

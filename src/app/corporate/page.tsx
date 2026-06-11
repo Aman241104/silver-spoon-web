@@ -65,6 +65,28 @@ export default function CorporateGiftingPage() {
         </div>
       </section>
 
+      {/* MOQ Section */}
+      <section className="py-16 bg-[#FAF8F5] border-t border-gray-100">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <span className="text-[10px] uppercase tracking-[0.3em] text-gold font-bold">Bulk Orders</span>
+            <h2 className="text-2xl md:text-3xl font-serif text-[#2c2c2c] mt-3">Minimum Order Quantity</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            <div className="bg-white border border-gray-100 rounded-sm p-8 text-center shadow-sm">
+              <p className="text-[11px] uppercase tracking-[0.2em] text-gray-400 mb-3">Sterling Silver (925 / 999)</p>
+              <p className="text-5xl font-serif text-[#2c2c2c] mb-2">10</p>
+              <p className="text-sm text-gray-500">pieces minimum</p>
+            </div>
+            <div className="bg-white border border-gray-100 rounded-sm p-8 text-center shadow-sm">
+              <p className="text-[11px] uppercase tracking-[0.2em] text-gray-400 mb-3">German Silver &amp; Silver Coated</p>
+              <p className="text-5xl font-serif text-[#2c2c2c] mb-2">20</p>
+              <p className="text-sm text-gray-500">pieces minimum</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Collections Snippet */}
       <section className="py-24 bg-[#0a0a0a] text-white overflow-hidden relative">
          <div className="absolute inset-0 opacity-20">

@@ -45,8 +45,8 @@ const ExploreCollections = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 max-w-[1400px] mx-auto">
           {[
-            { title: "MEN'S COLLECTION", href: "/products?gender=men", image: "/images/collections/image copy.png" },
-            { title: "WOMEN'S COLLECTION", href: "/products?gender=women", image: "/images/collections/image.png" },
+            { title: "MEN'S COLLECTION", href: "/products?gender=men", image: "/images/collections/men-category-new.png" },
+            { title: "WOMEN'S COLLECTION", href: "/products?gender=women", image: "/images/collections/women-category.png" },
             { title: "GIFTING COLLECTION", href: "/gifting", image: "/images/collections/gifting-collection.png" },
             { title: "SILVERWARE & TABLEWARE", href: "/collections/utensils", image: "/images/collections/new-arrivals.png" },
           ].map((col, idx) => (

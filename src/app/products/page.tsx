@@ -29,17 +29,36 @@ export default function ProductsOverviewPage() {
 function ProductsContent() {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("search");
+  const categoryParam = searchParams.get("category");
+  const genderParam = searchParams.get("gender");
 
   // Filter out meta-categories if necessary, but here we'll show the main display ones
   const displayCategories = categories.filter(c => !["coins"].includes(c.id));
 
-  const searchResults = searchQuery 
-    ? products.filter(p => 
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+  const searchResults = searchQuery
+    ? products.filter(p =>
+        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.description.toLowerCase().includes(searchQuery.toLowerCase())
       )
     : [];
+
+  const NON_JEWELLERY = ["utensils", "german-silver", "silver-coated", "silver-idols", "silver-frames", "rakhi"];
+
+  const filteredProducts = (categoryParam || genderParam)
+    ? products.filter(p => {
+        const matchCategory = categoryParam ? p.category === categoryParam : true;
+        const matchGender = genderParam ? (p.gender === genderParam || p.gender === "unisex") : true;
+        // Exclude kitchenware/puja/gifting items from gender browsing pages
+        const isGenderBrowse = genderParam && !categoryParam;
+        if (isGenderBrowse && NON_JEWELLERY.includes(p.category)) return false;
+        return matchCategory && matchGender;
+      })
+    : null;
+
+  const filterLabel = categoryParam
+    ? categories.find(c => c.slug === categoryParam)?.name ?? categoryParam
+    : genderParam === "men" ? "Men's Collection" : genderParam === "women" ? "Women's Collection" : null;
 
   return (
     <main className="min-h-screen bg-white font-sans">
@@ -53,11 +72,13 @@ function ProductsContent() {
               THE COLLECTION
             </span>
             <h1 className="text-[36px] md:text-[64px] lg:text-[76px] font-serif text-[#2c2c2c] leading-[1.05] mb-6 md:mb-8 tracking-tight font-medium">
-              {searchQuery ? `Search Results: ${searchQuery}` : <>Curated <br /> Collections</>}
+              {searchQuery ? `Search: ${searchQuery}` : filterLabel ? filterLabel : <>Curated <br /> Collections</>}
             </h1>
             <p className="text-[#5a5a5a] text-base md:text-xl leading-relaxed max-w-2xl mx-auto">
-              {searchQuery 
+              {searchQuery
                 ? `Discovered ${searchResults.length} artisan pieces matching your search.`
+                : filteredProducts
+                ? `${filteredProducts.length} piece${filteredProducts.length !== 1 ? "s" : ""} found.`
                 : "Discover a legacy crafted in pure silver. Each piece tells a story of devotion, tradition, and timeless elegance."
               }
             </p>
@@ -84,6 +105,25 @@ function ProductsContent() {
             )}
           </div>
         </section>
+      ) : filteredProducts ? (
+        /* Category / Gender Filtered Grid */
+        <section className="py-12 md:py-24 bg-white">
+          <div className="container mx-auto px-6 md:px-12">
+            {filteredProducts.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
+                {filteredProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            ) : (
+              <div className="py-20 text-center flex flex-col items-center">
+                <Diamond size={48} className="text-gray-200 mb-8" strokeWidth={1} />
+                <p className="font-serif text-3xl text-gray-300 italic tracking-tight mb-8">No pieces found in this category</p>
+                <Link href="/products" className="text-[11px] uppercase tracking-widest font-bold text-charcoal border-b border-charcoal pb-1">View All Collections</Link>
+              </div>
+            )}
+          </div>
+        </section>
       ) : (
         /* Categories Grid */
         <section className="py-12 md:py-24 bg-white">
@@ -101,19 +141,31 @@ function ProductsContent() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 md:gap-x-12 gap-y-12 md:gap-y-20">
               {displayCategories.map((cat) => {
-                // Try to find a specific image for each category to diversify placeholders
-                let catImage = "/images/collections/jewellery.png";
-                if (cat.slug === "men") catImage = "/images/collections/men-category-new.png";
-                else if (cat.slug === "women") catImage = "/images/collections/women-category.png";
-                else if (cat.slug === "brooches") catImage = "/images/category/SILVER 925 BROOCH/BRO001.png";
-                else if (cat.slug === "rings") catImage = "/images/products/regular-ring.png";
-                else if (cat.slug === "bracelets") catImage = "/images/products/bracelets.png";
-                else if (cat.slug === "anklets") catImage = "/images/products/payal.png";
-                else if (cat.slug === "toe-rings") catImage = "/images/products/artisan-toe-ring.png";
-                else if (cat.slug === "utensils") catImage = "/images/products/pooja-utensils.png";
-                else if (cat.slug === "silver-idols") catImage = "/images/collections/ganesha-statue.png";
-                else if (cat.slug === "silver-frames") catImage = "/images/collections/gifting.png";
-                else catImage = products.find(p => p.category === cat.slug)?.image || "/images/collections/jewellery.png";
+                const PLACEHOLDER = "/images/placeholder-need-image.svg";
+                const categoryImageMap: Record<string, string> = {
+                  "men":           "/images/collections/men-category-new.png",
+                  "women":         "/images/collections/women-category.png",
+                  "brooches":      "/images/category/SILVER 925 BROOCH/BRO001.png",
+                  "rings":         "/images/category/WOMEN RINGS/LR001.png",
+                  "bracelets":     "/images/category/ladies braclete/LBR925001.png",
+                  "chains":        "/images/category/CHAIN PANDENT/CHNP001.png",
+                  "anklets":       PLACEHOLDER,
+                  "toe-rings":     PLACEHOLDER,
+                  "mangalsutra":   PLACEHOLDER,
+                  "earrings":      "/images/category/STUDS/JHUKA/EARRINGS/ER001.png",
+                  "bangles":       "/images/category/LADIES BANGADI/LBNG 001.png",
+                  "chain-pendants":"/images/category/CHAIN PANDENT/CHNP001.png",
+                  "utensils":      "/images/products/pooja-utensils.png",
+                  "german-silver": "/images/category/GERMAN SILVER/GSIMP001.png",
+                  "silver-coated": "/images/category/SILVER COATED/SLCO001.png",
+                  "silver-idols":  "/images/category/SILVER IDOL 999/SL001.png",
+                  "silver-frames": "/images/category/SILVER FRAMES/FR001.png",
+                  "rakhi":         PLACEHOLDER,
+                  "kadas":         PLACEHOLDER,
+                };
+                const catImage = categoryImageMap[cat.slug]
+                  ?? products.find(p => p.category === cat.slug)?.image
+                  ?? "/images/category/SILVER 925 BROOCH/BRO001.png";
 
                 return (
                   <Link 

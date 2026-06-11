@@ -12,7 +12,7 @@ export default function GiftingOverviewPage() {
       title: "German Silver",
       description: "Functional and decorative artisan pieces with a timeless silver-like luster.",
       href: "/collections/german-silver",
-      image: "/images/collections/german-silver.png"
+      image: "/images/category/GERMAN SILVER/GSIMP001.png"
     },
     {
       title: "Silver Coated",
@@ -31,6 +31,12 @@ export default function GiftingOverviewPage() {
       description: "Sacred 999 silver frames and murtis for homes and offices.",
       href: "/collections/silver-frames",
       image: "/images/collections/pooja.png"
+    },
+    {
+      title: "Rakhi Collection",
+      description: "Pure 925 silver rakhis and festive sets for Raksha Bandhan.",
+      href: "/collections/rakhi",
+      image: "/images/collections/ganesha-statue.png"
     }
   ];
 

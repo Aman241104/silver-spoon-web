@@ -49,11 +49,10 @@ const Navbar = () => {
       subItems: [
         { title: "Men's Collection", href: "/products?gender=men" },
         { title: "Women's Collection", href: "/products?gender=women" },
+        { title: "Brooches & Buttons", href: "/products?category=brooches" },
         { title: "Gifting Collection", href: "/gifting" },
         { title: "Silverware", href: "/collections/utensils" },
-        { title: "Tableware", href: "/collections/utensils" },
         { title: "Pooja & Spiritual", href: "/collections/silver-idols" },
-        { title: "Decor", href: "/collections/silver-coated" },
         { title: "German Silver", href: "/collections/german-silver" },
       ]
     },
@@ -61,7 +60,6 @@ const Navbar = () => {
       title: "MEN", 
       href: "/products?gender=men",
       subItems: [
-        { title: "Brooches & Buttons", href: "/products?category=brooches" },
         { title: "Bracelet", href: "/products?category=bracelets&gender=men" },
         { title: "Chain", href: "/products?category=chains&gender=men" },
         { title: "Kada", href: "/products?category=kadas" },
@@ -89,7 +87,6 @@ const Navbar = () => {
         { title: "Silver Idols (999/925)", href: "/collections/silver-idols" },
         { title: "999 Silver Frames", href: "/collections/silver-frames" },
         { title: "Corporate Gifting", href: "/corporate" },
-        { title: "Build a Box", href: "/gifting/build-a-box" },
       ]
     },
     { title: "ABOUT US", href: "/about" },
@@ -106,7 +103,6 @@ const Navbar = () => {
         <div className="flex items-center gap-6 ml-6 min-w-max">
           <Link href="/gifting" className="hover:text-white transition-colors">Gift</Link>
           <Link href="/collections/utensils" className="hover:text-white transition-colors">Silverware</Link>
-          <Link href="/collections/utensils" className="hover:text-white transition-colors">Tableware</Link>
           <Link href="/corporate" className="flex items-center gap-1.5 hover:text-white transition-colors">
             <Package size={14} className="text-white/60" />
             <span>Bulk / Corporate Gifting</span>
@@ -130,7 +126,7 @@ const Navbar = () => {
                 src="/images/logo.png"
                 alt="Silver Spoon Logo"
                 fill
-                className="object-contain object-left brightness-0 invert"
+                className="object-contain object-left brightness-0 contrast-[100] invert"
                 priority
               />
             </div>

@@ -12,6 +12,7 @@ export interface Product {
   weight?: string;
   dimensions?: string;
   featured?: boolean;
+  trending?: boolean;
   occasions?: string[];
   styles?: string[];
 }
@@ -142,6 +143,13 @@ export const categories = [
     slug: "women",
     description: "Exquisite silver collections curated for women.",
     subCategories: ["Rings", "Bracelets", "Chains", "Anklets", "Toe Rings", "Mangalsutra"]
+  },
+  {
+    id: "rakhi",
+    name: "Rakhi Collection",
+    slug: "rakhi",
+    description: "Pure silver rakhis and festive sets crafted for the bond of a lifetime.",
+    subCategories: ["Silver Rakhi", "Rakhi Gift Sets", "Lumba Rakhi"]
   }
 ];
 
@@ -156,7 +164,6 @@ const createProduct = (
   price,
   weight,
   dimensions,
-  featured: true,
   occasions: ["Festivals", "Gifting"],
   styles: ["Classic"]
 });
@@ -174,52 +181,6 @@ export const products: Product[] = [
   createProduct("bro-9", "ASHOKA EMBLEM PESTIGE BUTTON", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO009.png", "BRO/009", "925", 14399, "men", "18g", "3.5 x 3 cm"),
   createProduct("bro-10", "ROAYAL HORSE BUTTON", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO010.png", "BRO/010", "925", 10399, "men", "13g", "3 x 3 cm"),
 
-  // 2. RINGS
-  createProduct("men-ring-1", "Classic Men's Signet", "rings", "Men's Rings", "/images/products/regular-ring.png", undefined, "925", 2200, "men"),
-  createProduct("men-ring-2", "Modern Silver Band", "rings", "Men's Rings", "/images/products/regular-ring.png", undefined, "925", 1800, "men"),
-  createProduct("wr-1", "REGULAR RING", "rings", "Women's Rings", "/images/products/regular-ring.png", undefined, "925", 1500, "women"),
-  createProduct("wr-2", "SOLITAIRE RING", "rings", "Women's Rings", "/images/products/multi-band-ring.png", undefined, "925", 2500, "women"),
-  createProduct("wr-3", "ANTIQUE RING", "rings", "Women's Rings", "/images/products/antique-filigree-ring.png", undefined, "925", 3000, "women"),
-  createProduct("wr-4", "COCKTAIL CUT STONE RING", "rings", "Women's Rings", "/images/products/cocktail-cut-stone-ring.png", undefined, "925", 4500, "women"),
-  createProduct("wr-5", "THUMB RING", "rings", "Women's Rings", "/images/products/artisan-toe-ring.png", undefined, "925", 1800, "women"),
-
-  // 3. BRACELETS
-  createProduct("men-brace-1", "Premium Men's Link Bracelet", "bracelets", "Men's Bracelets", "/images/products/bracelets.png", undefined, "925", 4500, "men"),
-  createProduct("men-brace-2", "Silver Rope Bracelet", "bracelets", "Men's Bracelets", "/images/products/bracelets.png", undefined, "925", 3800, "men"),
-  createProduct("wb-1", "LIGHT WEIGHT BRACELET", "bracelets", "Women's Bracelets", "/images/products/bracelets.png", undefined, "925", 2800, "women"),
-  createProduct("wb-2", "ADJUSTABLE BRACELET", "bracelets", "Women's Bracelets", "/images/products/bracelets.png", undefined, "925", 3200, "women"),
-  createProduct("wb-3", "TENNIS BRACELET", "bracelets", "Women's Bracelets", "/images/products/bracelets.png", undefined, "925", 4800, "women"),
-  createProduct("wb-4", "MS BRACELATE", "bracelets", "Women's Bracelets", "/images/products/bracelets.png", undefined, "925", 3500, "women"),
-  createProduct("wb-5", "PEARL BRACELATE", "bracelets", "Women's Bracelets", "/images/products/bracelets.png", undefined, "925", 2800, "women"),
-  createProduct("wb-6", "PENDORA BRACELATE", "bracelets", "Women's Bracelets", "/images/products/bracelets.png", undefined, "925", 5500, "women"),
-
-  // 4. CHAINS
-  createProduct("men-chain-1", "Sterling Silver Box Chain", "chains", "Men's Chains", "/images/collections/jewellery.png", undefined, "925", 3500, "men"),
-  createProduct("men-chain-2", "Heavy Curb Chain", "chains", "Men's Chains", "/images/collections/jewellery.png", undefined, "925", 5500, "men"),
-  createProduct("wm-chain-1", "Delicate Silver Chain", "chains", "Women's Chains", "/images/collections/jewellery.png", undefined, "925", 2200, "women"),
-
-  // 5. KADAS
-  createProduct("men-kada-1", "Classic Panjabi Kada", "kadas", "Kadas", "/images/products/bracelets.png", undefined, "925", 5500, "men"),
-  createProduct("men-kada-2", "Engraved Silver Kada", "kadas", "Kadas", "/images/products/bracelets.png", undefined, "925", 6200, "men"),
-
-  // 6. ANKLETS
-  createProduct("wa-1", "Traditional Bridal Payal", "anklets", "Anklets", "/images/products/payal.png", undefined, "925", 4500, "women"),
-  createProduct("wa-2", "Contemporary Silver Anklet", "anklets", "Anklets", "/images/products/payal.png", undefined, "925", 1800, "women"),
-  createProduct("wa-3", "AGRA PAYAL", "anklets", "Anklets", "/images/products/payal.png", undefined, "925", 5200, "women"),
-  createProduct("wa-4", "FANCY PAYAL", "anklets", "Anklets", "/images/products/payal.png", undefined, "925", 3800, "women"),
-  createProduct("wa-5", "OXODISED PAYAL", "anklets", "Anklets", "/images/products/payal.png", undefined, "925", 2500, "women"),
-  createProduct("wa-6", "FUSION PAYAL", "anklets", "Anklets", "/images/products/payal.png", undefined, "925", 3200, "women"),
-  createProduct("wa-7", "925 ANKLETS", "anklets", "Anklets", "/images/products/payal.png", undefined, "925", 1500, "women"),
-
-  // 7. TOE RINGS
-  createProduct("wtr-1", "Artisan Toe Ring Set", "toe-rings", "Toe Rings", "/images/products/artisan-toe-ring.png", undefined, "925", 850, "women"),
-  createProduct("wtr-2", "Dual Tone Toe Ring", "toe-rings", "Toe Rings", "/images/products/artisan-toe-ring.png", undefined, "925", 1200, "women"),
-
-  // 8. MANGALSUTRA
-  createProduct("wm-1", "REGULAR MANGALSUTRA", "mangalsutra", "Mangalsutra", "/images/collections/jewellery.png", undefined, "925", 3500, "women"),
-  createProduct("wm-2", "SOLITAIRE MANGALSUTRA", "mangalsutra", "Mangalsutra", "/images/collections/jewellery.png", undefined, "925", 4500, "women"),
-  createProduct("wm-3", "OXODISE MANGALSUTRA", "mangalsutra", "Mangalsutra", "/images/collections/jewellery.png", undefined, "925", 3000, "women"),
-  createProduct("wm-4", "PEARL MANGALSUTRA", "mangalsutra", "Mangalsutra", "/images/collections/jewellery.png", undefined, "925", 4000, "women"),
 
   // 9. UTENSILS (Pooja & Gifting)
   createProduct("ut-1", "PURE SILVER POOJA THALI", "utensils", "Utensils", "/images/products/pooja-thali-set.png", undefined, "925", 15000),
@@ -417,19 +378,19 @@ export const products: Product[] = [
   createProduct("lbng-007", "Dual Finish Frosted & Polished Silver Bangle Pair", "bangles", "Plain Bangles", "/images/category/LADIES BANGADI/LBNG007.png", "LBNG007", "925", 0, "women"),
 
   // CHAIN PENDANTS
-  createProduct("chnp-001", "White Enamel Sea Turtle Pendant Chain", "chain-pendants", "Women's Pendants", "/images/category/CHAIN PANDENT/CHNP001.png", "CHNP001", "925", 0, "women"),
-  createProduct("chnp-002", "Pink Barbie Handbag Charm Pendant Chain", "chain-pendants", "Women's Pendants", "/images/category/CHAIN PANDENT/CHNP002.png", "CHNP002", "925", 0, "women"),
-  createProduct("chnp-003", "CZ Love Script Pendant Chain", "chain-pendants", "Women's Pendants", "/images/category/CHAIN PANDENT/CHNP003.png", "CHNP003", "925", 0, "women"),
-  createProduct("chnp-004", "CZ Love Script Snake Chain Pendant", "chain-pendants", "Women's Pendants", "/images/category/CHAIN PANDENT/CHNP004.png", "CHNP004", "925", 0, "women"),
-  createProduct("chnp-005", "Oxidised CZ Love Script Ball Chain Pendant", "chain-pendants", "Women's Pendants", "/images/category/CHAIN PANDENT/CHNP005.png", "CHNP005", "925", 0, "women"),
-  createProduct("chnp-006", "Articulated Fish Skeleton Pendant Chain", "chain-pendants", "Unisex Pendants", "/images/category/CHAIN PANDENT/CHNP006.png", "CHNP006", "925", 0, "unisex"),
-  createProduct("chnp-007", "Orange Spotted Dinosaur Enamel Charm Pendant", "chain-pendants", "Unisex Pendants", "/images/category/CHAIN PANDENT/CHNP007.png", "CHNP007", "925", 0, "unisex"),
-  createProduct("chnp-008", "Lucky Elephant CZ Charm Pendant Chain", "chain-pendants", "Women's Pendants", "/images/category/CHAIN PANDENT/CHNP008.png", "CHNP008", "925", 0, "women"),
-  createProduct("chnp-009", "CZ Aeroplane Pendant Chain", "chain-pendants", "Unisex Pendants", "/images/category/CHAIN PANDENT/CHNP009.png", "CHNP009", "925", 0, "unisex"),
-  createProduct("chnp-010", "Oxidised CZ Star Flower Pendant Chain", "chain-pendants", "Women's Pendants", "/images/category/CHAIN PANDENT/CHNP010.png", "CHNP010", "925", 0, "women"),
-  createProduct("chnp-011", "Yellow Panda Enamel Charm Pendant Chain", "chain-pendants", "Unisex Pendants", "/images/category/CHAIN PANDENT/CHNP011.png", "CHNP011", "925", 0, "unisex"),
-  createProduct("chnp-012", "Blue Bird Open Heart Pendant Chain", "chain-pendants", "Women's Pendants", "/images/category/CHAIN PANDENT/CHNP012.png", "CHNP012", "925", 0, "women"),
-  createProduct("chnp-013", "Blue Bell Enamel Pendant Chain", "chain-pendants", "Women's Pendants", "/images/category/CHAIN PANDENT/CHNP013.png", "CHNP013", "925", 0, "women"),
+  createProduct("chnp-001", "White Enamel Sea Turtle Pendant Chain", "chains", "Women's Chains", "/images/category/CHAIN PANDENT/CHNP001.png", "CHNP001", "925", 0, "women"),
+  createProduct("chnp-002", "Pink Barbie Handbag Charm Pendant Chain", "chains", "Women's Chains", "/images/category/CHAIN PANDENT/CHNP002.png", "CHNP002", "925", 0, "women"),
+  createProduct("chnp-003", "CZ Love Script Pendant Chain", "chains", "Women's Chains", "/images/category/CHAIN PANDENT/CHNP003.png", "CHNP003", "925", 0, "women"),
+  createProduct("chnp-004", "CZ Love Script Snake Chain Pendant", "chains", "Women's Chains", "/images/category/CHAIN PANDENT/CHNP004.png", "CHNP004", "925", 0, "women"),
+  createProduct("chnp-005", "Oxidised CZ Love Script Ball Chain Pendant", "chains", "Women's Chains", "/images/category/CHAIN PANDENT/CHNP005.png", "CHNP005", "925", 0, "women"),
+  createProduct("chnp-006", "Articulated Fish Skeleton Pendant Chain", "chains", "Unisex Chains", "/images/category/CHAIN PANDENT/CHNP006.png", "CHNP006", "925", 0, "unisex"),
+  createProduct("chnp-007", "Orange Spotted Dinosaur Enamel Charm Pendant", "chains", "Unisex Chains", "/images/category/CHAIN PANDENT/CHNP007.png", "CHNP007", "925", 0, "unisex"),
+  createProduct("chnp-008", "Lucky Elephant CZ Charm Pendant Chain", "chains", "Women's Chains", "/images/category/CHAIN PANDENT/CHNP008.png", "CHNP008", "925", 0, "women"),
+  createProduct("chnp-009", "CZ Aeroplane Pendant Chain", "chains", "Unisex Chains", "/images/category/CHAIN PANDENT/CHNP009.png", "CHNP009", "925", 0, "unisex"),
+  createProduct("chnp-010", "Oxidised CZ Star Flower Pendant Chain", "chains", "Women's Chains", "/images/category/CHAIN PANDENT/CHNP010.png", "CHNP010", "925", 0, "women"),
+  createProduct("chnp-011", "Yellow Panda Enamel Charm Pendant Chain", "chains", "Unisex Chains", "/images/category/CHAIN PANDENT/CHNP011.png", "CHNP011", "925", 0, "unisex"),
+  createProduct("chnp-012", "Blue Bird Open Heart Pendant Chain", "chains", "Women's Chains", "/images/category/CHAIN PANDENT/CHNP012.png", "CHNP012", "925", 0, "women"),
+  createProduct("chnp-013", "Blue Bell Enamel Pendant Chain", "chains", "Women's Chains", "/images/category/CHAIN PANDENT/CHNP013.png", "CHNP013", "925", 0, "women"),
 
   // 13. SILVER FRAMES
   createProduct("fr-1", "Laddu Gopal Silver & White Frame", "silver-frames", "Frames", "/images/category/SILVER FRAMES/FR001.png", "FR/001", "999", 0),
@@ -450,4 +411,5 @@ export const products: Product[] = [
   createProduct("fr-16", "Laddu Gopal Clear Leaf-Shaped Acrylic Stand", "silver-frames", "Frames", "/images/category/SILVER FRAMES/FR016.png", "FR/016", "999", 0),
   createProduct("fr-17", "Laxmi Ji White & Silver Heart Border Frame", "silver-frames", "Frames", "/images/category/SILVER FRAMES/FR017.png", "FR/017", "999", 0),
   createProduct("fr-18", "Laddu Gopal White & Gold Ornate Frame", "silver-frames", "Frames", "/images/category/SILVER FRAMES/FR018.png", "FR/018", "999", 0),
+
 ];

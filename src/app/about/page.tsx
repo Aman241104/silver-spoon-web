@@ -8,9 +8,9 @@ import { Diamond, Heart, Award, Star } from "lucide-react";
 
 export default function AboutPage() {
   const stats = [
-    { label: "Years of Heritage", value: "25+" },
-    { label: "Satisfied Clients", value: "50k+" },
-    { label: "Exquisite Designs", value: "10k+" },
+    { label: "Years of Experience in Jewellery Making", value: "40+" },
+    { label: "Clients", value: "500+" },
+    { label: "Designs", value: "100+" },
     { label: "Purity Rating", value: "99.9%" },
   ];
 
@@ -29,7 +29,7 @@ export default function AboutPage() {
               A Legacy of Purity <br /> & Timeless Elegance
             </h1>
             <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
-              Since 1995, Silver Spoon has been a sanctuary for those who appreciate the timeless beauty and divine aura of pure silver.
+              Since 2019, Silver Spoon has been a sanctuary for those who appreciate the timeless beauty and divine aura of pure silver.
             </p>
           </div>
         </div>

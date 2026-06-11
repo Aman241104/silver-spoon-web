@@ -7,6 +7,7 @@ import Features from "@/components/sections/Features";
 import Philosophy from "@/components/sections/Philosophy";
 import BrandPromise from "@/components/sections/BrandPromise";
 import Newsletter from "@/components/sections/Newsletter";
+import WeeklyCollection from "@/components/sections/WeeklyCollection";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <CategoryGrid />
       <ExploreCollections />
+      <WeeklyCollection />
       <Philosophy />
       <BrandPromise />
       <Features />

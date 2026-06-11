@@ -3,7 +3,7 @@
 import * as React from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Mail, Phone, MapPin, MessageSquare, Send } from "lucide-react";
+import { Phone, MapPin, MessageSquare, Send } from "lucide-react";
 
 export default function ContactPage() {
   const contactInfo = [
@@ -11,13 +11,7 @@ export default function ContactPage() {
       icon: <Phone className="text-[#2c2c2c]" size={28} strokeWidth={1} />,
       title: "Call Us",
       details: "+91 99981 23479",
-      subtext: "Mon-Sat, 10am to 7pm",
-    },
-    {
-      icon: <Mail className="text-[#2c2c2c]" size={28} strokeWidth={1} />,
-      title: "Email Us",
-      details: "info@silverspoon.com",
-      subtext: "We reply within 24 hours",
+      subtext: "Mon-Sat, 10am to 8:30pm",
     },
     {
       icon: <MapPin className="text-[#2c2c2c]" size={28} strokeWidth={1} />,

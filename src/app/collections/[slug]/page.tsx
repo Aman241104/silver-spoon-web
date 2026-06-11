@@ -36,12 +36,20 @@ function CategoryContent() {
 
   const category = categories.find((c) => c.slug === slug);
   
+  const NON_JEWELLERY = ["utensils", "german-silver", "silver-coated", "silver-idols", "silver-frames", "rakhi"];
+
   const filteredProducts = products.filter((p) => {
     // 1. Category/Gender Filter
     let matchesCategory = false;
-    if (slug === "men") matchesCategory = p.gender === "men";
-    else if (slug === "women") matchesCategory = p.gender === "women";
-    else matchesCategory = p.category === slug;
+    if (slug === "men") {
+      if (NON_JEWELLERY.includes(p.category)) return false;
+      matchesCategory = p.gender === "men";
+    } else if (slug === "women") {
+      if (NON_JEWELLERY.includes(p.category)) return false;
+      matchesCategory = p.gender === "women";
+    } else {
+      matchesCategory = p.category === slug;
+    }
 
     if (!matchesCategory) return false;
 

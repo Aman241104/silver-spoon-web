@@ -12,9 +12,7 @@ const categories = [
   { name: "Women's Collection", href: "/products?gender=women", image: "/images/collections/women-category-circle.png" },
   { name: "Gifting Collection", href: "/gifting", image: "/images/collections/image-removebg-preview(1).png" },
   { name: "Silverware", href: "/collections/utensils", image: "/images/collections/silverware.png" },
-  { name: "Tableware", href: "/collections/utensils", image: "/images/collections/tableware.png" },
   { name: "Pooja & Spiritual", href: "/collections/silver-idols", image: "/images/collections/ganesha-statue.png" },
-  { name: "Decor", href: "/collections/silver-coated", image: "/images/collections/decor.png" },
   { name: "German Silver", href: "/collections/german-silver", image: "/images/collections/gifts-hampers.png" },
 ];
 
@@ -57,32 +55,32 @@ const CategoryGrid = () => {
         {/* Slider Area */}
         <div className="relative max-w-[1400px] mx-auto">
           {/* Navigation Arrows */}
-          <button className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 border border-charcoal/5 rounded-full flex items-center justify-center text-charcoal/30 hover:text-gold hover:border-gold bg-white -ml-4 md:-ml-10 transition-all duration-300">
-            <ChevronLeft size={20} strokeWidth={1} />
+          <button className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 border border-charcoal/20 rounded-full flex items-center justify-center text-charcoal/60 hover:text-gold hover:border-gold bg-white shadow-md -ml-4 md:-ml-10 transition-all duration-300">
+            <ChevronLeft size={20} strokeWidth={1.5} />
           </button>
 
-          <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-6 md:gap-8 lg:gap-10">
+          <div className="w-full grid grid-cols-3 md:grid-cols-6 gap-6 md:gap-8 lg:gap-10">
             {categories.map((cat, idx) => (
               <Link key={idx} href={cat.href} className="flex flex-col items-center group category-item">
-                <div className="relative w-24 h-24 md:w-32 md:h-32 mb-4 flex items-center justify-center">
-                  <div className="relative w-full h-full transform transition-all duration-700 ease-out group-hover:scale-105">
+                <div className="relative w-20 h-20 md:w-28 md:h-28 mb-4 rounded-full bg-[#F5F2EB] flex items-center justify-center overflow-hidden border border-gray-100 group-hover:border-gold/40 group-hover:shadow-md transition-all duration-500">
+                  <div className="relative w-3/4 h-3/4 transform transition-all duration-700 ease-out group-hover:scale-110">
                     <Image
                       src={cat.image}
                       alt={cat.name}
                       fill
-                      className="object-contain mix-blend-multiply drop-shadow-sm"
+                      className="object-contain drop-shadow-sm"
                     />
                   </div>
                 </div>
-                <span className="text-[13px] md:text-[14px] font-serif text-[#2c2c2c] group-hover:text-gold transition-colors font-medium tracking-tight">
+                <span className="text-[12px] md:text-[13px] font-serif text-[#2c2c2c] group-hover:text-gold transition-colors font-medium tracking-tight text-center leading-tight">
                   {cat.name}
                 </span>
               </Link>
             ))}
           </div>
 
-          <button className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 border border-charcoal/5 rounded-full flex items-center justify-center text-charcoal/30 hover:text-gold hover:border-gold bg-white -mr-4 md:-mr-10 transition-all duration-300">
-            <ChevronRight size={20} strokeWidth={1} />
+          <button className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 border border-charcoal/20 rounded-full flex items-center justify-center text-charcoal/60 hover:text-gold hover:border-gold bg-white shadow-md -mr-4 md:-mr-10 transition-all duration-300">
+            <ChevronRight size={20} strokeWidth={1.5} />
           </button>
         </div>
 

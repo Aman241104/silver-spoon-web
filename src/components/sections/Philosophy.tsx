@@ -88,7 +88,7 @@ const Philosophy = () => {
               Our Philosophy
             </p>
             <h2 className="philosophy-text text-4xl md:text-5xl lg:text-6xl font-serif text-charcoal leading-tight mb-8">
-              Crafting Purity Since <span className="italic text-silver-400">1995.</span>
+              Crafting Purity Since <span className="italic text-silver-400">2019.</span>
             </h2>
             <div className="philosophy-text space-y-6">
               <p className="text-base md:text-lg text-charcoal/70 font-sans leading-relaxed">
@@ -101,13 +101,13 @@ const Philosophy = () => {
             <div className="philosophy-text pt-10">
               <div className="flex items-center gap-6">
                  <div className="flex flex-col">
-                    <span className="text-3xl font-serif text-charcoal">25+</span>
-                    <span className="text-[10px] uppercase tracking-widest text-charcoal/50">Years of Trust</span>
+                    <span className="text-3xl font-serif text-charcoal">40+</span>
+                    <span className="text-[10px] uppercase tracking-widest text-charcoal/50">Years of Experience</span>
                  </div>
                  <div className="w-[1px] h-12 bg-silver-200" />
                  <div className="flex flex-col">
-                    <span className="text-3xl font-serif text-charcoal">10k+</span>
-                    <span className="text-[10px] uppercase tracking-widest text-charcoal/50">Designs Crafted</span>
+                    <span className="text-3xl font-serif text-charcoal">100+</span>
+                    <span className="text-[10px] uppercase tracking-widest text-charcoal/50">Designs</span>
                  </div>
               </div>
             </div>
