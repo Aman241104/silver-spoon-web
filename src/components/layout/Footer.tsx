@@ -18,7 +18,7 @@ const Footer = () => {
                   src="/images/logo.png"
                   alt="Silver Spoon Logo"
                   fill
-                  className="object-contain object-left brightness-0 contrast-[100] invert"
+                  className="object-contain object-left"
                 />
               </div>
               <span className="text-[8px] uppercase tracking-[0.4em] text-white/40 font-medium ml-0.5">
