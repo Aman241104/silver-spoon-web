@@ -171,7 +171,7 @@ const createProduct = (
 export const products: Product[] = [
   // 1. BROOCHES
   createProduct("bro-1", "CHATRAPATI LAGACY BROOCH", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO001.png", "BRO/001", "925", 12999, "men", "16.5g", "5 x 3.5 cm"),
-  createProduct("bro-2", "DIVINE TRISHUL BROOCH", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO002.png", "BRO/002", "925", 14799, "men", "18.5g"),
+  createProduct("bro-2", "DIVINE TRISHUL BROOCH", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO002-v2.png", "BRO/002", "925", 14799, "men", "18.5g"),
   createProduct("bro-3", "KING LION BUTTON", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO003.png", "BRO/003", "925", 9999, "men", "12.81g", "3 x 2 cm"),
   createProduct("bro-4", "ETERNAL RADHA KRISHNA EMBLEM", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO004.png", "BRO/004", "925", 8999, "men", "11.45g", "4 x 2.8 cm"),
   createProduct("bro-5", "HANUMAN RAM", "brooches", "Brooches & Buttons", "/images/category/SILVER 925 BROOCH/BRO005.png", "BRO/005", "925", 8999, "men", "11.27g", "4 x 2 cm"),
