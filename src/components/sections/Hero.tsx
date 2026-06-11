@@ -36,24 +36,24 @@ const Hero = () => {
       {/* Background Image - Taking whole section */}
       <div className="absolute inset-0 w-full h-full hero-image">
         <Image
-          src="/images/hero-main.png"
+          src="/images/hero-gifting.png"
           alt="Silver Elegance Hero"
           fill
           priority
           className="object-cover object-right md:object-center opacity-60 md:opacity-100"
         />
-        {/* Gradient overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent" />
+        {/* Gradient Overlay for better text readability on mobile */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#F5F2EB] via-[#F5F2EB]/50 to-transparent md:hidden" />
       </div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="flex flex-col items-start lg:w-1/2 hero-content">
-          <h1 className="text-[42px] md:text-[64px] lg:text-[80px] font-serif text-white leading-[1] mb-6 font-normal tracking-tight">
+          <h1 className="text-[42px] md:text-[64px] lg:text-[80px] font-serif text-[#1a1a1a] leading-[1] mb-6 font-normal tracking-tight">
             Timeless Elegance, <br />
             Thoughtful Gifting
           </h1>
           
-          <p className="text-white/80 text-base md:text-lg mb-10 max-w-md leading-relaxed">
+          <p className="text-[#444444] text-base md:text-lg mb-10 max-w-md leading-relaxed">
             Exquisite Silver & German Silver products crafted to celebrate every life moment with purity and grace.
           </p>
           
@@ -70,31 +70,31 @@ const Hero = () => {
           <div className="flex flex-wrap gap-8 md:gap-12">
             <div className="flex items-center gap-3 hero-feature">
               <div className="w-10 h-10 rounded-full bg-white/50 backdrop-blur-sm flex items-center justify-center border border-white/20">
-                <Sparkles size={18} className="text-white stroke-[1.5]" />
+                <Sparkles size={18} className="text-[#1a1a1a] stroke-[1.5]" />
               </div>
               <div>
-                <h4 className="text-[11px] font-bold text-white uppercase tracking-wider">Pure Quality</h4>
-                <p className="text-[10px] text-white/60 font-medium italic">Crafted to Perfection</p>
+                <h4 className="text-[11px] font-bold text-[#1a1a1a] uppercase tracking-wider">Pure Quality</h4>
+                <p className="text-[10px] text-[#666666] font-medium italic">Crafted to Perfection</p>
               </div>
             </div>
             
             <div className="flex items-center gap-3 hero-feature">
               <div className="w-10 h-10 rounded-full bg-white/50 backdrop-blur-sm flex items-center justify-center border border-white/20">
-                <Award size={18} className="text-white stroke-[1.5]" />
+                <Award size={18} className="text-[#1a1a1a] stroke-[1.5]" />
               </div>
               <div>
-                <h4 className="text-[11px] font-bold text-white uppercase tracking-wider">Elegant Designs</h4>
-                <p className="text-[10px] text-white/60 font-medium italic">For Every Occasion</p>
+                <h4 className="text-[11px] font-bold text-[#1a1a1a] uppercase tracking-wider">Elegant Designs</h4>
+                <p className="text-[10px] text-[#666666] font-medium italic">For Every Occasion</p>
               </div>
             </div>
             
             <div className="flex items-center gap-3 hero-feature">
               <div className="w-10 h-10 rounded-full bg-white/50 backdrop-blur-sm flex items-center justify-center border border-white/20">
-                <Gift size={18} className="text-white stroke-[1.5]" />
+                <Gift size={18} className="text-[#1a1a1a] stroke-[1.5]" />
               </div>
               <div>
-                <h4 className="text-[11px] font-bold text-white uppercase tracking-wider">Perfect for Gifting</h4>
-                <p className="text-[10px] text-white/60 font-medium italic">Make Moments Special</p>
+                <h4 className="text-[11px] font-bold text-[#1a1a1a] uppercase tracking-wider">Perfect for Gifting</h4>
+                <p className="text-[10px] text-[#666666] font-medium italic">Make Moments Special</p>
               </div>
             </div>
           </div>

@@ -126,7 +126,7 @@ const Navbar = () => {
                 src="/images/logo.png"
                 alt="Silver Spoon Logo"
                 fill
-                className="object-contain object-left brightness-0 contrast-[100] invert"
+                className="object-contain object-left"
                 priority
               />
             </div>

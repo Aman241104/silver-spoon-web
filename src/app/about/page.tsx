@@ -41,7 +41,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="relative aspect-[4/5] bg-[#FAF8F5] overflow-hidden">
               <Image 
-                src="/images/collections/pooja.png"
+                src="/images/about-idol-v2.png"
                 alt="Silver Craftsmanship"
                 fill
                 className="object-cover mix-blend-multiply"
