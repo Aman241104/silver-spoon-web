@@ -25,9 +25,27 @@ export const metadata: Metadata = {
     siteName: "Silver Spoon",
     locale: "en_IN",
     type: "website",
+    images: [
+      {
+        url: "https://www.silverspoonbyacj.com/images/hero-main.png",
+        width: 1200,
+        height: 630,
+        alt: "Silver Spoon - Premium Silver Jewellery & Gifting",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Silver Spoon | Premium Silver Jewellery & Gifting in Ahmedabad",
+    description: "Discover exquisite silver jewellery, idols, and gifting items at Silver Spoon in Chandkheda, Ahmedabad.",
+    images: ["https://www.silverspoonbyacj.com/images/hero-main.png"],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
 };
 
