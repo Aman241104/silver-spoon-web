@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { useGSAP } from "@/hooks/use-gsap";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -70,14 +71,49 @@ const Philosophy = () => {
     <section ref={containerRef} className="py-24 bg-silver-50 overflow-hidden">
       <div className="container mx-auto px-6 md:px-12">
         <div className="philosophy-content grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-24">
-          <div className="relative order-2 lg:order-1">
-            <div className="philosophy-image aspect-[4/5] bg-white p-4 shadow-2xl border border-silver-100 overflow-hidden">
-                <div className="w-full h-full bg-silver-200 relative flex items-center justify-center">
-                    <div className="text-center p-12">
-                        <span className="font-serif italic text-charcoal/30 text-2xl tracking-ultra uppercase block mb-4">The Craft</span>
-                        <div className="w-24 h-[1px] bg-gold/40 mx-auto" />
-                    </div>
-                </div>
+          <div className="relative order-2 lg:order-1 philosophy-image">
+            {/* 2x2 image grid showcasing handcrafted products */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="relative aspect-square overflow-hidden bg-[#F5F0E8] group">
+                <Image
+                  src="/images/craft-spoon-1.png"
+                  alt="Handcrafted engraved silver spoon"
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="relative aspect-square overflow-hidden bg-[#F5F0E8] group mt-6">
+                <Image
+                  src="/images/craft-spoon-2.png"
+                  alt="Handcrafted silver spoon"
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="relative aspect-square overflow-hidden bg-[#F5F0E8] group -mt-6">
+                <Image
+                  src="/images/craft-spoon-3.png"
+                  alt="Handcrafted ornate silver spoon"
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="relative aspect-square overflow-hidden bg-[#F5F0E8] group">
+                <Image
+                  src="/images/craft-pen.png"
+                  alt="Handcrafted engraved silver pen"
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            </div>
+            {/* Label */}
+            <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 border-l-2 border-gold">
+              <span className="text-[9px] uppercase tracking-[0.3em] text-charcoal/60 font-bold">Handcrafted in India</span>
             </div>
             {/* Decorative Offset Element */}
             <div className="absolute -top-10 -left-10 w-full h-full border border-gold/10 -z-10 hidden md:block" />
