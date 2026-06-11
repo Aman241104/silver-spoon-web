@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://www.silverspoonbyacj.com/images/hero-main.png",
+        url: "https://www.silverspoonbyacj.com/images/hero-gifting.png",
         width: 1200,
         height: 630,
         alt: "Silver Spoon - Premium Silver Jewellery & Gifting",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Silver Spoon | Premium Silver Jewellery & Gifting in Ahmedabad",
     description: "Discover exquisite silver jewellery, idols, and gifting items at Silver Spoon in Chandkheda, Ahmedabad.",
-    images: ["https://www.silverspoonbyacj.com/images/hero-main.png"],
+    images: ["https://www.silverspoonbyacj.com/images/hero-gifting.png"],
   },
   icons: {
     icon: [
