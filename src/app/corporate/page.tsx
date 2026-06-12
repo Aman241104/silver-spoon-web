@@ -75,12 +75,12 @@ export default function CorporateGiftingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
             <div className="bg-white border border-gray-100 rounded-sm p-8 text-center shadow-sm">
               <p className="text-[11px] uppercase tracking-[0.2em] text-gray-400 mb-3">Sterling Silver (925 / 999)</p>
-              <p className="text-5xl font-serif text-[#2c2c2c] mb-2">10</p>
+              <p className="text-5xl font-serif text-[#2c2c2c] mb-2">50</p>
               <p className="text-sm text-gray-500">pieces minimum</p>
             </div>
             <div className="bg-white border border-gray-100 rounded-sm p-8 text-center shadow-sm">
               <p className="text-[11px] uppercase tracking-[0.2em] text-gray-400 mb-3">German Silver &amp; Silver Coated</p>
-              <p className="text-5xl font-serif text-[#2c2c2c] mb-2">20</p>
+              <p className="text-5xl font-serif text-[#2c2c2c] mb-2">50</p>
               <p className="text-sm text-gray-500">pieces minimum</p>
             </div>
           </div>
