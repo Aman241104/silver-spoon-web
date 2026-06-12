@@ -48,7 +48,7 @@ function ProductsContent() {
   const filteredProducts = (categoryParam || genderParam)
     ? products.filter(p => {
         const matchCategory = categoryParam ? p.category === categoryParam : true;
-        const matchGender = genderParam ? (p.gender === genderParam || p.gender === "unisex") : true;
+        const matchGender = genderParam ? p.gender === genderParam : true;
         // Exclude kitchenware/puja/gifting items from gender browsing pages
         const isGenderBrowse = genderParam && !categoryParam;
         if (isGenderBrowse && NON_JEWELLERY.includes(p.category)) return false;
