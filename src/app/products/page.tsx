@@ -160,7 +160,7 @@ function ProductsContent() {
                   "silver-coated": "/images/category/SILVER COATED/SLCO001.png",
                   "silver-idols":  "/images/category/SILVER IDOL 999/SL001.png",
                   "silver-frames": "/images/category/SILVER FRAMES/FR001.png",
-                  "rakhi":         PLACEHOLDER,
+                  "rakhi":         "/images/category/SILVER 925 RAKHI BRACELATE/RAKHI001.png",
                   "kadas":         PLACEHOLDER,
                 };
                 const catImage = categoryImageMap[cat.slug]
