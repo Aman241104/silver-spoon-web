@@ -50,6 +50,7 @@ const Navbar = () => {
         { title: "Men's Collection", href: "/products?gender=men" },
         { title: "Women's Collection", href: "/products?gender=women" },
         { title: "Brooches & Buttons", href: "/products?category=brooches" },
+        { title: "Rakhi Collection", href: "/collections/rakhi" },
         { title: "Gifting Collection", href: "/gifting" },
         { title: "Silverware", href: "/collections/utensils" },
         { title: "Pooja & Spiritual", href: "/collections/silver-idols" },

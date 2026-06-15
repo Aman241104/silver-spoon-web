@@ -14,6 +14,7 @@ const categories = [
   { name: "Silverware", href: "/collections/utensils", image: "/images/collections/silverware.png" },
   { name: "Pooja & Spiritual", href: "/collections/silver-idols", image: "/images/collections/ganesha-statue.png" },
   { name: "German Silver", href: "/collections/german-silver", image: "/images/collections/gifts-hampers.png" },
+  { name: "Rakhi Collection", href: "/collections/rakhi", image: "/images/category/SILVER 925 RAKHI BRACELATE/RAKHI001.png" },
 ];
 
 const CategoryGrid = () => {
