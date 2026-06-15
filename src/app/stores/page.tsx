@@ -31,17 +31,18 @@ export default function StoreLocatorPage() {
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <div className="relative group">
-               <div className="absolute -inset-4 bg-[#FAF8F5] rounded-sm -z-10 transition-transform duration-500 group-hover:scale-105" />
-               <div className="relative aspect-[4/3] bg-white rounded-none overflow-hidden border border-gray-100 shadow-2xl">
-                  {/* Map Placeholder */}
-                  <div className="w-full h-full bg-[#FAF8F5] flex flex-col items-center justify-center p-12 text-center relative">
-                     <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
-                          style={{backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '20px 20px'}} />
-                     <MapPin size={48} strokeWidth={1} className="text-gold mb-6 animate-bounce" />
-                     <p className="font-serif italic text-charcoal/40 text-xl tracking-ultra uppercase block mb-2">The Ahmedabad Boutique</p>
-                     <p className="text-[10px] uppercase tracking-[0.3em] text-gold font-bold">Interactive Map Coming Soon</p>
-                  </div>
-               </div>
+              <div className="relative aspect-[4/3] overflow-hidden border border-gray-100 shadow-2xl rounded-none">
+                <iframe
+                  src="https://maps.google.com/maps?q=Omkar+Lotus+FF-14+Chandkheda+Ahmedabad&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{border:0}}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Silver Spoon Store Location"
+                />
+              </div>
             </div>
 
             <div className="flex flex-col lg:pl-4">

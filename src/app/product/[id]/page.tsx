@@ -17,6 +17,7 @@ export default function ProductDetailPage() {
   const { addToCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
   const [isGroupGiftingOpen, setIsGroupGiftingOpen] = React.useState(false);
+  const [copied, setCopied] = React.useState(false);
   const params = useParams();
   const id = params.id as string;
 
@@ -34,6 +35,20 @@ export default function ProductDetailPage() {
       </main>
     );
   }
+
+  const handleShare = async () => {
+    const url = window.location.href;
+    const title = product?.name || "Silver Spoon Product";
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+      } catch {}
+    } else {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   const handleInquiry = () => {
     const WHATSAPP_NUMBER = "919998123479"; 
@@ -168,9 +183,9 @@ export default function ProductDetailPage() {
                         {isInWishlist(product.id) ? "In Wishlist" : "Add to Wishlist"}
                       </span>
                     </button>
-                    <button className="flex-1 border border-gray-200 py-4 flex items-center justify-center gap-3 transition-all hover:bg-gray-50 rounded-sm">
+                    <button className="flex-1 border border-gray-200 py-4 flex items-center justify-center gap-3 transition-all hover:bg-gray-50 rounded-sm" onClick={handleShare}>
                       <Share2 size={16} strokeWidth={1.5} />
-                      <span className="text-[10px] uppercase tracking-widest font-bold">Share</span>
+                      <span className="text-[10px] uppercase tracking-widest font-bold">{copied ? "Copied!" : "Share"}</span>
                     </button>
                   </div>
                </div>

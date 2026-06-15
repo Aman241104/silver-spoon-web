@@ -6,6 +6,11 @@ import Footer from "@/components/layout/Footer";
 import { Phone, MapPin, MessageSquare, Send } from "lucide-react";
 
 export default function ContactPage() {
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [subject, setSubject] = React.useState("");
+  const [message, setMessage] = React.useState("");
+
   const contactInfo = [
     {
       icon: <Phone className="text-[#2c2c2c]" size={28} strokeWidth={1} />,
@@ -23,7 +28,8 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for your message. We will get back to you soon!");
+    const text = `Hi Silver Spoon!\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\n\n${message}`;
+    window.open(`https://wa.me/919998123479?text=${encodeURIComponent(text)}`, "_blank");
   };
 
   return (
@@ -87,37 +93,45 @@ export default function ContactPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                      <div className="space-y-3">
                         <label className="text-[11px] uppercase tracking-widest font-bold text-[#2c2c2c]">Full Name *</label>
-                        <input 
-                           type="text" 
+                        <input
+                           type="text"
                            placeholder="Enter your name"
                            required
+                           value={name}
+                           onChange={(e) => setName(e.target.value)}
                            className="w-full bg-white border border-gray-200 px-5 py-4 focus:ring-0 focus:border-gray-400 outline-none font-sans text-[14px] transition-colors shadow-sm"
                         />
                      </div>
                      <div className="space-y-3">
                         <label className="text-[11px] uppercase tracking-widest font-bold text-[#2c2c2c]">Email Address *</label>
-                        <input 
-                           type="email" 
+                        <input
+                           type="email"
                            placeholder="Enter your email"
                            required
+                           value={email}
+                           onChange={(e) => setEmail(e.target.value)}
                            className="w-full bg-white border border-gray-200 px-5 py-4 focus:ring-0 focus:border-gray-400 outline-none font-sans text-[14px] transition-colors shadow-sm"
                         />
                      </div>
                   </div>
                   <div className="space-y-3">
                      <label className="text-[11px] uppercase tracking-widest font-bold text-[#2c2c2c]">Subject</label>
-                     <input 
-                        type="text" 
+                     <input
+                        type="text"
                         placeholder="What is this regarding?"
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
                         className="w-full bg-white border border-gray-200 px-5 py-4 focus:ring-0 focus:border-gray-400 outline-none font-sans text-[14px] transition-colors shadow-sm"
                      />
                   </div>
                   <div className="space-y-3">
                      <label className="text-[11px] uppercase tracking-widest font-bold text-[#2c2c2c]">Your Message *</label>
-                     <textarea 
+                     <textarea
                         rows={5}
                         placeholder="How can we help you?"
                         required
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
                         className="w-full bg-white border border-gray-200 px-5 py-4 focus:ring-0 focus:border-gray-400 outline-none font-sans text-[14px] transition-colors resize-none shadow-sm"
                      ></textarea>
                   </div>
@@ -131,12 +145,18 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Map Section Placeholder */}
-      <section className="h-[300px] md:h-[400px] bg-[#FAF8F5] relative overflow-hidden border-t border-gray-100 flex items-center justify-center">
-         <div className="text-center flex flex-col items-center">
-            <MapPin size={40} className="text-gray-300 mb-4" strokeWidth={1} />
-            <p className="text-[11px] uppercase tracking-widest font-bold text-gray-400">Interactive Map Location</p>
-         </div>
+      {/* Map Section */}
+      <section className="h-[300px] md:h-[400px] relative overflow-hidden border-t border-gray-100">
+        <iframe
+          src="https://maps.google.com/maps?q=Omkar+Lotus+FF-14+Chandkheda+Ahmedabad&output=embed"
+          width="100%"
+          height="100%"
+          style={{border:0}}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Silver Spoon Store Location"
+        />
       </section>
 
       <Footer />

@@ -29,20 +29,6 @@ const Footer = () => {
               Discover a wide range of beautifully crafted Silver & German Silver products that add a touch of elegance to every moment.
             </p>
             <div className="flex gap-3 mt-4">
-               {/* Facebook */}
-               <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" className="w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white transition-all border border-white/10">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                  </svg>
-               </Link>
-               {/* Instagram */}
-               <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram" className="w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white transition-all border border-white/10">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                  </svg>
-               </Link>
                {/* WhatsApp */}
                <Link href="https://wa.me/919998123479" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp" className="w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white transition-all border border-white/10">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -82,10 +68,10 @@ const Footer = () => {
             </h4>
             <ul className="flex flex-col gap-3.5">
               {[
-                { name: "FAQ's", href: "/contact" },
-                { name: "Shipping & Delivery", href: "/contact" },
-                { name: "Return & Refund", href: "/contact" },
-                { name: "Care Instructions", href: "/contact" },
+                { name: "FAQ's", href: "/faq" },
+                { name: "Shipping & Delivery", href: "/shipping" },
+                { name: "Return & Refund", href: "/returns" },
+                { name: "Care Instructions", href: "/care" },
               ].map((item) => (
                 <li key={item.name}>
                   <Link href={item.href} className="text-[13px] text-white/50 hover:text-white transition-colors font-medium">
@@ -119,7 +105,7 @@ const Footer = () => {
       <div className="bg-[#0f1115] py-5">
         <div className="container mx-auto px-6 md:px-12">
           <p className="text-[11px] text-gray-400 font-medium tracking-wide">
-            © 2024 Silver Spoon (LJ India Services). All Rights Reserved.
+            © 2025 Silver Spoon (LJ India Services). All Rights Reserved.
           </p>
         </div>
       </div>

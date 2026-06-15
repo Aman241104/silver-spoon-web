@@ -58,7 +58,7 @@ export default function AboutPage() {
                   Silver Spoon was born from a vision to bring the highest quality silver products to discerning customers who seek both aesthetic appeal and material integrity.
                 </p>
                 <p>
-                  Over the past two decades, we have evolved from a small family-run workshop into a premier destination for silver jewellery, pooja idols, and luxury gifting items. Our journey is defined by a relentless pursuit of perfection and a deep respect for Indian silver-working traditions.
+                  Since our founding in 2019, we have evolved from a curated silver boutique into a premier destination for silver jewellery, pooja idols, and luxury gifting items. Our journey is defined by a relentless pursuit of perfection and a deep respect for Indian silver-working traditions.
                 </p>
                 <p>
                   Every piece in our collection is meticulously inspected for purity and craftsmanship, ensuring that what you take home is not just an object, but a treasure that lasts for generations.

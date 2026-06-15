@@ -19,6 +19,7 @@ const GiftingConcierge = () => {
     style: "",
   });
   const [results, setResults] = React.useState<Product[]>([]);
+  const [isFallback, setIsFallback] = React.useState(false);
 
   const steps: { id: Step; title: string; options: { label: string; value: string | number }[] }[] = [
     {
@@ -93,15 +94,28 @@ const GiftingConcierge = () => {
       const matchStyle = p.styles?.some(st => st.toLowerCase() === finalAnswers.style.toLowerCase());
       return matchBudget && (matchOccasion || matchRecipient || matchStyle);
     });
-    
-    const sorted = [...filtered].sort((a, b) => (b.price || 0) - (a.price || 0));
-    setResults(sorted.slice(0, 8));
+
+    if (filtered.length === 0) {
+      const fallback = products.filter((p) => {
+        const matchBudget = (p.price || 0) <= finalAnswers.budget;
+        const matchRecipient = p.gender === finalAnswers.recipient || p.gender === "unisex" || finalAnswers.recipient === "unisex";
+        return matchBudget && matchRecipient;
+      });
+      const sortedFallback = [...fallback].sort((a, b) => (b.price || 0) - (a.price || 0));
+      setResults(sortedFallback.slice(0, 8));
+      setIsFallback(true);
+    } else {
+      const sorted = [...filtered].sort((a, b) => (b.price || 0) - (a.price || 0));
+      setResults(sorted.slice(0, 8));
+      setIsFallback(false);
+    }
   };
 
   const reset = () => {
     setStep("occasion");
     setAnswers({ occasion: "", recipient: "", budget: 0, style: "" });
     setResults([]);
+    setIsFallback(false);
   };
 
   return (
@@ -185,7 +199,13 @@ const GiftingConcierge = () => {
                      <Gift size={28} strokeWidth={1.5} />
                   </div>
                   <h2 className="text-[42px] md:text-[56px] font-serif tracking-tight text-[#2c2c2c] mb-6 font-medium">Curated For You</h2>
-                  <p className="text-[11px] uppercase tracking-widest text-gray-400 font-bold mb-10">Based on your collection preferences</p>
+                  {isFallback && results.length > 0 ? (
+                    <p className="text-[11px] uppercase tracking-widest text-gray-400 font-bold mb-10">
+                      Showing our best picks within your budget — refine your search for more specific results
+                    </p>
+                  ) : (
+                    <p className="text-[11px] uppercase tracking-widest text-gray-400 font-bold mb-10">Based on your collection preferences</p>
+                  )}
                   <button 
                     onClick={reset}
                     className="flex items-center gap-2 mx-auto text-[10px] uppercase tracking-widest font-bold text-[#2c2c2c] hover:text-gray-500 transition-colors"
@@ -202,8 +222,14 @@ const GiftingConcierge = () => {
                       </div>
                     ))
                   ) : (
-                    <div className="col-span-full py-20 text-center bg-[#FAF8F5] border border-gray-100 font-serif text-gray-400 text-xl shadow-sm rounded-sm">
-                       Our artisans are crafting new pieces for these specific criteria.
+                    <div className="col-span-full py-20 text-center bg-[#FAF8F5] border border-gray-100 rounded-sm">
+                      <p className="font-serif italic text-gray-400 text-xl mb-6">No exact matches found. Let our team curate something special for you.</p>
+                      <button
+                        onClick={() => window.open('https://wa.me/919998123479?text=Hi, I need help finding a gift.', '_blank')}
+                        className="bg-[#1a1a1a] text-white px-10 py-4 text-[11px] font-bold uppercase tracking-widest hover:bg-black transition-all rounded-sm"
+                      >
+                        Chat with Concierge
+                      </button>
                     </div>
                   )}
                </div>
