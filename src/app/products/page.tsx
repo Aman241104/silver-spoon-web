@@ -148,9 +148,9 @@ function ProductsContent() {
                   "brooches":      "/images/category/SILVER 925 BROOCH/BRO001.png",
                   "rings":         "/images/category/WOMEN RINGS/LR001.png",
                   "bracelets":     "/images/category/ladies braclete/LBR925001.png",
-                  "chains":        "/images/category/CHAIN PANDENT/CHNP001.png",
+                  "chains":        "/images/category/MAINS CHAIN/MCH001.png",
                   "anklets":       PLACEHOLDER,
-                  "toe-rings":     PLACEHOLDER,
+                  "toe-rings":     "/images/category/TOE RING BICHIYA/TR022P2.png",
                   "mangalsutra":   PLACEHOLDER,
                   "earrings":      "/images/category/STUDS/JHUKA/EARRINGS/ER001.png",
                   "bangles":       "/images/category/LADIES BANGADI/LBNG 001.png",
@@ -161,7 +161,7 @@ function ProductsContent() {
                   "silver-idols":  "/images/category/SILVER IDOL 999/SL001.png",
                   "silver-frames": "/images/category/SILVER FRAMES/FR001.png",
                   "rakhi":         "/images/category/SILVER 925 RAKHI BRACELATE/RAKHI001.png",
-                  "kadas":         PLACEHOLDER,
+                  "kadas":         "/images/category/PANJABI KADA MENS SEGMENT/PBK010.png",
                 };
                 const catImage = categoryImageMap[cat.slug]
                   ?? products.find(p => p.category === cat.slug)?.image

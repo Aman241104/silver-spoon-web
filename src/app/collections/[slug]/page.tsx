@@ -32,6 +32,7 @@ function CategoryContent() {
   const genderFilter = searchParams.get("gender");
   
   const [priceFilter, setPriceFilter] = React.useState<string>("all");
+  const [subCategoryFilter, setSubCategoryFilter] = React.useState<string>("all");
   const [sortBy, setSortBy] = React.useState<string>("featured");
 
   const category = categories.find((c) => c.slug === slug);
@@ -56,7 +57,10 @@ function CategoryContent() {
     // 2. Gender Sub-filter (if provided via query param)
     if (genderFilter && p.gender !== genderFilter) return false;
 
-    // 3. Price Filter
+    // 3. SubCategory Filter
+    if (subCategoryFilter !== "all" && p.subCategory !== subCategoryFilter) return false;
+
+    // 4. Price Filter
     if (priceFilter === "under-2000") return p.price < 2000;
     if (priceFilter === "2000-5000") return p.price >= 2000 && p.price <= 5000;
     if (priceFilter === "5000-10000") return p.price > 5000 && p.price <= 10000;
@@ -124,6 +128,22 @@ function CategoryContent() {
              </div>
 
              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
+                {/* SubCategory Filter */}
+                {category.subCategories.length > 0 && (
+                  <div className="relative group">
+                    <button className="flex items-center gap-2 text-[11px] uppercase tracking-widest font-bold text-[#2c2c2c] bg-[#FAF8F5] px-4 py-2 rounded-sm border border-gray-100 hover:border-gray-200 transition-all">
+                      Style: {subCategoryFilter === "all" ? "All" : subCategoryFilter}
+                      <ChevronDown size={14} />
+                    </button>
+                    <div className="absolute top-full right-0 mt-1 w-56 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 border border-gray-100 py-2">
+                      <button onClick={() => setSubCategoryFilter("all")} className="w-full text-left px-4 py-2 text-[10px] font-bold text-charcoal hover:bg-[#FAF8F5] tracking-widest uppercase">All Styles</button>
+                      {category.subCategories.map((sub) => (
+                        <button key={sub} onClick={() => setSubCategoryFilter(sub)} className="w-full text-left px-4 py-2 text-[10px] font-bold text-charcoal hover:bg-[#FAF8F5] tracking-widest uppercase">{sub}</button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* Sort By */}
                 <div className="relative group">
                    <button className="flex items-center gap-2 text-[11px] uppercase tracking-widest font-bold text-[#2c2c2c] bg-[#FAF8F5] px-4 py-2 rounded-sm border border-gray-100 hover:border-gray-200 transition-all">
@@ -167,7 +187,7 @@ function CategoryContent() {
             <div className="py-40 text-center flex flex-col items-center">
               <Diamond size={24} className="text-gray-200 mb-8" strokeWidth={1} />
               <p className="font-serif text-3xl text-gray-300 italic tracking-tight mb-8">No pieces match your current filters.</p>
-              <button onClick={() => {setPriceFilter("all")}} className="text-[11px] uppercase tracking-widest font-bold text-charcoal border-b border-charcoal pb-1">Clear Filters</button>
+              <button onClick={() => { setPriceFilter("all"); setSubCategoryFilter("all"); }} className="text-[11px] uppercase tracking-widest font-bold text-charcoal border-b border-charcoal pb-1">Clear Filters</button>
             </div>
           )}
         </div>
