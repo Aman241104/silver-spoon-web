@@ -26,7 +26,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-[13px] text-white/50 leading-relaxed max-w-[280px] font-medium opacity-90">
-              Discover a wide range of beautifully crafted Silver & German Silver products that add a touch of elegance to every moment.
+              Discover a wide range of beautifully crafted Silver, German Silver & Silver Coated products that add a touch of elegance to every moment.
             </p>
             <div className="flex gap-3 mt-4">
                {/* WhatsApp */}

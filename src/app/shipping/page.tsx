@@ -58,16 +58,11 @@ export default function ShippingPage() {
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-5xl mx-auto">
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 max-w-2xl mx-auto">
               <div className="bg-[#FAF8F5] border border-gray-100 p-10 text-center rounded-sm shadow-sm">
-                <p className="text-[36px] font-serif text-[#2c2c2c] mb-2">5–7</p>
+                <p className="text-[36px] font-serif text-[#2c2c2c] mb-2">7–10</p>
                 <p className="text-[11px] uppercase tracking-widest font-bold text-gray-400 mb-3">Business Days</p>
                 <p className="text-[13px] text-gray-500">Standard Delivery across India</p>
-              </div>
-              <div className="bg-[#FAF8F5] border border-gray-100 p-10 text-center rounded-sm shadow-sm">
-                <p className="text-[36px] font-serif text-[#2c2c2c] mb-2">2–3</p>
-                <p className="text-[11px] uppercase tracking-widest font-bold text-gray-400 mb-3">Business Days</p>
-                <p className="text-[13px] text-gray-500">Express Delivery (additional charges apply)</p>
               </div>
               <div className="bg-[#FAF8F5] border border-gray-100 p-10 text-center rounded-sm shadow-sm">
                 <p className="text-[36px] font-serif text-[#2c2c2c] mb-2">Free</p>

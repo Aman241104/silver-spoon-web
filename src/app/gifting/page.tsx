@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Image from "next/image";
 import Link from "next/link";
-import { Gift, Package, ArrowRight, Sparkles } from "lucide-react";
+import { Gift, ArrowRight, Sparkles } from "lucide-react";
 
 export default function GiftingOverviewPage() {
   const giftCategories = [
@@ -18,35 +18,29 @@ export default function GiftingOverviewPage() {
       title: "Silver Coated",
       description: "Exquisite showpieces and spiritual items with a brilliant silver finish.",
       href: "/collections/silver-coated",
-      image: "/images/collections/silverware.png"
+      image: "/images/category/SILVER COATED/SLCO001.png"
     },
     {
       title: "Silver Idols",
       description: "High-purity 999/925 silver idols of divine deities and spiritual symbols.",
       href: "/collections/silver-idols",
-      image: "/images/collections/ganesha-statue.png"
+      image: "/images/category/SILVER IDOL 999/SL001.png"
     },
     {
       title: "Silver Frames",
       description: "Sacred 999 silver frames and murtis for homes and offices.",
       href: "/collections/silver-frames",
-      image: "/images/collections/pooja.png"
+      image: "/images/category/SILVER FRAMES/FR001.png"
     },
     {
       title: "Rakhi Collection",
       description: "Pure 925 silver rakhis and festive sets for Raksha Bandhan.",
       href: "/collections/rakhi",
-      image: "/images/collections/ganesha-statue.png"
+      image: "/images/category/SILVER 925 RAKHI BRACELATE/RAKHI001.png"
     }
   ];
 
   const giftingServices = [
-    {
-      title: "Build A Gift Box",
-      description: "Customise a premium gift set with your choice of artisan silver pieces and luxury packaging.",
-      href: "/gifting/build-a-box",
-      icon: <Package size={24} className="text-gold" />,
-    },
     {
       title: "Corporate Gifting",
       description: "Executive gifts for partners and employees with custom branding and bulk fulfillment.",

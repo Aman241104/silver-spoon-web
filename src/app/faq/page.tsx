@@ -7,11 +7,6 @@ import { Diamond } from "lucide-react";
 
 const faqs = [
   {
-    question: "What purity is your silver?",
-    answer:
-      "All our silver products are made from 925 sterling silver (92.5% pure silver) and are BIS hallmarked. Each piece comes with a certificate of authenticity so you can be assured of the purity you receive.",
-  },
-  {
     question: "How do I care for and clean my silver items?",
     answer:
       "Store silver in airtight pouches or anti-tarnish bags when not in use. Wipe gently with a soft, lint-free cloth after each use. Avoid exposure to perfume, lotion, and household chemicals. For deeper cleaning, use a silver polishing cloth or a mild silver cleaner. Visit our Care Instructions page for detailed guidance.",
@@ -19,7 +14,7 @@ const faqs = [
   {
     question: "How long does delivery take?",
     answer:
-      "Standard delivery across India takes 5–7 business days. Express delivery (2–3 business days) is available at an additional charge. You will receive WhatsApp updates on your order status after dispatch.",
+      "Standard delivery across India takes 7–10 business days. You will receive WhatsApp updates on your order status after dispatch.",
   },
   {
     question: "Do you offer customization or bulk orders?",

@@ -120,7 +120,7 @@ export const categories = [
     id: "bangles",
     name: "Ladies Bangadi",
     slug: "bangles",
-    description: "Traditional 925 silver bangles (bangadi) crafted in classic and contemporary styles.",
+    description: "Traditional 999 silver bangles (bangadi) crafted in classic and contemporary styles.",
     subCategories: ["Plain Bangles", "Enamel Bangles"]
   },
   {
@@ -415,13 +415,9 @@ export const products: Product[] = [
   // SILVER 925 RAKHI BRACELETS
   createProduct("rkh-925-001", "Oval Filigree Silver Charm Rakhi Bracelet", "rakhi", "Silver Rakhi", "/images/category/SILVER 925 RAKHI BRACELATE/925RAKHI001.png", "925RAKHI/001", "925", 0, "unisex"),
   createProduct("rkh-925-002", "BRO Yellow Enamel Letter Charm Rakhi Bracelet", "rakhi", "Silver Rakhi", "/images/category/SILVER 925 RAKHI BRACELATE/925RAKHI002.png", "925RAKHI/002", "925", 0, "unisex"),
-  createProduct("rkh-925-003", "BRO Golden Enamel Box Chain Rakhi Bracelet", "rakhi", "Silver Rakhi", "/images/category/SILVER 925 RAKHI BRACELATE/925RAKHI003.png", "925RAKHI/003", "925", 0, "unisex"),
   createProduct("rkh-925-004", "Laddu Gopal Red Enamel Charm Rakhi Bracelet", "rakhi", "Silver Rakhi", "/images/category/SILVER 925 RAKHI BRACELATE/925RAKHI004.png", "925RAKHI/004", "925", 0, "unisex"),
   createProduct("rkh-925-005", "Floral Enamel Round Disc Charm Rakhi Bracelet", "rakhi", "Silver Rakhi", "/images/category/SILVER 925 RAKHI BRACELATE/925RAKHI005.png", "925RAKHI/005", "925", 0, "unisex"),
-  createProduct("rkh-925-006", "Colourful Enamel Medallion Charm Rakhi Bracelet", "rakhi", "Silver Rakhi", "/images/category/SILVER 925 RAKHI BRACELATE/925RAKHI006.png", "925RAKHI/006", "925", 0, "unisex"),
   createProduct("rkh-925-007", "Best Brother Blue Enamel Bar Rakhi Bracelet", "rakhi", "Silver Rakhi", "/images/category/SILVER 925 RAKHI BRACELATE/925RAKHI007.png", "925RAKHI/007", "925", 0, "unisex"),
-  createProduct("rkh-925-008", "Best Brother CZ Silver Bar Rakhi Bracelet", "rakhi", "Silver Rakhi", "/images/category/SILVER 925 RAKHI BRACELATE/925RAKHI008.png", "925RAKHI/008", "925", 0, "unisex"),
-  createProduct("rkh-925-009", "Best Brother Enamel Nameplate Rakhi Bracelet", "rakhi", "Silver Rakhi", "/images/category/SILVER 925 RAKHI BRACELATE/925RAKHI009.png", "925RAKHI/009", "925", 0, "unisex"),
   createProduct("rkh-925-010", "BRO Blue CZ Halo Round Disc Rakhi Bracelet", "rakhi", "Silver Rakhi", "/images/category/SILVER 925 RAKHI BRACELATE/925RAKHI010.png", "925RAKHI/010", "925", 0, "unisex"),
   createProduct("rkh-925-011", "BRO Red Enamel CZ Charm Rakhi Bracelet", "rakhi", "Silver Rakhi", "/images/category/SILVER 925 RAKHI BRACELATE/925RAKHI011.png", "925RAKHI/011", "925", 0, "unisex"),
   createProduct("rkh-001", "Radha Krishna Silver Charm Red Thread Rakhi", "rakhi", "Silver Rakhi", "/images/category/SILVER 925 RAKHI BRACELATE/RAKHI001.png", "RAKHI/001", "925", 0, "unisex"),
