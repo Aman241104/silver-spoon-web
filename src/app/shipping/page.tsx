@@ -67,7 +67,7 @@ export default function ShippingPage() {
               <div className="bg-[#FAF8F5] border border-gray-100 p-10 text-center rounded-sm shadow-sm">
                 <p className="text-[36px] font-serif text-[#2c2c2c] mb-2">Free</p>
                 <p className="text-[11px] uppercase tracking-widest font-bold text-gray-400 mb-3">Shipping</p>
-                <p className="text-[13px] text-gray-500">On all orders above ₹2,000</p>
+                <p className="text-[13px] text-gray-500">On all orders above ₹10,000</p>
               </div>
             </div>
 
