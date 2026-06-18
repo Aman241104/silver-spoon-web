@@ -15,10 +15,10 @@ const Footer = () => {
             <Link href="/" className="flex flex-col group">
               <div className="relative h-14 md:h-16 w-44 md:w-52 mb-2">
                 <Image
-                  src="/images/logo.png"
+                  src="/images/logo-original-backup.png"
                   alt="Silver Spoon Logo"
                   fill
-                  className="object-contain object-left"
+                  className="object-contain object-left mix-blend-screen"
                 />
               </div>
               <span className="text-[8px] uppercase tracking-[0.4em] text-white/40 font-medium ml-0.5">

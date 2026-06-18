@@ -124,10 +124,10 @@ const Navbar = () => {
               isScrolled ? "h-10 w-32 md:h-12 md:w-40" : "h-14 w-44 md:h-20 md:w-56"
             )}>
               <Image
-                src="/images/logo.png"
+                src="/images/logo-original-backup.png"
                 alt="Silver Spoon Logo"
                 fill
-                className="object-contain object-left"
+                className="object-contain object-left mix-blend-screen"
                 priority
               />
             </div>
@@ -251,7 +251,7 @@ const Navbar = () => {
           {/* Mobile Menu Header */}
           <div className="flex items-center justify-between p-5 border-b border-gray-100 bg-white">
             <div className="relative h-12 w-32">
-              <Image src="/images/logo.png" alt="Silver Spoon" fill className="object-contain object-left" />
+              <Image src="/images/logo-original-backup.png" alt="Silver Spoon" fill className="object-contain object-left mix-blend-screen" />
             </div>
             <button onClick={() => setIsMobileMenuOpen(false)} className="text-charcoal p-1">
               <X size={22} />
