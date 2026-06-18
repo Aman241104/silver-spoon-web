@@ -155,7 +155,7 @@ export const categories = [
 
 const createProduct = (
   id: string, name: string, category: string, subCategory: string, image: string, 
-  serialNumber?: string, purity?: string, price: number = 2500, gender: "men" | "women" | "kids" | "unisex" = "unisex",
+  serialNumber?: string, purity?: string, price: number = 0, gender: "men" | "women" | "kids" | "unisex" = "unisex",
   weight?: string, dimensions?: string
 ): Product => ({
   id, name, category, subCategory, serialNumber, purity, gender,

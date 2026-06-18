@@ -84,10 +84,12 @@ export default function ProductDetailPage() {
                />
                
                {/* Detail Overlays */}
-               <div className="absolute top-8 right-8 bg-white/90 border border-gray-100 p-5 shadow-sm">
-                  <p className="text-gray-400 text-[9px] uppercase tracking-widest font-bold mb-1">Authentic 925</p>
-                  <p className="text-[#2c2c2c] text-xl font-serif">Pure Silver</p>
-               </div>
+               {product.purity && (
+                 <div className="absolute top-8 right-8 bg-white/90 border border-gray-100 p-5 shadow-sm">
+                    <p className="text-gray-400 text-[9px] uppercase tracking-widest font-bold mb-1">Authentic 925</p>
+                    <p className="text-[#2c2c2c] text-xl font-serif">Pure Silver</p>
+                 </div>
+               )}
             </div>
 
             {/* Product Details */}
@@ -100,22 +102,30 @@ export default function ProductDetailPage() {
                   {product.name}
                </h1>
                
-               <div className="flex items-center gap-10 mb-10 pb-10 border-b border-gray-100">
-                  <div className="flex flex-col">
-                     <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-1">Investment</span>
-                     <span className="text-2xl font-serif text-[#2c2c2c]">
-                        {product.price > 0 ? `₹${product.price.toLocaleString()}` : "Price on Request"}
-                     </span>
-                  </div>
-                  <div className="w-[1px] h-10 bg-gray-100" />
-                  <div className="flex items-center gap-3">
-                     <ShieldCheck size={20} className="text-gray-300" strokeWidth={1.5} />
-                     <div className="flex flex-col">
-                        <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-0.5">Assurance</span>
-                        <span className="text-[11px] uppercase font-bold text-[#2c2c2c] tracking-tight">Purity Certified</span>
-                     </div>
-                  </div>
-               </div>
+               {(product.price > 0 || product.purity) && (
+                 <div className="flex items-center gap-10 mb-10 pb-10 border-b border-gray-100">
+                    {product.price > 0 && (
+                      <>
+                        <div className="flex flex-col">
+                           <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-1">Investment</span>
+                           <span className="text-2xl font-serif text-[#2c2c2c]">
+                              ₹{product.price.toLocaleString()}
+                           </span>
+                        </div>
+                        {product.purity && <div className="w-[1px] h-10 bg-gray-100" />}
+                      </>
+                    )}
+                    {product.purity && (
+                      <div className="flex items-center gap-3">
+                         <ShieldCheck size={20} className="text-gray-300" strokeWidth={1.5} />
+                         <div className="flex flex-col">
+                            <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-0.5">Assurance</span>
+                            <span className="text-[11px] uppercase font-bold text-[#2c2c2c] tracking-tight">Purity Certified</span>
+                         </div>
+                      </div>
+                    )}
+                 </div>
+               )}
 
                <p className="text-[15px] md:text-[16px] text-gray-500 leading-relaxed mb-12 max-w-xl">
                   {product.description}
