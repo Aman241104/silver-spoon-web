@@ -1,8 +1,10 @@
 import type { NextConfig } from "next";
 
+const isDev = process.env.NODE_ENV === "development";
+
 const nextConfig: NextConfig = {
   images: {
-    dangerouslyAllowLocalIP: true, // required for Next.js 16 — allows image optimization on local/network IPs
+    dangerouslyAllowLocalIP: isDev, // only needed when sharing dev server on local network
     remotePatterns: [
       {
         protocol: 'https',
