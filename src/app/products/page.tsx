@@ -149,7 +149,7 @@ function ProductsContent() {
                   "rings":         "/images/category/WOMEN RINGS/LR001.png",
                   "bracelets":     "/images/category/ladies braclete/LBR925001.png",
                   "chains":        "/images/category/MAINS CHAIN/MCH001.png",
-                  "anklets":       "/images/category/Anklets/box-chain-cz-charm-ghungroo-anklet.jpeg",
+                  "anklets":       "/images/category/Anklets/PYL011.png",
                   "toe-rings":     "/images/category/TOE RING BICHIYA/TR022P2.png",
                   "mangalsutra":   "/images/category/Mangalsutra/oxidised-floral-ruby-jade-pendant-mangalsutra.jpeg",
                   "earrings":      "/images/category/STUDS/JHUKA/EARRINGS/ER001.png",
