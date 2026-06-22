@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   images: {
+    dangerouslyAllowLocalIP: true, // required for Next.js 16 — allows image optimization on local/network IPs
     remotePatterns: [
       {
         protocol: 'https',

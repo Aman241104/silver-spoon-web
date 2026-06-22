@@ -75,11 +75,11 @@ export default function ProductDetailPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             {/* Image Area */}
             <div className="relative aspect-[1/1] bg-[#FAF8F5] overflow-hidden">
-               <Image 
-                 src={product.image} 
+               <Image
+                 src={product.image}
                  alt={product.name}
                  fill
-                 className="object-contain mix-blend-multiply p-12"
+                 className="object-contain p-8"
                  priority
                />
                
@@ -164,19 +164,19 @@ export default function ProductDetailPage() {
 
                <div className="space-y-6 mb-16">
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <button 
-                      className="flex-1 bg-[#1a1a1a] text-white px-8 py-4 text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm hover:bg-black transition-all flex items-center justify-center gap-3"
+                    <button
+                      className="flex-1 bg-[#25D366] hover:bg-[#128C7E] text-white px-8 py-4 text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm transition-all flex items-center justify-center gap-3"
+                      onClick={handleInquiry}
+                    >
+                      <MessageSquare size={16} strokeWidth={1.5} />
+                      Order on WhatsApp
+                    </button>
+                    <button
+                      className="flex-1 bg-[#FAF8F5] border border-gray-200 text-[#2c2c2c] px-8 py-4 text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm hover:bg-white transition-all flex items-center justify-center gap-3"
                       onClick={() => addToCart(product)}
                     >
                       <ShoppingBag size={16} strokeWidth={1.5} />
                       Add to Bag
-                    </button>
-                    <button 
-                      className="flex-1 bg-[#FAF8F5] border border-gray-200 text-[#2c2c2c] px-8 py-4 text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm hover:bg-white transition-all flex items-center justify-center gap-3"
-                      onClick={handleInquiry}
-                    >
-                      <MessageSquare size={16} strokeWidth={1.5} />
-                      Inquire on WhatsApp
                     </button>
                   </div>
 

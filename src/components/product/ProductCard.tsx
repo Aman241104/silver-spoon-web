@@ -34,11 +34,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div className="relative aspect-[4/5] bg-[#FAF8F5] overflow-hidden mb-6 border border-gray-100 shadow-sm group-hover:shadow-md transition-all duration-700 rounded-sm">
           {/* Actual Product Image */}
           <div className="w-full h-full relative transition-transform duration-1000 ease-out group-hover:scale-105">
-             <Image 
-               src={product.image} 
+             <Image
+               src={product.image}
                alt={product.name}
                fill
-               className="object-cover mix-blend-multiply"
+               className="object-cover"
                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
              />
           </div>

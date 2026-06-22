@@ -174,11 +174,12 @@ function ProductsContent() {
                     className="group flex flex-col items-center text-center"
                   >
                     <div className="relative w-full aspect-[4/5] mb-6 md:mb-8 overflow-hidden bg-[#FAF8F5]">
-                       <Image 
+                       <Image
                          src={catImage}
                          alt={cat.name}
                          fill
-                         className="object-cover transition-transform duration-1000 group-hover:scale-105 mix-blend-multiply"
+                         className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                        />
                     </div>
                     
