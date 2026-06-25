@@ -14,9 +14,9 @@ export default function Home() {
     <main className="min-h-screen">
       <Navbar />
       <Hero />
+      <WeeklyCollection />
       <CategoryGrid />
       <ExploreCollections />
-      <WeeklyCollection />
       <Philosophy />
       <BrandPromise />
       <Features />

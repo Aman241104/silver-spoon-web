@@ -8,7 +8,7 @@ import { useGSAP } from "@/hooks/use-gsap";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const weeklyProducts = products.filter((p) => p.trending).slice(0, 6);
+const weeklyProducts = products.filter((p) => p.category === "weekly-fast-moving").slice(0, 6);
 
 const WeeklyCollection = () => {
   const containerRef = useGSAP(() => {
@@ -44,10 +44,10 @@ const WeeklyCollection = () => {
             </h2>
           </div>
           <Link
-            href="/products"
+            href="/collections/weekly-fast-moving"
             className="inline-flex items-center gap-3 text-[11px] uppercase tracking-widest font-bold text-white/60 hover:text-white transition-colors border-b border-white/20 pb-1 w-fit"
           >
-            View All <ArrowRight size={14} />
+            View All 50 <ArrowRight size={14} />
           </Link>
         </div>
 
