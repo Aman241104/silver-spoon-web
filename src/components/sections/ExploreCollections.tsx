@@ -30,14 +30,14 @@ const ExploreCollections = () => {
   });
 
   return (
-    <section ref={containerRef} className="py-12 md:py-16 lg:py-20 bg-white font-sans">
+    <section ref={containerRef} className="py-8 md:py-16 lg:py-20 bg-white font-sans">
       <div className="container mx-auto px-6 md:px-12 text-center">
         <h2 className="text-[24px] md:text-[28px] font-serif text-[#1a1a1a] tracking-[0.05em] uppercase mb-3 font-medium section-title">
           Explore Our Collections
         </h2>
 
         {/* Divider */}
-        <div className="flex items-center justify-center gap-2 mb-10 md:mb-16 divider">
+        <div className="flex items-center justify-center gap-2 mb-6 md:mb-16 divider">
           <div className="h-[1px] w-10 bg-gray-200"></div>
           <Diamond size={8} className="text-gold" fill="currentColor" />
           <div className="h-[1px] w-10 bg-gray-200"></div>
@@ -50,14 +50,15 @@ const ExploreCollections = () => {
             { title: "GIFTING COLLECTION", href: "/gifting", image: "/images/collections/gifting-collection.jpg" },
             { title: "SILVERWARE & TABLEWARE", href: "/collections/utensils", image: "/images/collections/new-arrivals.jpg" },
           ].map((col, idx) => (
-            <Link key={idx} href={col.href} className="group flex flex-col items-center collection-card">              <div className="relative w-full aspect-square mb-5 overflow-hidden bg-[#FAF8F5]">
-              <Image
-                src={col.image}
-                alt={col.title}
-                fill
-                className="object-cover mix-blend-multiply group-hover:scale-110 transition-transform duration-1000 ease-out"
-              />
-            </div>
+            <Link key={idx} href={col.href} className="group flex flex-col items-center collection-card">
+              <div className="relative w-full aspect-square mb-5 overflow-hidden bg-[#FAF8F5]">
+                <Image
+                  src={col.image}
+                  alt={col.title}
+                  fill
+                  className="object-cover mix-blend-multiply group-hover:scale-110 transition-transform duration-1000 ease-out"
+                />
+              </div>
               <h3 className="text-[15px] md:text-[16px] font-serif text-[#1a1a1a] mb-2 tracking-[0.02em] font-medium">
                 {col.title}
               </h3>

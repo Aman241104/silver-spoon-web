@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Diamond } from "lucide-react";
 import { useGSAP } from "@/hooks/use-gsap";
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -18,15 +18,30 @@ const categories = [
   { name: "Rakhi Collection",   href: "/collections/rakhi",             image: "/images/collections/rakhi.png" },
 ];
 
-const VISIBLE = 6;
-
 const CategoryGrid = () => {
   const [offset, setOffset] = useState(0);
-  const maxOffset = categories.length - VISIBLE;
+  const [mounted, setMounted] = useState(false);
+  const [visible, setVisible] = useState(3); // default mobile: 3
+
+  useEffect(() => {
+    const update = () => setVisible(window.innerWidth >= 768 ? 6 : 3);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  useEffect(() => setMounted(true), []);
+
+  const maxOffset = categories.length - visible;
   const trackRef = useRef<HTMLDivElement>(null);
 
   const slide = useCallback((dir: number) => {
     setOffset(prev => Math.max(0, Math.min(maxOffset, prev + dir)));
+  }, [maxOffset]);
+
+  // Clamp offset when visible count changes (e.g. on resize)
+  useEffect(() => {
+    setOffset(prev => Math.min(prev, Math.max(0, maxOffset)));
   }, [maxOffset]);
 
   const containerRef = useGSAP(() => {
@@ -42,14 +57,14 @@ const CategoryGrid = () => {
   });
 
   return (
-    <section ref={containerRef} className="py-12 md:py-16 lg:py-20 bg-white font-sans overflow-hidden">
+    <section ref={containerRef} className="py-8 md:py-16 lg:py-20 bg-white font-sans overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 text-center relative">
 
         <h2 className="text-[24px] md:text-[28px] font-serif text-[#1a1a1a] tracking-[0.05em] uppercase mb-3 font-medium section-title">
           Shop By Category
         </h2>
 
-        <div className="flex items-center justify-center gap-2 mb-10 md:mb-16 divider">
+        <div className="flex items-center justify-center gap-2 mb-6 md:mb-16 divider">
           <div className="h-[1px] w-10 bg-gray-200" />
           <Diamond size={8} className="text-gold" fill="currentColor" />
           <div className="h-[1px] w-10 bg-gray-200" />
@@ -62,40 +77,39 @@ const CategoryGrid = () => {
           <button
             aria-label="Previous categories"
             onClick={() => slide(-1)}
-            disabled={offset === 0}
-            className="absolute left-0 top-[45px] md:top-[56px] -translate-y-1/2 z-10 w-10 h-10 border rounded-full flex items-center justify-center bg-white shadow-md -ml-4 md:-ml-12 transition-all duration-300 disabled:opacity-30 disabled:cursor-default border-charcoal/20 text-charcoal/60 hover:text-gold hover:border-gold"
+            disabled={!mounted || offset <= 0}
+            className="absolute left-0 top-[45px] md:top-[56px] -translate-y-1/2 z-10 w-8 h-8 md:w-10 md:h-10 border rounded-full flex items-center justify-center bg-white shadow-md -ml-2 md:-ml-12 transition-all duration-300 disabled:opacity-30 disabled:cursor-default border-charcoal/20 text-charcoal/60 hover:text-gold hover:border-gold"
           >
-            <ChevronLeft size={20} strokeWidth={1.5} />
+            <ChevronLeft size={16} strokeWidth={1.5} />
           </button>
 
           {/* Track */}
-          <div className="overflow-hidden">
+          <div className="overflow-hidden px-1">
             <div
               ref={trackRef}
               className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(calc(-${offset} * (100% / ${VISIBLE})))` }}
+              style={{ transform: `translateX(calc(-${offset} * (100% / ${visible})))` }}
             >
               {categories.map((cat, idx) => (
                 <Link
                   key={idx}
                   href={cat.href}
-                  style={{ minWidth: `calc(100% / ${VISIBLE})` }}
-                  className="flex flex-col items-center group category-item px-2 md:px-3"
+                  style={{ minWidth: `calc(100% / ${visible})` }}
+                  className="flex flex-col items-center group category-item px-1 md:px-3"
                 >
-                  <div className="relative w-20 h-20 md:w-28 md:h-28 mb-4 rounded-full bg-[#F5F2EB] flex items-center justify-center overflow-hidden border border-gray-100 group-hover:border-gold/40 group-hover:shadow-lg transition-all duration-500">
+                  <div className="relative w-16 h-16 md:w-28 md:h-28 mb-2 md:mb-4 rounded-full bg-[#F5F2EB] flex items-center justify-center overflow-hidden border border-gray-100 group-hover:border-gold/40 group-hover:shadow-lg transition-all duration-500">
                     <div className="relative w-3/4 h-3/4 transform transition-all duration-700 ease-out group-hover:scale-110">
                       <Image
                         src={cat.image}
                         alt={cat.name}
                         fill
-                        sizes="(max-width: 768px) 80px, 112px"
+                        sizes="(max-width: 768px) 64px, 112px"
                         className="object-contain drop-shadow-sm"
                       />
                     </div>
-                    {/* Gold shimmer ring on hover */}
                     <div className="absolute inset-0 rounded-full ring-0 ring-gold/0 group-hover:ring-2 group-hover:ring-gold/30 transition-all duration-500" />
                   </div>
-                  <span className="text-[12px] md:text-[13px] font-serif text-[#2c2c2c] group-hover:text-gold transition-colors duration-300 font-medium tracking-tight text-center leading-tight">
+                  <span className="text-[10px] md:text-[13px] font-serif text-[#2c2c2c] group-hover:text-gold transition-colors duration-300 font-medium tracking-tight text-center leading-tight">
                     {cat.name}
                   </span>
                 </Link>
@@ -107,16 +121,16 @@ const CategoryGrid = () => {
           <button
             aria-label="Next categories"
             onClick={() => slide(1)}
-            disabled={offset >= maxOffset}
-            className="absolute right-0 top-[45px] md:top-[56px] -translate-y-1/2 z-10 w-10 h-10 border rounded-full flex items-center justify-center bg-white shadow-md -mr-4 md:-mr-12 transition-all duration-300 disabled:opacity-30 disabled:cursor-default border-charcoal/20 text-charcoal/60 hover:text-gold hover:border-gold"
+            disabled={mounted && offset >= maxOffset}
+            className="absolute right-0 top-[45px] md:top-[56px] -translate-y-1/2 z-10 w-8 h-8 md:w-10 md:h-10 border rounded-full flex items-center justify-center bg-white shadow-md -mr-2 md:-mr-12 transition-all duration-300 disabled:opacity-30 disabled:cursor-default border-charcoal/20 text-charcoal/60 hover:text-gold hover:border-gold"
           >
-            <ChevronRight size={20} strokeWidth={1.5} />
+            <ChevronRight size={16} strokeWidth={1.5} />
           </button>
         </div>
 
         {/* Dot indicators */}
         {maxOffset > 0 && (
-          <div className="flex items-center justify-center gap-1.5 mt-8">
+          <div className="flex items-center justify-center gap-1.5 mt-6 md:mt-8">
             {Array.from({ length: maxOffset + 1 }).map((_, i) => (
               <button
                 key={i}
