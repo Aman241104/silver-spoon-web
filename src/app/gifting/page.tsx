@@ -12,31 +12,31 @@ export default function GiftingOverviewPage() {
       title: "German Silver",
       description: "Functional and decorative artisan pieces with a timeless silver-like luster.",
       href: "/collections/german-silver",
-      image: "/images/category/GERMAN SILVER/GSIMP001.png"
+      image: "/images/category/GERMAN SILVER/GSIMP001.jpg"
     },
     {
       title: "Silver Coated",
       description: "Exquisite showpieces and spiritual items with a brilliant silver finish.",
       href: "/collections/silver-coated",
-      image: "/images/category/SILVER COATED/SLCO001.png"
+      image: "/images/category/SILVER COATED/SLCO001.jpg"
     },
     {
       title: "Silver Idols",
       description: "High-purity 999/925 silver idols of divine deities and spiritual symbols.",
       href: "/collections/silver-idols",
-      image: "/images/category/SILVER IDOL 999/SL001.png"
+      image: "/images/category/SILVER IDOL 999/SL001.jpg"
     },
     {
       title: "Silver Frames",
       description: "Sacred 999 silver frames and murtis for homes and offices.",
       href: "/collections/silver-frames",
-      image: "/images/category/SILVER FRAMES/FR001.png"
+      image: "/images/category/SILVER FRAMES/FR001.jpg"
     },
     {
       title: "Rakhi Collection",
       description: "Pure 925 silver rakhis and festive sets for Raksha Bandhan.",
       href: "/collections/rakhi",
-      image: "/images/category/SILVER 925 RAKHI BRACELATE/RAKHI001.png"
+      image: "/images/category/SILVER 925 RAKHI BRACELATE/RAKHI001.jpg"
     }
   ];
 

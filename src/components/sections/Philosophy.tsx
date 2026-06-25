@@ -76,7 +76,7 @@ const Philosophy = () => {
             <div className="grid grid-cols-2 gap-3">
               <div className="relative aspect-square overflow-hidden bg-[#F5F0E8] group">
                 <Image
-                  src="/images/craft-spoon-1.png"
+                  src="/images/craft-spoon-1.jpg"
                   alt="Handcrafted engraved silver spoon"
                   fill
                   sizes="(max-width: 1024px) 50vw, 25vw"
@@ -85,7 +85,7 @@ const Philosophy = () => {
               </div>
               <div className="relative aspect-square overflow-hidden bg-[#F5F0E8] group mt-6">
                 <Image
-                  src="/images/craft-spoon-2.png"
+                  src="/images/craft-spoon-2.jpg"
                   alt="Handcrafted silver spoon"
                   fill
                   sizes="(max-width: 1024px) 50vw, 25vw"
@@ -94,7 +94,7 @@ const Philosophy = () => {
               </div>
               <div className="relative aspect-square overflow-hidden bg-[#F5F0E8] group -mt-6">
                 <Image
-                  src="/images/craft-spoon-3.png"
+                  src="/images/craft-spoon-3.jpg"
                   alt="Handcrafted ornate silver spoon"
                   fill
                   sizes="(max-width: 1024px) 50vw, 25vw"
@@ -103,7 +103,7 @@ const Philosophy = () => {
               </div>
               <div className="relative aspect-square overflow-hidden bg-[#F5F0E8] group">
                 <Image
-                  src="/images/craft-pen.png"
+                  src="/images/craft-pen.jpg"
                   alt="Handcrafted engraved silver pen"
                   fill
                   sizes="(max-width: 1024px) 50vw, 25vw"

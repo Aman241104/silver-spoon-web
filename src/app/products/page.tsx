@@ -145,27 +145,27 @@ function ProductsContent() {
                 const categoryImageMap: Record<string, string> = {
                   "men":           "/images/collections/men-category-new.png",
                   "women":         "/images/collections/women-category.png",
-                  "brooches":      "/images/category/SILVER 925 BROOCH/BRO001.png",
-                  "rings":         "/images/category/WOMEN RINGS/LR001.png",
-                  "bracelets":     "/images/category/ladies braclete/LBR925001.png",
-                  "chains":        "/images/category/MAINS CHAIN/MCH001.png",
-                  "anklets":       "/images/category/Anklets/PYL011.png",
-                  "toe-rings":     "/images/category/TOE RING BICHIYA/TR022P2.png",
+                  "brooches":      "/images/category/SILVER 925 BROOCH/BRO001.jpg",
+                  "rings":         "/images/category/WOMEN RINGS/LR001.jpg",
+                  "bracelets":     "/images/category/ladies braclete/LBR925001.jpg",
+                  "chains":        "/images/category/MAINS CHAIN/MCH001.jpg",
+                  "anklets":       "/images/category/Anklets/PYL011.jpg",
+                  "toe-rings":     "/images/category/TOE RING BICHIYA/TR022P2.jpg",
                   "mangalsutra":   "/images/category/Mangalsutra/oxidised-floral-ruby-jade-pendant-mangalsutra.jpeg",
-                  "earrings":      "/images/category/STUDS/JHUKA/EARRINGS/ER001.png",
-                  "bangles":       "/images/category/LADIES BANGADI/LBNG 001.png",
-                  "chain-pendants":"/images/category/CHAIN PANDENT/CHNP001.png",
+                  "earrings":      "/images/category/STUDS/JHUKA/EARRINGS/ER001.jpg",
+                  "bangles":       "/images/category/LADIES BANGADI/LBNG 001.jpg",
+                  "chain-pendants":"/images/category/CHAIN PANDENT/CHNP001.jpg",
                   "utensils":      "/images/products/silver-filigree-bottle-set.png",
-                  "german-silver": "/images/category/GERMAN SILVER/GSIMP001.png",
-                  "silver-coated": "/images/category/SILVER COATED/SLCO001.png",
-                  "silver-idols":  "/images/category/SILVER IDOL 999/SL001.png",
-                  "silver-frames": "/images/category/SILVER FRAMES/FR001.png",
-                  "rakhi":         "/images/category/SILVER 925 RAKHI BRACELATE/RAKHI001.png",
-                  "kadas":         "/images/category/PANJABI KADA MENS SEGMENT/PBK010.png",
+                  "german-silver": "/images/category/GERMAN SILVER/GSIMP001.jpg",
+                  "silver-coated": "/images/category/SILVER COATED/SLCO001.jpg",
+                  "silver-idols":  "/images/category/SILVER IDOL 999/SL001.jpg",
+                  "silver-frames": "/images/category/SILVER FRAMES/FR001.jpg",
+                  "rakhi":         "/images/category/SILVER 925 RAKHI BRACELATE/RAKHI001.jpg",
+                  "kadas":         "/images/category/PANJABI KADA MENS SEGMENT/PBK010.jpg",
                 };
                 const catImage = categoryImageMap[cat.slug]
                   ?? products.find(p => p.category === cat.slug)?.image
-                  ?? "/images/category/SILVER 925 BROOCH/BRO001.png";
+                  ?? "/images/category/SILVER 925 BROOCH/BRO001.jpg";
 
                 return (
                   <Link 
