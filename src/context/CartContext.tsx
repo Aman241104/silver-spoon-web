@@ -90,14 +90,16 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const handleBulkOrder = () => {
     const WHATSAPP_NUMBER = "919998123479";
+    const baseUrl = typeof window !== "undefined" ? window.location.origin : "https://www.silverspoonbyacj.com";
     let message = "Hi Silver Spoon (LJ India Services), I would like to place a bulk order for the following items:\n\n";
-    
+
     cart.forEach((item, index) => {
-      message += `${index + 1}. ${item.name} (Qty: ${item.quantity})\n`;
+      const productUrl = `${baseUrl}/product/${item.id}`;
+      message += `${index + 1}. ${item.name} (Qty: ${item.quantity})\n   🔗 ${productUrl}\n`;
     });
 
     message += "\nPlease let me know the total weight and pricing for these items.";
-    
+
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`, "_blank");
   };
