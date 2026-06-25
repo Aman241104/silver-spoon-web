@@ -48,7 +48,7 @@ const Features = () => {
               <Heart size={24} strokeWidth={1} className="opacity-70" />
             </div>
             <div className="text-left">
-              <h4 className="text-[13px] font-bold text-[#1a1a1a] mb-1 uppercase tracking-tight">Premium Quality</h4>
+              <p className="text-[13px] font-bold text-[#1a1a1a] mb-1 uppercase tracking-tight">Premium Quality</p>
               <p className="text-[11px] text-gray-500 leading-tight font-medium">Finest Silver & <br /> German Silver</p>
             </div>
           </div>
@@ -58,7 +58,7 @@ const Features = () => {
               <Award size={24} strokeWidth={1} className="opacity-70" />
             </div>
             <div className="text-left">
-              <h4 className="text-[13px] font-bold text-[#1a1a1a] mb-1 uppercase tracking-tight">Expert Craftsmanship</h4>
+              <p className="text-[13px] font-bold text-[#1a1a1a] mb-1 uppercase tracking-tight">Expert Craftsmanship</p>
               <p className="text-[11px] text-gray-500 leading-tight font-medium">Intricate designs by <br /> skilled artisans</p>
             </div>
           </div>
@@ -68,7 +68,7 @@ const Features = () => {
               <Star size={24} strokeWidth={1} className="opacity-70" />
             </div>
             <div className="text-left">
-              <h4 className="text-[13px] font-bold text-[#1a1a1a] mb-1 uppercase tracking-tight">Perfect for Every Occasion</h4>
+              <p className="text-[13px] font-bold text-[#1a1a1a] mb-1 uppercase tracking-tight">Perfect for Every Occasion</p>
               <p className="text-[11px] text-gray-500 leading-tight font-medium">Weddings, Festivals, <br /> Corporate & more</p>
             </div>
           </div>
@@ -78,7 +78,7 @@ const Features = () => {
               <Users size={24} strokeWidth={1} className="opacity-70" />
             </div>
             <div className="text-left">
-              <h4 className="text-[13px] font-bold text-[#1a1a1a] mb-1 uppercase tracking-tight">Trusted by Thousands</h4>
+              <p className="text-[13px] font-bold text-[#1a1a1a] mb-1 uppercase tracking-tight">Trusted by Thousands</p>
               <p className="text-[11px] text-gray-500 leading-tight font-medium">Loved by customers <br /> across India</p>
             </div>
           </div>

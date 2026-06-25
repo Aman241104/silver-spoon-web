@@ -253,7 +253,7 @@ const Navbar = () => {
             <div className="relative h-12 w-32">
               <Image src="/images/logo-original-backup.png" alt="Silver Spoon" fill className="object-contain object-left mix-blend-screen" />
             </div>
-            <button onClick={() => setIsMobileMenuOpen(false)} className="text-charcoal p-1">
+            <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Close menu" className="text-charcoal p-1">
               <X size={22} />
             </button>
           </div>

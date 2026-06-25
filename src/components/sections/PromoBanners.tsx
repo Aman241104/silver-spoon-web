@@ -28,7 +28,7 @@ const PromoBanners = () => {
           {/* Banner 1: Personalized Gifting */}
           <Link href="/collections/german-silver-gifts" className="promo-banner group relative h-[450px] md:h-[600px] overflow-hidden bg-[#0a0a0a] flex flex-col justify-end p-10 md:p-16">
              <Image
-               src="/images/collections/gifting.png"
+               src="/images/collections/gifting.jpg"
                alt="Pure Silver Gifting"
                fill
                className="object-cover opacity-60 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-[2000ms]"
@@ -55,7 +55,7 @@ const PromoBanners = () => {
           {/* Banner 2: Women's Collection */}
           <Link href="/collections/women" className="promo-banner group relative h-[450px] md:h-[600px] overflow-hidden bg-[#1a0a05] flex flex-col justify-end p-10 md:p-16">
              <Image 
-               src="/images/collections/jewellery.png"
+               src="/images/collections/jewellery.jpg"
                alt="Oxidised Collection"
                fill
                className="object-cover opacity-40 group-hover:scale-110 transition-all duration-[2000ms]"

@@ -26,7 +26,7 @@ const SpecialFeatures = () => {
                 {/* Visual Image Treatment */}
                 <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full bg-white shadow-2xl flex items-center justify-center p-8 border border-gold/5 overflow-hidden transition-transform duration-1000 group-hover:scale-105">
                    <Image 
-                     src="/images/collections/pooja.png"
+                     src="/images/collections/pooja.jpg"
                      alt="Silver Idols"
                      fill
                      className="object-cover opacity-90 transition-transform duration-[2000ms] group-hover:scale-110"

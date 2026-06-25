@@ -56,7 +56,7 @@ const CategoryGrid = () => {
         {/* Slider Area */}
         <div className="relative max-w-[1400px] mx-auto">
           {/* Navigation Arrows */}
-          <button className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 border border-charcoal/20 rounded-full flex items-center justify-center text-charcoal/60 hover:text-gold hover:border-gold bg-white shadow-md -ml-4 md:-ml-10 transition-all duration-300">
+          <button aria-label="Previous categories" className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 border border-charcoal/20 rounded-full flex items-center justify-center text-charcoal/60 hover:text-gold hover:border-gold bg-white shadow-md -ml-4 md:-ml-10 transition-all duration-300">
             <ChevronLeft size={20} strokeWidth={1.5} />
           </button>
 
@@ -80,7 +80,7 @@ const CategoryGrid = () => {
             ))}
           </div>
 
-          <button className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 border border-charcoal/20 rounded-full flex items-center justify-center text-charcoal/60 hover:text-gold hover:border-gold bg-white shadow-md -mr-4 md:-mr-10 transition-all duration-300">
+          <button aria-label="Next categories" className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 border border-charcoal/20 rounded-full flex items-center justify-center text-charcoal/60 hover:text-gold hover:border-gold bg-white shadow-md -mr-4 md:-mr-10 transition-all duration-300">
             <ChevronRight size={20} strokeWidth={1.5} />
           </button>
         </div>

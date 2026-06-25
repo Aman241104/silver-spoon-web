@@ -10,7 +10,7 @@ const CuratedCollections = () => {
       title: "Elegant", 
       audience: "For Women", 
       tagline: "Artisan Grace",
-      image: "/images/collections/jewellery.png",
+      image: "/images/collections/jewellery.jpg",
       href: "/collections/women"
     },
     { 

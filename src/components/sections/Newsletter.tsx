@@ -39,7 +39,7 @@ const Newsletter = () => {
       <div className="absolute inset-0 w-full h-full flex flex-col lg:flex-row">
         <div className="relative w-full lg:w-1/2 h-[300px] lg:h-full newsletter-image">
           <Image
-            src="/images/collections/new-arrivals.png"
+            src="/images/collections/new-arrivals.jpg"
             alt="Silver Lifestyle"
             fill
             className="object-cover object-left"

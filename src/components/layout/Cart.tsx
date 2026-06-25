@@ -44,8 +44,9 @@ const Cart = () => {
                 {cartCount}
              </span>
           </div>
-          <button 
+          <button
             onClick={() => setIsCartOpen(false)}
+            aria-label="Close cart"
             className="text-charcoal/40 hover:text-charcoal transition-colors p-1"
           >
             <X className="w-5 h-5 md:w-6 md:h-6" strokeWidth={1.5} />

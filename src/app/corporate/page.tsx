@@ -91,7 +91,7 @@ export default function CorporateGiftingPage() {
       <section className="py-24 bg-[#0a0a0a] text-white overflow-hidden relative">
          <div className="absolute inset-0 opacity-20">
             <Image 
-              src="/images/collections/corporate-gifting.png" 
+              src="/images/collections/corporate-gifting.jpg" 
               alt="Background" 
               fill 
               className="object-cover"

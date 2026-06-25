@@ -36,7 +36,7 @@ const Hero = () => {
       {/* Background Image - Taking whole section */}
       <div className="absolute inset-0 w-full h-full hero-image">
         <Image
-          src="/images/hero-gifting.png"
+          src="/images/hero-gifting.jpg"
           alt="Silver Elegance Hero"
           fill
           priority
@@ -73,7 +73,7 @@ const Hero = () => {
                 <Sparkles size={18} className="text-[#1a1a1a] stroke-[1.5]" />
               </div>
               <div>
-                <h4 className="text-[11px] font-bold text-[#1a1a1a] uppercase tracking-wider">Pure Quality</h4>
+                <p className="text-[11px] font-bold text-[#1a1a1a] uppercase tracking-wider">Pure Quality</p>
                 <p className="text-[10px] text-[#666666] font-medium italic">Crafted to Perfection</p>
               </div>
             </div>
@@ -83,7 +83,7 @@ const Hero = () => {
                 <Award size={18} className="text-[#1a1a1a] stroke-[1.5]" />
               </div>
               <div>
-                <h4 className="text-[11px] font-bold text-[#1a1a1a] uppercase tracking-wider">Elegant Designs</h4>
+                <p className="text-[11px] font-bold text-[#1a1a1a] uppercase tracking-wider">Elegant Designs</p>
                 <p className="text-[10px] text-[#666666] font-medium italic">For Every Occasion</p>
               </div>
             </div>
@@ -93,7 +93,7 @@ const Hero = () => {
                 <Gift size={18} className="text-[#1a1a1a] stroke-[1.5]" />
               </div>
               <div>
-                <h4 className="text-[11px] font-bold text-[#1a1a1a] uppercase tracking-wider">Perfect for Gifting</h4>
+                <p className="text-[11px] font-bold text-[#1a1a1a] uppercase tracking-wider">Perfect for Gifting</p>
                 <p className="text-[10px] text-[#666666] font-medium italic">Make Moments Special</p>
               </div>
             </div>

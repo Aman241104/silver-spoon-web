@@ -157,7 +157,7 @@ const Philosophy = () => {
               <div className="mb-8 p-6 bg-white rounded-full shadow-sm border border-silver-100">
                 {point.icon}
               </div>
-              <h4 className="text-xl font-serif text-charcoal mb-4 uppercase tracking-widest">{point.title}</h4>
+              <p className="text-xl font-serif text-charcoal mb-4 uppercase tracking-widest">{point.title}</p>
               <p className="text-sm text-charcoal/60 leading-relaxed font-sans">{point.description}</p>
             </div>
           ))}

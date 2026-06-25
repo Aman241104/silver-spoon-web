@@ -40,9 +40,9 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="lg:pl-8">
-            <h4 className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-white/80 mb-8">
+            <p className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-white/80 mb-8">
               QUICK LINKS
-            </h4>
+            </p>
             <ul className="flex flex-col gap-3.5">
               {[
                 { name: "About Us", href: "/about" },
@@ -63,9 +63,9 @@ const Footer = () => {
 
           {/* Customer Service */}
           <div>
-            <h4 className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-white/80 mb-8">
+            <p className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-white/80 mb-8">
               CUSTOMER SERVICE
-            </h4>
+            </p>
             <ul className="flex flex-col gap-3.5">
               {[
                 { name: "FAQ's", href: "/faq" },
@@ -84,9 +84,9 @@ const Footer = () => {
 
           {/* Contact Us */}
           <div>
-            <h4 className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-white/80 mb-8">
+            <p className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-bold text-white/80 mb-8">
               CONTACT US
-            </h4>
+            </p>
             <ul className="flex flex-col gap-5">
               <li className="flex items-center gap-3">
                 <Phone size={14} strokeWidth={1} className="text-white/30 shrink-0" />

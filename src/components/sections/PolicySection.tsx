@@ -34,9 +34,9 @@ const PolicySection = () => {
                 {policy.icon}
               </div>
               <div className="space-y-3">
-                <h4 className="text-[10px] uppercase tracking-[0.5em] font-bold text-white">
+                <p className="text-[10px] uppercase tracking-[0.5em] font-bold text-white">
                   {policy.title}
-                </h4>
+                </p>
                 <div className="w-8 h-[1px] bg-gold/30 mx-auto transition-all duration-700 group-hover:w-16" />
                 <p className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-bold">
                   {policy.desc}

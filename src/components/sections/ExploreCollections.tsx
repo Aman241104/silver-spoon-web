@@ -47,8 +47,8 @@ const ExploreCollections = () => {
           {[
             { title: "MEN'S COLLECTION", href: "/products?gender=men", image: "/images/collections/men-category-new.png" },
             { title: "WOMEN'S COLLECTION", href: "/products?gender=women", image: "/images/collections/women-category.png" },
-            { title: "GIFTING COLLECTION", href: "/gifting", image: "/images/collections/gifting-collection.png" },
-            { title: "SILVERWARE & TABLEWARE", href: "/collections/utensils", image: "/images/collections/new-arrivals.png" },
+            { title: "GIFTING COLLECTION", href: "/gifting", image: "/images/collections/gifting-collection.jpg" },
+            { title: "SILVERWARE & TABLEWARE", href: "/collections/utensils", image: "/images/collections/new-arrivals.jpg" },
           ].map((col, idx) => (
             <Link key={idx} href={col.href} className="group flex flex-col items-center collection-card">              <div className="relative w-full aspect-square mb-5 overflow-hidden bg-[#FAF8F5]">
               <Image

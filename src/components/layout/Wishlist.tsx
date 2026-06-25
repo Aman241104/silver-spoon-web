@@ -47,8 +47,9 @@ const Wishlist = () => {
                 {wishlistCount}
              </span>
           </div>
-          <button 
+          <button
             onClick={() => setIsWishlistOpen(false)}
+            aria-label="Close wishlist"
             className="text-charcoal/40 hover:text-charcoal transition-colors p-1"
           >
             <X className="w-5 h-5 md:w-6 md:h-6" strokeWidth={1.5} />

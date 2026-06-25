@@ -1,19 +1,26 @@
 import { MetadataRoute } from 'next'
-import { products } from '@/data/products'
+import { products, categories } from '@/data/products'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://silverspoon.in'
+  const baseUrl = 'https://www.silverspoonbyacj.com'
 
   const staticRoutes = [
-    '', '/products', '/about', '/contact', '/stores',
-    '/gifting', '/gifting/concierge', '/gifting/build-a-box',
-    '/gifting/group-gifting', '/corporate', '/faq', '/shipping',
-    '/returns', '/care'
-  ].map(route => ({
-    url: `${baseUrl}${route}`,
+    { path: '', priority: 1.0 },
+    { path: '/products', priority: 0.9 },
+    { path: '/about', priority: 0.6 },
+    { path: '/gifting', priority: 0.7 },
+  ].map(({ path, priority }) => ({
+    url: `${baseUrl}${path}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1 : 0.8,
+    priority,
+  }))
+
+  const collectionRoutes = categories.map(cat => ({
+    url: `${baseUrl}/collections/${cat.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
   }))
 
   const productRoutes = products.map(p => ({
@@ -23,5 +30,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
-  return [...staticRoutes, ...productRoutes]
+  return [...staticRoutes, ...collectionRoutes, ...productRoutes]
 }
