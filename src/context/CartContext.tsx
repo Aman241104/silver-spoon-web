@@ -91,17 +91,24 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const handleBulkOrder = () => {
     const WHATSAPP_NUMBER = "919998123479";
     const baseUrl = typeof window !== "undefined" ? window.location.origin : "https://www.silverspoonbyacj.com";
-    let message = "Hi Silver Spoon (LJ India Services), I would like to place a bulk order for the following items:\n\n";
+
+    let message = "Hi Silver Spoon, I would like to place a bulk order for the following items:\n\n";
 
     cart.forEach((item, index) => {
       const productUrl = `${baseUrl}/product/${item.id}`;
-      message += `${index + 1}. ${item.name} (Qty: ${item.quantity})\n   🔗 ${productUrl}\n`;
+      message += `${index + 1}. *${item.name}*\n`;
+      message += `   📦 Code: ${item.serialNumber || item.id}\n`;
+      if (item.weight) message += `   ⚖️ Weight: ${item.weight}\n`;
+      if (item.price > 0) message += `   💰 Price: ₹${item.price.toLocaleString("en-IN")} × ${item.quantity}\n`;
+      message += `   🔢 Qty: ${item.quantity}\n`;
+      message += `   🔗 ${productUrl}\n\n`;
     });
 
-    message += "\nPlease let me know the total weight and pricing for these items.";
+    const totalItems = cart.reduce((sum, i) => sum + i.quantity, 0);
+    message += `📦 Total items: ${totalItems}\n`;
+    message += `\nPlease confirm availability and share total weight + pricing.`;
 
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`, "_blank");
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   return (

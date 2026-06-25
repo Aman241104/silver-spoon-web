@@ -137,8 +137,26 @@ const BuildABox = () => {
                     </p>
                     
                     <div className="space-y-4 pt-6">
-                       <button 
-                         onClick={() => window.open('https://wa.me/919998123479?text=Hi, I have built a custom gift box and want to inquire about its price.', '_blank')}
+                       <button
+                         onClick={() => {
+                           const baseUrl = typeof window !== "undefined" ? window.location.origin : "https://www.silverspoonbyacj.com";
+                           const lines = [
+                             "Hi Silver Spoon, I would like to finalize a custom gift box:",
+                             "",
+                             selectedProduct ? `🪙 *Product:* ${selectedProduct.name}` : "",
+                             selectedProduct ? `   📦 Code: ${selectedProduct.serialNumber || selectedProduct.id}` : "",
+                             selectedProduct?.weight ? `   ⚖️ Weight: ${selectedProduct.weight}` : "",
+                             selectedProduct?.price && selectedProduct.price > 0 ? `   💰 Price: ₹${selectedProduct.price.toLocaleString("en-IN")}` : "",
+                             selectedProduct ? `   🔗 ${baseUrl}/product/${selectedProduct.id}` : "",
+                             "",
+                             selectedBox ? `🎁 *Box:* ${selectedBox}` : "",
+                             personalization.text ? `💌 *Message:* "${personalization.text}"` : "",
+                             personalization.videoUrl ? `🎥 *Video:* ${personalization.videoUrl}` : "",
+                             "",
+                             "Please confirm availability and share the final pricing.",
+                           ].filter(Boolean).join("\n");
+                           window.open(`https://wa.me/919998123479?text=${encodeURIComponent(lines)}`, "_blank");
+                         }}
                          className="w-full bg-[#25D366] text-white py-5 flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-[#128C7E] transition-all rounded-sm shadow-lg"
                        >
                           Finalize on WhatsApp <ArrowRight size={14} />

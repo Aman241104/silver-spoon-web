@@ -225,7 +225,19 @@ const GiftingConcierge = () => {
                     <div className="col-span-full py-20 text-center bg-[#FAF8F5] border border-gray-100 rounded-sm">
                       <p className="font-serif italic text-gray-400 text-xl mb-6">No exact matches found. Let our team curate something special for you.</p>
                       <button
-                        onClick={() => window.open('https://wa.me/919998123479?text=Hi, I need help finding a gift.', '_blank')}
+                        onClick={() => {
+                          const lines = [
+                            "Hi Silver Spoon, I need help finding a gift. My preferences:",
+                            "",
+                            answers.occasion ? `🎉 Occasion: ${answers.occasion}` : "",
+                            answers.recipient ? `👤 Recipient: ${answers.recipient}` : "",
+                            answers.budget ? `💰 Budget: up to ₹${Number(answers.budget).toLocaleString("en-IN")}` : "",
+                            answers.style ? `✨ Style: ${answers.style}` : "",
+                            "",
+                            "Could you suggest some pieces that fit these preferences?",
+                          ].filter(Boolean).join("\n");
+                          window.open(`https://wa.me/919998123479?text=${encodeURIComponent(lines)}`, "_blank");
+                        }}
                         className="bg-[#1a1a1a] text-white px-10 py-4 text-[11px] font-bold uppercase tracking-widest hover:bg-black transition-all rounded-sm"
                       >
                         Chat with Concierge
