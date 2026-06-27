@@ -93,9 +93,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
       <div className="px-1 text-center lg:text-left">
         <Link href={`/product/${product.id}`} className="space-y-1.5 md:space-y-2 block">
-          <p className="text-[9px] uppercase tracking-widest text-gray-400 font-bold mb-0.5 md:mb-1">
-            {product.subCategory || product.category}
-          </p>
           <h3 className="text-lg md:text-xl font-serif text-[#2c2c2c] transition-colors group-hover:text-gray-600 leading-tight">
             {product.name}
           </h3>
