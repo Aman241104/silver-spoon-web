@@ -4,12 +4,22 @@ import * as React from "react";
 import { useActionState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Upload, X } from "lucide-react";
+import { Upload, X, Wand2 } from "lucide-react";
 import imageCompression from "browser-image-compression";
 import { createClient } from "@/lib/supabase-browser";
 import { categories } from "@/data/products";
 import type { Product } from "@/data/products";
 import type { DbProduct } from "@/lib/db";
+
+function toSlug(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
 
 interface Props {
   product?: DbProduct;
@@ -21,6 +31,11 @@ export default function ProductForm({ product, action, submitLabel }: Props) {
   const router = useRouter();
   const [imageUrl, setImageUrl] = React.useState(product?.image ?? "");
   const [uploading, setUploading] = React.useState(false);
+
+  // Auto-ID system — only active when creating a new product
+  const [name, setName] = React.useState(product?.name ?? "");
+  const [productId, setProductId] = React.useState(product?.id ?? "");
+  const [idEdited, setIdEdited] = React.useState(false);
 
   const [state, formAction, pending] = useActionState(
     async (prev: { error?: string } | undefined, formData: FormData) => {
@@ -46,8 +61,7 @@ export default function ProductForm({ product, action, submitLabel }: Props) {
       });
 
       const supabase = createClient();
-      const ext = "webp";
-      const filename = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+      const filename = `${Date.now()}-${Math.random().toString(36).slice(2)}.webp`;
 
       const { error } = await supabase.storage
         .from("product-images")
@@ -76,18 +90,62 @@ export default function ProductForm({ product, action, submitLabel }: Props) {
       {product && <input type="hidden" name="id" value={product.id} />}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {!product && (
-          <div>
-            <label className={labelClass}>Product ID *</label>
-            <input name="id" required placeholder="e.g. ring-001" className={inputClass} />
-            <p className="text-[10px] text-gray-400 mt-1">Unique, lowercase, no spaces (e.g. ring-001)</p>
-          </div>
-        )}
-
+        {/* Product Name — always first, drives auto-ID on new products */}
         <div className={product ? "md:col-span-2" : ""}>
           <label className={labelClass}>Product Name *</label>
-          <input name="name" required defaultValue={product?.name} className={inputClass} />
+          <input
+            name="name"
+            required
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+              if (!product && !idEdited) {
+                setProductId(toSlug(e.target.value));
+              }
+            }}
+            className={inputClass}
+          />
         </div>
+
+        {/* Product ID — auto-filled from name, shown only when creating */}
+        {!product && (
+          <div>
+            <label className={labelClass}>
+              Product ID *
+              {!idEdited && productId && (
+                <span className="ml-2 normal-case font-normal text-[#D4AF37] text-[9px] inline-flex items-center gap-0.5">
+                  <Wand2 size={8} />
+                  auto-generated
+                </span>
+              )}
+            </label>
+            <div className="relative">
+              <input
+                name="id"
+                required
+                value={productId}
+                onChange={(e) => {
+                  setProductId(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""));
+                  setIdEdited(true);
+                }}
+                placeholder="Fills automatically from name"
+                className={inputClass}
+              />
+              {idEdited && (
+                <button
+                  type="button"
+                  onClick={() => { setProductId(toSlug(name)); setIdEdited(false); }}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[9px] font-bold uppercase tracking-widest text-gray-400 hover:text-[#2c2c2c] transition-colors"
+                >
+                  Reset
+                </button>
+              )}
+            </div>
+            <p className="text-[10px] text-gray-400 mt-1">
+              Auto-filled from name. Only lowercase letters, numbers, and hyphens.
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -173,7 +231,6 @@ export default function ProductForm({ product, action, submitLabel }: Props) {
             <input type="file" accept="image/*" onChange={handleImageChange} disabled={uploading} className="hidden" />
           </label>
         </div>
-        {/* Also allow manual URL entry */}
         <input
           type="text"
           placeholder="Or paste image URL / path"

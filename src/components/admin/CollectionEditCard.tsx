@@ -84,7 +84,7 @@ export default function CollectionEditCard({ collection }: Props) {
         <input type="hidden" name="slug" value={collection.slug} />
         <input type="hidden" name="sort_order" value={collection.sort_order} />
 
-        <div className="flex gap-5 items-start">
+        <div className="flex flex-col sm:flex-row gap-5 items-start">
           <div className="relative w-28 h-20 bg-[#FAF8F5] border border-gray-100 shrink-0 overflow-hidden rounded-sm">
             {imageUrl ? (
               <>

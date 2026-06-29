@@ -30,7 +30,7 @@ async function CollectionList() {
 export default function AdminCollectionsPage() {
   return (
     <div className="p-8 md:p-12 max-w-3xl">
-      <div className="mb-8 flex items-start justify-between gap-4">
+      <div className="mb-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         <div>
           <h2 className="text-2xl font-serif text-[#2c2c2c] tracking-tight">Collection Cards</h2>
           <p className="text-gray-400 text-sm mt-1">

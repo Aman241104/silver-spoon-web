@@ -113,7 +113,7 @@ export default function WeeklyToggleList({ products }: { products: DbProductLean
             className="w-full border border-gray-200 pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:border-[#2F3131] transition-colors bg-white"
           />
         </div>
-        <div className="flex gap-1.5">
+        <div className="flex flex-wrap gap-1.5">
           {(["all", "weekly", "not-weekly"] as const).map((f) => {
             const label =
               f === "all" ? "All" : f === "weekly" ? `Weekly (${weeklyCount})` : "Not Weekly";

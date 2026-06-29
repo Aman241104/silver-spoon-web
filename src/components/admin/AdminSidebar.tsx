@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { logout } from "@/app/actions/auth";
-import { LayoutDashboard, Package, Flame, Grid2X2, Tag, ImageIcon, LogOut } from "lucide-react";
+import { LayoutDashboard, Package, Flame, Grid2X2, Tag, ImageIcon, LogOut, X } from "lucide-react";
 
 const navItems = [
   { href: "/admin/dashboard",       label: "Dashboard",       icon: LayoutDashboard },
@@ -16,16 +16,28 @@ const navItems = [
 
 interface Props {
   weeklyCount: number;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
-export default function AdminSidebar({ weeklyCount }: Props) {
+export default function AdminSidebar({ weeklyCount, isOpen = false, onClose }: Props) {
   const pathname = usePathname();
 
   return (
-    <aside className="w-56 bg-[#2F3131] text-white flex flex-col shrink-0">
-      <div className="px-6 py-7 border-b border-white/10">
-        <p className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-bold mb-1">Silver Spoon</p>
-        <h1 className="text-lg font-serif text-white leading-tight">Admin</h1>
+    <aside className={`fixed left-0 top-0 h-full w-56 z-50 bg-[#2F3131] text-white flex flex-col transform transition-transform duration-200 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}>
+      <div className="px-6 py-7 border-b border-white/10 flex items-start justify-between">
+        <div>
+          <p className="text-[9px] uppercase tracking-[0.3em] text-white/40 font-bold mb-1">Silver Spoon</p>
+          <h1 className="text-lg font-serif text-white leading-tight">Admin</h1>
+        </div>
+        <button
+          type="button"
+          onClick={onClose}
+          className="lg:hidden text-white/40 hover:text-white transition-colors mt-1 p-1 -mr-1"
+          aria-label="Close menu"
+        >
+          <X size={16} />
+        </button>
       </div>
 
       <nav className="flex-1 py-5 px-3 flex flex-col gap-0.5">
@@ -35,6 +47,7 @@ export default function AdminSidebar({ weeklyCount }: Props) {
             <Link
               key={href}
               href={href}
+              onClick={onClose}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-sm text-[11px] font-bold uppercase tracking-widest transition-colors ${
                 active
                   ? "bg-white/10 text-white"

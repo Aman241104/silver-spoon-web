@@ -73,8 +73,24 @@ export default function DashboardProductPanel({ products }: Props) {
         </div>
       </div>
 
-      {/* Product rows */}
-      <div className="divide-y divide-gray-50 max-h-[400px] overflow-y-auto">
+      {/* Column headers — aligns with the toggle columns below */}
+      <div className="flex items-center gap-3 px-4 py-1.5 bg-[#FAF8F5] border-b border-gray-100">
+        <div className="w-8 shrink-0" />
+        <div className="flex-1" />
+        <div className="flex items-center gap-3 shrink-0">
+          <div className="w-10 flex items-center justify-center gap-1">
+            <Star size={9} className="text-gray-400" />
+            <span className="text-[8px] font-bold uppercase tracking-wider text-gray-400">Feat</span>
+          </div>
+          <div className="w-10 flex items-center justify-center gap-1">
+            <Flame size={9} className="text-gray-400" />
+            <span className="text-[8px] font-bold uppercase tracking-wider text-gray-400">Weekly</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Product rows — scroll limited to fit within mobile viewport */}
+      <div className="divide-y divide-gray-50 max-h-[260px] sm:max-h-[400px] overflow-y-scroll overscroll-contain">
         {filtered.length === 0 ? (
           <div className="py-8 text-center text-gray-400 text-[12px]">No products match</div>
         ) : (
@@ -97,10 +113,10 @@ export default function DashboardProductPanel({ products }: Props) {
                 <p className="text-[9px] uppercase tracking-widest text-gray-400 font-bold">{p.category}</p>
               </div>
 
-              {/* Toggles */}
+              {/* Toggles — icons hidden on mobile, column header provides context */}
               <div className="flex items-center gap-3 shrink-0">
                 <div className="flex items-center gap-1.5">
-                  <Star size={9} className={p.featured ? "text-[#D4AF37]" : "text-gray-300"} />
+                  <Star size={9} className={`hidden sm:block ${p.featured ? "text-[#D4AF37]" : "text-gray-300"}`} />
                   <AdminToggle
                     active={!!p.featured}
                     pending={pendingId === `${p.id}:featured`}
@@ -109,7 +125,7 @@ export default function DashboardProductPanel({ products }: Props) {
                   />
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Flame size={9} className={p.isWeekly ? "text-[#D4AF37]" : "text-gray-300"} />
+                  <Flame size={9} className={`hidden sm:block ${p.isWeekly ? "text-[#D4AF37]" : "text-gray-300"}`} />
                   <AdminToggle
                     active={!!p.isWeekly}
                     pending={pendingId === `${p.id}:weekly`}

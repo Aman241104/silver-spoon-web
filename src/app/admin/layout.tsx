@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
-import { ToastProvider } from "@/components/admin/ui/Toast";
-import AdminSidebar from "@/components/admin/AdminSidebar";
+import AdminShell from "@/components/admin/AdminShell";
 
 async function getWeeklyCount(): Promise<number> {
   try {
@@ -25,15 +24,5 @@ async function getWeeklyCount(): Promise<number> {
 
 export default async function AdminLayout({ children }: { children: ReactNode }) {
   const weeklyCount = await getWeeklyCount();
-
-  return (
-    <div className="min-h-screen flex bg-[#FAF8F5]">
-      <AdminSidebar weeklyCount={weeklyCount} />
-      <ToastProvider>
-        <main className="flex-1 overflow-auto">
-          {children}
-        </main>
-      </ToastProvider>
-    </div>
-  );
+  return <AdminShell weeklyCount={weeklyCount}>{children}</AdminShell>;
 }

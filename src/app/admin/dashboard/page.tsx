@@ -73,7 +73,7 @@ export default function AdminDashboard() {
   return (
     <div className="p-6 md:p-10">
       {/* Header */}
-      <div className="mb-8 flex items-start justify-between gap-4">
+      <div className="mb-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
         <div>
           <h2 className="text-2xl font-serif text-[#2c2c2c] tracking-tight">Dashboard</h2>
           <p className="text-gray-400 text-sm mt-0.5">Silver Spoon by AC Jewellers</p>

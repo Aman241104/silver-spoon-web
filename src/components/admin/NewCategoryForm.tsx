@@ -2,22 +2,36 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { Upload, X, Save, Plus } from "lucide-react";
+import { Upload, X, Save, Plus, Wand2 } from "lucide-react";
 import imageCompression from "browser-image-compression";
 import { createClient } from "@/lib/supabase-browser";
 import { upsertCategoryImage } from "@/app/actions/categoryImages";
 import { useToast } from "@/components/admin/ui/Toast";
 
+function toSlug(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 export default function NewCategoryForm() {
   const { toast } = useToast();
   const [open, setOpen] = React.useState(false);
+  const [categoryName, setCategoryName] = React.useState("");
   const [slug, setSlug] = React.useState("");
+  const [slugEdited, setSlugEdited] = React.useState(false);
   const [imageUrl, setImageUrl] = React.useState("");
   const [uploading, setUploading] = React.useState(false);
   const [saving, setSaving] = React.useState(false);
 
   function reset() {
+    setCategoryName("");
     setSlug("");
+    setSlugEdited(false);
     setImageUrl("");
     setOpen(false);
   }
@@ -52,14 +66,14 @@ export default function NewCategoryForm() {
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault();
-    const clean = slug.trim().toLowerCase().replace(/\s+/g, "-");
-    if (!clean) return toast("Slug is required", "error");
+    const cleanSlug = slug.trim();
+    if (!cleanSlug) return toast("Category name is required", "error");
     setSaving(true);
-    const result = await upsertCategoryImage(clean, imageUrl);
+    const result = await upsertCategoryImage(cleanSlug, imageUrl);
     if (result?.error) {
       toast(result.error, "error");
     } else {
-      toast(`Category "${clean}" created`);
+      toast(`Category "${categoryName || cleanSlug}" created`);
       reset();
     }
     setSaving(false);
@@ -82,19 +96,11 @@ export default function NewCategoryForm() {
     );
   }
 
-  const previewName = slug
-    ? slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
-    : "";
-
   return (
     <div className="bg-white border border-[#D4AF37]/40 p-5 mb-4">
       <div className="flex items-center justify-between mb-5">
         <p className="text-[11px] font-bold uppercase tracking-widest text-[#2c2c2c]">New Category</p>
-        <button
-          type="button"
-          onClick={reset}
-          className="text-gray-400 hover:text-[#2c2c2c] transition-colors"
-        >
+        <button type="button" onClick={reset} className="text-gray-400 hover:text-[#2c2c2c] transition-colors">
           <X size={15} />
         </button>
       </div>
@@ -121,26 +127,60 @@ export default function NewCategoryForm() {
         </div>
 
         <div className="flex-1 min-w-0 space-y-3">
+          {/* Category Name — drives the auto-slug */}
           <div>
-            <label className={labelClass}>
-              Category Slug *
-              {previewName && (
-                <span className="ml-2 normal-case font-normal text-gray-500">→ displays as &ldquo;{previewName}&rdquo;</span>
-              )}
-            </label>
+            <label className={labelClass}>Category Name *</label>
             <input
               type="text"
               required
-              value={slug}
-              onChange={(e) => setSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""))}
-              placeholder="e.g. temple-jewellery"
+              value={categoryName}
+              onChange={(e) => {
+                setCategoryName(e.target.value);
+                if (!slugEdited) setSlug(toSlug(e.target.value));
+              }}
+              placeholder="e.g. Temple Jewellery"
               className={inputClass}
             />
+          </div>
+
+          {/* Slug — auto-filled, can be overridden */}
+          <div>
+            <label className={labelClass}>
+              URL ID
+              {!slugEdited && slug && (
+                <span className="ml-2 normal-case font-normal text-[#D4AF37] text-[9px] inline-flex items-center gap-0.5">
+                  <Wand2 size={8} />
+                  auto-generated
+                </span>
+              )}
+            </label>
+            <div className="relative">
+              <input
+                type="text"
+                value={slug}
+                onChange={(e) => {
+                  setSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""));
+                  setSlugEdited(true);
+                }}
+                placeholder="Fills automatically from name"
+                className={inputClass}
+              />
+              {slugEdited && (
+                <button
+                  type="button"
+                  onClick={() => { setSlug(toSlug(categoryName)); setSlugEdited(false); }}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[9px] font-bold uppercase tracking-widest text-gray-400 hover:text-[#2c2c2c] transition-colors"
+                >
+                  Reset
+                </button>
+              )}
+            </div>
             <p className="text-[9px] text-gray-400 mt-1">
-              Must match the &ldquo;category&rdquo; field on products. Lowercase, hyphens only.
+              Must match the &ldquo;category&rdquo; field on products. Auto-filled — only change if needed.
             </p>
           </div>
 
+          {/* Image */}
           <div>
             <label className={labelClass}>Image</label>
             <div className="flex gap-2">
@@ -154,13 +194,7 @@ export default function NewCategoryForm() {
               <label className="shrink-0 border border-dashed border-gray-200 px-3 py-2 cursor-pointer hover:border-gray-300 transition-colors flex items-center gap-1.5 text-[10px] uppercase tracking-widest font-bold text-gray-400">
                 <Upload size={11} />
                 {uploading ? "…" : "Upload"}
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  disabled={uploading}
-                  className="hidden"
-                />
+                <input type="file" accept="image/*" onChange={handleImageChange} disabled={uploading} className="hidden" />
               </label>
             </div>
           </div>
