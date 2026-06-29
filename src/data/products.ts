@@ -13,6 +13,7 @@ export interface Product {
   dimensions?: string;
   featured?: boolean;
   trending?: boolean;
+  isWeekly?: boolean;
   occasions?: string[];
   styles?: string[];
 }

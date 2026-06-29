@@ -1,8 +1,11 @@
 import { MetadataRoute } from 'next'
-import { products, categories } from '@/data/products'
+import { categories } from '@/data/products'
+import { getAllProductsLean } from '@/lib/db'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.silverspoonbyacj.com'
+
+  const dbProducts = await getAllProductsLean()
 
   const staticRoutes = [
     { path: '', priority: 1.0 },
@@ -23,7 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
-  const productRoutes = products.map(p => ({
+  const productRoutes = dbProducts.map(p => ({
     url: `${baseUrl}/product/${p.id}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,

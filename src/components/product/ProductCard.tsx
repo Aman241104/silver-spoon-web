@@ -32,15 +32,22 @@ const ProductCard = ({ product }: ProductCardProps) => {
         className="block"
       >
         <div className="relative aspect-[4/5] bg-[#FAF8F5] overflow-hidden mb-6 border border-gray-100 shadow-sm group-hover:shadow-md transition-all duration-700 rounded-sm">
-          {/* Actual Product Image */}
+          {/* Product Image */}
           <div className="w-full h-full relative transition-transform duration-1000 ease-out group-hover:scale-105">
-             <Image
-               src={product.image}
-               alt={product.name}
-               fill
-               className="object-cover"
-               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-             />
+            {product.image ? (
+              <Image
+                src={product.image}
+                alt={product.name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              />
+            ) : (
+              <div className="w-full h-full flex flex-col items-center justify-center gap-3 bg-[#FAF8F5]">
+                <span className="text-4xl font-serif text-gray-200">SS</span>
+                <span className="text-[9px] uppercase tracking-widest text-gray-300 font-bold">No Image</span>
+              </div>
+            )}
           </div>
 
           {/* Quick View Button */}

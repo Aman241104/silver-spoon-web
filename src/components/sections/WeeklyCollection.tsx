@@ -3,14 +3,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Flame, Diamond } from "lucide-react";
-import { products } from "@/data/products";
+import type { Product } from "@/data/products";
 import { useGSAP } from "@/hooks/use-gsap";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const weeklyProducts = products.filter((p) => p.category === "weekly-fast-moving").slice(0, 6);
+interface Props {
+  products: Product[];
+}
 
-const WeeklyCollection = () => {
+const WeeklyCollection = ({ products: weeklyProducts }: Props) => {
   const containerRef = useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
     gsap.from(".weekly-card", {
@@ -47,7 +49,7 @@ const WeeklyCollection = () => {
             href="/collections/weekly-fast-moving"
             className="inline-flex items-center gap-3 text-[11px] uppercase tracking-widest font-bold text-white/60 hover:text-white transition-colors border-b border-white/20 pb-1 w-fit"
           >
-            View All 50 <ArrowRight size={14} />
+            View All <ArrowRight size={14} />
           </Link>
         </div>
 
@@ -67,13 +69,19 @@ const WeeklyCollection = () => {
               className="weekly-card group flex flex-col"
             >
               <div className="relative aspect-square bg-white/5 overflow-hidden mb-3">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
+                {product.image ? (
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <span className="text-2xl font-serif text-white/20">SS</span>
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute top-2 left-2">
                   <span className="bg-gold text-[#0f1115] text-[8px] uppercase tracking-wider font-bold px-2 py-0.5">

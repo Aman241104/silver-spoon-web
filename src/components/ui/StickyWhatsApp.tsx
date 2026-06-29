@@ -1,10 +1,14 @@
 "use client";
 
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import { MessageCircle } from 'lucide-react';
 
 const StickyWhatsApp = () => {
-  const phoneNumber = "919998123479"; // Updated with client's number
+  const pathname = usePathname();
+  if (pathname?.startsWith('/admin')) return null;
+
+  const phoneNumber = "919998123479";
   const message = "Hello Silver Spoon, I'm interested in your artisan collection.";
   
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

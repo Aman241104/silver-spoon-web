@@ -8,6 +8,7 @@ export const useGSAP = (
   const containerRef = useRef<HTMLElement | null>(null);
 
   useLayoutEffect(() => {
+    if (!containerRef.current) return;
     const ctx = gsap.context(callback, containerRef);
     return () => ctx.revert();
   }, [callback, dependencies]);
