@@ -326,3 +326,16 @@ export async function getCategoryImages(): Promise<Record<string, string>> {
   }
   return map
 }
+
+export async function getCategoryFormOptions(): Promise<import('./categoryMerge').CategoryOption[]> {
+  'use cache'
+  cacheLife('hours')
+  cacheTag('category-images')
+  const rows = await pgRows('/category_images?select=slug,name')
+  const { categories } = await import('@/data/products')
+  const { mergeCategories } = await import('./categoryMerge')
+  return mergeCategories(
+    categories.map(c => ({ id: c.id, name: c.name })),
+    rows.map(r => ({ slug: r.slug as string, name: (r.name as string) ?? null }))
+  )
+}

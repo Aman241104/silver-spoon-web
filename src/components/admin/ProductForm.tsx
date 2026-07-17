@@ -7,7 +7,6 @@ import Image from "next/image";
 import { Upload, X, Wand2 } from "lucide-react";
 import imageCompression from "browser-image-compression";
 import { createClient } from "@/lib/supabase-browser";
-import { categories } from "@/data/products";
 import type { Product } from "@/data/products";
 import type { DbProduct } from "@/lib/db";
 
@@ -25,9 +24,10 @@ interface Props {
   product?: DbProduct;
   action: (prev: { error?: string } | undefined, formData: FormData) => Promise<{ error?: string } | undefined>;
   submitLabel: string;
+  categories: { id: string; name: string }[];
 }
 
-export default function ProductForm({ product, action, submitLabel }: Props) {
+export default function ProductForm({ product, action, submitLabel, categories }: Props) {
   const router = useRouter();
   const [imageUrl, setImageUrl] = React.useState(product?.image ?? "");
   const [uploading, setUploading] = React.useState(false);

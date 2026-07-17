@@ -69,7 +69,7 @@ export default function NewCategoryForm() {
     const cleanSlug = slug.trim();
     if (!cleanSlug) return toast("Category name is required", "error");
     setSaving(true);
-    const result = await upsertCategoryImage(cleanSlug, imageUrl);
+    const result = await upsertCategoryImage(cleanSlug, categoryName.trim(), imageUrl);
     if (result?.error) {
       toast(result.error, "error");
     } else {

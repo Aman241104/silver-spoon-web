@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { getCategoryImages } from "@/lib/db";
+import { getCategoryImages, getCategoryFormOptions } from "@/lib/db";
 import { categories } from "@/data/products";
 import CategoryImageEditCard from "@/components/admin/CategoryImageEditCard";
 import NewCategoryForm from "@/components/admin/NewCategoryForm";
@@ -38,6 +38,9 @@ async function CategoryList() {
   const dbImages = await getCategoryImages();
   const imageMap = { ...HARDCODED, ...dbImages };
 
+  const allOptions = await getCategoryFormOptions();
+  const nameBySlug = Object.fromEntries(allOptions.map((o) => [o.id, o.name]));
+
   const customSlugs = Object.keys(dbImages).filter((s) => !HARDCODED_SLUGS.has(s));
 
   return (
@@ -60,7 +63,7 @@ async function CategoryList() {
             <CategoryImageEditCard
               key={slug}
               slug={slug}
-              name={slugToName(slug)}
+              name={nameBySlug[slug] ?? slugToName(slug)}
               currentImage={dbImages[slug]}
               showDelete
             />

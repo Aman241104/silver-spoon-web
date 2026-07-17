@@ -66,7 +66,7 @@ export default function CategoryImageEditCard({ slug, name, currentImage, showDe
 
   async function handleSave() {
     setSaving(true);
-    const result = await upsertCategoryImage(slug, imageUrl);
+    const result = await upsertCategoryImage(slug, name, imageUrl);
     if (result?.error) {
       toast(result.error, "error");
     } else {
