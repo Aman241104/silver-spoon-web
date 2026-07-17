@@ -3,9 +3,8 @@
 import { revalidatePath, revalidateTag } from 'next/cache'
 import { createClient } from '@/lib/supabase-server'
 
-function formDataToRow(formData: FormData, id?: string) {
+function formDataToRow(formData: FormData) {
   return {
-    ...(id ? { id } : { id: formData.get('id') as string }),
     name: formData.get('name') as string,
     category: formData.get('category') as string,
     sub_category: (formData.get('subCategory') as string) || null,
@@ -39,12 +38,22 @@ export async function createProduct(
 
   const row = formDataToRow(formData)
 
-  if (!row.id || !row.name || !row.category) {
-    return { error: 'ID, name, and category are required.' }
+  if (!row.name || !row.category) {
+    return { error: 'Name and category are required.' }
   }
 
-  const { error } = await supabase.from('products').insert(row)
-  if (error) return { error: error.message }
+  const { generateUniqueId } = await import('@/lib/generateUniqueId')
+  let insertError: string | undefined
+  const id = await generateUniqueId(row.name, async (candidate) => {
+    const { error } = await supabase.from('products').insert({ ...row, id: candidate })
+    if (!error) return { ok: true }
+    if (error.code === '23505') return { ok: false } // PK collision, retry with a new suffix
+    insertError = error.message
+    return { ok: true } // stop retrying on a non-collision error
+  }).catch(() => undefined)
+
+  if (insertError) return { error: insertError }
+  if (!id) return { error: 'Could not generate a unique product ID. Please try again.' }
 
   revalidateTag('products', 'max')
   revalidatePath('/')
@@ -62,7 +71,7 @@ export async function updateProduct(
   if (authError) return authError
 
   const id = formData.get('id') as string
-  const row = formDataToRow(formData, id)
+  const row = formDataToRow(formData)
 
   const { error } = await supabase.from('products').update(row).eq('id', id)
   if (error) return { error: error.message }
