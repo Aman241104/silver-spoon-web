@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidateTag } from 'next/cache'
+import { revalidateTag, revalidatePath } from 'next/cache'
 import { createClient } from '@/lib/supabase-server'
 
 export async function upsertSubcategory(slug: string, name: string) {
@@ -12,6 +12,8 @@ export async function upsertSubcategory(slug: string, name: string) {
     .upsert({ slug, name }, { onConflict: 'slug' })
   if (error) return { error: error.message }
   revalidateTag('subcategories', 'max')
+  revalidatePath('/admin/subcategories')
+  revalidatePath('/admin/products/new')
   return { error: undefined }
 }
 
@@ -22,5 +24,7 @@ export async function deleteSubcategory(slug: string) {
   const { error } = await supabase.from('subcategories').delete().eq('slug', slug)
   if (error) return { error: error.message }
   revalidateTag('subcategories', 'max')
+  revalidatePath('/admin/subcategories')
+  revalidatePath('/admin/products/new')
   return { error: undefined }
 }
