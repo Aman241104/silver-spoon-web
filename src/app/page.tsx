@@ -10,11 +10,17 @@ import BrandPromise from "@/components/sections/BrandPromise";
 import Newsletter from "@/components/sections/Newsletter";
 import WeeklyCollection from "@/components/sections/WeeklyCollection";
 import OffersSection from "@/components/sections/OffersSection";
-import { getWeeklyProducts, getCollections, getActiveOffers } from "@/lib/db";
+import HappyCustomers from "@/components/sections/HappyCustomers";
+import { getWeeklyProducts, getCollections, getActiveOffers, getPublishedReviews } from "@/lib/db";
 
 async function WeeklySection() {
   const products = await getWeeklyProducts();
   return <WeeklyCollection products={products} />;
+}
+
+async function HappyCustomersSection() {
+  const reviews = await getPublishedReviews();
+  return <HappyCustomers reviews={reviews} />;
 }
 
 async function CollectionsSection() {
@@ -46,6 +52,9 @@ export default function Home() {
       <BrandPromise />
       <Features />
       <Newsletter />
+      <Suspense fallback={<div className="h-[400px] bg-[#111827]" />}>
+        <HappyCustomersSection />
+      </Suspense>
       <Footer />
     </main>
   );

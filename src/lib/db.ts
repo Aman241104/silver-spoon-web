@@ -346,6 +346,46 @@ export async function getSubcategories(): Promise<{ slug: string; name: string }
   return rows.map(r => ({ slug: r.slug as string, name: r.name as string }))
 }
 
+// ─── Reviews ────────────────────────────────────────────────────────────────
+
+export type DbReview = {
+  id: string
+  name: string
+  rating: number
+  body: string
+  published: boolean
+  sortOrder: number
+}
+
+const REVIEW_SELECT = 'id,name,rating,body,published,sort_order'
+
+function rowToReview(row: Record<string, unknown>): DbReview {
+  return {
+    id: row.id as string,
+    name: row.name as string,
+    rating: Number(row.rating) || 5,
+    body: row.body as string,
+    published: (row.published as boolean) ?? true,
+    sortOrder: Number(row.sort_order) || 0,
+  }
+}
+
+export async function getPublishedReviews(): Promise<DbReview[]> {
+  'use cache'
+  cacheLife('hours')
+  cacheTag('reviews')
+  const rows = await pgRows(`/reviews?select=${REVIEW_SELECT}&published=eq.true&order=sort_order`)
+  return rows.map(rowToReview)
+}
+
+export async function getAllReviews(): Promise<DbReview[]> {
+  'use cache'
+  cacheLife('minutes')
+  cacheTag('reviews')
+  const rows = await pgRows(`/reviews?select=${REVIEW_SELECT}&order=sort_order`)
+  return rows.map(rowToReview)
+}
+
 export async function getCategoryFormOptions(): Promise<import('./categoryMerge').CategoryOption[]> {
   'use cache'
   cacheLife('hours')

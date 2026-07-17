@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { Upload, X, Save, Plus, Wand2 } from "lucide-react";
+import { Upload, X, Save, Plus } from "lucide-react";
 import imageCompression from "browser-image-compression";
 import { createClient } from "@/lib/supabase-browser";
 import { upsertCategoryImage } from "@/app/actions/categoryImages";
@@ -22,16 +22,13 @@ export default function NewCategoryForm() {
   const { toast } = useToast();
   const [open, setOpen] = React.useState(false);
   const [categoryName, setCategoryName] = React.useState("");
-  const [slug, setSlug] = React.useState("");
-  const [slugEdited, setSlugEdited] = React.useState(false);
   const [imageUrl, setImageUrl] = React.useState("");
   const [uploading, setUploading] = React.useState(false);
   const [saving, setSaving] = React.useState(false);
+  const slug = toSlug(categoryName);
 
   function reset() {
     setCategoryName("");
-    setSlug("");
-    setSlugEdited(false);
     setImageUrl("");
     setOpen(false);
   }
@@ -66,14 +63,14 @@ export default function NewCategoryForm() {
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault();
-    const cleanSlug = slug.trim();
-    if (!cleanSlug) return toast("Category name is required", "error");
+    const cleanName = categoryName.trim();
+    if (!cleanName || !slug) return toast("Category name is required", "error");
     setSaving(true);
-    const result = await upsertCategoryImage(cleanSlug, categoryName.trim(), imageUrl);
+    const result = await upsertCategoryImage(slug, cleanName, imageUrl);
     if (result?.error) {
       toast(result.error, "error");
     } else {
-      toast(`Category "${categoryName || cleanSlug}" created`);
+      toast(`Category "${cleanName}" created`);
       reset();
     }
     setSaving(false);
@@ -127,57 +124,17 @@ export default function NewCategoryForm() {
         </div>
 
         <div className="flex-1 min-w-0 space-y-3">
-          {/* Category Name — drives the auto-slug */}
+          {/* Category Name — drives the auto-slug (generated server-side, not shown) */}
           <div>
             <label className={labelClass}>Category Name *</label>
             <input
               type="text"
               required
               value={categoryName}
-              onChange={(e) => {
-                setCategoryName(e.target.value);
-                if (!slugEdited) setSlug(toSlug(e.target.value));
-              }}
+              onChange={(e) => setCategoryName(e.target.value)}
               placeholder="e.g. Temple Jewellery"
               className={inputClass}
             />
-          </div>
-
-          {/* Slug — auto-filled, can be overridden */}
-          <div>
-            <label className={labelClass}>
-              URL ID
-              {!slugEdited && slug && (
-                <span className="ml-2 normal-case font-normal text-[#D4AF37] text-[9px] inline-flex items-center gap-0.5">
-                  <Wand2 size={8} />
-                  auto-generated
-                </span>
-              )}
-            </label>
-            <div className="relative">
-              <input
-                type="text"
-                value={slug}
-                onChange={(e) => {
-                  setSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""));
-                  setSlugEdited(true);
-                }}
-                placeholder="Fills automatically from name"
-                className={inputClass}
-              />
-              {slugEdited && (
-                <button
-                  type="button"
-                  onClick={() => { setSlug(toSlug(categoryName)); setSlugEdited(false); }}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[9px] font-bold uppercase tracking-widest text-gray-400 hover:text-[#2c2c2c] transition-colors"
-                >
-                  Reset
-                </button>
-              )}
-            </div>
-            <p className="text-[9px] text-gray-400 mt-1">
-              Must match the &ldquo;category&rdquo; field on products. Auto-filled — only change if needed.
-            </p>
           </div>
 
           {/* Image */}
