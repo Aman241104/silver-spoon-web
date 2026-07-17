@@ -1,11 +1,20 @@
 import { Suspense } from "react";
 import { Flame } from "lucide-react";
-import { getAllProductsLean } from "@/lib/db";
+import { getAllProductsLean, getWeeklySettings } from "@/lib/db";
 import WeeklyToggleList from "@/components/admin/WeeklyToggleList";
+import WeeklySettingsForm from "@/components/admin/WeeklySettingsForm";
 
 async function WeeklyList() {
-  const products = await getAllProductsLean();
-  return <WeeklyToggleList products={products} />;
+  const [products, settings] = await Promise.all([
+    getAllProductsLean(),
+    getWeeklySettings(),
+  ]);
+  return (
+    <>
+      <WeeklySettingsForm count={settings.count} randomize={settings.randomize} />
+      <WeeklyToggleList products={products} maxWeekly={settings.count} />
+    </>
+  );
 }
 
 function WeeklyListSkeleton() {
@@ -52,7 +61,7 @@ export default function WeeklyManagerPage() {
         <div>
           <h2 className="text-2xl font-serif text-[#2c2c2c] tracking-tight">Weekly Picks</h2>
           <p className="text-gray-400 text-sm mt-1">
-            Toggle products to feature them in the &ldquo;Weekly Fast Moving&rdquo; section. Up to 6 appear on the homepage.
+            Toggle products to feature them in the &ldquo;Weekly Fast Moving&rdquo; section. Configure how many appear on the homepage below.
           </p>
         </div>
       </div>

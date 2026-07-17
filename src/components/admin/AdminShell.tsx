@@ -9,10 +9,11 @@ import { ToastProvider } from "@/components/admin/ui/Toast";
 
 interface Props {
   weeklyCount: number;
+  weeklyMax: number;
   children: ReactNode;
 }
 
-export default function AdminShell({ weeklyCount, children }: Props) {
+export default function AdminShell({ weeklyCount, weeklyMax, children }: Props) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -51,6 +52,7 @@ export default function AdminShell({ weeklyCount, children }: Props) {
 
       <AdminSidebar
         weeklyCount={weeklyCount}
+        weeklyMax={weeklyMax}
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
       />

@@ -18,11 +18,12 @@ const navItems = [
 
 interface Props {
   weeklyCount: number;
+  weeklyMax: number;
   isOpen?: boolean;
   onClose?: () => void;
 }
 
-export default function AdminSidebar({ weeklyCount, isOpen = false, onClose }: Props) {
+export default function AdminSidebar({ weeklyCount, weeklyMax, isOpen = false, onClose }: Props) {
   const pathname = usePathname();
 
   return (
@@ -62,7 +63,7 @@ export default function AdminSidebar({ weeklyCount, isOpen = false, onClose }: P
                 <span className={`text-[9px] font-bold tabular-nums px-1.5 py-0.5 rounded-full leading-none ${
                   active ? "bg-[#D4AF37] text-[#2F3131]" : "bg-white/15 text-white/70"
                 }`}>
-                  {weeklyCount}/6
+                  {weeklyCount}/{weeklyMax}
                 </span>
               )}
             </Link>

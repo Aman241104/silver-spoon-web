@@ -197,12 +197,23 @@ export async function searchProductsLean(query: string): Promise<DbProductLean[]
   return rows.map(rowToProductLean)
 }
 
+export async function getWeeklySettings(): Promise<{ count: number; randomize: boolean }> {
+  'use cache'
+  cacheLife('minutes')
+  cacheTag('weekly-settings')
+  const rows = await pgRows('/weekly_settings?select=count,randomize&limit=1')
+  const row = rows[0]
+  return { count: Number(row?.count) || 6, randomize: (row?.randomize as boolean) ?? false }
+}
+
 export async function getWeeklyProducts(): Promise<DbProduct[]> {
   'use cache'
   cacheLife('hours')
-  cacheTag('products', 'weekly-products')
-  const rows = await pgRows(`/products?select=${PRODUCT_CARD_SELECT}&is_weekly=eq.true&order=name&limit=6`)
-  return rows.map(rowToProduct)
+  cacheTag('products', 'weekly-products', 'weekly-settings')
+  const settings = await getWeeklySettings()
+  const rows = await pgRows(`/products?select=${PRODUCT_CARD_SELECT}&is_weekly=eq.true&order=name`)
+  const { selectWeeklyProducts } = await import('./weeklySelection')
+  return selectWeeklyProducts(rows, settings.count, settings.randomize).map(rowToProduct)
 }
 
 const NON_JEWELLERY = ['utensils', 'german-silver', 'silver-coated', 'silver-idols', 'silver-frames', 'rakhi']

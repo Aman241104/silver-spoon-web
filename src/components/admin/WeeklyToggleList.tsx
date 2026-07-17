@@ -8,9 +8,7 @@ import { useToast } from "@/components/admin/ui/Toast";
 import AdminToggle from "@/components/admin/ui/AdminToggle";
 import type { DbProductLean } from "@/lib/db";
 
-const MAX_WEEKLY = 6;
-
-export default function WeeklyToggleList({ products }: { products: DbProductLean[] }) {
+export default function WeeklyToggleList({ products, maxWeekly }: { products: DbProductLean[]; maxWeekly: number }) {
   const { toast } = useToast();
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<"all" | "weekly" | "not-weekly">("all");
@@ -24,7 +22,7 @@ export default function WeeklyToggleList({ products }: { products: DbProductLean
   );
 
   const weeklyCount = optimisticProducts.filter((p) => p.isWeekly).length;
-  const slotsFull = weeklyCount >= MAX_WEEKLY;
+  const slotsFull = weeklyCount >= maxWeekly;
 
   function handleToggle(id: string, current: boolean) {
     if (pendingId) return;
@@ -61,7 +59,7 @@ export default function WeeklyToggleList({ products }: { products: DbProductLean
       return 0;
     });
 
-  const progress = Math.round((weeklyCount / MAX_WEEKLY) * 100);
+  const progress = Math.round((weeklyCount / maxWeekly) * 100);
 
   return (
     <div>
@@ -75,10 +73,10 @@ export default function WeeklyToggleList({ products }: { products: DbProductLean
           </div>
           <div>
             <p className="text-[11px] font-bold uppercase tracking-widest text-[#2c2c2c]">
-              of {MAX_WEEKLY} slots filled
+              of {maxWeekly} slots filled
             </p>
             <p className="text-[10px] text-gray-400 mt-0.5 uppercase tracking-widest font-bold">
-              First {MAX_WEEKLY} shown on homepage
+              First {maxWeekly} shown on homepage
             </p>
           </div>
         </div>
@@ -94,9 +92,9 @@ export default function WeeklyToggleList({ products }: { products: DbProductLean
           <div className="flex justify-between mt-1.5">
             <span className="text-[9px] text-gray-400 font-bold uppercase tracking-widest">0</span>
             <span className={`text-[9px] font-bold uppercase tracking-widest ${slotsFull ? "text-[#D4AF37]" : "text-gray-400"}`}>
-              {slotsFull ? "All slots filled" : `${MAX_WEEKLY - weeklyCount} remaining`}
+              {slotsFull ? "All slots filled" : `${maxWeekly - weeklyCount} remaining`}
             </span>
-            <span className="text-[9px] text-gray-400 font-bold uppercase tracking-widest">{MAX_WEEKLY}</span>
+            <span className="text-[9px] text-gray-400 font-bold uppercase tracking-widest">{maxWeekly}</span>
           </div>
         </div>
       </div>

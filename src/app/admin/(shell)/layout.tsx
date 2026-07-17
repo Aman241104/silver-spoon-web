@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import AdminShell from "@/components/admin/AdminShell";
+import { getWeeklySettings } from "@/lib/db";
 
 async function getWeeklyCount(): Promise<number> {
   try {
@@ -23,6 +24,6 @@ async function getWeeklyCount(): Promise<number> {
 }
 
 export default async function AdminLayout({ children }: { children: ReactNode }) {
-  const weeklyCount = await getWeeklyCount();
-  return <AdminShell weeklyCount={weeklyCount}>{children}</AdminShell>;
+  const [weeklyCount, settings] = await Promise.all([getWeeklyCount(), getWeeklySettings()]);
+  return <AdminShell weeklyCount={weeklyCount} weeklyMax={settings.count}>{children}</AdminShell>;
 }
