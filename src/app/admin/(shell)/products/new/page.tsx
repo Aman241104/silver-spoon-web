@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { createProduct } from "@/app/actions/products";
-import { getCategoryFormOptions } from "@/lib/db";
+import { getCategoryFormOptions, getSubcategories } from "@/lib/db";
 import ProductForm from "@/components/admin/ProductForm";
 
 export default async function NewProductPage() {
-  const categories = await getCategoryFormOptions();
+  const [categories, subcategories] = await Promise.all([
+    getCategoryFormOptions(),
+    getSubcategories(),
+  ]);
 
   return (
     <div className="p-8 md:p-12 max-w-3xl">
@@ -18,7 +21,7 @@ export default async function NewProductPage() {
 
       <h2 className="text-2xl font-serif text-[#2c2c2c] tracking-tight mb-8">Add New Product</h2>
 
-      <ProductForm action={createProduct} submitLabel="Create Product" categories={categories} />
+      <ProductForm action={createProduct} submitLabel="Create Product" categories={categories} subcategories={subcategories} />
     </div>
   );
 }

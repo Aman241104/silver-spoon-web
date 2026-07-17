@@ -15,9 +15,10 @@ interface Props {
   action: (prev: { error?: string } | undefined, formData: FormData) => Promise<{ error?: string } | undefined>;
   submitLabel: string;
   categories: { id: string; name: string }[];
+  subcategories: { slug: string; name: string }[];
 }
 
-export default function ProductForm({ product, action, submitLabel, categories }: Props) {
+export default function ProductForm({ product, action, submitLabel, categories, subcategories }: Props) {
   const router = useRouter();
   const [imageUrl, setImageUrl] = React.useState(product?.image ?? "");
   const [uploading, setUploading] = React.useState(false);
@@ -99,7 +100,12 @@ export default function ProductForm({ product, action, submitLabel, categories }
         </div>
         <div>
           <label className={labelClass}>Sub-category</label>
-          <input name="subCategory" defaultValue={product?.subCategory} placeholder="e.g. Women's Rings" className={inputClass} />
+          <select name="subCategory" defaultValue={product?.subCategory ?? ""} className={inputClass}>
+            <option value="">None</option>
+            {subcategories.map(s => (
+              <option key={s.slug} value={s.name}>{s.name}</option>
+            ))}
+          </select>
         </div>
       </div>
 

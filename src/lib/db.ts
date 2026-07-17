@@ -327,6 +327,14 @@ export async function getCategoryImages(): Promise<Record<string, string>> {
   return map
 }
 
+export async function getSubcategories(): Promise<{ slug: string; name: string }[]> {
+  'use cache'
+  cacheLife('hours')
+  cacheTag('subcategories')
+  const rows = await pgRows('/subcategories?select=slug,name&order=name')
+  return rows.map(r => ({ slug: r.slug as string, name: r.name as string }))
+}
+
 export async function getCategoryFormOptions(): Promise<import('./categoryMerge').CategoryOption[]> {
   'use cache'
   cacheLife('hours')
