@@ -5,12 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Share2, Heart, ShieldCheck, Truck, RotateCcw, MessageSquare, ShoppingBag } from "lucide-react";
+import { Share2, Heart, ShieldCheck, Truck, RotateCcw, MessageSquare, ShoppingBag, ZoomIn } from "lucide-react";
 import type { Product } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import { cn } from "@/lib/utils";
 import GroupGiftingModal from "@/components/product/GroupGiftingModal";
+import ImageZoomModal from "@/components/product/ImageZoomModal";
 
 interface Props {
   product: Product;
@@ -21,6 +22,7 @@ export default function ProductDetailClient({ product }: Props) {
   const { toggleWishlist, isInWishlist } = useWishlist();
   const [isGroupGiftingOpen, setIsGroupGiftingOpen] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
+  const [zoomOpen, setZoomOpen] = React.useState(false);
 
   const handleShare = async () => {
     const url = window.location.href;
@@ -67,15 +69,28 @@ export default function ProductDetailClient({ product }: Props) {
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-            <div className="relative aspect-[1/1] bg-[#FAF8F5] overflow-hidden">
+            <div
+              className={cn(
+                "relative aspect-[1/1] bg-[#FAF8F5] overflow-hidden group",
+                product.image && "cursor-zoom-in"
+              )}
+              onClick={() => product.image && setZoomOpen(true)}
+              role={product.image ? "button" : undefined}
+              aria-label={product.image ? "Click to zoom image" : undefined}
+            >
               {product.image ? (
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  className="object-contain p-8"
-                  priority
-                />
+                <>
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-contain p-8"
+                    priority
+                  />
+                  <div className="absolute bottom-4 right-4 bg-white/90 p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ZoomIn size={16} className="text-gray-500" strokeWidth={1.5} />
+                  </div>
+                </>
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center gap-4">
                   <span className="text-7xl font-serif text-gray-200">SS</span>
@@ -232,6 +247,14 @@ export default function ProductDetailClient({ product }: Props) {
         isOpen={isGroupGiftingOpen}
         onClose={() => setIsGroupGiftingOpen(false)}
       />
+      {product.image && (
+        <ImageZoomModal
+          src={product.image}
+          alt={product.name}
+          open={zoomOpen}
+          onClose={() => setZoomOpen(false)}
+        />
+      )}
     </main>
   );
 }
