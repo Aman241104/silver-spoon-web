@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { logout } from "@/app/actions/auth";
-import { LayoutDashboard, Package, Flame, Grid2X2, Tag, Layers, ImageIcon, LogOut, X, Star } from "lucide-react";
+import { LayoutDashboard, Package, Flame, Grid2X2, Tag, Layers, ImageIcon, LogOut, X, Star, Menu as MenuIcon } from "lucide-react";
 
 const navItems = [
   { href: "/admin/dashboard",       label: "Dashboard",       icon: LayoutDashboard },
@@ -12,6 +12,7 @@ const navItems = [
   { href: "/admin/collections",     label: "Collections",     icon: Grid2X2 },
   { href: "/admin/category-images", label: "Category Images", icon: ImageIcon },
   { href: "/admin/subcategories",   label: "Sub-categories",  icon: Layers },
+  { href: "/admin/nav-menu",        label: "Header Menu",     icon: MenuIcon },
   { href: "/admin/offers",          label: "Offers",          icon: Tag },
   { href: "/admin/reviews",         label: "Reviews",         icon: Star },
 ];

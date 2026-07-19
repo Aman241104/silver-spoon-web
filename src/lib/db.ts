@@ -386,6 +386,24 @@ export async function getAllReviews(): Promise<DbReview[]> {
   return rows.map(rowToReview)
 }
 
+// ─── Nav menu items ─────────────────────────────────────────────────────────
+
+export type NavMenuItem = { id: string; title: string; href: string }
+export type NavMenu = 'MEN' | 'WOMEN' | 'GIFTS' | 'COLLECTION'
+
+export async function getNavItems(): Promise<Record<NavMenu, NavMenuItem[]>> {
+  'use cache'
+  cacheLife('hours')
+  cacheTag('nav-items')
+  const rows = await pgRows('/nav_items?select=id,menu,title,href&order=sort_order')
+  const grouped: Record<NavMenu, NavMenuItem[]> = { MEN: [], WOMEN: [], GIFTS: [], COLLECTION: [] }
+  for (const r of rows) {
+    const menu = r.menu as NavMenu
+    grouped[menu].push({ id: r.id as string, title: r.title as string, href: r.href as string })
+  }
+  return grouped
+}
+
 export async function getCategoryFormOptions(): Promise<import('./categoryMerge').CategoryOption[]> {
   'use cache'
   cacheLife('hours')

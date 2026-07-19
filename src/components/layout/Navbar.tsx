@@ -8,14 +8,27 @@ import { cn } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 
+type NavSubItem = { title: string; href: string };
+type DbNavItems = { MEN: NavSubItem[]; WOMEN: NavSubItem[]; GIFTS: NavSubItem[]; COLLECTION: NavSubItem[] };
+
+const EMPTY_DB_NAV: DbNavItems = { MEN: [], WOMEN: [], GIFTS: [], COLLECTION: [] };
+
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [activeAccordion, setActiveAccordion] = React.useState<string | null>(null);
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
   const [searchQuery, setSearchQuery] = React.useState("");
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const [dbNavItems, setDbNavItems] = React.useState<DbNavItems>(EMPTY_DB_NAV);
   const { cartCount, setIsCartOpen } = useCart();
   const { wishlistCount, setIsWishlistOpen } = useWishlist();
+
+  React.useEffect(() => {
+    fetch("/api/nav-items")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => data && setDbNavItems(data))
+      .catch(() => {});
+  }, []);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -43,8 +56,8 @@ const Navbar = () => {
 
   const menuItems = [
     { title: "HOME", href: "/" },
-    { 
-      title: "COLLECTION", 
+    {
+      title: "COLLECTION",
       href: "/products",
       subItems: [
         { title: "Men's Collection", href: "/products?gender=men" },
@@ -55,20 +68,22 @@ const Navbar = () => {
         { title: "Silverware", href: "/collections/utensils" },
         { title: "Pooja & Spiritual", href: "/collections/silver-idols" },
         { title: "German Silver", href: "/collections/german-silver" },
+        ...dbNavItems.COLLECTION,
       ]
     },
-    { 
-      title: "MEN", 
+    {
+      title: "MEN",
       href: "/products?gender=men",
       subItems: [
         { title: "Bracelet", href: "/products?category=bracelets&gender=men" },
         { title: "Chain", href: "/products?category=chains&gender=men" },
         { title: "Kada", href: "/products?category=kadas" },
         { title: "Rings", href: "/products?category=rings&gender=men" },
+        ...dbNavItems.MEN,
       ]
     },
-    { 
-      title: "WOMEN", 
+    {
+      title: "WOMEN",
       href: "/products?gender=women",
       subItems: [
         { title: "Rings", href: "/products?category=rings&gender=women" },
@@ -77,10 +92,11 @@ const Navbar = () => {
         { title: "Anklets", href: "/products?category=anklets" },
         { title: "Toe Rings", href: "/products?category=toe-rings" },
         { title: "Mangalsutra", href: "/products?category=mangalsutra" },
+        ...dbNavItems.WOMEN,
       ]
     },
-    { 
-      title: "GIFTS", 
+    {
+      title: "GIFTS",
       href: "/gifting",
       subItems: [
         { title: "German Silver", href: "/collections/german-silver" },
@@ -88,6 +104,7 @@ const Navbar = () => {
         { title: "Silver Idols (999/925)", href: "/collections/silver-idols" },
         { title: "999 Silver Frames", href: "/collections/silver-frames" },
         { title: "Corporate Gifting", href: "/corporate" },
+        ...dbNavItems.GIFTS,
       ]
     },
     { title: "ABOUT US", href: "/about" },
@@ -166,14 +183,14 @@ const Navbar = () => {
 
           {/* Right: Icons */}
           <div className="flex items-center justify-end gap-5 md:gap-6 text-white lg:w-[220px]">
-            <button 
+            <button
               className="hover:opacity-60 transition-opacity"
               onClick={() => setIsSearchOpen(!isSearchOpen)}
               aria-label="Search"
             >
               {isSearchOpen ? <X size={20} /> : <Search size={20} />}
             </button>
-            <button 
+            <button
               className="relative hover:opacity-60 transition-opacity"
               onClick={() => setIsWishlistOpen(true)}
               aria-label="Wishlist"
@@ -185,7 +202,7 @@ const Navbar = () => {
                 </span>
               )}
             </button>
-            <button 
+            <button
               className="relative hover:opacity-60 transition-opacity"
               onClick={() => setIsCartOpen(true)}
               aria-label="Cart"
@@ -197,7 +214,7 @@ const Navbar = () => {
                 </span>
               )}
             </button>
-            <button 
+            <button
               className="lg:hidden p-1 text-white"
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open Menu"
@@ -213,7 +230,7 @@ const Navbar = () => {
           isSearchOpen ? "max-h-[100px] opacity-100 border-b" : "max-h-0 opacity-0"
         )}>
           <div className="container mx-auto px-6 md:px-12 py-4">
-            <form 
+            <form
               className="flex items-center gap-4"
               onSubmit={(e) => {
                 e.preventDefault();
@@ -223,8 +240,8 @@ const Navbar = () => {
               }}
             >
               <Search size={18} className="text-white/40" />
-              <input 
-                type="text" 
+              <input
+                type="text"
                 placeholder="Search products..."
                 className="flex-1 bg-transparent border-none outline-none text-sm font-sans tracking-wide text-white placeholder:text-white/30"
                 value={searchQuery}
@@ -240,9 +257,9 @@ const Navbar = () => {
         "fixed inset-0 bg-black/60 z-[200] transition-opacity duration-300 lg:hidden",
         isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
       )}>
-        <div 
-          className="absolute inset-0" 
-          onClick={() => setIsMobileMenuOpen(false)} 
+        <div
+          className="absolute inset-0"
+          onClick={() => setIsMobileMenuOpen(false)}
         />
         <div className={cn(
           "absolute inset-y-0 left-0 w-[85%] max-w-sm bg-white shadow-2xl transition-transform duration-300 ease-out flex flex-col",
@@ -265,7 +282,7 @@ const Navbar = () => {
                 <div key={item.title} className="border-b border-gray-50 last:border-none">
                   {item.subItems ? (
                     <>
-                      <button 
+                      <button
                         onClick={() => toggleAccordion(item.title)}
                         className="w-full flex items-center justify-between px-6 py-4 text-left"
                       >
@@ -279,16 +296,16 @@ const Navbar = () => {
                         activeAccordion === item.title ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
                       )}>
                         <div className="px-8 py-3 flex flex-col gap-3.5">
-                          <Link 
-                            href={item.href} 
+                          <Link
+                            href={item.href}
                             onClick={() => setIsMobileMenuOpen(false)}
                             className="text-[11px] font-bold text-gold uppercase tracking-[0.15em]"
                           >
                             View All {item.title}
                           </Link>
                           {item.subItems.map((sub) => (
-                            <Link 
-                              key={sub.title} 
+                            <Link
+                              key={sub.title}
                               href={sub.href}
                               onClick={() => setIsMobileMenuOpen(false)}
                               className="text-[11px] font-bold text-charcoal/70 hover:text-charcoal uppercase tracking-[0.15em]"
@@ -300,7 +317,7 @@ const Navbar = () => {
                       </div>
                     </>
                   ) : (
-                    <Link 
+                    <Link
                       href={item.href}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="block px-6 py-4 text-[12px] font-extrabold text-charcoal uppercase tracking-[0.2em]"
@@ -316,8 +333,8 @@ const Navbar = () => {
           {/* Mobile Menu Footer */}
           <div className="p-6 border-t border-gray-100 bg-white mt-auto">
             <div className="flex flex-col gap-4">
-              <Link 
-                href="/stores" 
+              <Link
+                href="/stores"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="flex items-center gap-3 text-[11px] font-bold text-charcoal/60 uppercase tracking-widest hover:text-charcoal transition-colors"
               >
