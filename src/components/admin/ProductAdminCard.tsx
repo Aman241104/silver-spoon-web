@@ -104,6 +104,7 @@ export default function ProductAdminCard({
           <div className="flex items-center gap-2">
             <Link
               href={`/admin/products/${product.id}`}
+              prefetch={false}
               className="text-gray-300 hover:text-[#2c2c2c] transition-colors"
               title="Edit product"
             >
