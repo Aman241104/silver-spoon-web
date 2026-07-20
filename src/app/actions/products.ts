@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidatePath, revalidateTag } from 'next/cache'
+import { revalidatePath, updateTag } from 'next/cache'
 import { createClient } from '@/lib/supabase-server'
 
 function formDataToRow(formData: FormData) {
@@ -55,7 +55,7 @@ export async function createProduct(
   if (insertError) return { error: insertError }
   if (!id) return { error: 'Could not generate a unique product ID. Please try again.' }
 
-  revalidateTag('products', 'max')
+  updateTag('products')
   revalidatePath('/')
   revalidatePath('/products')
   revalidatePath(`/collections/${row.category}`)
@@ -76,7 +76,7 @@ export async function updateProduct(
   const { error } = await supabase.from('products').update(row).eq('id', id)
   if (error) return { error: error.message }
 
-  revalidateTag('products', 'max')
+  updateTag('products')
   revalidatePath('/')
   revalidatePath('/products')
   revalidatePath(`/collections/${row.category}`)
@@ -90,7 +90,7 @@ export async function toggleFeatured(id: string, isFeatured: boolean) {
   if (authError) return authError
   const { error } = await supabase.from('products').update({ featured: isFeatured }).eq('id', id)
   if (error) return { error: error.message }
-  revalidateTag('products', 'max')
+  updateTag('products')
   return { error: undefined }
 }
 
@@ -101,7 +101,7 @@ export async function deleteProduct(id: string) {
   const { error } = await supabase.from('products').delete().eq('id', id)
   if (error) return { error: error.message }
 
-  revalidateTag('products', 'max')
+  updateTag('products')
   revalidatePath('/')
   revalidatePath('/products')
   return { error: undefined }
